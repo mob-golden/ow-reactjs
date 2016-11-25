@@ -13,7 +13,7 @@ class Footer extends Component {
     return (
       <div className="os-footer row">
         <div className="col-lg-12 os-footer-row os-footer-logo-row">
-          <img src="images/logo-large.png"/>
+          <img src="images/solomid-logo.png"/>
         </div>
         <div className="col-lg-12 os-footer-row">
           <div className="os-footer-block">
