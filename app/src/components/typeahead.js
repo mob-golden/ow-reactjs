@@ -80,7 +80,7 @@ class Typeahead extends Component {
             type="text"
             value={this.state.query}
           />
-          {/* {this.renderSuggestions()}*/}
+          {this.renderSuggestions()}
           <span className="input-group-btn">
             <button
               className="btn btn-warning os-search-btn"

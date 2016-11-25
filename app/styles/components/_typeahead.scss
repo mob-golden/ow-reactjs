@@ -7,7 +7,7 @@ $suggestionSize: 16px;
   .list-group {
     
     position: absolute;
-    top: 37px;
+    top: 50px;
     z-index: 999;
 
     // add scrolling after 5 suggestions
@@ -21,8 +21,8 @@ $suggestionSize: 16px;
   }
 
   .media-object {
-    width: suggestionSize;
-    //height: @width;
+    width: $suggestionSize * 2;
+    height: $suggestionSize * 2;
 
     // TODO: cleanup hard-coded value
     background-size: 320px;
@@ -42,16 +42,16 @@ $suggestionSize: 16px;
     top: -1px;
   
     // vertically center
-    height: $suggestionSize;
+    height: $suggestionSize * 2;
     margin-bottom: 0;
-    line-height: $suggestionSize;
+    line-height: $suggestionSize * 2;
   }
   .os-search-input {
     padding: 12px;
   }
 
   .os-search-btn{
-    padding: 12px;
+    padding: 12px 27px;
   }
 
   // Chrome/Opera/Safari
