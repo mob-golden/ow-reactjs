@@ -14,18 +14,13 @@ import {
 } from 'react-router';
 
 import {
-  RIOT_HERO_ICONS_URL,
+  RIOT_HEROS_ICONS_URL,
   RIOT_SPRITES_URL
 } from '../../constants/urls';
 
 import {
-  cleanHeroKey
-} from '../utils/index';
-
-import {
   generateSpriteStyle
 } from '../utils/sprites';
-
 
 import {
   HERO_TYPES
@@ -33,13 +28,12 @@ import {
 
 class HerosGrid extends Component {
   static defaultProps = {
-    colClass: 'col-xs-3 col-sm-2'
+    colClass: 'col-xs-3 os-col-sm-1'
   };
 
   render () {
     const {
       heros,
-      herosMap,
       colClass
     } = this.props;
 
@@ -62,37 +56,32 @@ class HerosGrid extends Component {
         <div className="os-heros-grid row">
           {heros.map(hero => {
             const {
-              key
+              id,
+              key,
+              name,
+              image:{
+                full,
+                sprite
+              }
             } = hero;
 
-            const cleanedKey = cleanHeroKey(key);
-
-            const {
-              image: {
-                full
-              },
-              name
-            } = herosMap[cleanedKey];
-
-            const thumbnailStyle = {
-              backgroundImage: `url("${RIOT_HERO_ICONS_URL}/${full}")`
-            };
 
             return (
               <div
                 className={colClass}
                 key={hero.id}
               >
-                <div className="os-heros-grid-cell os-thumbnail-container">
-                  <Link to={`/heros/${cleanedKey}`}>
+                <div className="os-thumb-container">
+                  <Link to={`/heros/${id}`}>
                     {/* TODO: extract CSS  */}
                     {/* use transparent PNG as a placeholder */}
                     <img
+                      width="98"
+                      height="138"
                       className="os-thumbnail"
-                      style={thumbnailStyle}
-                      src="https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png"
+                      src={`${RIOT_HEROS_ICONS_URL}/${full}`}
                     />
-                    <span className="os-heros-grid-overlay">{name}</span>
+                    <span className="os-thumb-name">{changeCase.upper(name)}</span>
                   </Link>
                 </div>
               </div>

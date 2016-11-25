@@ -11,7 +11,8 @@
 
 @import './layout/_header';
 @import './layout/_footer';
-@import './layout/ad';
+@import './layout/_ad';
+@import './layout/_herosgrid';
 
 /* 5. Components */
 @import './components/_tabsnav';
@@ -19,3 +20,4 @@
 
 /* 6. Pages */
 @import './pages/_heros';
+@import './pages/_password';

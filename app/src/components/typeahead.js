@@ -31,8 +31,8 @@ import {
 class Typeahead extends Component {
   // static propTypes = {
   //   dispatch: PropTypes.func.isRequired,
-  //   champions: PropTypes.object.isRequired,
-  //   isFetchingChampions: PropTypes.bool.isRequired,
+  //   heros: PropTypes.object.isRequired,
+  //   isFetchingHeros: PropTypes.bool.isRequired
   // };
 
   static defaultProps = {
@@ -112,15 +112,15 @@ class Typeahead extends Component {
           onMouseDown={this.handleSuggestionsMouseDown}
           onMouseUp={this.handleSuggestionsMouseUp}
         >
-          {suggestions.map(champion => {
+          {suggestions.map(hero => {
             if (this.state.areSuggestionsVisible) {
               const listGroupItemClass = classNames({
                 'list-group-item': true,
                 'media': true,
-                'active': suggestions[selection] == champion
+                'active': suggestions[selection] == hero
               });
 
-              const image = champion.image;
+              const image = hero.image;
 
               const spriteStyle = {
                 backgroundImage: `url(${RIOT_SPRITES_URL}/${image.sprite})`,
@@ -133,8 +133,8 @@ class Typeahead extends Component {
               return (
                 <Link
                   className={listGroupItemClass}
-                  key={champion.id.toLowerCase()}
-                  to={constructLink(champion.id)}
+                  key={hero.id.toLowerCase()}
+                  to={constructLink(hero.id)}
                 >
                   <div className="media-left media-middle">
                     <div
@@ -144,7 +144,7 @@ class Typeahead extends Component {
                     </div>
                   </div>
                   <div className="media-body">
-                    <h6 className="media-heading">{champion.name}</h6>
+                    <h6 className="media-heading">{hero.name}</h6>
                   </div>
                 </Link>
               );
@@ -164,32 +164,32 @@ class Typeahead extends Component {
   };
 
   handleChange = e => {
-    // const {
-    //   champions,
-    //   isFetchingChampions
-    // } = this.props;
+    const {
+      heros,
+      isFetchingHeros
+    } = this.props;
 
-    // if (!isFetchingChampions && champions) {
-    //   const query = e.target.value;
-    //   const areSuggestionsVisible = query.length > 0 ? true : false;
+    if (!isFetchingHeros && heros) {
+      const query = e.target.value;
+      const areSuggestionsVisible = query.length > 0 ? true : false;
 
-    //   const options = {
-    //     keys: ['name'],
-    //     threshold: 0.1
-    //   };
+      const options = {
+        keys: ['name'],
+        threshold: 0.1
+      };
 
-    //   const championsData = values(champions.data);
-    //   const fuse = new Fuse(championsData, options);
-    //   const suggestions = fuse.search(query);
+      const herosData = values(heros.data);
+      const fuse = new Fuse(herosData, options);
+      const suggestions = fuse.search(query);
 
-    //   this.setState({
-    //     areSuggestionsVisible,
-    //     // TODO: cleanup
-    //     selection: 0,
-    //     suggestions,
-    //     query
-    //   });
-    // }
+      this.setState({
+        areSuggestionsVisible,
+        // TODO: cleanup
+        selection: 0,
+        suggestions,
+        query
+      });
+    }
 
   };
 
@@ -258,19 +258,19 @@ class Typeahead extends Component {
 }
 
 function mapStateToProps (state) {
-  // const {
-  //   riot: {
-  //     champions: {
-  //       data: championsData,
-  //       isFetching: isFetchingChampions
-  //     }
-  //   }
-  // } = state;
+  const {
+    riot: {
+      heros: {
+        data: herosData,
+        isFetching: isFetchingHeros
+      }
+    }
+  } = state;
 
-  // return {
-  //   champions: championsData,
-  //   isFetchingChampions
-  // };
+  return {
+    heros: herosData,
+    isFetchingHeros
+  };
 }
 
 export default connect(mapStateToProps)(Typeahead);

@@ -4,7 +4,7 @@ import {
   RIOT_SPRITES_URL
 } from '../../constants/urls';
 
-// TODO: generate sprite styles for sprites other than Champions
+// TODO: generate sprite styles for sprites other than Heros
 export function generateSpriteStyle ({sprite, x, y}) {
   const basename = path.basename(sprite);
   const spriteId = sprite.substr(sprite.length - 1);
@@ -24,7 +24,6 @@ export function generateSpriteStyle ({sprite, x, y}) {
 function constructSpriteSize (spriteId) {
   let w = 480;
 
-  // champions4.png is only 2 rows long
   let h = (spriteId === 4) ? 96 : 144;
 
   return {
