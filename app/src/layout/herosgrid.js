@@ -73,15 +73,17 @@ class HerosGrid extends Component {
               >
                 <div className="os-thumb-container">
                   <Link to={`/heros/${id}`}>
-                    {/* TODO: extract CSS  */}
-                    {/* use transparent PNG as a placeholder */}
-                    <img
-                      width="98"
-                      height="138"
-                      className="os-thumbnail"
-                      src={`${RIOT_HEROS_ICONS_URL}/${full}`}
-                    />
-                    <span className="os-thumb-name">{changeCase.upper(name)}</span>
+                    <div className="os-thumb-photo">
+                      <img
+                        width="98"
+                        height="138"
+                        className="os-thumbnail"
+                        src={`${RIOT_HEROS_ICONS_URL}/${full}`}
+                      />
+                    </div>
+                    <div className="os-thumb-name">
+                      <span>{changeCase.upper(name)}</span>
+                    </div>
                   </Link>
                 </div>
               </div>

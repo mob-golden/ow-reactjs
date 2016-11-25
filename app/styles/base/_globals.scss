@@ -16,6 +16,10 @@ a, p, h1, h2, h3, h4, h5, h6{
   font-family: 'Lato', sans-serif;
 }
 
+span {
+  font-family: 'Open Sans', serif;
+}
+
 body{
   background-image: url("/images/background.jpg");
   background-repeat: no-repeat;
@@ -31,4 +35,5 @@ body{
   width: 12.5%;
   float: left;
   padding: 12px; 
+  margin-bottom: 30px;
 }
