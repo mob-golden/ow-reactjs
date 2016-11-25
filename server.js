@@ -3,7 +3,8 @@ var path = require('path');
 var express = require('express');
 var React = require('react');
 var Router = require('react-router');
-var routes = require('./app/containers/Application.js').routes;
+var routes = require('./app/containers/Application');
+
 const match = Router.match;
 var fs = require('fs');
 
@@ -16,15 +17,26 @@ var permaNews = {};
 app.use(express.static(staticPath, { maxAge: S_IN_YR }));
 
 app.get('*', function (req, res) {
-  match({ routes: routes, location: req.url }, function(error, redirectLocation, renderProps) {
-    if (typeof renderProps.routes[1] !== 'undefined' && renderProps.routes[1].status === 404) {
-      res.status(404).sendFile(path.join(__dirname, '/dist/index.html'));
+  match({ routes, location: req.url }, function(error, redirectLocation, renderProps) {
+  	if (error) {
+  		console.log("[match]: error", error);
+        res.status(500).send(error.message)
+    } else if (redirectLocation) {
+  		console.log("[match]: redirectLocation", redirectLocation);
+        res.redirect(302, redirectLocation.pathname + redirectLocation.search)
+    } else if (renderProps) {
+      	if (typeof renderProps.routes[1] !== 'undefined' && renderProps.routes[1].status === 404) {
+        	res.status(404).sendFile(path.join(__dirname, '/dist/index.html'));
+      	} else {
+        	res.sendFile(path.join(__dirname, '/dist/index.html'));
+      	}
     } else {
-      res.sendFile(path.join(__dirname, '/dist/index.html'));
+  		console.log("[match]: Not found");
+        res.status(404).send('Not found')
     }
   })
 });
 
 app.listen(port, function() {
-  console.log('listening')
+  	console.log('listening')
 });

@@ -3,14 +3,14 @@ require("./styles/main.scss");
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { state } from './store/base';
 import { createStore } from 'redux';
 import initialization from './store/initialization';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { browserHistory } from 'react-router';
 import Application from './containers/Application';
 
-const store = initialization(state);
+const preloadedState = window.__PRELOADED_STATE__;
+const store = initialization(preloadedState);
 const history = syncHistoryWithStore(browserHistory, store);
 
 render(

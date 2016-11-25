@@ -1,0 +1,18 @@
+@import '../base/_constants';
+
+.os-header {
+  margin-bottom: 32px;
+  .os-nav {
+    padding: 12px 16px;
+    background-color: $BLACK_1;
+  }
+  .os-nav-item {
+    padding-left: 20px;
+  }
+  .os-nav-menu{
+    margin-top: 10px;
+  }
+  .os-nav-title{
+  	margin-top: 5px;
+  }
+}

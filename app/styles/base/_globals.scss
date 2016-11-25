@@ -1,0 +1,28 @@
+@import '_constants';
+
+.os-white{
+  color: $WHITE !important;
+}
+
+.os-font-size-12{
+  font-size: 12px;
+}
+
+.os-font-size-18{
+  font-size: 18px;
+}
+
+a, p, h1, h2, h3, h4, h5, h6{
+  font-family: 'Lato', sans-serif;
+}
+
+body{
+  background-image: url("/background.jpg");
+  background-repeat: no-repeat;
+  background-color: $WHITE_1;
+  background-attachment: fixed;
+  background-position: center top;
+}
+.os-content{
+  padding-top: 100px;
+}

@@ -1,0 +1,46 @@
+@import '../base/_constants';
+
+.os-footer {
+  background-color: $BLACK_3;
+
+  h4 {
+    text-transform: uppercase;
+    margin-bottom: 0;
+  }
+
+  hr {
+    margin-bottom: 24px;
+  }
+
+  ul{
+    font-size: 14px;
+    line-height: 28px;
+  }
+}
+
+.os-footer-links {
+  margin-bottom: 24px;
+}
+
+.os-footer-row {
+  text-align: center;
+}
+
+.os-footer-logo-row {
+  padding-top: 30px;
+  padding-bottom: 15px;
+}
+
+.os-footer-block {
+  display: inline-block;
+}
+
+.os-gray {
+  color: $GRAY_1;
+}
+
+.os-footer-ul {
+  li {
+    padding: 0px 15px;
+  }
+}

@@ -26,9 +26,9 @@ module.exports = {
 
   module: {
     loaders: [{
-      test: /\.jsx?$/,
+      test: /\.js?$/,
       exclude: /node_modules/,
-      loaders: ['react-hot', 'babel'],
+      loaders: ['react-hot-loader/webpack', 'babel'],
       include: path.join(__dirname, './app')
     },{
       test: /\.s?css$/,
@@ -49,6 +49,10 @@ module.exports = {
       filename: 'index.html',
       template: 'index.html'
     })
-  ]
+  ],
+  resolve: {
+    alias: { 'react/lib/ReactMount': 'react-dom/lib/ReactMount' 
+  }
+}
 
 }
