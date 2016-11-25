@@ -1,0 +1,79 @@
+@import '../base/_constants';
+
+$suggestionPadding: 8px;
+$suggestionSize: 16px;
+
+.os-typeahead {
+  .list-group {
+    
+    position: absolute;
+    top: 37px;
+    z-index: 999;
+
+    // add scrolling after 5 suggestions
+
+    // (suggestion height + vertical padding) * 5 + border thickness
+    max-height: 241px;
+    overflow-y: scroll;
+  }
+  .list-group-item {
+    padding: $suggestionPadding;
+  }
+
+  .media-object {
+    width: suggestionSize;
+    //height: @width;
+
+    // TODO: cleanup hard-coded value
+    background-size: 320px;
+  }
+  .media {
+    margin-top: 0px;
+  }
+
+  // avoid double vertical borders
+  .media:not(:last-child) {
+    border-bottom: none;
+  }
+
+  .media-heading {
+    // pixel adjustment
+    position: relative;
+    top: -1px;
+  
+    // vertically center
+    height: $suggestionSize;
+    margin-bottom: 0;
+    line-height: $suggestionSize;
+  }
+  .os-search-input {
+    padding: 12px;
+  }
+
+  .os-search-btn{
+    padding: 12px;
+  }
+
+  // Chrome/Opera/Safari
+  .os-search-input::-webkit-input-placeholder  {
+    font-size: 14px;
+    color: $BLACK_3;
+  }
+
+  // Firefox 19+ 
+  .os-search-input::-moz-placeholder {
+    font-size: 14px;
+    color: $BLACK_3;
+  }
+  // IE 10+
+  .os-search-input:-ms-input-placeholder {
+    font-size: 14px;
+    color: $BLACK_3;
+  }
+
+  // Firefox 18-
+  .os-search-input:-moz-placeholder {
+    font-size: 14px;
+    color: $BLACK_3;
+  }
+}
