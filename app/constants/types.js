@@ -30,6 +30,12 @@ export const MAP_TYPES = [
   'control'
 ];
 
+export const TIP_TYPES = [
+  'genenral tips',
+  'hero matchups',
+  'map rankings'
+];
+
 // Temporary until API is updated.
 export const HEROS_COUNT = 133;
 

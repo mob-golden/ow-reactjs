@@ -29,13 +29,13 @@ export const routes = (
     {/*<Route
       component={Maps}
       path="/maps"
-    />
+    />*/}
     <Route
       component={Hero}
       path="/heros/:heroKey"
     >
       <IndexRoute component={Hero} />
-    </Route>*/}
+    </Route>
   </Route>
 );
 

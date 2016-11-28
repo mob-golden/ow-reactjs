@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 import Loader from '../../loader';
 import Typeahead from '../../typeahead';
-import HerosGrid from './herosGrid';
+import HerosGrid from './herosgrid';
 import TabsNav from '../../tabsNav';
 
 import { prepareAds } from '../../ads';
@@ -48,17 +48,17 @@ class Heros extends Component {
     } = this.props;
       
     return (
-      <div className="container os-content">
+      <div className="os-content container">
         <Ad
           className="os-ad os-ad-top"
           dimensions={adDimensions.BEFORE_RECT}
           path={'/22280732/ChampionSelect_728x90_HP_BTF1'}
         />
-        <div className="os-home row">
+        <div className="os-heros row">
           <div className="col-lg-12">
-            <div className="os-home-search-div">
+            <div className="os-heros-top">
               <p className="os-white hidden-xs-down os-font-size-18"> Search for a hero to find counterpicks, general counters, hero synergy, and more!</p>
-              <div className="col-lg-8 col-xs-12 col-lg-offset-2 centered">
+              <div className="col-lg-8 col-xs-12 col-lg-offset-2">
                 <Typeahead
                   constructLink={(id) => `/heros/${id.toLowerCase()}`}
                   inputGroupClass="input-group"
@@ -68,7 +68,7 @@ class Heros extends Component {
             </div>
           </div>
           <div className="col-lg-12">
-            <div className="os-home-box">
+            <div className="os-heros-body">
               <p className="hidden-xs-down os-font-size-18"> Choose a hero below to find counterpicks, general counters, hero synergy, and more!</p>
               <div>
                 <TabsNav

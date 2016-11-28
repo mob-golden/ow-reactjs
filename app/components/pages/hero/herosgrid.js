@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Loader from '../../loader';
-import TabsNav from '../../tabsNav';
 import changeCase from 'change-case';
 
 
