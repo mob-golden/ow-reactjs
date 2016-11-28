@@ -1,13 +1,12 @@
 import React from 'react'
 import { Provider } from 'react-redux';
-//import ReactGA from 'react-ga';
-import Root from './Root';
-import ForgotPassword from '../src/pages/password/forgot';
-import ResetPassword from '../src/pages/password/reset';
-import Heros from '../src/pages/hero/heros';
-// import Maps from '../src/pages/map/maps';
-
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+//import ReactGA from 'react-ga';
+import Root from './root';
+import ForgotPassword from '../components/pages/password/forgot';
+import ResetPassword from '../components/pages/password/reset';
+import Heros from '../components/pages/hero/heros';
+import Hero from '../components/pages/hero/hero';
 
 //if (typeof window !== 'undefined')  {
 //  ReactGA.initialize('UA-51583717-1');
@@ -30,7 +29,13 @@ export const routes = (
     {/*<Route
       component={Maps}
       path="/maps"
-    />*/}
+    />
+    <Route
+      component={Hero}
+      path="/heros/:heroKey"
+    >
+      <IndexRoute component={Hero} />
+    </Route>*/}
   </Route>
 );
 
