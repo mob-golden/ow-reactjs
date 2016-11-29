@@ -1,5 +1,6 @@
 import auth from './auth';
 import riot from './riot';
+import api from './api';
 
 import {
   routerReducer
@@ -11,6 +12,7 @@ import {
 
 const rootReducer = combineReducers({
   auth,
+  api,
   riot,
   routing: routerReducer
 });

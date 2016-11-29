@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import Loader from '../../loader';
 import Typeahead from '../../typeahead';
 import HerosGrid from './herosgrid';
-import TabsNav from '../../tabsNav';
+import TabsNav from '../../tabsnav';
 
 import { prepareAds } from '../../ads';
 import { adDimensions } from '../../../constants/ads';

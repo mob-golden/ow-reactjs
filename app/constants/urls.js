@@ -3,7 +3,7 @@ const RIOT_API_PATCH = '6.20.1';
 // TODO: refactor with path operations
 export const RIOT_API_ROOT = `https://ddragon.leagueoflegends.com/cdn/${RIOT_API_PATCH}`;
 export const RIOT_HEROS_URL = `${RIOT_API_ROOT}/data/en_US/champion.json`;
-export const RIOT_HEROS_ICONS_URL = `${RIOT_API_ROOT}/img/champion`;
+export const RIOT_HERO_ICONS_URL = `${RIOT_API_ROOT}/img/champion`;
 export const RIOT_SPRITES_URL = `${RIOT_API_ROOT}/img/sprite`;
 
 // development

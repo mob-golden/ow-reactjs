@@ -7,6 +7,7 @@ import ForgotPassword from '../components/pages/password/forgot';
 import ResetPassword from '../components/pages/password/reset';
 import Heros from '../components/pages/hero/heros';
 import Hero from '../components/pages/hero/hero';
+import HeroTips from '../components/pages/hero/herotips';
 
 //if (typeof window !== 'undefined')  {
 //  ReactGA.initialize('UA-51583717-1');
@@ -34,7 +35,7 @@ export const routes = (
       component={Hero}
       path="/heros/:heroKey"
     >
-      <IndexRoute component={Hero} />
+      <IndexRoute component={HeroTips} />
     </Route>
   </Route>
 );

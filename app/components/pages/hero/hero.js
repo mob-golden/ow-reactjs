@@ -15,7 +15,9 @@ import HeroFooter from './herofooter';
 import { prepareAds } from '../../ads';
 import { adDimensions } from '../../../constants/ads';
 
-import { RIOT_HEROS_ICONS_URL } from '../../../constants/urls';
+import {  fetchCounterTipsIfNeeded } from '../../../actions/api';
+
+import { RIOT_HERO_ICONS_URL } from '../../../constants/urls';
 import { TIP_TYPES } from '../../../constants/types';
 
 class Hero extends Component {
@@ -28,7 +30,9 @@ class Hero extends Component {
 
   // static propTypes = {
   //   heros: PropTypes.object.isRequired,
-  //   isFetchingHeros: PropTypes.bool.isRequired
+  //   isFetchingHeros: PropTypes.bool.isRequired,
+  //   counterTips: PropTypes.object.isRequired,
+  //   isFetchingCounterTips: PropTypes.bool.isRequired
   // };
 
   componentWillMount () {
@@ -44,9 +48,12 @@ class Hero extends Component {
   }
   render () {
     const {
+      children,
       ads,
       heros,
       isFetchingHeros,
+      counterTips,
+      isFetchingCounterTips,
       params: {
         heroKey: _heroKey
       }
@@ -82,7 +89,7 @@ class Hero extends Component {
                           width="72"
                           height="108"
                           className="os-hero-profile-icon"
-                          src={`${RIOT_HEROS_ICONS_URL}/${full}`}
+                          src={`${RIOT_HERO_ICONS_URL}/${full}`}
                         />
                         <div className="os-hero-profile-type"></div>
                         <h5 className="os-hero-profile-name">{changeCase.upper(herosMap[heroKey].name)}</h5>
@@ -117,14 +124,7 @@ class Hero extends Component {
                     </div>
                   </div>
                   <div className="row">
-                    <div className="col-lg-6"> 
-                      <div className="os-hero-tip-body">
-                      </div>
-                    </div>
-                    <div className="col-lg-6"> 
-                      <div className="os-hero-tip-body">
-                      </div>
-                    </div>
+                    {children}
                   </div>
                 </div>
               </div>
@@ -150,6 +150,12 @@ class Hero extends Component {
 
 function mapStateToProps (state) {
   const {
+    api: {
+      counterTips: {
+        data: counterTipsData,
+        isFetching: isFetchingCounterTips
+      }
+    },
     riot: {
       heros: {
         data: herosData,
@@ -160,7 +166,9 @@ function mapStateToProps (state) {
 
   return {
     heros: herosData,
-    isFetchingHeros
+    isFetchingHeros,
+    counterTips: counterTipsData,
+    isFetchingCounterTips
   };
 }
 

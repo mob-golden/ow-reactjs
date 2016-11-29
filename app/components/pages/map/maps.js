@@ -49,7 +49,7 @@
 //   };
 
 //   componentWillUnmount () {
-//     $('.cs-ad-side').remove();
+//     $('.os-ad-side').remove();
 //   }
 
 //   render () {
@@ -60,24 +60,24 @@
 //     } = this.props;
 
 //     return (
-//       <div className="container cs-content">
+//       <div className="container os-content">
 //         <Ad
-//           className="cs-ad cs-ad-top"
+//           className="os-ad os-ad-top"
 //           dimensions={adDimensions.BEFORE_RECT}
 //           path={'/22280732/ChampionSelect_728x90_HP_BTF1'}
 //         />
-//         <div className="cs-home row">
+//         <div className="os-home row">
 //           <div className="col-lg-12">
-//             <div className="cs-home-search-div">
-//               <h2 className="cs-white">CHOOSE A MAP</h2>
-//               <p className="cs-white hidden-xs-down cs-font-size-18">
+//             <div className="os-home-search-div">
+//               <h2 className="os-white">CHOOSE A MAP</h2>
+//               <p className="os-white hidden-xs-down os-font-size-18">
 //                 The list below is sorted alphabetically, the maps are not ranked in any way. <br/>
 //                 Choose a map below to find recommended Heros for each map.
 //               </p>
 //             </div>
 //           </div>
 //           <div className="col-lg-12">
-//             <div className="cs-home-box">
+//             <div className="os-home-box">
 //               {!isFetchingMaps && maps ?
 //                 <MapsGrid
 //                   maps={maps.data}
@@ -87,7 +87,7 @@
           
 //         </div>
 //         <Ad
-//           className="cs-ad cs-ad-bottom"
+//           className="os-ad os-ad-bottom"
 //           dimensions={adDimensions.AFTER_SQUARE}
 //           path={'/22280732/ChampionSelect_300x250_HP_ATF1'}
 //         />

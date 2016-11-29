@@ -13,13 +13,13 @@ import {
 } from 'react-router';
 
 import {
-  RIOT_HEROS_ICONS_URL,
+  RIOT_HERO_ICONS_URL,
   RIOT_SPRITES_URL
 } from '../../../constants/urls';
 
 import {
   generateSpriteStyle
-} from '../../sprites';
+} from '../../../utils/sprites';
 
 import {
   HERO_TYPES
@@ -62,7 +62,7 @@ class HerosGrid extends Component {
                       width="98"
                       height="138"
                       className="os-thumbnail"
-                      src={`${RIOT_HEROS_ICONS_URL}/${full}`}
+                      src={`${RIOT_HERO_ICONS_URL}/${full}`}
                     />
                   </div>
                   <div className="os-thumb-name">

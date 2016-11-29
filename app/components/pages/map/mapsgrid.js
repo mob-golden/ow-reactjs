@@ -14,7 +14,7 @@
 // } from 'react-router';
 
 // import {
-//   RIOT_HEROS_ICONS_URL,
+//   RIOT_HERO_ICONS_URL,
 //   RIOT_SPRITES_URL
 // } from '../../constants/urls';
 
@@ -39,7 +39,7 @@
 
 //     return (
 //       <div>
-//         <p className="hidden-xs-down cs-font-size-18">Choose a hero below to find counterpicks, general counters, hero synergy, and more!</p>
+//         <p className="hidden-xs-down os-font-size-18">Choose a hero below to find counterpicks, general counters, hero synergy, and more!</p>
 //         <div>
 //           <TabsNav
 //             activeTabId={'all'}

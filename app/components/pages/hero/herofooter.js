@@ -1,25 +1,18 @@
 import React from 'react';
-
-import Loader from '../../loader';
+import { Component } from 'react';
+import { Link } from 'react-router';
 import changeCase from 'change-case';
 
+import Loader from '../../loader';
 
 import {
-  Component
-} from 'react';
-
-import {
-  Link
-} from 'react-router';
-
-import {
-  RIOT_HEROS_ICONS_URL,
+  RIOT_HERO_ICONS_URL,
   RIOT_SPRITES_URL
 } from '../../../constants/urls';
 
 import {
   generateSpriteStyle
-} from '../../sprites';
+} from '../../../utils/sprites';
 
 import {
   HERO_TYPES
@@ -61,7 +54,7 @@ class HeroFooter extends Component {
                     width="75"
                     height="75"
                     className="os-hero-footer-thumb-img"
-                    src={`${RIOT_HEROS_ICONS_URL}/${full}`}
+                    src={`${RIOT_HERO_ICONS_URL}/${full}`}
                   />
                 </Link>   
               </div>

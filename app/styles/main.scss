@@ -13,10 +13,13 @@
 @import './layout/_footer';
 @import './layout/_ad';
 @import './layout/_herosgrid';
+@import './layout/_herotips';
+@import './layout/_countertips';
 
 /* 5. Components */
 @import './components/_tabsnav';
 @import './components/_typeahead';
+
 
 /* 6. Pages */
 @import './pages/_hero';
