@@ -15,27 +15,16 @@ import HeroTips from '../components/pages/hero/herotips';
 export const routes = (
   <Route path="/" component={Root} >
     <IndexRoute component={Heros} />
-    <Route
-      component={ForgotPassword}
-      path="/forgot"
-    />
-    <Route
-      component={ResetPassword}
-      path="/reset"
-    />
-    <Route
-      component={Heros}
-      path="/heros"
-    />
+    <Route path="/forgot" component={ForgotPassword} />
+    <Route path="/reset" component={ResetPassword} />
+    <Route path="/heros" component={Heros} />
     {/*<Route
       component={Maps}
       path="/maps"
     />*/}
-    <Route
-      component={Hero}
-      path="/heros/:heroKey"
-    >
-      <IndexRoute component={HeroTips} />
+
+    <Route path="/heros/:heroKey" component={Hero}>
+      <IndexRoute component={Hero} />
     </Route>
   </Route>
 );
@@ -44,7 +33,7 @@ export default class Application extends React.Component {
   render () {
     return (
       <Provider store={ this.props.store }>
-        <Router history={ this.props.history }> 
+        <Router history={ this.props.history }>
           {routes}
         </Router>
       </Provider>
