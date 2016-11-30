@@ -7,10 +7,46 @@
   background: $BLACK_2;
   text-align: center;
 }
-
 .os-heros-body {
   margin: 0px 55px;
   padding: 30px 25px;
   background: $WHITE_1;
 }
+// Mobile-friendliness changes
+@media screen and (max-width: $BP_TABLET) {
+  .os-heros-top,
+  .os-heros-body,
+  .os-hero-top,
+  .os-hero-body {
+    margin: 0;
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+  .os-heros-top { // Combat absolutely positined search bar
+    padding-top: 20px;
+    padding-bottom: 10px;
+  }
+  .os-heros-top,
+  .os-hero-top {
+    >.col-xs-12,
+    >.col-lg-3,
+    >.col-lg-9 {
+      padding: 0;
+    }
+  }
+  .os-container {
+    padding: 0;
+  }
+  .os-content {
+    padding-top: 0;
+  }
+  .os-heros .col-lg-12 {
+    padding: 0;
+  }
 
+  // TODO: move this to appropriate place
+  // .input-group-btn,
+  // .os-search-input {
+  //   display: block;
+  // }
+}

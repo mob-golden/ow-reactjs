@@ -89,6 +89,7 @@
       border: none;
       box-shadow: none;
       margin-left: 0;
+      border-bottom: 1px solid $GRAY_5;
       
       a,
       div {
@@ -97,6 +98,9 @@
       &:first-child,
       &:last-child {
         border-radius: 0;
+      }
+      &:last-child {
+        border-bottom: none;
       }
       .os-tab-icon,
       .os-tab-text {

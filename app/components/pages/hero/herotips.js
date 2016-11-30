@@ -7,8 +7,7 @@ import takeRight from 'lodash/takeRight';
 import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-
-import CounterTips from '../tip/counterTips';
+import CounterTips from '../tip/countertips';
 import Loader from '../../loader';
 import { addCounterTip } from '../../../actions/all';
 import { fetchCounterTipsForHero } from '../../../actions/api';
