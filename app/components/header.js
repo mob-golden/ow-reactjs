@@ -78,6 +78,11 @@ class Header extends Component {
 
       if (localToken && localUsername && localUserId) dispatch(setUser(localToken, localUsername, localUserId));
     }
+
+    // This closes the dropdown when a menu item is clicked
+    $(".header--dropdown-button").click(() => {
+      if (this.state.dropdownOpen) this.toggleDropdown();
+    })
   }
 
   constructor (props) {
@@ -93,15 +98,74 @@ class Header extends Component {
       password: '',
       username: '',
       confirmPassword: '',
-      passwordMessage: null
+      passwordMessage: null,
+      dropdownOpen: false
     };
   }
+  
+  toggleDropdown () {
+    $('.navbar').toggleClass('nav-open');
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen
+    });
+    return;
+  }
+
 
   render () {
     const {
       signInId,
       signUpId,
+      token,
+      username
     } = this.props;
+
+    let nav_auth_content;
+    if (token && username) {
+      nav_auth_content = (
+        <ul className={`${classes}`}>
+          <li className="nav-item">
+            <a
+              className="nav-link active"
+              href="javascript:;"
+            >{username}</a>
+          </li>
+          <li className="nav-item">
+            <a
+              className="nav-link"
+              href="javascript:;"
+              onClick={this.signOut}
+            >Log out</a>
+          </li>
+        </ul>
+      );
+    }
+    else {
+      nav_auth_content = (
+        <ul>
+          <li><Link to="/heroes" onClick={() => this.toggleDropdown()}>Heroes</Link></li>
+          <li><Link to="/maps" onClick={() => this.toggleDropdown()}>Maps</Link></li>
+          <li>
+            <a 
+              data-toggle="modal"
+              data-target={`#${signInId}`}
+              href="javascript:;"  
+            >
+              Log In
+            </a>
+          </li>
+          <li>
+            <a 
+              data-toggle="modal"
+              data-target={`#${signUpId}`}
+              href="javascript:;"
+            >
+              Sign Up
+            </a>
+          </li>
+        </ul>
+      );
+    }
 
     return (
       <header className="os-header navbar-fixed row">
@@ -123,6 +187,19 @@ class Header extends Component {
                 {this.renderLinks()}
               </div>
             </div>
+            <a
+              className="mobile-link"
+              onClick={() => this.toggleDropdown()}
+            >
+              <span className="mobile-hamburger"></span>
+            </a>
+            <div className="navigation nav-right">
+              {nav_auth_content}
+            </div>
+        <div
+          className="header--dropdown-toggle-bg hidden"
+          onClick={() => this.toggleDropdown()}
+        ></div>
           </div>
         </nav>
         <nav className="os-nav-lg-down navbar navbar-full navbar-light bg-faded hidden-lg-up">
@@ -254,7 +331,7 @@ class Header extends Component {
     );
   };
 
-  renderLinks = (classes = 'os-nav-links nav navbar-nav') => {
+  renderLinks = (classes = 'os-nav-links nav navbar-nav navbar-desktop') => {
     const {
       signInId,
       signUpId,
@@ -283,48 +360,50 @@ class Header extends Component {
     }
 
     return (
-      <ul className={`${classes}`}>
-        <li className="nav-item os-nav-item">
-          <Link
-            className="os-white os-font-size-12"
-            to="/heros"
-          >
-            HEROS
-          </Link>
-        </li>
+      <div>
+        <ul className={`${classes}`}>
+          <li className="nav-item os-nav-item">
+            <Link
+              className="os-white os-font-size-12"
+              to="/heros"
+            >
+              HEROS
+            </Link>
+          </li>
 
-        <li className="nav-item os-nav-item">
-          <Link
-            className="os-white os-font-size-12"
-            to="/maps"
-          >
-            MAPS
-          </Link>
-        </li>
+          <li className="nav-item os-nav-item">
+            <Link
+              className="os-white os-font-size-12"
+              to="/maps"
+            >
+              MAPS
+            </Link>
+          </li>
 
-        <li className="nav-item os-nav-item">
-          <a
-            className="os-white os-font-size-12"
-            data-toggle="modal"
-            data-target={`#${signInId}`}
-            href="javascript:;"
-          >
-            LOG IN
-          </a>
-        </li>
+          <li className="nav-item os-nav-item">
+            <a
+              className="os-white os-font-size-12"
+              data-toggle="modal"
+              data-target={`#${signInId}`}
+              href="javascript:;"
+            >
+              LOG IN
+            </a>
+          </li>
 
-        <li className="nav-item os-nav-item">
-          <a
-            className="os-white os-font-size-12"
-            data-toggle="modal"
-            data-target={`#${signUpId}`}
-            href="javascript:;"
-          >
-            SIGN UP
-          </a>
-        </li>
-        
-      </ul>
+          <li className="nav-item os-nav-item">
+            <a
+              className="os-white os-font-size-12"
+              data-toggle="modal"
+              data-target={`#${signUpId}`}
+              href="javascript:;"
+            >
+              SIGN UP
+            </a>
+          </li>
+        </ul>
+
+      </div>
     );
   };
 
