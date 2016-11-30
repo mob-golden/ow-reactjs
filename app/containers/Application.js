@@ -1,9 +1,18 @@
 import React from 'react'
 import { Provider } from 'react-redux';
 //import ReactGA from 'react-ga';
+<<<<<<< Updated upstream
 import Home from '../components/pages/Home/Home';
 import Root from './Root';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+=======
+import Root from './Root';
+import ForgotPassword from '../components/pages/password/forgot';
+import ResetPassword from '../components/pages/password/reset';
+import Heros from '../components/pages/hero/heros';
+import Hero from '../components/pages/hero/hero';
+import HeroTips from '../components/pages/hero/herotips';
+>>>>>>> Stashed changes
 
 //if (typeof window !== 'undefined')  {
 //  ReactGA.initialize('UA-51583717-1');

@@ -1,0 +1,125 @@
+@import '../base/constants';
+
+.os-tabs-nav {
+  padding-left: 0px;
+  margin-bottom: 32px;
+  list-style: none;
+
+  .os-tabnav-item {
+    min-width: 15%;
+    float: left;
+    border-radius: 0px;
+    text-align: center;
+    margin-left: 1px;
+    box-shadow: -1px 0px;
+    background-color: $BLACK_3;
+    
+    a {
+      color: $WHITE;
+    }
+    .os-tab-item-OFFENSE{
+      width:16px;
+      height: 16px;
+      background-image: url("/images/offense.png");
+      float:left;
+    }
+    .os-tab-item-DEFENSE{
+      width:16px;
+      height: 16px;
+      background-image: url("/images/defense.png");
+      float:left;
+    }
+    .os-tab-item-TANK{
+      width:16px;
+      height: 16px;
+      background-image: url("/images/tank.png");
+      float:left;
+
+      @media screen and (min-width: $BP_TABLET) {
+        margin-left: 12px;
+      }
+    }
+    .os-tab-item-SUPPORT{
+      width:16px;
+      height: 16px;
+      background-image: url("/images/support.png");
+      float:left;
+    }
+  }
+  .os-tabnav-item:first-child {
+    border-radius: 6px 0px 0px 6px;
+    margin-left: 0px;
+    box-shadow: 0px 0px;
+  }
+  .os-tabnav-item:last-child {
+    border-radius: 0px 6px 6px 0px;
+  }
+  .os-tabnav-item:active {
+    background-color: $BLUE_1;
+  }
+  .os-tabnav-item:focus {
+    background-color: $BLUE_1;
+  }
+  .os-tabnav-item:hover {
+    background-color: $BLUE_1;
+  }
+  .os-nav-link {
+    display: block;
+    padding: 16px 30px;
+  }
+  .os-nav-link:hover {
+    text-decoration: none;
+  }
+  .os-nav-link:focus {
+    text-decoration: none;
+  }
+}
+.os-tabs-nav:after {
+  display: table;
+  clear: both;
+  content: "";
+}
+@media screen and (max-width: $BP_TABLET) {
+  .os-tabs-nav {
+    .os-tabnav-item {
+      text-align: left;
+      width: 100%;
+      background-color: $GRAY_3;
+      color: $GRAY_5;
+      border: none;
+      box-shadow: none;
+      margin-left: 0;
+      border-bottom: 1px solid $GRAY_5;
+      
+      a,
+      div {
+        color: $GRAY_5;
+      }
+      &:first-child,
+      &:last-child {
+        border-radius: 0;
+      }
+      &:last-child {
+        border-bottom: none;
+      }
+      .os-tab-icon,
+      .os-tab-text {
+        display: inline-block;
+        margin-right: 10px;
+      }
+      .os-tab-item-ALL {
+        margin-right: 0;
+      }
+    }
+    .os-tabnav-item.active {
+      background-color: $BLACK_3;
+      color: $WHITE;
+      border-left: 4px solid $BLUE_1;
+
+      a,
+      div {
+        color: $WHITE;
+      }
+    }
+  }
+}
