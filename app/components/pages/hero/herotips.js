@@ -9,7 +9,11 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import CounterTips from '../tip/countertips';
+=======
+import CounterTips from '../tip/counterTips';
+>>>>>>> 90c3db1c279916d94397720a7b0a7391a7cef4fc
 =======
 import CounterTips from '../tip/counterTips';
 >>>>>>> 90c3db1c279916d94397720a7b0a7391a7cef4fc

@@ -1,27 +1,13 @@
 import React from 'react'
 import { Provider } from 'react-redux';
-<<<<<<< HEAD
-//import ReactGA from 'react-ga';
-<<<<<<< Updated upstream
-import Home from '../components/pages/Home/Home';
-import Root from './Root';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-=======
-import Root from './Root';
-=======
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 //import ReactGA from 'react-ga';
 import Root from './root';
->>>>>>> 90c3db1c279916d94397720a7b0a7391a7cef4fc
 import ForgotPassword from '../components/pages/password/forgot';
 import ResetPassword from '../components/pages/password/reset';
 import Heros from '../components/pages/hero/heros';
 import Hero from '../components/pages/hero/hero';
 import HeroTips from '../components/pages/hero/herotips';
-<<<<<<< HEAD
->>>>>>> Stashed changes
-=======
->>>>>>> 90c3db1c279916d94397720a7b0a7391a7cef4fc
 
 //if (typeof window !== 'undefined')  {
 //  ReactGA.initialize('UA-51583717-1');

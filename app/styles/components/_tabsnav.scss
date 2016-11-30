@@ -89,7 +89,10 @@
       border: none;
       box-shadow: none;
       margin-left: 0;
+<<<<<<< HEAD
       border-bottom: 1px solid $GRAY_5;
+=======
+>>>>>>> 90c3db1c279916d94397720a7b0a7391a7cef4fc
       
       a,
       div {
@@ -99,9 +102,12 @@
       &:last-child {
         border-radius: 0;
       }
+<<<<<<< HEAD
       &:last-child {
         border-bottom: none;
       }
+=======
+>>>>>>> 90c3db1c279916d94397720a7b0a7391a7cef4fc
       .os-tab-icon,
       .os-tab-text {
         display: inline-block;
