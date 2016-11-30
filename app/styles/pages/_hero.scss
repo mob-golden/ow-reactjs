@@ -1,0 +1,106 @@
+@import '../base/_constants';
+
+.os-hero-top {
+  min-height: 242px;
+  padding: 50px 170px;
+  margin: 0px 55px;
+  background: $BLACK_2;
+}
+
+.os-hero-body{
+  margin: 0px 55px;
+  padding: 30px 25px;
+  background: $WHITE_1;
+}
+
+.os-hero-profile {
+  text-align: center;
+  margin-left: -50px;
+  h5 {
+    font-family: 'Open Sans', serif;
+    font-size: 16px;
+    font-weight: bold;
+  }
+}
+
+.os-hero-search {
+	margin-top: 45px;
+}
+
+.os-hero-profile-name {
+  margin-top: 20px;
+  color: white;
+  text-decoration: none;
+  text-shadow: #3EABF0 0px 0px 6px;
+}
+
+.os-hero-profile-icon {
+  clip-path: polygon(0px 0px, 72px 0px, 72px 85px, 71px 87px, 36px 108px, 1px 87px, 0px 84px);
+  -moz-clip-path: polygon(0px 0px, 72px 0px, 72px 85px, 71px 87px, 36px 108px, 1px 87px, 0px 84px);
+  -webkit-clip-path: polygon(0px 0px, 72px 0px, 72px 85px, 71px 87px, 36px 108px, 1px 87px, 0px 84px);
+  -ms-input-clip-path: polygon(0px 0px, 72px 0px, 72px 85px, 71px 87px, 36px 108px, 1px 87px, 0px 84px);
+}
+
+.os-profile-mask { 
+  background-image: url(/images/hero-mask.png);
+  background-size: cover;
+  width: 129px;
+  height: 135px;
+  position: absolute;
+  left: -7px;
+  top: -2px;
+}
+
+.os-hero-profile-type {
+  left: 20px;
+  top: 70px;
+  position: absolute;
+  background-image: url(/images/oval.png);
+  background-size: cover;
+  width: 75px;
+  height: 75px;
+}
+
+.os-hero-footer{
+  background-color: $GRAY_1;
+  min-height: 334px;
+}
+
+.os-hero-footer-text {
+  text-align: center;
+  padding-top: 50px;
+  p {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 0px;
+  }
+}
+
+.os-hero-footer-thumbs {
+  margin-top: 10px;
+}
+
+.os-hero-footer-thumb {
+  width: 75px;
+  height: 75px;
+  float: left;
+  margin: 10px;
+}
+
+.os-hero-footer-thumb-img {
+  border-radius: 5px;
+  position: absolute;
+  -webkit-transition: box-shadow 0.2s; // For Safari 
+  -moz--webkit-transition: box-shadow 0.2s; // For Safari 
+  transition: box-shadow 0.2s;
+}
+
+.os-hero-footer-thumb-img:hover {
+  border: solid $WHITE_2 4px;
+  margin-left: -4px;
+  margin-top: -4px;
+  width: 83px;
+  height: 83px;
+  box-shadow: $BLUE_1 0px 0px 4px 2px;
+}
+

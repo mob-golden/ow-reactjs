@@ -8,7 +8,11 @@ import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
+<<<<<<< HEAD
 import CounterTips from '../tip/countertips';
+=======
+import CounterTips from '../tip/counterTips';
+>>>>>>> 90c3db1c279916d94397720a7b0a7391a7cef4fc
 import Loader from '../../loader';
 import { addCounterTip } from '../../../actions/all';
 import { fetchCounterTipsForHero } from '../../../actions/api';

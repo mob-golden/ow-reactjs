@@ -2,12 +2,26 @@
 @charset 'UTF-8';
 /* 1. Vendors */
 /* 2. Configuration and helpers */
-/* 3. Base stuff
+/* 3. Base stuff*/
+@import './base/_constants';
 @import './base/_globals';
 @import './base/_base';
-*/
-/* 4. Layout-related sections
+
+/* 4. Layout-related sections*/
+
 @import './layout/_header';
 @import './layout/_footer';
-*/
+@import './layout/_ad';
+@import './layout/_herosgrid';
+@import './layout/_herotips';
+@import './layout/_countertips';
+
 /* 5. Components */
+@import './components/_tabsnav';
+@import './components/_typeahead';
+
+
+/* 6. Pages */
+@import './pages/_hero';
+@import './pages/_heros';
+@import './pages/_password';

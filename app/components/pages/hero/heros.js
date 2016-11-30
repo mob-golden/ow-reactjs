@@ -57,7 +57,11 @@ class Heros extends Component {
         <div className="os-heros row">
           <div className="col-lg-12">
             <div className="os-heros-top">
+<<<<<<< HEAD
               <p className="os-white os-font-size-18"> Search for a hero to find counterpicks, general counters, hero synergy, and more!</p>
+=======
+              <p className="os-white hidden-xs-down os-font-size-18"> Search for a hero to find counterpicks, general counters, hero synergy, and more!</p>
+>>>>>>> 90c3db1c279916d94397720a7b0a7391a7cef4fc
               <div className="col-lg-8 col-xs-12 col-lg-offset-2">
                 <Typeahead
                   constructLink={(id) => `/heros/${id.toLowerCase()}`}

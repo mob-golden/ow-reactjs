@@ -22,7 +22,7 @@ module.exports = {
 
   module: {
     loaders: [{
-      test: /\.jsx?$/,
+      test: /\.js?$/,
       exclude: /node_modules/,
       loaders: ['babel'],
       include: path.join(__dirname, './app')
@@ -56,7 +56,7 @@ module.exports = {
       { from: __dirname + '/app/styles/img', to: 'app/styles/img' }
     ]),
     new HtmlWebpackPlugin({
-      title: 'tsmgg',
+      title: 'overwatch-select',
       filename: 'index.html',
       template: 'index.html'
     })

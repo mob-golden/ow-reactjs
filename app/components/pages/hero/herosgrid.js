@@ -27,7 +27,11 @@ import {
 
 class HerosGrid extends Component {
   static defaultProps = {
+<<<<<<< HEAD
     colClass: 'col-xs-4 os-col-sm-1'
+=======
+    colClass: 'col-xs-3 os-col-sm-1'
+>>>>>>> 90c3db1c279916d94397720a7b0a7391a7cef4fc
   };
 
   render () {
