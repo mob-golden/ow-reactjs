@@ -24,7 +24,7 @@ export const routes = (
     />*/}
 
     <Route path="/heros/:heroKey" component={Hero}>
-      <IndexRoute component={Hero} />
+      <IndexRoute component={HeroTips} />
     </Route>
   </Route>
 );
