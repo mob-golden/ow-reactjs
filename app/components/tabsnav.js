@@ -24,7 +24,6 @@ const TabsNav = props => {
         const navLinkClass = classNames({
           'os-nav-link': true,
           'os-font-size-12': true,
-          'os-white': true,
           'active': tabId === activeTabId
         });
 
@@ -46,8 +45,10 @@ const TabsNav = props => {
               href="javascript:;"
               onClick={handleClick.bind(null, tabId)}
             >
-            <div className={`os-tab-item-${label}`}></div>
-            {label}
+            <div className={`os-tab-item-${label} os-tab-icon`}></div>
+              <div className="os-tab-text">
+                {label}
+              </div>
             </a>
           );
         };
