@@ -1,5 +1,6 @@
 import React from 'react'
 import { Provider } from 'react-redux';
+import Home from '../components/pages/Home/Home';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 //import ReactGA from 'react-ga';
 import Root from './root';
