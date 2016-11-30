@@ -1,9 +1,8 @@
 import React from 'react'
 import { Provider } from 'react-redux';
-import Home from '../components/pages/Home/Home';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 //import ReactGA from 'react-ga';
-import Root from './root';
+import Root from './Root';
 import ForgotPassword from '../components/pages/password/forgot';
 import ResetPassword from '../components/pages/password/reset';
 import Heros from '../components/pages/hero/heros';
