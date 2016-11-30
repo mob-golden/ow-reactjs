@@ -79,6 +79,9 @@
   clear: both;
   content: "";
 }
+.center-text .os-tabs-nav {
+  display: inline-block;
+}
 @media screen and (max-width: $BP_TABLET) {
   .os-tabs-nav {
     .os-tabnav-item {

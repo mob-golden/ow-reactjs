@@ -15,10 +15,76 @@ import HeroFooter from './herofooter';
 import { prepareAds } from '../../ads';
 import { adDimensions } from '../../../constants/ads';
 
-import {  fetchCounterTipsIfNeeded } from '../../../actions/api';
+import { fetchCounterTipsIfNeeded } from '../../../actions/api';
 
 import { RIOT_HERO_ICONS_URL } from '../../../constants/urls';
 import { TIP_TYPES } from '../../../constants/types';
+
+// TODO: export this to external file
+const top_strategy_tips = [
+  {
+    id: 1,
+    upvotes: 711,
+    description: "Focus him if he uses his Arcane Shift to enter teamfights.",
+    author: "anonymous"
+  },
+  {
+    id: 2,
+    upvotes: 711,
+    description: "Focus him if he uses his Arcane Shift to enter teamfights.",
+    author: "anonymous"
+  },
+  {
+    id: 3,
+    upvotes: 711,
+    description: "Focus him if he uses his Arcane Shift to enter teamfights.",
+    author: "anonymous"
+  },
+  {
+    id: 4,
+    upvotes: 711,
+    description: "Focus him if he uses his Arcane Shift to enter teamfights.",
+    author: "anonymous"
+  },
+  {
+    id: 5,
+    upvotes: 711,
+    description: "Focus him if he uses his Arcane Shift to enter teamfights.",
+    author: "anonymous"
+  }
+];
+const top_counter_tips = [
+  {
+    id: 1,
+    upvotes: 711,
+    description: "Focus him if he uses his Arcane Shift to enter teamfights.",
+    author: "anonymous"
+  },
+  {
+    id: 2,
+    upvotes: 711,
+    description: "Focus him if he uses his Arcane Shift to enter teamfights.",
+    author: "anonymous"
+  },
+  {
+    id: 3,
+    upvotes: 711,
+    description: "Focus him if he uses his Arcane Shift to enter teamfights.",
+    author: "anonymous"
+  },
+  {
+    id: 4,
+    upvotes: 711,
+    description: "Focus him if he uses his Arcane Shift to enter teamfights.",
+    author: "anonymous"
+  },
+  {
+    id: 5,
+    upvotes: 711,
+    description: "Focus him if he uses his Arcane Shift to enter teamfights.",
+    author: "anonymous"
+  }
+];
 
 class Hero extends Component {
   static defaultProps = {
@@ -70,6 +136,54 @@ class Hero extends Component {
         }
       } = herosMap[heroKey];
 
+      let strategyTips = [];
+      let counterTips = [];
+      top_strategy_tips.forEach(function(val, index) {
+        strategyTips.push((
+          <div className="os-tip" key={index}>
+            <div className="os-tip-upvote">
+              {val.upvotes}
+            </div>
+            <div className="os-tip-content">
+              <p>{val.description}</p>
+              <p>by {val.author}</p>
+            </div>
+          </div>
+        ));
+      });
+      top_counter_tips.forEach(function(val, index) {
+        counterTips.push((
+          <div className="os-tip" key={index}>
+            <div className="os-tip-upvote">
+              {val.upvotes}
+            </div>
+            <div className="os-tip-content">
+              <p>{val.description}</p>
+              <p>by {val.author}</p>
+            </div>
+          </div>
+        ));
+      });
+
+      const tabs = (
+        <div className="row os-card-wrapper">
+          <div className="col-lg-6 os-card">
+            <div className="os-cards-header">
+              <h4>{heroKey}</h4>
+              <h5>Strategy and Tips</h5>
+                {strategyTips}
+            </div>
+          </div>
+          <div className="col-lg-6 os-card">
+            <div className="os-cards-header">
+              <h4>{heroKey}</h4>
+              <h5>Counter Tips</h5>
+              {counterTips}
+            </div>
+          </div>
+        </div>
+      )
+
       return (
         <div className="os-body row">
           <div className="os-content container">
@@ -109,8 +223,8 @@ class Hero extends Component {
               </div>
               <div className="col-lg-12">
                 <div className="os-hero-body">
-                  <div className="row">
-                    <div className="col-lg-7 col-lg-offset-3">
+                  <div className="row os-content">
+                    <div className="center-text">
                       <TabsNav
                         activeTabId={'all'}
                         handleClick={activeTabId => activeTabId}
@@ -124,8 +238,12 @@ class Hero extends Component {
                     </div>
                   </div>
                   <div className="row">
-                    {children}
+                    {/* Commenting this out because it results 
+                        in another hero inside hero */}
+                    {/*children*/}
                   </div>
+                    {/* Putting the cards here */}
+                    {tabs}
                 </div>
               </div>
             </div>

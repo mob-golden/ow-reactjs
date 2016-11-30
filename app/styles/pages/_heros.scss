@@ -16,19 +16,31 @@
 @media screen and (max-width: $BP_TABLET) {
   .os-heros-top,
   .os-heros-body,
-  .os-hero-top,
-  .os-hero-body {
+  .os-hero-top {
     margin: 0;
     padding-left: 25px;
     padding-right: 25px;
+  }
+  .os-content {
+    padding-left: 25px;
+    padding-right: 25px;
+    margin: 0;
+    padding-top: 0;
+  }
+  .os-hero-body {
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
   }
   .os-heros-top { // Combat absolutely positined search bar
     padding-top: 20px;
     padding-bottom: 10px;
   }
   .os-heros-top,
-  .os-hero-top {
+  .os-hero-top,
+  .os-hero {
     >.col-xs-12,
+    >.col-lg-12,
     >.col-lg-3,
     >.col-lg-9 {
       padding: 0;
@@ -36,9 +48,6 @@
   }
   .os-container {
     padding: 0;
-  }
-  .os-content {
-    padding-top: 0;
   }
   .os-heros .col-lg-12 {
     padding: 0;
