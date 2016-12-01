@@ -126,7 +126,7 @@ class Hero extends Component {
                   <div className="row">
                     {/* Commenting this out because it results 
                         in another hero inside hero */}
-                    {/*children*/}
+                    {children}
                   </div>
                     {/* Putting the cards here */}
                     {/*tabs*/}
