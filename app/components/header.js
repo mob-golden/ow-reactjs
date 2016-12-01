@@ -1,7 +1,7 @@
 import React from 'react';
 import qs from 'querystring';
 
-import Modal from './Modal';
+import Modal from './modal';
 
 import {
   Component,

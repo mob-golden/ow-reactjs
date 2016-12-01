@@ -6,10 +6,10 @@ import { take, uniqBy, toArray } from 'lodash';
 import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import Loader from '../../Loader';
-import Typeahead from '../../Typeahead';
-import HerosGrid from './HerosGrid';
-import TabsNav from '../../TabsNav';
+import Loader from '../../loader';
+import Typeahead from '../../typeahead';
+import HerosGrid from './herosgrid';
+import TabsNav from '../../tabsnav';
 
 import { prepareAds } from '../../ads';
 import { adDimensions } from '../../../constants/ads';

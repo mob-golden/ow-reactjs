@@ -3,7 +3,7 @@ import { Component } from 'react';
 import { Link } from 'react-router';
 import changeCase from 'change-case';
 
-import Loader from '../../Loader';
+import Loader from '../../loader';
 
 import {
   RIOT_HERO_ICONS_URL,

@@ -7,10 +7,10 @@ import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-import Loader from '../../Loader';
-import Typeahead from '../../Typeahead';
-import TabsNav from '../../TabsNav';
-import HeroFooter from './HeroFooter';
+import Loader from '../../loader';
+import Typeahead from '../../typeahead';
+import TabsNav from '../../tabsnav';
+import HeroFooter from './herofooter';
 
 import { prepareAds } from '../../ads';
 import { adDimensions } from '../../../constants/ads';
