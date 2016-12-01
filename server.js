@@ -17,22 +17,11 @@ var permaNews = {};
 app.use(express.static(staticPath, { maxAge: S_IN_YR }));
 
 app.get('*', function (req, res) {
-  match({ routes, location: req.url }, function(error, redirectLocation, renderProps) {
-  	if (error) {
-  		console.log("[match]: error", error);
-        res.status(500).send(error.message)
-    } else if (redirectLocation) {
-  		console.log("[match]: redirectLocation", redirectLocation);
-        res.redirect(302, redirectLocation.pathname + redirectLocation.search)
-    } else if (renderProps) {
-      	if (typeof renderProps.routes[1] !== 'undefined' && renderProps.routes[1].status === 404) {
-        	res.status(404).sendFile(path.join(__dirname, '/dist/index.html'));
-      	} else {
-        	res.sendFile(path.join(__dirname, '/dist/index.html'));
-      	}
+  match({ routes: routes, location: req.url }, function(error, redirectLocation, renderProps) {
+    if (typeof renderProps.routes[1] !== 'undefined' && renderProps.routes[1].status === 404) {
+      res.status(404).sendFile(path.join(__dirname, '/dist/index.html'));
     } else {
-  		console.log("[match]: Not found");
-        res.status(404).send('Not found')
+      res.sendFile(path.join(__dirname, '/dist/index.html'));
     }
   })
 });

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Loader from '../../loader';
+import Loader from '../../Loader';
 import changeCase from 'change-case';
 
 

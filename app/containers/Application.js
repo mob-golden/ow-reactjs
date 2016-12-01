@@ -2,12 +2,13 @@ import React from 'react'
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 //import ReactGA from 'react-ga';
-import Root from './root';
-import ForgotPassword from '../components/pages/password/forgot';
-import ResetPassword from '../components/pages/password/reset';
-import Heros from '../components/pages/hero/heros';
-import Hero from '../components/pages/hero/hero';
-import HeroTips from '../components/pages/hero/herotips';
+import Root from './Root';
+import ForgotPassword from '../components/pages/password/Forgot';
+import ResetPassword from '../components/pages/password/Reset';
+import Heros from '../components/pages/hero/Heros';
+import Hero from '../components/pages/hero/Hero';
+import HeroTips from '../components/pages/hero/HeroTips';
+import PageNotFound from '../components/PageNotFound';
 
 //if (typeof window !== 'undefined')  {
 //  ReactGA.initialize('UA-51583717-1');
@@ -26,6 +27,7 @@ export const routes = (
     <Route path="/heros/:heroKey" component={Hero}>
       <IndexRoute component={HeroTips} />
     </Route>
+    <Route status={404} path="*" component={PageNotFound} />
   </Route>
 );
 
