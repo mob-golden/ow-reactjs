@@ -9,7 +9,6 @@ import ResetPassword from '../components/pages/password/reset';
 import Heros from '../components/pages/hero/heros';
 import Hero from '../components/pages/hero/hero';
 import HeroTips from '../components/pages/hero/herotips';
-import PageNotFound from '../components/PageNotFound';
 
 //if (typeof window !== 'undefined')  {
 //  ReactGA.initialize('UA-51583717-1');
@@ -26,9 +25,8 @@ export const routes = (
     />*/}
 
     <Route path="/heros/:heroKey" component={Hero}>
-      <IndexRoute component={HeroTips} />
+      <IndexRoute component={Hero} />
     </Route>
-    <Route status={404} path="*" component={PageNotFound} />
   </Route>
 );
 
