@@ -159,7 +159,9 @@ class Hero extends Component {
             </div>
             <div className="os-tip-content">
               <p>{val.description}</p>
-              <p>by {val.author}</p>
+              <p>
+                by <span className="os-tip-author">{val.author}</span>
+              </p>
             </div>
           </div>
         ));
@@ -178,11 +180,11 @@ class Hero extends Component {
             <div className="os-cards-header">
               <h4>{heroKey}</h4>
               <h5>Counter Tips</h5>
-              {counterTips}
+                {counterTips}
             </div>
           </div>
         </div>
-      )
+      );
 
       return (
         <div className="os-body row">
