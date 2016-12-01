@@ -3,12 +3,20 @@ import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 //import ReactGA from 'react-ga';
 import Root from './Root';
+<<<<<<< HEAD
 import ForgotPassword from '../components/pages/password/Forgot';
 import ResetPassword from '../components/pages/password/Reset';
 import Heros from '../components/pages/hero/Heros';
 import Hero from '../components/pages/hero/Hero';
 import HeroTips from '../components/pages/hero/HeroTips';
 import PageNotFound from '../components/PageNotFound';
+=======
+import ForgotPassword from '../components/pages/password/forgot';
+import ResetPassword from '../components/pages/password/reset';
+import Heros from '../components/pages/hero/heros';
+import Hero from '../components/pages/hero/hero';
+import HeroTips from '../components/pages/hero/herotips';
+>>>>>>> 788132f44da5ec276ffb66769b46f6fdf372cfea
 
 //if (typeof window !== 'undefined')  {
 //  ReactGA.initialize('UA-51583717-1');

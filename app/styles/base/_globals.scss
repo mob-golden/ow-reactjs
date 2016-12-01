@@ -1,39 +1,41 @@
 @import '_constants';
 
-.os-white{
+.os-white {
   color: $WHITE !important;
 }
-
-.os-font-size-12{
+.os-font-size-12 {
   font-size: 12px;
 }
-
-.os-font-size-18{
+.os-font-size-18 {
   font-size: 18px;
 }
-
-a, p, h1, h2, h3, h4, h5, h6{
+a, p, h1, h2, h3, h4, h5, h6 {
   font-family: 'Lato', sans-serif;
 }
-
 span {
   font-family: 'Open Sans', serif;
 }
-
-body{
+body {
   background-image: url("/images/background.jpg");
   background-repeat: no-repeat;
   background-color: $WHITE_1;
   background-attachment: fixed;
   background-position: center top;
 }
-.os-content{
+.os-content {
   padding-top: 100px;
 }
-
-.os-col-sm-1 {
-  width: 12.5%;
-  float: left;
-  padding: 12px; 
-  margin-bottom: 30px;
+@media screen and (min-width: $BP_TABLET) {
+  .os-col-sm-1 {
+    width: 12.5%;
+    float: left;
+    padding: 12px; 
+    margin-bottom: 30px;
+  }
+}
+.form-control {
+  border-color: $WHITE;
+}
+.center-text {
+  text-align: center;
 }
