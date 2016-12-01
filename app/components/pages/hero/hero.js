@@ -28,13 +28,6 @@ class Hero extends Component {
     ]
   };
 
-  // static propTypes = {
-  //   heros: PropTypes.object.isRequired,
-  //   isFetchingHeros: PropTypes.bool.isRequired,
-  //   counterTips: PropTypes.object.isRequired,
-  //   isFetchingCounterTips: PropTypes.bool.isRequired
-  // };
-
   componentWillMount () {
     const {
       ads,
@@ -64,6 +57,7 @@ class Hero extends Component {
       const herosMap = heros.data;
 
       const {
+        id,
         name,
         image: {
           full
@@ -89,8 +83,9 @@ class Hero extends Component {
                           width="72"
                           height="108"
                           className="os-hero-profile-icon"
-                          src={`${RIOT_HERO_ICONS_URL}/${full}`}
+                          src= "https://s3.amazonaws.com/solomid-resources/overwatch/heroes/ana/hero-select-portrait.png"
                         />
+                        {/*`${RIOT_HERO_ICONS_URL}/${full}`*/}
                         <div className="os-hero-profile-type"></div>
                         <h5 className="os-hero-profile-name">{changeCase.upper(herosMap[heroKey].name)}</h5>
                       </Link>
@@ -101,7 +96,7 @@ class Hero extends Component {
                       <Typeahead
                         constructLink={(id) => `/heros/${id.toLowerCase()}`}
                         inputGroupClass="input-group"
-                        placeholder={"Search for a Hero"}
+                        placeholder={"Search for a matchup"}
                       />
                     </div>
                   </div>
@@ -111,25 +106,22 @@ class Hero extends Component {
                 <div className="os-hero-body">
                   <div className="row">
                     <div className="center-text">
-                      <TabsNav
-                        activeTabId={'all'}
-                        handleClick={activeTabId => activeTabId}
-                        tabs={TIP_TYPES.map(type => {
-                          return {
-                            id: type,
-                            label: changeCase.upper(type)
-                          };
-                        })}
-                      />
+                      <ul className="os-hero-nav">
+                        <li className="os-hero-nav-item"> 
+                          <Link to={`/heros/${id}/generaltips`}>GENERAL TIPS</Link> 
+                        </li>
+                        <li className="os-hero-nav-item"> 
+                          <Link to={`/heros/${id}/matchups`}>HERO MATCHUPS</Link> 
+                        </li>
+                        <li className="os-hero-nav-item"> 
+                          <Link to={`/heros/${id}/maprankings`}>MAP RANKINGS</Link> 
+                        </li>
+                      </ul>
                     </div>
                   </div>
                   <div className="row">
-                    {/* Commenting this out because it results 
-                        in another hero inside hero */}
                     {children}
                   </div>
-                    {/* Putting the cards here */}
-                    {/*tabs*/}
                 </div>
               </div>
             </div>

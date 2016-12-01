@@ -121,8 +121,30 @@
       left: -8px;
     }
     &:last-of-type {
-      position: relative;
+      position: relative; 
       left: 8px;
+    }
+  }
+} 
+.os-hero-nav {
+  display: inline-block;
+  padding-left: 0px;
+  margin-bottom: 32px;
+  list-style: none;
+  .os-hero-nav-item {
+    float: left;
+    text-align: center;
+    
+    a {
+      text-decoration: none;
+      padding: 8px 16px;
+      color: $GRAY_4;
+      font-size: 16px;
+      border-bottom: 4px solid $GRAY_4;
+    }
+    a:hover {
+      color: $BLUE_1;
+      border-bottom: 4px solid $BLUE_1;
     }
   }
 }

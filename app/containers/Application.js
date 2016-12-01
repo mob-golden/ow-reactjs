@@ -26,6 +26,8 @@ export const routes = (
 
     <Route path="/heros/:heroKey" component={Hero}>
       <IndexRoute component={HeroTips} />
+      <Route path="/heros/:heroKey/generaltips" component={HeroTips}/>
+      {/*<Route path="/heros/:heroKey/tips" component={Matchups}/>*/}
     </Route>
   </Route>
 );

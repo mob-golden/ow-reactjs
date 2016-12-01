@@ -62,8 +62,9 @@ class HerosGrid extends Component {
                       width="98"
                       height="138"
                       className="os-thumbnail"
-                      src={`${RIOT_HERO_ICONS_URL}/${full}`}
+                      src="https://s3.amazonaws.com/solomid-resources/overwatch/heroes/ana/hero-select-portrait.png"
                     />
+                  {/*`${RIOT_HERO_ICONS_URL}/${full}`*/}
                   </div>
                   <div className="os-thumb-name">
                     <span>{changeCase.upper(name)}</span>

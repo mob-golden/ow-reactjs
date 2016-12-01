@@ -131,7 +131,7 @@ class CounterTips extends Component {
                       <li className="list-inline-item">
                         <img
                           className="os-counter-tip-icon img-rounded"
-                          src={`${RIOT_HERO_ICONS_URL}/${fullImageHero}`}
+                          src="{`${RIOT_HERO_ICONS_URL}/${fullImageHero}`}"
                         />
                       </li>
                       <li className="list-inline-item">

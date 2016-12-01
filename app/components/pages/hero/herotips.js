@@ -1,18 +1,11 @@
 import React from 'react';
 import changeCase from 'change-case';
-
-import every from 'lodash/every';
 import take from 'lodash/take';
-import takeRight from 'lodash/takeRight';
 import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
 import CounterTips from '../tip/countertips';
 import Loader from '../../loader';
-import { addCounterTip } from '../../../actions/all';
 import { fetchCounterTipsForHero } from '../../../actions/api';
-
-import { LANES, TYPES } from '../../../constants/types';
 
 class HeroTips extends Component {
   // static propTypes = {
@@ -121,6 +114,14 @@ class HeroTips extends Component {
                   shouldHideMeta={true}
                 />
               : <Loader />}
+              <div className="row">
+                <div className="col-lg-3">
+                  <a href="#" className="btn btn-primary os-btn-addtip">ADD A TIP</a>
+                </div>
+                <div className="col-lg-3"> 
+                  <a href="#" className="btn btn-default os-btn-viewall">VIEW ALL</a>
+                </div>
+              </div>
             </div>
           </div>
           <div className="os-hero-tip-col">
@@ -136,6 +137,14 @@ class HeroTips extends Component {
                   shouldHideMeta={true}
                 />
               : <Loader />}
+              <div className="row">
+                <div className="col-lg-3">
+                  <a href="#" className="btn btn-primary os-btn-addtip">ADD A TIP</a>
+                </div>
+                <div className="col-lg-3"> 
+                  <a href="#" className="btn btn-default os-btn-viewall">VIEW ALL</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
