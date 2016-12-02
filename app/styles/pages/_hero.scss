@@ -30,10 +30,11 @@
   text-shadow: #3EABF0 0px 0px 6px;
 }
 .os-hero-profile-icon {
-  clip-path: polygon(0px 0px, 72px 0px, 72px 85px, 71px 87px, 36px 108px, 1px 87px, 0px 84px);
-  -moz-clip-path: polygon(0px 0px, 72px 0px, 72px 85px, 71px 87px, 36px 108px, 1px 87px, 0px 84px);
-  -webkit-clip-path: polygon(0px 0px, 72px 0px, 72px 85px, 71px 87px, 36px 108px, 1px 87px, 0px 84px);
-  -ms-input-clip-path: polygon(0px 0px, 72px 0px, 72px 85px, 71px 87px, 36px 108px, 1px 87px, 0px 84px);
+  margin-top: -8px;
+  clip-path: polygon(0px 8px, 72px 8px, 72px 93px, 71px 95px, 36px 116px, 1px 95px, 0px 93px);
+  -moz-clip-path: polygon(0px 8px, 72px 8px, 72px 93px, 71px 95px, 36px 116px, 1px 95px, 0px 93px);
+  -webkit-clip-path: polygon(0px 8px, 72px 8px, 72px 93px, 71px 95px, 36px 116px, 1px 95px, 0px 93px);
+  -ms-input-clip-path: polygon(0px 8px, 72px 8px, 72px 93px, 71px 95px, 36px 116px, 1px 95px, 0px 93px);
 }
 .os-profile-mask { 
   background-image: url(/images/hero-mask.png);
@@ -146,5 +147,9 @@
       color: $BLUE_1;
       border-bottom: 4px solid $BLUE_1;
     }
+  }
+  .active a{
+    color: $BLUE_1;
+    border-bottom: 4px solid $BLUE_1;
   }
 }

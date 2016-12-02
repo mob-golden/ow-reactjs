@@ -3,18 +3,27 @@
 .os-white {
   color: $WHITE !important;
 }
+
 .os-font-size-12 {
   font-size: 12px;
 }
+
+.os-font-size-16 {
+  font-size: 16px;
+}
+
 .os-font-size-18 {
   font-size: 18px;
 }
+
 a, p, h1, h2, h3, h4, h5, h6 {
   font-family: 'Lato', sans-serif;
 }
+
 span {
   font-family: 'Open Sans', serif;
 }
+
 body {
   background-image: url("/images/background.jpg");
   background-repeat: no-repeat;
@@ -22,9 +31,11 @@ body {
   background-attachment: fixed;
   background-position: center top;
 }
+
 .os-content {
   padding-top: 100px;
 }
+
 @media screen and (min-width: $BP_TABLET) {
   .os-col-sm-1 {
     width: 12.5%;
@@ -33,9 +44,25 @@ body {
     margin-bottom: 30px;
   }
 }
+
 .form-control {
   border-color: $WHITE;
 }
+
 .center-text {
   text-align: center;
+}
+
+.os-btn-addtip{
+  font-size: 12px;
+  border-radius: 2px;
+  padding: 0.75em 1.75em;
+}
+
+.os-btn-viewall{
+  font-size: 12px;
+  border-radius: 2px;
+  padding: 0.75em 1.75em;
+  border: $GRAY_3 solid 1px;
+  color: $GRAY_3;
 }

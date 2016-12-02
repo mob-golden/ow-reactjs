@@ -9,6 +9,7 @@ import ResetPassword from '../components/pages/password/reset';
 import Heros from '../components/pages/hero/heros';
 import Hero from '../components/pages/hero/hero';
 import HeroTips from '../components/pages/hero/herotips';
+import HeroMatchups from '../components/pages/hero/heromatchups';
 
 //if (typeof window !== 'undefined')  {
 //  ReactGA.initialize('UA-51583717-1');
@@ -27,7 +28,7 @@ export const routes = (
     <Route path="/heros/:heroKey" component={Hero}>
       <IndexRoute component={HeroTips} />
       <Route path="/heros/:heroKey/generaltips" component={HeroTips}/>
-      {/*<Route path="/heros/:heroKey/tips" component={Matchups}/>*/}
+      <Route path="/heros/:heroKey/matchups" component={HeroMatchups}/>
     </Route>
   </Route>
 );

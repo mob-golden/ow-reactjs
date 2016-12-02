@@ -49,9 +49,20 @@ class Hero extends Component {
       isFetchingCounterTips,
       params: {
         heroKey: _heroKey
+      },
+      location: {
+        pathname: _activePath
       }
     } = this.props;
     
+    const activePath = _activePath.split('/').pop();
+    let _generaltips = "";
+    let _heromatchups = "";
+    let _maprankings = "";
+    if(activePath == "matchups" ) _heromatchups = 'active';
+    else if(activePath == "maprankings" ) _maprankings = 'active';
+    else _generaltips = "active";
+
     const heroKey = changeCase.lower(_heroKey);
     if (!isFetchingHeros && heros) {
       const herosMap = heros.data;
@@ -81,7 +92,7 @@ class Hero extends Component {
                         <div className="os-profile-mask"></div>
                         <img
                           width="72"
-                          height="108"
+                          height="124"
                           className="os-hero-profile-icon"
                           src= "https://s3.amazonaws.com/solomid-resources/overwatch/heroes/ana/hero-select-portrait.png"
                         />
@@ -107,13 +118,13 @@ class Hero extends Component {
                   <div className="row">
                     <div className="center-text">
                       <ul className="os-hero-nav">
-                        <li className="os-hero-nav-item"> 
+                        <li className={`os-hero-nav-item ${_generaltips}`}> 
                           <Link to={`/heros/${id}/generaltips`}>GENERAL TIPS</Link> 
                         </li>
-                        <li className="os-hero-nav-item"> 
+                        <li className={`os-hero-nav-item ${_heromatchups}`}> 
                           <Link to={`/heros/${id}/matchups`}>HERO MATCHUPS</Link> 
                         </li>
-                        <li className="os-hero-nav-item"> 
+                        <li className={`os-hero-nav-item ${_maprankings}`}> 
                           <Link to={`/heros/${id}/maprankings`}>MAP RANKINGS</Link> 
                         </li>
                       </ul>
