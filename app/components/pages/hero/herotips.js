@@ -126,25 +126,7 @@ class HeroTips extends Component {
           </div>
           <div className="os-hero-tip-col">
             <div className="os-hero-tip-body">
-              <span className="os-tip-hero-name">
-                {changeCase.upper(heros.data[heroKey].name)} 
-              </span>
-              <h5 className="os-tip-title">STRATEGY & TIPS</h5>
-              {!isFetchingCounterTips && counterTips ?
-                <CounterTips
-                  herosMap={heros.data}
-                  counterTips={take(counterTips.data, 5)}
-                  shouldHideMeta={true}
-                />
-              : <Loader />}
-              <div className="row">
-                <div className="col-lg-3">
-                  <a href="#" className="btn btn-primary os-btn-addtip">ADD A TIP</a>
-                </div>
-                <div className="col-lg-3"> 
-                  <a href="#" className="btn btn-default os-btn-viewall">VIEW ALL</a>
-                </div>
-              </div>
+              {/* TODO HERE */}
             </div>
           </div>
         </div>

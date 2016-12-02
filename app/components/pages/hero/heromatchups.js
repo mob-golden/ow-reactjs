@@ -127,40 +127,12 @@ class HeroMatchups extends Component {
           </div>
           <div className="os-hero-matchups-col">
             <div className="os-hero-matchups-body">
-              <span className="os-matchups-hero-name">
-                {changeCase.upper(heros.data[heroKey].name)} 
-              </span>
-              <h5 className="os-matchups-title">COUNTERED BY</h5>
-              {!isFetchingMatchups && matchups.general ?
-                <Matchups
-                  herosMap={heros.data}
-                  matchups={matchups.general.counter}
-                  shouldHideMeta={true}
-                />: <Loader />}
-              <div className="row">
-                <div className="col-lg-12 center-text"> 
-                  <a href="#" className="btn btn-default os-btn-viewall">VIEW ALL</a>
-                </div>
-              </div>
+              
             </div>
           </div>
           <div className="os-hero-matchups-col">
             <div className="os-hero-matchups-body">
-              <span className="os-matchups-hero-name">
-                {changeCase.upper(heros.data[heroKey].name)} 
-              </span>
-              <h5 className="os-matchups-title">TEAM WITH</h5>
-              {!isFetchingMatchups && matchups.general ?
-                <Matchups
-                  herosMap={heros.data}
-                  matchups={matchups.general.counter}
-                  shouldHideMeta={true}
-                />: <Loader />}
-              <div className="row">
-                <div className="col-lg-12 center-text"> 
-                  <a href="#" className="btn btn-default os-btn-viewall">VIEW ALL</a>
-                </div>
-              </div>
+              
             </div>
           </div>
         </div>
