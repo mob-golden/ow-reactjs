@@ -13,10 +13,8 @@
 @import './layout/_footer';
 @import './layout/_ad';
 @import './layout/_herosgrid';
-@import './layout/_herotips';
-@import './layout/_heromatchups';
-@import './layout/_countertips';
-@import './layout/_matchups';
+@import './layout/_tipslist';
+@import './layout/_matchupslist';
 
 /* 5. Components */
 @import './components/_tabsnav';
@@ -24,6 +22,10 @@
 
 
 /* 6. Pages */
-@import './pages/_hero';
-@import './pages/_heros';
+@import './pages/_singleheropage';
+@import './pages/_homepage';
 @import './pages/_password';
+@import './pages/_generaltipspage';
+@import './pages/_heromatchupspage';
+@import './pages/_maprankingspage';
+@import './pages/_matchuppage';

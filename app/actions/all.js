@@ -387,37 +387,37 @@ export function voteCounterTip (id, downOrUp) {
   }
 }
 
-// export function voteMatchup (championKey, matchupChampionKey, lane, type, downOrUp) {
-//   return dispatch => {
-//     const laneSegment = lane === 'all' ? '' : `/${lane}`;
-//     const url = `${CS_CHAMPION_URL}/${championKey}/${matchupChampionKey}${laneSegment}/${type}/${downOrUp}`;
+export function voteMatchup (championKey, matchupChampionKey, lane, type, downOrUp) {
+  return dispatch => {
+    const laneSegment = lane === 'all' ? '' : `/${lane}`;
+    const url = `${CS_CHAMPION_URL}/${championKey}/${matchupChampionKey}${laneSegment}/${type}/${downOrUp}`;
 
-//     return fetch(url, {
-//       method: 'PUT'
-//     })
-//       .then(response => {
-//         const {
-//           status,
-//           statusText
-//         } = response;
+    return fetch(url, {
+      method: 'PUT'
+    })
+      .then(response => {
+        const {
+          status,
+          statusText
+        } = response;
 
-//         if (status >= 200 && status < 300) {
-//           return response;
-//         } else {
-//           const error = new Error(statusText);
-//           console.log(`Response returned an error for ${url}: ${error.message}`);
+        if (status >= 200 && status < 300) {
+          return response;
+        } else {
+          const error = new Error(statusText);
+          console.log(`Response returned an error for ${url}: ${error.message}`);
 
-//           return Promise.reject(error);
-//         }
-//       })
-//       .then(response => response.json())
-//       .then(json => {
-//         return {
-//           type: 'NONE'
-//         };
-//       });
-//   }
-// }
+          return Promise.reject(error);
+        }
+      })
+      .then(response => response.json())
+      .then(json => {
+        return {
+          type: 'NONE'
+        };
+      });
+  }
+}
 
 export function invalidateCounterTips (type) {
   return {

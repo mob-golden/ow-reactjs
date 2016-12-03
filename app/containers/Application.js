@@ -6,29 +6,36 @@ import Root from './Root';
 
 import ForgotPassword from '../components/pages/password/forgot';
 import ResetPassword from '../components/pages/password/reset';
-import Heros from '../components/pages/hero/heros';
-import Hero from '../components/pages/hero/hero';
-import HeroTips from '../components/pages/hero/herotips';
-import HeroMatchups from '../components/pages/hero/heromatchups';
+import HomePage from '../components/pages/hero/homepage';
+import SingleHeroPage from '../components/pages/hero/singleheropage';
+import GeneralTipsPage from '../components/pages/tip/generaltipspage';
+import HeroMatchupsPage from '../components/pages/matchup/heromatchupspage';
+import MapRankingsPage from '../components/pages/map/maprankingspage';
+import MatchupPage from '../components/pages/matchup/matchuppage';
 
 //if (typeof window !== 'undefined')  {
 //  ReactGA.initialize('UA-51583717-1');
 //}
 export const routes = (
   <Route path="/" component={Root} >
-    <IndexRoute component={Heros} />
+    <IndexRoute component={HomePage} />
     <Route path="/forgot" component={ForgotPassword} />
     <Route path="/reset" component={ResetPassword} />
-    <Route path="/heros" component={Heros} />
+    <Route path="/heros" component={HomePage} />
     {/*<Route
       component={Maps}
       path="/maps"
     />*/}
 
-    <Route path="/heros/:heroKey" component={Hero}>
-      <IndexRoute component={HeroTips} />
-      <Route path="/heros/:heroKey/generaltips" component={HeroTips}/>
-      <Route path="/heros/:heroKey/matchups" component={HeroMatchups}/>
+    <Route path="/heros/:heroKey" component={SingleHeroPage}>
+      <IndexRoute component={GeneralTipsPage} />
+      <Route path="/heros/:heroKey/generaltips" component={GeneralTipsPage}/>
+      <Route path="/heros/:heroKey/matchups" component={HeroMatchupsPage}/>
+      <Route path="/heros/:heroKey/maprankings" component={MapRankingsPage}/>
+    </Route>
+
+    <Route path="/matchups/:heroKey/:matchupHeroKey" component={MatchupPage}>
+
     </Route>
   </Route>
 );
