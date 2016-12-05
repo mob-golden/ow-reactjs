@@ -88,18 +88,21 @@ class SingleHeroPage extends Component {
                 <div className="os-hero-top">
                   <div className="col-lg-3">
                     <div className="os-hero-profile">
-                      <Link to={`/heros/${heroKey}`}>
-                        <div className="os-profile-mask"></div>
-                        <img
-                          width="72"
-                          height="124"
-                          className="os-hero-profile-icon"
-                          src= "https://s3.amazonaws.com/solomid-resources/overwatch/heroes/ana/hero-select-portrait.png"
-                        />
-                        {/*`${RIOT_HERO_ICONS_URL}/${full}`*/}
-                        <div className="os-hero-profile-type"></div>
-                        <h5 className="os-hero-profile-name">{changeCase.upper(herosMap[heroKey].name)}</h5>
-                      </Link>
+                      <div className="os-profile-mask">
+                        <Link to={`/heros/${heroKey}`}>
+                          <img
+                            width="72"
+                            height="124"
+                            className="os-hero-profile-icon"
+                            src= "https://s3.amazonaws.com/solomid-resources/overwatch/heroes/ana/hero-select-portrait.png"
+                          />
+                          {/*`${RIOT_HERO_ICONS_URL}/${full}`*/}
+                          <div className="os-hero-profile-type">
+                            <img width="16" height="17" src="/images/offense.png"/>
+                          </div>
+                          <h5 className="os-hero-profile-name">{changeCase.upper(herosMap[heroKey].name)}</h5>
+                        </Link>
+                      </div>
                     </div>
                   </div>
                   <div className="col-lg-9">

@@ -3,11 +3,11 @@ import changeCase from 'change-case';
 import take from 'lodash/take';
 import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import TipsList from './tipslist';
+import TipsList from '../tip/tipslist';
 import Loader from '../../loader';
-import { fetchCounterTipsForHero } from '../../../actions/api';
+import { fetchCounterTipsIfNeeded } from '../../../actions/matchup';
 
-class GeneralTipsPage extends Component {
+class MatchupTipsPage extends Component {
   // static propTypes = {
   //   dispatch: PropTypes.func.isRequired,
   //   heros: PropTypes.object.isRequired,
@@ -49,45 +49,53 @@ class GeneralTipsPage extends Component {
     const {
       dispatch,
       params: {
-        heroKey: _heroKey
+        heroKey: _heroKey,
+        matchupHeroKey: _matchupHeroKey
       }
     } = this.props;
 
     const heroKey = changeCase.lower(_heroKey);
+    const matchupHeroKey = changeCase.lower(_matchupHeroKey);
 
-    dispatch(fetchCounterTipsForHero(heroKey));
+
+    dispatch(fetchCounterTipsIfNeeded(heroKey,matchupHeroKey));
   }
 
   componentWillReceiveProps (nextProps) {
     const {
       dispatch,
       params: {
-        heroKey: _heroKey
+        heroKey: _heroKey,
+        matchupHeroKey: _matchupHeroKey
       }
     } = this.props;
 
     const {
       params: {
-        heroKey: _nextHeroKey
+        heroKey: _nextHeroKey,
+        matchupHeroKey: _nextMatchupHeroKey
       }
     } = nextProps;
 
     const heroKey = changeCase.lower(_heroKey);
-    const nextHeroKey = changeCase.lower(_nextHeroKey);
+    const matchupHeroKey = changeCase.lower(_matchupHeroKey);
 
-    if (heroKey !== nextHeroKey) {
-      dispatch(fetchCounterTipsForHero(nextHeroKey));
+    const nextHeroKey = changeCase.lower(_nextHeroKey);
+    const nextMatchupHeroKey = changeCase.lower(_nextMatchupHeroKey);
+
+    if (heroKey !== nextHeroKey || matchupHeroKey !== nextMatchupHeroKey) {
+      dispatch(fetchCounterTipsIfNeeded(nextHeroKey,nextMatchupHeroKey));
     }
   }
 
   render () {
     const {
-      children,
       heros,
       counterTips,
       isFetchingCounterTips,
       params: {
-        heroKey: _heroKey
+        heroKey: _heroKey,
+        matchupHeroKey: _matchupHeroKey
       },
       token
     } = this.props;
@@ -97,16 +105,17 @@ class GeneralTipsPage extends Component {
     // } = this.state;
 
     const heroKey = changeCase.lower(_heroKey);
+    const matchupHeroKey = changeCase.lower(_matchupHeroKey);
 
     return (
-      <div className="os-hero-tip-container">
+      <div className="os-matchup-tip-container">
         <div className="row">
-          <div className="os-hero-tip-col">
-            <div className="os-hero-tip-body">
-              <span className="os-hero-tip-name">
-                {changeCase.upper(heros.data[heroKey].name)} 
+          <div className="os-matchup-tip-col">
+            <div className="os-matchup-tip-body">
+              <span className="os-matchup-tip-name">
+                TIPS VS. {changeCase.upper(heros.data[matchupHeroKey].name)} 
               </span>
-              <h5 className="os-hero-tip-title">STRATEGY & TIPS</h5>
+              <h5 className="os-matchup-left-title">AS <span>{changeCase.upper(heros.data[heroKey].name)}</span></h5>
               {!isFetchingCounterTips && counterTips ?
                 <TipsList
                   counterTips={take(counterTips.data, 5)}
@@ -137,7 +146,7 @@ class GeneralTipsPage extends Component {
 
 function mapStateToProps (state) {
   const {
-    api: {
+    matchup: {
       counterTips: {
         data: counterTipsData,
         isFetching: isFetchingCounterTips
@@ -159,4 +168,4 @@ function mapStateToProps (state) {
   };
 }
 
-export default connect(mapStateToProps)(GeneralTipsPage);
+export default connect(mapStateToProps)(MatchupTipsPage);

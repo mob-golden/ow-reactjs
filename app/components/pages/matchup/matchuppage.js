@@ -73,39 +73,62 @@ class MatchupPage extends Component {
               dimensions={adDimensions.BEFORE_RECT}
               path={'/22280732/ChampionSelect_728x90_HP_BTF1'}
             />
-            <div className="os-hero row">
+            <div className="os-matchup row">
               <div className="col-lg-12">
-                <div className="os-hero-top">
-                  <div className="col-lg-3">
-                    <div className="os-hero-profile">
-                      <Link to={`/heros/${heroKey}`}>
-                        <div className="os-profile-mask"></div>
-                        <img
-                          width="72"
-                          height="124"
-                          className="os-hero-profile-icon"
-                          src= "https://s3.amazonaws.com/solomid-resources/overwatch/heroes/ana/hero-select-portrait.png"
-                        />
-                        {/*`${RIOT_HERO_ICONS_URL}/${full}`*/}
-                        <div className="os-hero-profile-type"></div>
-                        <h5 className="os-hero-profile-name">{changeCase.upper(herosMap[heroKey].name)}</h5>
-                      </Link>
+                <div className="os-matchup-top">
+                  <div className="col-lg-4">
+                    <div className="os-hero-left-profile">
+                      <div className="os-profile-mask">
+                        <Link to={`/heros/${heroKey}`}>
+                          <img
+                            width="72"
+                            height="124"
+                            className="os-hero-profile-icon"
+                            src= "https://s3.amazonaws.com/solomid-resources/overwatch/heroes/ana/hero-select-portrait.png"
+                          />
+                          {/*`${RIOT_HERO_ICONS_URL}/${full}`*/}
+                          <div className="os-hero-profile-type">
+                            <img width="16" height="17" src="/images/support.png"/>
+                          </div>
+                          <h5 className="os-hero-profile-name">{changeCase.upper(herosMap[heroKey].name)}</h5>
+                        </Link>
+                      </div>
                     </div>
                   </div>
-                  <div className="col-lg-6">
-                    <div className="os-matchup-vs-img">
-                    </div>
+                  <div className="col-lg-4">
+                    <Link to={`/matchups/${matchupHeroKey}/${heroKey}`}>
+                      <div className="os-matchup-vs-img">
+                      </div>
+                    </Link>
                   </div>
-                  <div className="col-lg-3">
-                    
+                  <div className="col-lg-4">
+                    <div className="os-hero-right-profile">
+                      <div className="os-profile-mask">
+                        <Link to={`/heros/${matchupHeroKey}`}>
+                          <img
+                            width="72"
+                            height="124"
+                            className="os-hero-profile-icon"
+                            src= "https://s3.amazonaws.com/solomid-resources/overwatch/heroes/mccree/hero-select-portrait.png"
+                          />
+                          {/*`${RIOT_HERO_ICONS_URL}/${full}`*/}
+                          <div className="os-hero-profile-type">
+                            <img width="16" height="17" src="/images/defense.png"/>
+                          </div>
+                          <h5 className="os-hero-profile-name">{changeCase.upper(herosMap[matchupHeroKey].name)}</h5>
+                        </Link>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
               <div className="col-lg-12">
-                <div className="os-hero-body">
+                <div className="os-matchup-body">
                   <div className="row">
-                    <div className="center-text">
-                      <p>back to Hero Matchups</p>
+                    <div className="col-lg-12">
+                      <Link to={`/heros/${heroKey}/matchups`}>
+                        <i className="fa fa-long-arrow-left" aria-hidden="true"/> back to Hero Matchups
+                      </Link>
                     </div>
                   </div>
                   <div className="row">

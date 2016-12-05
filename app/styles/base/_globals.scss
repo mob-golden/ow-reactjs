@@ -19,6 +19,13 @@
 a, p, h1, h2, h3, h4, h5, h6 {
   font-family: 'Lato', sans-serif;
 }
+a {
+  color: $GRAY_4;
+}
+a:hover {
+  cursor: pointer;
+  color: $GRAY_4;
+}
 
 span {
   font-family: 'Open Sans', serif;

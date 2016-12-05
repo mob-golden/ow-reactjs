@@ -1,17 +1,20 @@
 @import '../base/_constants';
 
-.os-hero-tip-name {
+.os-matchup-tip-name {
   font-size: 14px;
   color: $GRAY_3;
 }
 
-.os-hero-tip-title {
+.os-matchup-left-title {
   font-size: 20px;
   font-weight: bolder;
   color: $GRAY_4;
+  span {
+    color: $BLUE_1;
+  }
 }
 
-.os-hero-tip-body{
+.os-matchup-tip-body{
   padding: 28px 28px;
   background-color: $WHITE;
   border: $GRAY_2 solid 1px;
@@ -20,7 +23,7 @@
   box-shadow: 0px 2px 2px 0 rgba($BLACK_0, 0.1) ;
 }
 
-.os-hero-tip-col {
+.os-matchup-tip-col {
   width: 50%;
   float: left;
   position: relative;
@@ -28,6 +31,6 @@
   padding-right: 10px;
 }
 
-.os-hero-tip-container{
-  padding: 0px 16px;
+.os-matchup-tip-container{
+  padding: 16px 16px;
 }

@@ -2,7 +2,7 @@
 
 .os-hero-top {
   min-height: 242px;
-  padding: 50px 170px;
+  padding: 30px 170px 70px 170px;
   margin: 0px 55px;
   background: $BLACK_2;
 }
@@ -11,48 +11,46 @@
   padding: 30px 25px;
   background: $WHITE_1;
 }
-.os-hero-profile {
-  text-align: center;
-  margin-left: -50px;
-  h5 {
-    font-family: 'Open Sans', serif;
-    font-size: 16px;
-    font-weight: bold;
-  }
-}
 .os-hero-search {
 	margin-top: 45px;
 }
 .os-hero-profile-name {
-  margin-top: 20px;
+  font-family: 'Open Sans', serif;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 12px;
   color: white;
   text-decoration: none;
   text-shadow: #3EABF0 0px 0px 6px;
 }
 .os-hero-profile-icon {
-  margin-top: -8px;
-  clip-path: polygon(0px 8px, 72px 8px, 72px 93px, 71px 95px, 36px 116px, 1px 95px, 0px 93px);
-  -moz-clip-path: polygon(0px 8px, 72px 8px, 72px 93px, 71px 95px, 36px 116px, 1px 95px, 0px 93px);
-  -webkit-clip-path: polygon(0px 8px, 72px 8px, 72px 93px, 71px 95px, 36px 116px, 1px 95px, 0px 93px);
-  -ms-input-clip-path: polygon(0px 8px, 72px 8px, 72px 93px, 71px 95px, 36px 116px, 1px 95px, 0px 93px);
+  margin-top: 8px;
+  clip-path: polygon(0px 8px, 72px 8px, 72px 80px, 71px 81px, 36px 101px, 1px 81px, 0px 80px);
+  -moz-clip-path: polygon(0px 8px, 72px 8px, 72px 80px, 71px 81px, 36px 101px, 1px 81px, 0px 80px);
+  -webkit-clip-path: polygon(0px 8px, 72px 8px, 72px 80px, 71px 81px, 36px 101px, 1px 81px, 0px 80px);
+  -ms-input-clip-path: polygon(0px 8px, 72px 8px, 72px 80px, 71px 81px, 36px 101px, 1px 81px, 0px 80px);
 }
 .os-profile-mask { 
   background-image: url(/images/hero-mask.png);
   background-size: cover;
   width: 129px;
   height: 135px;
-  position: absolute;
+  text-align: center;
   left: -7px;
   top: -2px;
 }
 .os-hero-profile-type {
-  left: 20px;
-  top: 70px;
   position: absolute;
+  margin-left: 26px;
+  margin-top: -46px;
   background-image: url(/images/oval.png);
   background-size: cover;
   width: 75px;
   height: 75px;
+  img {
+    margin-top: 29px;
+    margin-left: 1px;
+  }
 }
 .os-hero-footer{
   background-color: $GRAY_1;

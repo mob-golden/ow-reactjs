@@ -32,7 +32,6 @@ class TipsList extends Component {
 
   render () {
     const {
-      herosMap,
       counterTips,
       shouldHideMeta
     } = this.props;
@@ -52,7 +51,6 @@ class TipsList extends Component {
       <div className="os-counter-tips-list">
         {counterTips.map(counterTip => {
           const {
-            heroKey: heroKey,
             commentTree: {
               _id: id,
               author: {
