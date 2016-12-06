@@ -28,17 +28,22 @@
 }
 
 .os-matchup-vote-up {
+  margin-right: 10px;
+  width: 45%;
+  text-align: center;
   color: $GREEN_1;
   border: $GREEN_1 solid 1px;
   border-radius: 3px;
   font-size: 12px;
-  padding: 7px 24px;
+  padding: 7px;
 }
 .os-matchup-vote-up:hover {
   color: $WHITE;
   background-color: $GREEN_1;
 }
 .os-matchup-vote-down {
+  width: 45%;
+  text-align: center;
   color: $RED_1;
   border: $RED_1 solid 1px;
   border-radius: 3px;

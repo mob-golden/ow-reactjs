@@ -84,7 +84,7 @@ class HomePage extends Component {
               </div>
               {!isFetchingHeros && heros ?
                 <HerosGrid
-                  heros={toArray(heros.data)}
+                  heros={take(toArray(heros.data), 22)}
                 /> : <Loader /> } 
             </div>
           </div>

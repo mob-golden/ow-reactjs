@@ -1,6 +1,7 @@
 import React from 'react';
 import changeCase from 'change-case';
 import take from 'lodash/take';
+import { Link } from 'react-router';
 import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import TipsList from './tipslist';
@@ -115,10 +116,20 @@ class GeneralTipsPage extends Component {
               : <Loader />}
               <div className="row">
                 <div className="col-lg-3">
-                  <a href="#" className="btn btn-primary os-btn-addtip">ADD A TIP</a>
+                  <Link
+                    className="btn btn-primary os-btn-blue"
+                    to={`/heros/${heroKey}/strategytips`}
+                  >
+                  ADD A TIP
+                  </Link>
                 </div>
                 <div className="col-lg-3"> 
-                  <a href="#" className="btn btn-default os-btn-viewall">VIEW ALL</a>
+                  <Link
+                    className="btn btn-secondary os-btn-white"
+                    to={`/heros/${heroKey}/strategytips`}
+                  >
+                  VIEW ALL
+                  </Link>
                 </div>
               </div>
             </div>

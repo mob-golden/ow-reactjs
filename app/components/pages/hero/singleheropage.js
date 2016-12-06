@@ -56,11 +56,11 @@ class SingleHeroPage extends Component {
     } = this.props;
     
     const activePath = _activePath.split('/').pop();
-    let _generaltips = "";
-    let _heromatchups = "";
-    let _maprankings = "";
+    let _generaltips,_heromatchups,_maprankings, _strategytips = false;
+
     if(activePath == "matchups" ) _heromatchups = 'active';
     else if(activePath == "maprankings" ) _maprankings = 'active';
+    else if(activePath == "strategytips") _strategytips = 'active';
     else _generaltips = "active";
 
     const heroKey = changeCase.lower(_heroKey);
@@ -118,6 +118,7 @@ class SingleHeroPage extends Component {
               </div>
               <div className="col-lg-12">
                 <div className="os-hero-body">
+                  { _heromatchups || _maprankings || _generaltips ?
                   <div className="row">
                     <div className="center-text">
                       <ul className="os-hero-nav">
@@ -132,7 +133,18 @@ class SingleHeroPage extends Component {
                         </li>
                       </ul>
                     </div>
-                  </div>
+                  </div> : null
+                  }
+
+                  { _strategytips?
+                  <div className="row">
+                    <div className="col-lg-12">
+                      <Link to={`/heros/${id}/generaltips`}>
+                        <i className="fa fa-long-arrow-left" aria-hidden="true"/> back to Hero Matchups
+                      </Link>
+                    </div>
+                  </div> : null
+                  }
                   <div className="row">
                     {children}
                   </div>

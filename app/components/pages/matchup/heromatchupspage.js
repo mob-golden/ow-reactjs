@@ -120,7 +120,7 @@ class HeroMatchupsPage extends Component {
                 />: <Loader />}
               <div className="row">
                 <div className="col-lg-12 center-text"> 
-                  <a href="#" className="btn btn-default os-btn-viewall">VIEW ALL</a>
+                  <a href="#" className="btn btn-default os-btn-white">VIEW ALL</a>
                 </div>
               </div>
             </div>

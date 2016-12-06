@@ -63,12 +63,14 @@ class HeroMatchupsList extends Component {
           });
 
           const downvotesClass = classNames({
+            'col-lg-6': true,
             'os-matchup-vote-down': true,
             'os-matchup-item-votes-active': votes[key],
             'os-matchup-item-votes-non-active': !votes[key]
           });
 
           const upvotesClass = classNames({
+            'col-lg-6': true,
             'os-matchup-vote-up': true,
             'os-matchup-item-votes-active': votes[key],
             'os-matchup-item-votes-non-active': !votes[key]
@@ -95,28 +97,24 @@ class HeroMatchupsList extends Component {
               </Link>
               <div className="media-body">
                 <span className="os-matchup-item-name media-heading">{name}</span>
-                <ul className="os-matchup-item-score list-unstyled list-inline">
-                  <li className="list-inline-item">
-                    <span
-                      className={upvotesClass}
-                      onClick={this.handleVote.bind(null, key, heroKey, matchupHeroKey, lane, type, 'upvote')}
-                    >
-                      <i className={upvoteClass}></i>
-                      &nbsp;
-                      <span className={`jq-matchup-upvote-${key}`}>{upvotes}</span>
-                    </span>
-                  </li>
-                  <li className="list-inline-item">
-                    <span
-                      className={downvotesClass}
-                      onClick={this.handleVote.bind(null, key, heroKey, matchupHeroKey, lane, type, 'downvote')}
-                    >
-                      <i className={downvoteClass}></i>
-                      &nbsp;
-                      <span className={`jq-matchup-downvote-${key}`}>{downvotes}</span>
-                    </span>
-                  </li>
-                </ul>
+                <div className="os-matchup-vote-score">
+                  <div
+                    className={upvotesClass}
+                    onClick={this.handleVote.bind(null, key, heroKey, matchupHeroKey, lane, type, 'upvote')}
+                  >
+                    <i className={upvoteClass}></i>
+                    &nbsp;
+                    <span className={`jq-matchup-upvote-${key}`}>{upvotes}</span>
+                  </div>
+                  <div
+                    className={downvotesClass}
+                    onClick={this.handleVote.bind(null, key, heroKey, matchupHeroKey, lane, type, 'downvote')}
+                  >
+                    <i className={downvoteClass}></i>
+                    &nbsp;
+                    <span className={`jq-matchup-downvote-${key}`}>{downvotes}</span>
+                  </div>
+                </div>
               </div>
             </div>
           );
