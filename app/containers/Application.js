@@ -1,12 +1,12 @@
 import React from 'react'
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-//import ReactGA from 'react-ga';
 import Root from './Root';
 
 import ForgotPassword from '../components/pages/password/forgot';
 import ResetPassword from '../components/pages/password/reset';
 import HomePage from '../components/pages/hero/homepage';
+import MapsPage from '../components/pages/map/mapspage';
 import SingleHeroPage from '../components/pages/hero/singleheropage';
 import GeneralTipsPage from '../components/pages/tip/generaltipspage';
 import StrategyTipsPage from '../components/pages/tip/strategytipspage';
@@ -15,9 +15,6 @@ import MapRankingsPage from '../components/pages/map/maprankingspage';
 import MatchupPage from '../components/pages/matchup/matchuppage';
 import MatchupTipsPage from '../components/pages/matchup/matchuptipspage';
 
-//if (typeof window !== 'undefined')  {
-//  ReactGA.initialize('UA-51583717-1');
-//}
 export const routes = (
   <Route path="/" component={Root} >
     <IndexRoute component={HomePage} />
@@ -32,10 +29,11 @@ export const routes = (
       <Route path="/heros/:heroKey/maprankings" component={MapRankingsPage}/>
       <Route path="/heros/:heroKey/strategytips" component={StrategyTipsPage}/>
     </Route>
+
     <Route path="/matchups/:heroKey/:matchupHeroKey" component={MatchupPage}>
       <IndexRoute component={MatchupTipsPage} />
     </Route>
-    
+    <Route path="/maps" component={MapsPage} />
   </Route>
 );
 
