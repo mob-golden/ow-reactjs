@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 import Loader from '../../loader';
 import Typeahead from '../../typeahead';
-import HerosGrid from './herosgrid';
+import HeroesGrid from './heroesgrid';
 import TabsNav from '../../tabsnav';
 
 import { prepareAds } from '../../ads';
@@ -25,8 +25,8 @@ class HomePage extends Component {
   };
 
   // static propTypes = {
-  //   heros: PropTypes.object.isRequired,
-  //   isFetchingHeros: PropTypes.bool.isRequired
+  //   heroes: PropTypes.object.isRequired,
+  //   isFetchingHeroes: PropTypes.bool.isRequired
   // };
 
   componentWillMount () {
@@ -43,8 +43,8 @@ class HomePage extends Component {
   render () {
     const {
       ads,
-      heros,
-      isFetchingHeros
+      heroes,
+      isFetchingHeroes
     } = this.props;
       
     return (
@@ -54,13 +54,13 @@ class HomePage extends Component {
           dimensions={adDimensions.BEFORE_RECT}
           path={'/22280732/ChampionSelect_728x90_HP_BTF1'}
         />
-        <div className="os-heros row">
+        <div className="os-heroes row">
           <div className="col-lg-12">
-            <div className="os-heros-top">
+            <div className="os-heroes-top">
               <p className="os-white os-font-size-18"> Search for a hero to find counterpicks, general counters, hero synergy, and more!</p>
               <div className="col-lg-8 col-xs-12 col-lg-offset-2">
                 <Typeahead
-                  constructLink={(id) => `/heros/${id.toLowerCase()}`}
+                  constructLink={(id) => `/heroes/${id.toLowerCase()}`}
                   inputGroupClass="input-group"
                   placeholder={"Search for a Hero"}
                 />
@@ -68,7 +68,7 @@ class HomePage extends Component {
             </div>
           </div>
           <div className="col-lg-12">
-            <div className="os-heros-body">
+            <div className="os-heroes-body">
               <p className="hidden-xs-down os-font-size-18"> Choose a hero below to find counterpicks, general counters, hero synergy, and more!</p>
               <div>
                 <TabsNav
@@ -82,9 +82,9 @@ class HomePage extends Component {
                   })}
                 />
               </div>
-              {!isFetchingHeros && heros ?
-                <HerosGrid
-                  heros={take(toArray(heros.data), 22)}
+              {!isFetchingHeroes && heroes ?
+                <HeroesGrid
+                  heroes={take(toArray(heroes.data), 22)}
                 /> : <Loader /> } 
             </div>
           </div>
@@ -102,16 +102,16 @@ class HomePage extends Component {
 function mapStateToProps (state) {
   const {
     riot: {
-      heros: {
-        data: herosData,
-        isFetching: isFetchingHeros
+      heroes: {
+        data: heroesData,
+        isFetching: isFetchingHeroes
       }
     }
   } = state;
   
   return {
-    heros: herosData,
-    isFetchingHeros
+    heroes: heroesData,
+    isFetchingHeroes
   };
 }
 

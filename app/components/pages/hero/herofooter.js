@@ -25,7 +25,7 @@ class HeroFooter extends Component {
 
   render () {
     const {
-      heros,
+      heroes,
       colClass
     } = this.props;
 
@@ -36,7 +36,7 @@ class HeroFooter extends Component {
         </div>
         <div className="os-hero-footer-thumbs">
           {
-            heros.map(hero => {
+            heroes.map(hero => {
               const {
                 id,
                 image:{
@@ -49,7 +49,7 @@ class HeroFooter extends Component {
                 className="os-hero-footer-thumb"
                 key={hero.id}
               >
-                <Link to={`/heros/${id}`}>
+                <Link to={`/heroes/${id}`}>
                   <img
                     width="75"
                     height="75"

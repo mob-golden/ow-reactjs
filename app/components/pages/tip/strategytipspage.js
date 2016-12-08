@@ -10,10 +10,10 @@ import { fetchCounterTipsForHero } from '../../../actions/api';
 class StrategyTipsPage extends Component {
   // static propTypes = {
   //   dispatch: PropTypes.func.isRequired,
-  //   heros: PropTypes.object.isRequired,
+  //   heroes: PropTypes.object.isRequired,
   //   counterTips: PropTypes.array.isRequired,
   //   matchups: PropTypes.array.isRequired,
-  //   isFetchingHeros: PropTypes.bool.isRequired,
+  //   isFetchingHeroes: PropTypes.bool.isRequired,
   //   isFetchingCounterTips: PropTypes.bool.isRequired,
   //   isFetchingMatchups: PropTypes.bool.isRequired
   // };
@@ -83,7 +83,7 @@ class StrategyTipsPage extends Component {
   render () {
     const {
       children,
-      heros,
+      heroes,
       counterTips,
       isFetchingCounterTips,
       params: {
@@ -97,7 +97,7 @@ class StrategyTipsPage extends Component {
     // } = this.state;
     let  showCounterTipsForm = true;
     const heroKey = changeCase.lower(_heroKey);
-    const heroName = changeCase.upper(heros.data[heroKey].name);
+    const heroName = changeCase.upper(heroes.data[heroKey].name);
 
     return (
       <div className="os-hero-tip-container">
@@ -118,6 +118,7 @@ class StrategyTipsPage extends Component {
           </div>
           <div className="os-hero-addtip-tip-col">
             <div className="os-hero-addtip-body">
+              <h5 className="os-hero-tip-title">ADD A TIP</h5>
               {/*token &&*/ showCounterTipsForm ?
                   <form>
                     <fieldset className="form-group">
@@ -154,17 +155,17 @@ function mapStateToProps (state) {
       }
     },
     riot: {
-      heros: {
-        data: herosData,
-        isFetching: isFetchingHeros
+      heroes: {
+        data: heroesData,
+        isFetching: isFetchingHeroes
       }
     }
   } = state;
 
   return {
-    heros: herosData,
+    heroes: heroesData,
     counterTips: counterTipsData,
-    isFetchingHeros,
+    isFetchingHeroes,
     isFetchingCounterTips
   };
 }

@@ -20,14 +20,14 @@ export const routes = (
     <IndexRoute component={HomePage} />
     <Route path="/forgot" component={ForgotPassword} />
     <Route path="/reset" component={ResetPassword} />
-    <Route path="/heros" component={HomePage} />
+    <Route path="/heroes" component={HomePage} />
 
-    <Route path="/heros/:heroKey" component={SingleHeroPage}>
+    <Route path="/heroes/:heroKey" component={SingleHeroPage}>
       <IndexRoute component={GeneralTipsPage} />
-      <Route path="/heros/:heroKey/generaltips" component={GeneralTipsPage}/>
-      <Route path="/heros/:heroKey/matchups" component={HeroMatchupsPage}/>
-      <Route path="/heros/:heroKey/maprankings" component={MapRankingsPage}/>
-      <Route path="/heros/:heroKey/strategytips" component={StrategyTipsPage}/>
+      <Route path="/heroes/:heroKey/generaltips" component={GeneralTipsPage}/>
+      <Route path="/heroes/:heroKey/matchups" component={HeroMatchupsPage}/>
+      <Route path="/heroes/:heroKey/maprankings" component={MapRankingsPage}/>
+      <Route path="/heroes/:heroKey/strategytips" component={StrategyTipsPage}/>
     </Route>
 
     <Route path="/matchups/:heroKey/:matchupHeroKey" component={MatchupPage}>

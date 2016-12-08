@@ -31,13 +31,14 @@ import {
 class Typeahead extends Component {
   // static propTypes = {
   //   dispatch: PropTypes.func.isRequired,
-  //   heros: PropTypes.object.isRequired,
-  //   isFetchingHeros: PropTypes.bool.isRequired
+  //   heroes: PropTypes.object.isRequired,
+  //   isFetchingHeroes: PropTypes.bool.isRequired
   // };
 
   static defaultProps = {
     // ref attribute for typeahead's input
-    ref: 'input'
+    ref: 'input',
+    miniTag: 'none'
   };
 
   constructor (props) {
@@ -61,37 +62,48 @@ class Typeahead extends Component {
     const {
       inputGroupClass,
       placeholder,
-      ref
+      ref,
+      miniTag
     } = this.props;
-
-    return (
-      <div
-        className="os-typeahead"
-        onBlur={this.handleBlur}
-        onFocus={this.handleFocus}
-      >
-        <div className={inputGroupClass}>
-          <input
-            className="form-control os-search-input"
-            onChange={this.handleChange}
-            onKeyDown={this.handleInputKeyDown}
-            placeholder={placeholder}
-            ref={this.props.ref}
-            type="text"
-            value={this.state.query}
-          />
-          {this.renderSuggestions()}
-          <span className="input-group-btn">
-            <button
-              className="btn btn-warning os-search-btn"
-              type="button"
-            >
-              <small>SEARCH</small>
-            </button>
-          </span>
+    if(miniTag !== "none"){
+      return(
+        <div className="os-mini-typeahead">
+          <div className="os-mini-search-btn">
+            <i className="fa fa-search" aria-hidden="true"></i>
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
+    else{
+      return (
+        <div
+          className="os-typeahead"
+          onBlur={this.handleBlur}
+          onFocus={this.handleFocus}
+        >
+          <div className={inputGroupClass}>
+            <input
+              className="form-control os-search-input"
+              onChange={this.handleChange}
+              onKeyDown={this.handleInputKeyDown}
+              placeholder={placeholder}
+              ref={this.props.ref}
+              type="text"
+              value={this.state.query}
+            />
+            {this.renderSuggestions()}
+            <span className="input-group-btn">
+              <button
+                className="btn btn-warning os-search-btn"
+                type="button"
+              >
+                <small>SEARCH</small>
+              </button>
+            </span>
+          </div>
+        </div>
+      );
+    }
   }
 
   renderSuggestions = () => {
@@ -165,11 +177,11 @@ class Typeahead extends Component {
 
   handleChange = e => {
     const {
-      heros,
-      isFetchingHeros
+      heroes,
+      isFetchingHeroes
     } = this.props;
 
-    if (!isFetchingHeros && heros) {
+    if (!isFetchingHeroes && heroes) {
       const query = e.target.value;
       const areSuggestionsVisible = query.length > 0 ? true : false;
 
@@ -178,8 +190,8 @@ class Typeahead extends Component {
         threshold: 0.1
       };
 
-      const herosData = values(heros.data);
-      const fuse = new Fuse(herosData, options);
+      const heroesData = values(heroes.data);
+      const fuse = new Fuse(heroesData, options);
       const suggestions = fuse.search(query);
 
       this.setState({
@@ -260,16 +272,16 @@ class Typeahead extends Component {
 function mapStateToProps (state) {
   const {
     riot: {
-      heros: {
-        data: herosData,
-        isFetching: isFetchingHeros
+      heroes: {
+        data: heroesData,
+        isFetching: isFetchingHeroes
       }
     }
   } = state;
 
   return {
-    heros: herosData,
-    isFetchingHeros
+    heroes: heroesData,
+    isFetchingHeroes
   };
 }
 

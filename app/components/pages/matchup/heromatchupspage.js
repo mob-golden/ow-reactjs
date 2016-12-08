@@ -14,10 +14,10 @@ import { LANES, TYPES } from '../../../constants/types';
 class HeroMatchupsPage extends Component {
   // static propTypes = {
   //   dispatch: PropTypes.func.isRequired,
-  //   heros: PropTypes.object.isRequired,
+  //   heroes: PropTypes.object.isRequired,
   //   counterTips: PropTypes.array.isRequired,
   //   matchups: PropTypes.array.isRequired,
-  //   isFetchingHeros: PropTypes.bool.isRequired,
+  //   isFetchingHeroes: PropTypes.bool.isRequired,
   //   isFetchingCounterTips: PropTypes.bool.isRequired,
   //   isFetchingMatchups: PropTypes.bool.isRequired
   // };
@@ -87,8 +87,8 @@ class HeroMatchupsPage extends Component {
   render () {
     const {
       children,
-      heros,
-      isFetchingHeros,
+      heroes,
+      isFetchingHeroes,
       matchups,
       isFetchingMatchups,
       params: {
@@ -109,12 +109,12 @@ class HeroMatchupsPage extends Component {
           <div className="os-hero-matchups-col">
             <div className="os-hero-matchups-body">
               <span className="os-matchups-hero-name">
-                {changeCase.upper(heros.data[heroKey].name)} 
+                {changeCase.upper(heroes.data[heroKey].name)} 
               </span>
               <h5 className="os-matchups-title">COUNTERS</h5>
               {!isFetchingMatchups && matchups.general ?
                 <HeroMatchupsList
-                  herosMap={heros.data}
+                  heroesMap={heroes.data}
                   matchups={matchups.general.counter}
                   shouldHideMeta={true}
                 />: <Loader />}
@@ -151,17 +151,17 @@ function mapStateToProps (state) {
       }
     },
     riot: {
-      heros: {
-        data: herosData,
-        isFetching: isFetchingHeros
+      heroes: {
+        data: heroesData,
+        isFetching: isFetchingHeroes
       }
     }
   } = state;
 
   return {
-    heros: herosData,
+    heroes: heroesData,
     matchups: matchupsData,
-    isFetchingHeros,
+    isFetchingHeroes,
     isFetchingMatchups
   };
 }

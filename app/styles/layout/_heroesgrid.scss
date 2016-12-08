@@ -1,18 +1,18 @@
 @import '../base/constants';
 
-.os-heros-grid {
+.os-heroes-grid {
   margin-bottom: 16px;
 
   // @media (min-width: Breakpoints.LG)
   //   margin-bottom 0
 }
 
-.os-heros-grid-cell {
+.os-heroes-grid-cell {
   position: relative;
   margin-bottom: 35%;
 }
 
-.os-heros-grid-overlay{
+.os-heroes-grid-overlay{
   padding-top: 1px;
   padding-bottom: 1px;
   position: absolute;

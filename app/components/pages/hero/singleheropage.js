@@ -43,8 +43,8 @@ class SingleHeroPage extends Component {
     const {
       children,
       ads,
-      heros,
-      isFetchingHeros,
+      heroes,
+      isFetchingHeroes,
       counterTips,
       isFetchingCounterTips,
       params: {
@@ -64,8 +64,8 @@ class SingleHeroPage extends Component {
     else _generaltips = "active";
 
     const heroKey = changeCase.lower(_heroKey);
-    if (!isFetchingHeros && heros) {
-      const herosMap = heros.data;
+    if (!isFetchingHeroes && heroes) {
+      const heroesMap = heroes.data;
 
       const {
         id,
@@ -73,7 +73,7 @@ class SingleHeroPage extends Component {
         image: {
           full
         }
-      } = herosMap[heroKey];
+      } = heroesMap[heroKey];
 
       return (
         <div className="os-body row">
@@ -89,7 +89,7 @@ class SingleHeroPage extends Component {
                   <div className="col-lg-3">
                     <div className="os-hero-profile">
                       <div className="os-profile-mask">
-                        <Link to={`/heros/${heroKey}`}>
+                        <Link to={`/heroes/${heroKey}`}>
                           <img
                             width="72"
                             height="124"
@@ -100,7 +100,7 @@ class SingleHeroPage extends Component {
                           <div className="os-hero-profile-type">
                             <img width="16" height="17" src="/images/offense.png"/>
                           </div>
-                          <h5 className="os-hero-profile-name">{changeCase.upper(herosMap[heroKey].name)}</h5>
+                          <h5 className="os-hero-profile-name">{changeCase.upper(heroesMap[heroKey].name)}</h5>
                         </Link>
                       </div>
                     </div>
@@ -108,7 +108,7 @@ class SingleHeroPage extends Component {
                   <div className="col-lg-9">
                     <div className="os-hero-search">
                       <Typeahead
-                        constructLink={(id) => `/heros/${id.toLowerCase()}`}
+                        constructLink={(id) => `/heroes/${id.toLowerCase()}`}
                         inputGroupClass="input-group"
                         placeholder={"Search for a matchup"}
                       />
@@ -123,13 +123,13 @@ class SingleHeroPage extends Component {
                     <div className="center-text">
                       <ul className="os-hero-nav">
                         <li className={`os-hero-nav-item ${_generaltips}`}> 
-                          <Link to={`/heros/${id}/generaltips`}>GENERAL TIPS</Link> 
+                          <Link to={`/heroes/${id}/generaltips`}>GENERAL TIPS</Link> 
                         </li>
                         <li className={`os-hero-nav-item ${_heromatchups}`}> 
-                          <Link to={`/heros/${id}/matchups`}>HERO MATCHUPS</Link> 
+                          <Link to={`/heroes/${id}/matchups`}>HERO MATCHUPS</Link> 
                         </li>
                         <li className={`os-hero-nav-item ${_maprankings}`}> 
-                          <Link to={`/heros/${id}/maprankings`}>MAP RANKINGS</Link> 
+                          <Link to={`/heroes/${id}/maprankings`}>MAP RANKINGS</Link> 
                         </li>
                       </ul>
                     </div>
@@ -139,7 +139,7 @@ class SingleHeroPage extends Component {
                   { _strategytips?
                   <div className="row">
                     <div className="col-lg-12">
-                      <Link to={`/heros/${id}/generaltips`}>
+                      <Link to={`/heroes/${id}/generaltips`}>
                         <i className="fa fa-long-arrow-left" aria-hidden="true"/> back to Hero Matchups
                       </Link>
                     </div>
@@ -158,9 +158,9 @@ class SingleHeroPage extends Component {
             />
           </div>
           <div className="os-hero-footer">
-            {!isFetchingHeros && heros ?
+            {!isFetchingHeroes && heroes ?
                 <HeroFooter
-                  heros={take(toArray(heros.data),22)}
+                  heroes={take(toArray(heroes.data),22)}
                 /> : <Loader /> }
           </div>
         </div>
@@ -179,16 +179,16 @@ function mapStateToProps (state) {
       }
     },
     riot: {
-      heros: {
-        data: herosData,
-        isFetching: isFetchingHeros
+      heroes: {
+        data: heroesData,
+        isFetching: isFetchingHeroes
       }
     }
   } = state;
 
   return {
-    heros: herosData,
-    isFetchingHeros,
+    heroes: heroesData,
+    isFetchingHeroes,
     counterTips: counterTipsData,
     isFetchingCounterTips
   };

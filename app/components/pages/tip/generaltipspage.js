@@ -11,10 +11,10 @@ import { fetchCounterTipsForHero } from '../../../actions/api';
 class GeneralTipsPage extends Component {
   // static propTypes = {
   //   dispatch: PropTypes.func.isRequired,
-  //   heros: PropTypes.object.isRequired,
+  //   heroes: PropTypes.object.isRequired,
   //   counterTips: PropTypes.array.isRequired,
   //   matchups: PropTypes.array.isRequired,
-  //   isFetchingHeros: PropTypes.bool.isRequired,
+  //   isFetchingHeroes: PropTypes.bool.isRequired,
   //   isFetchingCounterTips: PropTypes.bool.isRequired,
   //   isFetchingMatchups: PropTypes.bool.isRequired
   // };
@@ -84,7 +84,7 @@ class GeneralTipsPage extends Component {
   render () {
     const {
       children,
-      heros,
+      heroes,
       counterTips,
       isFetchingCounterTips,
       params: {
@@ -105,7 +105,7 @@ class GeneralTipsPage extends Component {
           <div className="os-hero-tip-col">
             <div className="os-hero-tip-body">
               <span className="os-hero-tip-name">
-                {changeCase.upper(heros.data[heroKey].name)} 
+                {changeCase.upper(heroes.data[heroKey].name)} 
               </span>
               <h5 className="os-hero-tip-title">STRATEGY & TIPS</h5>
               {!isFetchingCounterTips && counterTips ?
@@ -118,7 +118,7 @@ class GeneralTipsPage extends Component {
                 <div className="col-lg-3">
                   <Link
                     className="btn btn-primary os-btn-blue"
-                    to={`/heros/${heroKey}/strategytips`}
+                    to={`/heroes/${heroKey}/strategytips`}
                   >
                   ADD A TIP
                   </Link>
@@ -126,7 +126,7 @@ class GeneralTipsPage extends Component {
                 <div className="col-lg-3"> 
                   <Link
                     className="btn btn-secondary os-btn-white"
-                    to={`/heros/${heroKey}/strategytips`}
+                    to={`/heroes/${heroKey}/strategytips`}
                   >
                   VIEW ALL
                   </Link>
@@ -155,17 +155,17 @@ function mapStateToProps (state) {
       }
     },
     riot: {
-      heros: {
-        data: herosData,
-        isFetching: isFetchingHeros
+      heroes: {
+        data: heroesData,
+        isFetching: isFetchingHeroes
       }
     }
   } = state;
 
   return {
-    heros: herosData,
+    heroes: heroesData,
     counterTips: counterTipsData,
-    isFetchingHeros,
+    isFetchingHeroes,
     isFetchingCounterTips
   };
 }

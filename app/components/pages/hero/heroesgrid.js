@@ -25,21 +25,21 @@ import {
   HERO_TYPES
 } from '../../../constants/types';
 
-class HerosGrid extends Component {
+class HeroesGrid extends Component {
   static defaultProps = {
     colClass: 'col-xs-4 os-col-sm-1'
   };
 
   render () {
     const {
-      heros,
+      heroes,
       colClass
     } = this.props;
 
     return (
-      <div className="os-heros-grid row">
+      <div className="os-heroes-grid row">
         {
-          heros.map(hero => {
+          heroes.map(hero => {
             const {
               id,
               key,
@@ -56,7 +56,7 @@ class HerosGrid extends Component {
               key={hero.id}
             >
               <div className="os-thumb-container">
-                <Link to={`/heros/${id}`}>
+                <Link to={`/heroes/${id}`}>
                   <div className="os-thumb-photo">
                     <img
                       width="98"
@@ -79,4 +79,4 @@ class HerosGrid extends Component {
   }
 }
 
-export default HerosGrid;
+export default HeroesGrid;

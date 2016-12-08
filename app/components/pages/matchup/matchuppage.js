@@ -43,8 +43,8 @@ class MatchupPage extends Component {
     const {
       children,
       ads,
-      heros,
-      isFetchingHeros,
+      heroes,
+      isFetchingHeroes,
       params: {
         heroKey: _heroKey,
         matchupHeroKey: _matchupHeroKey
@@ -54,8 +54,8 @@ class MatchupPage extends Component {
     const heroKey = changeCase.lower(_heroKey);
     const matchupHeroKey = changeCase.lower(_matchupHeroKey);
 
-    if (!isFetchingHeros && heros) {
-      const herosMap = heros.data;
+    if (!isFetchingHeroes && heroes) {
+      const heroesMap = heroes.data;
 
       const {
         id,
@@ -63,7 +63,7 @@ class MatchupPage extends Component {
         image: {
           full
         }
-      } = herosMap[heroKey];
+      } = heroesMap[heroKey];
 
       return (
         <div className="os-body row">
@@ -77,9 +77,17 @@ class MatchupPage extends Component {
               <div className="col-lg-12">
                 <div className="os-matchup-top">
                   <div className="col-lg-4">
+                    <div className="os-hero-left-search">
+                      <Typeahead
+                        constructLink={(id) => `/heroes/${id.toLowerCase()}`}
+                        inputGroupClass="input-group"
+                        placeholder={"Search for a matchup"}
+                        miniTag="left"
+                      />
+                    </div>
                     <div className="os-hero-left-profile">
                       <div className="os-profile-mask">
-                        <Link to={`/heros/${heroKey}`}>
+                        <Link to={`/heroes/${heroKey}`}>
                           <img
                             width="72"
                             height="124"
@@ -90,21 +98,23 @@ class MatchupPage extends Component {
                           <div className="os-hero-profile-type">
                             <img width="16" height="17" src="/images/support.png"/>
                           </div>
-                          <h5 className="os-hero-profile-name">{changeCase.upper(herosMap[heroKey].name)}</h5>
+                          <h5 className="os-hero-profile-name">{changeCase.upper(heroesMap[heroKey].name)}</h5>
                         </Link>
                       </div>
                     </div>
                   </div>
+                  
                   <div className="col-lg-4">
                     <Link to={`/matchups/${matchupHeroKey}/${heroKey}`}>
                       <div className="os-matchup-vs-img">
                       </div>
                     </Link>
                   </div>
+
                   <div className="col-lg-4">
                     <div className="os-hero-right-profile">
                       <div className="os-profile-mask">
-                        <Link to={`/heros/${matchupHeroKey}`}>
+                        <Link to={`/heroes/${matchupHeroKey}`}>
                           <img
                             width="72"
                             height="124"
@@ -115,9 +125,17 @@ class MatchupPage extends Component {
                           <div className="os-hero-profile-type">
                             <img width="16" height="17" src="/images/defense.png"/>
                           </div>
-                          <h5 className="os-hero-profile-name">{changeCase.upper(herosMap[matchupHeroKey].name)}</h5>
+                          <h5 className="os-hero-profile-name">{changeCase.upper(heroesMap[matchupHeroKey].name)}</h5>
                         </Link>
                       </div>
+                    </div>
+                    <div className="os-hero-right-search">
+                      <Typeahead
+                        constructLink={(id) => `/heroes/${id.toLowerCase()}`}
+                        inputGroupClass="input-group"
+                        placeholder={"Search for a matchup"}
+                        miniTag="left"
+                      />
                     </div>
                   </div>
                 </div>
@@ -126,7 +144,7 @@ class MatchupPage extends Component {
                 <div className="os-matchup-body">
                   <div className="row">
                     <div className="col-lg-12">
-                      <Link to={`/heros/${heroKey}/matchups`}>
+                      <Link to={`/heroes/${heroKey}/matchups`}>
                         <i className="fa fa-long-arrow-left" aria-hidden="true"/> back to Hero Matchups
                       </Link>
                     </div>
@@ -144,9 +162,9 @@ class MatchupPage extends Component {
             />
           </div>
           <div className="os-hero-footer">
-            {!isFetchingHeros && heros ?
+            {!isFetchingHeroes && heroes ?
                 <HeroFooter
-                  heros={take(toArray(heros.data),22)}
+                  heroes={take(toArray(heroes.data),22)}
                 /> : <Loader /> }
           </div>
         </div>
@@ -165,16 +183,16 @@ function mapStateToProps (state) {
       }
     },
     riot: {
-      heros: {
-        data: herosData,
-        isFetching: isFetchingHeros
+      heroes: {
+        data: heroesData,
+        isFetching: isFetchingHeroes
       }
     }
   } = state;
 
   return {
-    heros: herosData,
-    isFetchingHeros,
+    heroes: heroesData,
+    isFetchingHeroes,
     counterTips: counterTipsData,
     isFetchingCounterTips
   };

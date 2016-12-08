@@ -2,55 +2,55 @@ import fetch from 'isomorphic-fetch';
 import mapKeys from 'lodash/mapKeys';
 
 import {
-  RIOT_HEROS_URL
+  RIOT_HEROES_URL
 } from '../constants/urls';
 
 // import {
 //   callApiIfNeeded
 // } from '../utils/api';
 
-export const REQUEST_HEROS = 'REQUEST_HEROS';
-// export const REQUEST_HEROS_SUCCESS = 'REQUEST_HEROS_SUCCESS';
-// export const REQUEST_HEROS_FAILURE = 'REQUEST_HEROS_FAILURE';
-export const RECEIVE_HEROS = 'RECEIVE_HEROS';
+export const REQUEST_HEROES = 'REQUEST_HEROES';
+// export const REQUEST_HEROES_SUCCESS = 'REQUEST_HEROES_SUCCESS';
+// export const REQUEST_HEROES_FAILURE = 'REQUEST_HEROES_FAILURE';
+export const RECEIVE_HEROES = 'RECEIVE_HEROES';
 
-// export function fetchHeros () {
+// export function fetchHeroes () {
 //   return (dispatch, getState) => {
 //     const types = {
-//       request: REQUEST_HEROS,
-//       success: REQUEST_HEROS_SUCCESS,
-//       failure: REQUEST_HEROS_FAILURE,
-//       receive: RECEIVE_HEROS
+//       request: REQUEST_HEROES,
+//       success: REQUEST_HEROES_SUCCESS,
+//       failure: REQUEST_HEROES_FAILURE,
+//       receive: RECEIVE_HEROES
 //     };
 //
-//     return dispatch(callApiIfNeeded(RIOT_HEROS_URL, types, getState()));
+//     return dispatch(callApiIfNeeded(RIOT_HEROES_URL, types, getState()));
 //   };
 // }
 
-export function fetchHerosIfNeeded () {
+export function fetchHeroesIfNeeded () {
   return (dispatch, getState) => {
-    if (shouldFetchHeros(getState())) {
-      return dispatch(fetchHeros(RIOT_HEROS_URL));
+    if (shouldFetchHeroes(getState())) {
+      return dispatch(fetchHeroes(RIOT_HEROES_URL));
     }
   };
 }
 
-function shouldFetchHeros (state) {
+function shouldFetchHeroes (state) {
   const {
     riot: {
-      heros
+      heroes
     }
   } = state;
 
-  // if (heros.isFetching)
+  // if (heroes.isFetching)
   //   return false;
 
   return true;
 }
 
-function fetchHeros (url) {
+function fetchHeroes (url) {
   return dispatch => {
-    dispatch(requestHeros());
+    dispatch(requestHeroes());
 
     return fetch(url)
       .then(response => {
@@ -69,25 +69,25 @@ function fetchHeros (url) {
         }
       })
       .then(response => response.json())
-      .then(json => dispatch(receiveHeros(json)))
+      .then(json => dispatch(receiveHeroes(json)))
       .catch (error => {
         console.log(`Request failed for ${url}: ${error.message}`);
       });
   }
 }
 
-function requestHeros () {
+function requestHeroes () {
   return {
-    type: REQUEST_HEROS
+    type: REQUEST_HEROES
   };
 }
 
-function receiveHeros (data) {
+function receiveHeroes (data) {
   const cleanedData = mapKeys(data.data, (v, k) => ("" + k).replace(/[-\+'`´\s]+/g, '').toLowerCase());
   data.data = cleanedData;
 
   return {
-    type: RECEIVE_HEROS,
+    type: RECEIVE_HEROES,
     data
   };
 }

@@ -106,7 +106,7 @@ export const REQUEST_COUNTER_TIPS = 'REQUEST_COUNTER_TIPS';
 export const RECEIVE_COUNTER_TIPS = 'RECEIVE_COUNTER_TIPS';
 
 // TODO: abstract into fetching general counter tips and counter tips for
-// heros
+// heroes
 
 export function fetchCounterTipsForHero (heroKey) {
   return dispatch => {

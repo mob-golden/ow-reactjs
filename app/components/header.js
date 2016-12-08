@@ -300,9 +300,9 @@ class Header extends Component {
             <li className="nav-item os-nav-item">
               <Link
                 className="os-white os-font-size-12"
-                to="/heros"
+                to="/heroes"
               >
-                HEROS
+                HEROES
               </Link>
             </li>
 
@@ -341,9 +341,9 @@ class Header extends Component {
           <li className="nav-item os-nav-item">
             <Link
               className="os-white os-font-size-12"
-              to="/heros"
+              to="/heroes"
             >
-              HEROS
+              HEROES
             </Link>
           </li>
 

@@ -10,10 +10,10 @@ import { fetchCounterTipsIfNeeded } from '../../../actions/matchup';
 class MatchupTipsPage extends Component {
   // static propTypes = {
   //   dispatch: PropTypes.func.isRequired,
-  //   heros: PropTypes.object.isRequired,
+  //   heroes: PropTypes.object.isRequired,
   //   counterTips: PropTypes.array.isRequired,
   //   matchups: PropTypes.array.isRequired,
-  //   isFetchingHeros: PropTypes.bool.isRequired,
+  //   isFetchingHeroes: PropTypes.bool.isRequired,
   //   isFetchingCounterTips: PropTypes.bool.isRequired,
   //   isFetchingMatchups: PropTypes.bool.isRequired
   // };
@@ -90,7 +90,7 @@ class MatchupTipsPage extends Component {
 
   render () {
     const {
-      heros,
+      heroes,
       counterTips,
       isFetchingCounterTips,
       params: {
@@ -113,9 +113,9 @@ class MatchupTipsPage extends Component {
           <div className="os-matchup-tip-col">
             <div className="os-matchup-tip-body">
               <span className="os-matchup-tip-name">
-                TIPS VS. {changeCase.upper(heros.data[matchupHeroKey].name)} 
+                TIPS VS. {changeCase.upper(heroes.data[matchupHeroKey].name)} 
               </span>
-              <h5 className="os-matchup-left-title">AS <span>{changeCase.upper(heros.data[heroKey].name)}</span></h5>
+              <h5 className="os-matchup-left-title">AS <span>{changeCase.upper(heroes.data[heroKey].name)}</span></h5>
               {!isFetchingCounterTips && counterTips ?
                 <TipsList
                   counterTips={take(counterTips.data, 5)}
@@ -153,17 +153,17 @@ function mapStateToProps (state) {
       }
     },
     riot: {
-      heros: {
-        data: herosData,
-        isFetching: isFetchingHeros
+      heroes: {
+        data: heroesData,
+        isFetching: isFetchingHeroes
       }
     }
   } = state;
 
   return {
-    heros: herosData,
+    heroes: heroesData,
     counterTips: counterTipsData,
-    isFetchingHeros,
+    isFetchingHeroes,
     isFetchingCounterTips
   };
 }

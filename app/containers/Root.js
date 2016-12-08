@@ -13,7 +13,7 @@ import {
 } from 'react-redux';
 
 import {
-  fetchHerosIfNeeded
+  fetchHeroesIfNeeded
 } from '../actions/riot';
 
 class Root extends Component {
@@ -26,7 +26,7 @@ class Root extends Component {
       dispatch
     } = this.props;
 
-    dispatch(fetchHerosIfNeeded());
+    dispatch(fetchHeroesIfNeeded());
   }
 
   render () {

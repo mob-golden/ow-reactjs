@@ -3,8 +3,8 @@ import {
 } from 'redux';
 
 import {
-  REQUEST_HEROS,
-  RECEIVE_HEROS
+  REQUEST_HEROES,
+  RECEIVE_HEROES
 } from '../actions/riot';
 
 const initialState = {
@@ -12,14 +12,14 @@ const initialState = {
   data: null
 };
 
-function heros (state = initialState, action) {
+function heroes (state = initialState, action) {
   switch (action.type) {
-    case REQUEST_HEROS:
+    case REQUEST_HEROES:
       return {
         ...state,
         isFetching: true
       };
-    case RECEIVE_HEROS:
+    case RECEIVE_HEROES:
       return {
         ...state,
         isFetching: false,
@@ -31,7 +31,7 @@ function heros (state = initialState, action) {
 }
 
 const riot = combineReducers({
-  heros
+  heroes
 });
 
 export default riot;

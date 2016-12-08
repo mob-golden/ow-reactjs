@@ -4,7 +4,7 @@ import {
   RIOT_SPRITES_URL
 } from '../constants/urls';
 
-// TODO: generate sprite styles for sprites other than Heros
+// TODO: generate sprite styles for sprites other than Heroes
 export function generateSpriteStyle ({sprite, x, y}) {
   const basename = path.basename(sprite);
   const spriteId = sprite.substr(sprite.length - 1);

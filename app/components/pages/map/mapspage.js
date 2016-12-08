@@ -160,7 +160,7 @@ class MapsPage extends Component {
               <h2 className="os-white">CHOOSE A MAP</h2>
               <p className="os-white hidden-xs-down os-font-size-18">
                 The list below is sorted alphabetically, the maps are not ranked in any way. <br/>
-                Choose a map below to find recommended Heros for each map.
+                Choose a map below to find recommended Heroes for each map.
               </p>
             </div>
           </div>
@@ -200,14 +200,14 @@ class MapsPage extends Component {
 function mapStateToProps (state) {
   const {
     riot: {
-      heros: {
+      heroes: {
         data: mapsData,
         isFetching: isFetchingMaps
       }
     }
   } = state;
   return {
-    heros: mapsData,
+    heroes: mapsData,
     isFetchingMaps
   };
 }

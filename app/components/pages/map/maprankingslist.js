@@ -17,7 +17,7 @@ class MapRankingsList extends Component {
 
   render () {
     const {
-      herosMap,
+      heroesMap,
       matchups,
       shouldHideMeta
     } = this.props;
@@ -46,7 +46,7 @@ class MapRankingsList extends Component {
               full
             },
             name
-          } = herosMap[matchupHeroKey];
+          } = heroesMap[matchupHeroKey];
 
           const key = matchupHeroKey + lane + type;
 

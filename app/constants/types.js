@@ -15,7 +15,7 @@ export const TYPES = [
 ];
 
 export const HERO_TYPES = [
-  'all heros',
+  'all heroes',
   'offense',
   'defense',
   'tank',
@@ -52,6 +52,6 @@ export const TIP_TYPES = [
 ];
 
 // Temporary until API is updated.
-export const HEROS_COUNT = 133;
+export const HEROES_COUNT = 133;
 
-export const MATCHUPS_COUNT = (HEROS_COUNT - 1) * (LANES.length - 1);
+export const MATCHUPS_COUNT = (HEROES_COUNT - 1) * (LANES.length - 1);
