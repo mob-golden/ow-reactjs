@@ -22,6 +22,7 @@ class MapsGrid extends Component {
 
   render () {
     const {
+      filter,
       maps,
       colClass
     } = this.props;
@@ -38,6 +39,7 @@ class MapsGrid extends Component {
               url
             }
           } = _map;
+          if(filter !== "all" && filter!== type) return null;
           return (
           <div
             className={colClass}

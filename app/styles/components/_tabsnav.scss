@@ -51,6 +51,11 @@
     margin-left: 0px;
     box-shadow: 0px 0px;
   }
+
+  .os-tabnav-item.active {
+    background-color: $BLUE_1;
+  }
+  
   .os-tabnav-item:last-child {
     border-radius: 0px 6px 6px 0px;
   }
@@ -67,6 +72,7 @@
     display: block;
     padding: 16px 30px;
   }
+
   .os-nav-link:hover {
     text-decoration: none;
   }

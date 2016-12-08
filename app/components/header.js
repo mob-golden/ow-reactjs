@@ -124,7 +124,7 @@ class Header extends Component {
     return (
       <header className="os-header navbar-fixed row">
         {this.renderModals()}
-        <nav className="os-nav navbar navbar-full navbar-light">
+        <nav className="os-nav navbar navbar-full navbar-light navbar-fixed-top">
           <div className="container">
             <div className="col-lg-8 col-xs-12">
               <Link

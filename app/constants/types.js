@@ -23,11 +23,26 @@ export const HERO_TYPES = [
 ];
 
 export const MAP_TYPES = [
-  'all maps',
-  'assault',
-  'escort',
-  'hybrid',
-  'control'
+  {
+    'key':'all',
+    'title':'all maps',
+  },
+  {
+    'key':'assault',
+    'title':'assault',
+  },
+  {
+    'key':'escort',
+    'title':'escort',
+  },
+  {
+    'key':'hybrid',
+    'title':'hybrid',
+  },
+  {
+    'key':'control',
+    'title':'control',
+  }
 ];
 
 export const TIP_TYPES = [

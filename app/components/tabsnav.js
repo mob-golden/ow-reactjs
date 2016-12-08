@@ -21,31 +21,19 @@ const TabsNav = props => {
           location
         } = tab;
 
-        const navLinkClass = classNames({
-          'os-nav-link': true,
-          'os-font-size-12': true,
+        const navItemClass = classNames({
+          'os-tabnav-item': true,
           'active': tabId === activeTabId
         });
 
         const renderLink = () => {
-          if (location) {
-            return (
-              <Link
-                className={navLinkClass}
-                to={`${location}`}
-              >
-                {label}
-              </Link>
-            );
-          }
-
           return (
             <a
-              className={navLinkClass}
+              className="os-nav-link os-font-size-12"
               href="javascript:;"
               onClick={handleClick.bind(null, tabId)}
             >
-            <div className={`os-tab-item-${label} os-tab-icon`}></div>
+              <div className={`os-tab-item-${label} os-tab-icon`}></div>
               <div className="os-tab-text">
                 {label}
               </div>
@@ -55,7 +43,7 @@ const TabsNav = props => {
 
         return (
           <li
-            className="os-tabnav-item"
+            className={navItemClass}
             key={tabId}
           >
             {renderLink()}

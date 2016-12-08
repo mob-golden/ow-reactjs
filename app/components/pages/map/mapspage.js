@@ -115,6 +115,13 @@ class MapsPage extends Component {
   //   dispatch: PropTypes.func.isRequired,
   //   isFetchingMaps: PropTypes.bool.isRequired
   // };
+  constructor (props) {
+    super(props);
+
+    this.state = {
+      activeTabId: "all"
+    };
+  }
 
   componentWillMount () {
     const {
@@ -130,6 +137,10 @@ class MapsPage extends Component {
   }
 
   render () {
+    const {
+      activeTabId
+    } = this.state;
+
     const {
       ads,
       maps,
@@ -157,18 +168,19 @@ class MapsPage extends Component {
             <div className="os-maps-body">
               <div>
                 <TabsNav
-                  activeTabId={'all'}
-                  handleClick={activeTabId => activeTabId}
+                  activeTabId={activeTabId}
+                  handleClick={activeTabId => this.setState({activeTabId})}
                   tabs={MAP_TYPES.map(type => {
                     return {
-                      id: type,
-                      label: changeCase.upper(type)
+                      id: type.key,
+                      label: changeCase.upper(type.title)
                     };
                   })}
                 />
               </div>
               {/* !isFetchingMaps && maps ? */
                 <MapsGrid
+                  filter={activeTabId}
                   maps={/*maps.data*/_maps}
                 /> /*: <Loader />*/ } 
             </div>
@@ -183,10 +195,6 @@ class MapsPage extends Component {
       </div>
     );
   }
-
-  onScroll = () => {
-    // fetchNextComments();
-  };
 }
 
 function mapStateToProps (state) {
