@@ -28,6 +28,13 @@ class HomePage extends Component {
   //   heroes: PropTypes.object.isRequired,
   //   isFetchingHeroes: PropTypes.bool.isRequired
   // };
+  constructor (props) {
+    super(props);
+
+    this.state = {
+      activeTabId: "all"
+    };
+  }
 
   componentWillMount () {
     const {
@@ -41,6 +48,10 @@ class HomePage extends Component {
 
   }
   render () {
+    const {
+      activeTabId
+    } = this.state;
+    
     const {
       ads,
       heroes,
@@ -72,18 +83,19 @@ class HomePage extends Component {
               <p className="hidden-xs-down os-font-size-18"> Choose a hero below to find counterpicks, general counters, hero synergy, and more!</p>
               <div>
                 <TabsNav
-                  activeTabId={'all'}
-                  handleClick={activeTabId => activeTabId}
+                  activeTabId={activeTabId}
+                  handleClick={activeTabId => this.setState({activeTabId})}
                   tabs={HERO_TYPES.map(type => {
                     return {
-                      id: type,
-                      label: changeCase.upper(type)
+                      id: type.key,
+                      label: changeCase.upper(type.title)
                     };
                   })}
                 />
               </div>
               {!isFetchingHeroes && heroes ?
                 <HeroesGrid
+                  filter={activeTabId}
                   heroes={heroes}
                 /> : <Loader /> } 
             </div>

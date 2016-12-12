@@ -6,11 +6,26 @@ export const MATCHUP_TYPES = [
 ];
 
 export const HERO_TYPES = [
-  'all heroes',
-  'offense',
-  'defense',
-  'tank',
-  'support'
+  {
+    'key':'all',
+    'title':'all heroes'
+  },
+  {
+    'key':'offense',
+    'title':'offense'
+  },
+  {
+    'key':'defense',
+    'title':'defense'
+  },
+  {
+    'key':'tank',
+    'title':'tank'
+  },
+  {
+    'key':'support',
+    'title':'support'
+  }
 ];
 
 export const MAP_TYPES = [

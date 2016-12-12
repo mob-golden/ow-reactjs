@@ -5,8 +5,6 @@ import update from 'lodash/update';
 import {
   OW_TIPS_URL,
   OW_MATCHUPS_URL,
-  CS_CHAMPION_URL,
-  CS_COMMENTS_URL,
   CS_COUNTER_TIPS_URL
 } from '../constants/urls';
 

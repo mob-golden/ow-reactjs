@@ -27,6 +27,7 @@ class HeroesGrid extends Component {
 
   render () {
     const {
+      filter,
       heroes,
       colClass
     } = this.props;
@@ -39,9 +40,10 @@ class HeroesGrid extends Component {
               id,
               name,
               portrait,
-              class: type
+              type
             } = hero;
 
+          if(filter !== "all" && filter!== type) return null;
           return (
             <div
               className={colClass}
