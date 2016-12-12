@@ -1,11 +1,17 @@
-const RIOT_API_PATCH = '6.20.1';
+// const RIOT_API_PATCH = '6.20.1';
 
+// export const RIOT_API_ROOT = `https://ddragon.leagueoflegends.com/cdn/${RIOT_API_PATCH}`;
+// export const RIOT_HEROES_URL = `${RIOT_API_ROOT}/data/en_US/champion.json`;
+// export const RIOT_HERO_ICONS_URL = `${RIOT_API_ROOT}/img/champion`;
+// export const RIOT_SPRITES_URL = `${RIOT_API_ROOT}/img/sprite`;
 // TODO: refactor with path operations
-export const RIOT_API_ROOT = `https://ddragon.leagueoflegends.com/cdn/${RIOT_API_PATCH}`;
-export const RIOT_HEROES_URL = `${RIOT_API_ROOT}/data/en_US/champion.json`;
-export const RIOT_HERO_ICONS_URL = `${RIOT_API_ROOT}/img/champion`;
-export const RIOT_SPRITES_URL = `${RIOT_API_ROOT}/img/sprite`;
-
+export const OW_API_ROOT = `https://alejandro-owselect.herokuapp.com`;
+export const OW_HEROES_URL = `${OW_API_ROOT}/heroes`;
+export const OW_MAPS_URL = `${OW_API_ROOT}/maps`;
+export const OW_COUNTER_TIPS_URL = `${OW_API_ROOT}/countertips`;
+export const OW_HERO_URL = `${OW_API_ROOT}/hero`;
+export const OW_TIPS_URL = `${OW_API_ROOT}/tips`;
+export const OW_MATCHUPS_URL = `${OW_API_ROOT}/matchups`;
 // development
 // export const CS_API_ROOT = 'http://champion-select-api-dev.herokuapp.com';
 
@@ -16,7 +22,7 @@ export const RIOT_SPRITES_URL = `${RIOT_API_ROOT}/img/sprite`;
 export const CS_API_ROOT = 'http://api.championselect.net';
 
 export const CS_CHAMPION_URL = `${CS_API_ROOT}/champion`;
-export const CS_COUNTER_TIPS_URL = `${CS_API_ROOT}/countertips`;
+//export const CS_COUNTER_TIPS_URL = `${CS_API_ROOT}/countertips`;
 export const CS_COMMENTS_URL = `${CS_API_ROOT}/comments`;
 
 export const SOLOMID_AUTH_ROOT = 'http://auth.solomid.net';

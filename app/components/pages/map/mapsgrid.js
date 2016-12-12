@@ -14,6 +14,7 @@ import {
   RIOT_SPRITES_URL
 } from '../../../constants/urls';
 
+import {  MAP_TYPES } from '../../../constants/types'
 
 class MapsGrid extends Component {
   static defaultProps = {
@@ -34,12 +35,12 @@ class MapsGrid extends Component {
           const {
             id,
             name,
-            type,
-            image:{
-              url
-            }
+            image,
+            type
           } = _map;
-          if(filter !== "all" && filter!== type) return null;
+          const map_type = MAP_TYPES[type].key;
+
+          if(filter !== "all" && filter!== map_type) return null;
           return (
           <div
             className={colClass}
@@ -47,7 +48,7 @@ class MapsGrid extends Component {
           >
             <div className="os-map">
               <div className="os-map-profile">
-                <span className="os-map-profile-type">{changeCase.upper(type)}</span>
+                <span className="os-map-profile-type">{changeCase.upper(map_type)}</span>
                 <h5 className="os-map-profile-title">{name}</h5>
                 <div className="os-map-btn">
                   <Link
@@ -62,7 +63,7 @@ class MapsGrid extends Component {
                 width="100%"
                 height="212"
                 className="os-map-image"
-                src={url}
+                src={image}
               />
             </div>
           </div>

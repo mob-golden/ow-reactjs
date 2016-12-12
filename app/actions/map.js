@@ -1,35 +1,36 @@
 import fetch from 'isomorphic-fetch';
+import mapKeys from 'lodash/mapKeys';
 
 import {
-  OW_HEROES_URL
+  OW_MAPS_URL
 } from '../constants/urls';
 
-export const REQUEST_HEROES = 'REQUEST_HEROES';
-export const RECEIVE_HEROES = 'RECEIVE_HEROES';
+export const REQUEST_MAPS = 'REQUEST_MAPS';
+export const RECEIVE_MAPS = 'RECEIVE_MAPS';
 
-export function fetchHeroesIfNeeded () {
+export function fetchMapsIfNeeded () {
   return (dispatch, getState) => {
-    if (shouldFetchHeroes(getState())) {
-      return dispatch(fetchHeroes(OW_HEROES_URL));
+    if (shouldFetchMaps(getState())) {
+      return dispatch(fetchMaps(OW_MAPS_URL));
     }
   };
 }
 
-function shouldFetchHeroes (state) {
-  const {
-    riot: {
-      heroes
-    }
-  } = state;
+function shouldFetchMaps (state) {
+  // const {
+  //   map: {
+  //     maps
+  //   }
+  // } = state;
 
-  if (heroes.isFetching)
-    return false;
+  // if (maps.isFetching)
+  //   return false;
   return true;
 }
 
-function fetchHeroes (url) {
+function fetchMaps (url) {
   return dispatch => {
-    dispatch(requestHeroes());
+    dispatch(requestMaps());
 
     return fetch(url)
       .then(response => {
@@ -48,23 +49,25 @@ function fetchHeroes (url) {
         }
       })
       .then(response => response.json())
-      .then(json => dispatch(receiveHeroes(json)))
+      .then(json => dispatch(receiveMaps(json)))
       .catch (error => {
         console.log(`Request failed for ${url}: ${error.message}`);
       });
   }
 }
 
-function requestHeroes () {
+function requestMaps () {
   return {
-    type: REQUEST_HEROES
+    type: REQUEST_MAPS
   };
 }
 
-function receiveHeroes (data) {
+function receiveMaps (data) {
+  // const cleanedData = mapKeys(data.data, (v, k) => ("" + k).replace(/[-\+'`´\s]+/g, '').toLowerCase());
+  // data.data = cleanedData;
 
   return {
-    type: RECEIVE_HEROES,
+    type: RECEIVE_MAPS,
     data
   };
 }

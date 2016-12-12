@@ -50,9 +50,9 @@
   background-position: center;
   background-size: 120%;
   margin-bottom: 16px;
-  -webkit-transition: width 0.2s, height 0.2s, margin 0.2s; // For Safari 
-  -moz--webkit-transition: width 0.2s, height 0.2s, margin 0.2s; // For Safari 
-  transition: width 0.2s, height 0.2s, margin 0.2s;
+  -webkit-transition: all 0.2s ease; // For Safari 
+  -moz--webkit-transition: all 0.2s ease; // For Safari 
+  transition: all 0.2s ease;
 }
 
 .os-thumb-photo{

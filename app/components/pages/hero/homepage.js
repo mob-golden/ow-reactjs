@@ -84,7 +84,7 @@ class HomePage extends Component {
               </div>
               {!isFetchingHeroes && heroes ?
                 <HeroesGrid
-                  heroes={take(toArray(heroes.data), 22)}
+                  heroes={heroes}
                 /> : <Loader /> } 
             </div>
           </div>
@@ -103,14 +103,15 @@ function mapStateToProps (state) {
   const {
     riot: {
       heroes: {
-        data: heroesData,
+        _array: heroesArray,
+        _map: heroesMap,
         isFetching: isFetchingHeroes
       }
     }
   } = state;
   
   return {
-    heroes: heroesData,
+    heroes: heroesArray,
     isFetchingHeroes
   };
 }

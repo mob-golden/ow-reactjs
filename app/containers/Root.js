@@ -15,6 +15,10 @@ import {
 import {
   fetchHeroesIfNeeded
 } from '../actions/riot';
+import {
+  fetchMapsIfNeeded
+} from '../actions/map';
+
 
 class Root extends Component {
   static propTypes = {
@@ -27,6 +31,7 @@ class Root extends Component {
     } = this.props;
 
     dispatch(fetchHeroesIfNeeded());
+    dispatch(fetchMapsIfNeeded());
   }
 
   render () {

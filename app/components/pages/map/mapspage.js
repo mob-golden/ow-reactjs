@@ -10,6 +10,10 @@ import TabsNav from '../../tabsnav';
 import MapsGrid from './mapsgrid';
 
 import {
+  fetchMapsIfNeeded
+} from '../../../actions/map';
+
+import {
   Component,
   PropTypes
 } from 'react';
@@ -26,81 +30,6 @@ import {
   prepareAds
 } from '../../ads';
 import { MAP_TYPES } from '../../../constants/types';
-
-const _maps = [
-  {
-    id: "anubis",
-    image:{
-      url: "https://s3.amazonaws.com/solomid-resources/overwatch/maps/anubis/tile.jpg"
-    },
-    type: "escort",
-    name: "Temple of Anubis"
-  },
-  {
-    id: "dorado",
-    image:{
-      url: "https://s3.amazonaws.com/solomid-resources/overwatch/maps/dorado/tile.jpg"
-    },
-    type: "assault",
-    name: "Dorado"
-  },
-  {
-    id: "eichenwalde",
-    image:{
-      url: "https://s3.amazonaws.com/solomid-resources/overwatch/maps/eichenwalde/tile.jpg"
-    },
-    type: "hybrid",
-    name: "Eichenwalde"
-  },
-  {
-    id: "gibraltar",
-    image:{
-      url: "https://s3.amazonaws.com/solomid-resources/overwatch/maps/gibraltar/tile.jpg"
-    },
-    type: "control",
-    name: "Gibraltar"
-  },
-  {
-    id: "hanamura",
-    image:{
-      url: "https://s3.amazonaws.com/solomid-resources/overwatch/maps/hanamura/tile.jpg"
-    },
-    type: "assault",
-    name: "Hanamura"
-  },
-  {
-    id: "hollywood",
-    image:{
-      url: "https://s3.amazonaws.com/solomid-resources/overwatch/maps/hollywood/tile.jpg"
-    },
-    type: "escort",
-    name: "Hollywood"
-  },
-  {
-    id: "numbani",
-    image:{
-      url: "https://s3.amazonaws.com/solomid-resources/overwatch/maps/numbani/tile.jpg"
-    },
-    type: "escort",
-    name: "Numbani"
-  },
-  {
-    id: "route66",
-    image:{
-      url: "https://s3.amazonaws.com/solomid-resources/overwatch/maps/route66/tile.jpg"
-    },
-    type: "hybrid",
-    name: "Route 66"
-  },
-  {
-    id: "voskaya_industry",
-    image:{
-      url: "https://s3.amazonaws.com/solomid-resources/overwatch/maps/voskaya_industry/tile.jpg"
-    },
-    type: "assault",
-    name: "Voskaya Industry"
-  }
-];
 
 class MapsPage extends Component {
   static defaultProps = {
@@ -129,6 +58,7 @@ class MapsPage extends Component {
       dispatch
     } = this.props;
 
+    dispatch(fetchMapsIfNeeded());
     prepareAds(ads);
   };
 
@@ -143,7 +73,7 @@ class MapsPage extends Component {
 
     const {
       ads,
-      maps,
+      mapsArray,
       isFetchingMaps
     } = this.props;
 
@@ -178,11 +108,11 @@ class MapsPage extends Component {
                   })}
                 />
               </div>
-              {/* !isFetchingMaps && maps ? */
+              { !isFetchingMaps && mapsArray ? 
                 <MapsGrid
                   filter={activeTabId}
-                  maps={/*maps.data*/_maps}
-                /> /*: <Loader />*/ } 
+                  maps={mapsArray}
+                /> : <Loader /> } 
             </div>
           </div>
           
@@ -199,15 +129,15 @@ class MapsPage extends Component {
 
 function mapStateToProps (state) {
   const {
-    riot: {
-      heroes: {
-        data: mapsData,
+    map: {
+      maps: {
+        _array: mapsArray,
         isFetching: isFetchingMaps
       }
     }
   } = state;
   return {
-    heroes: mapsData,
+    mapsArray,
     isFetchingMaps
   };
 }

@@ -3,19 +3,20 @@ import changeCase from 'change-case';
 import take from 'lodash/take';
 import { Link } from 'react-router';
 import { Component, PropTypes } from 'react';
+import { findIndex } from 'lodash';
 import { connect } from 'react-redux';
 import TipsList from './tipslist';
 import Loader from '../../loader';
-import { fetchCounterTipsForHero } from '../../../actions/api';
+import { fetchSingleHero } from '../../../actions/api';
 
 class GeneralTipsPage extends Component {
   // static propTypes = {
   //   dispatch: PropTypes.func.isRequired,
   //   heroes: PropTypes.object.isRequired,
-  //   counterTips: PropTypes.array.isRequired,
+  //   tips: PropTypes.array.isRequired,
   //   matchups: PropTypes.array.isRequired,
   //   isFetchingHeroes: PropTypes.bool.isRequired,
-  //   isFetchingCounterTips: PropTypes.bool.isRequired,
+  //   isFetchingSingleHero: PropTypes.bool.isRequired,
   //   isFetchingMatchups: PropTypes.bool.isRequired
   // };
 
@@ -23,7 +24,7 @@ class GeneralTipsPage extends Component {
     super(props);
 
     // this.state = {
-    //   showCounterTipsForm: false
+    //   showTipsForm: false
     // };
   }
 
@@ -56,7 +57,7 @@ class GeneralTipsPage extends Component {
 
     const heroKey = changeCase.lower(_heroKey);
 
-    dispatch(fetchCounterTipsForHero(heroKey));
+    dispatch(fetchSingleHero(heroKey));
   }
 
   componentWillReceiveProps (nextProps) {
@@ -77,27 +78,28 @@ class GeneralTipsPage extends Component {
     const nextHeroKey = changeCase.lower(_nextHeroKey);
 
     if (heroKey !== nextHeroKey) {
-      dispatch(fetchCounterTipsForHero(nextHeroKey));
+      dispatch(fetchSingleHero(nextHeroKey));
     }
   }
 
   render () {
     const {
       children,
-      heroes,
-      counterTips,
-      isFetchingCounterTips,
-      params: {
+      params:{
         heroKey: _heroKey
       },
-      token
+      singleHero,
+      isFetchingSingleHero
     } = this.props;
 
-    // const {
-    //   showCounterTipsForm
-    // } = this.state;
+    if(isFetchingSingleHero || !singleHero){
+      return (<Loader />);
+    }
 
     const heroKey = changeCase.lower(_heroKey);
+    // const {
+    //   showTipsForm
+    // } = this.state;
 
     return (
       <div className="os-hero-tip-container">
@@ -105,15 +107,15 @@ class GeneralTipsPage extends Component {
           <div className="os-hero-tip-col">
             <div className="os-hero-tip-body">
               <span className="os-hero-tip-name">
-                {changeCase.upper(heroes.data[heroKey].name)} 
+                {changeCase.upper(singleHero.data.name)} 
               </span>
               <h5 className="os-hero-tip-title">STRATEGY & TIPS</h5>
-              {!isFetchingCounterTips && counterTips ?
+              { 
                 <TipsList
-                  counterTips={take(counterTips.data, 5)}
+                  tips={take(singleHero.data.tips, 5)}
                   shouldHideMeta={true}
                 />
-              : <Loader />}
+              }
               <div className="row">
                 <div className="col-lg-3">
                   <Link
@@ -149,24 +151,16 @@ class GeneralTipsPage extends Component {
 function mapStateToProps (state) {
   const {
     api: {
-      counterTips: {
-        data: counterTipsData,
-        isFetching: isFetchingCounterTips
-      }
-    },
-    riot: {
-      heroes: {
-        data: heroesData,
-        isFetching: isFetchingHeroes
+      singleHero: {
+        data: singleHeroData,
+        isFetching: isFetchingSingleHero
       }
     }
   } = state;
 
   return {
-    heroes: heroesData,
-    counterTips: counterTipsData,
-    isFetchingHeroes,
-    isFetchingCounterTips
+    singleHero: singleHeroData,
+    isFetchingSingleHero
   };
 }
 

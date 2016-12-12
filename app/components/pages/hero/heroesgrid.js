@@ -13,11 +13,6 @@ import {
 } from 'react-router';
 
 import {
-  RIOT_HERO_ICONS_URL,
-  RIOT_SPRITES_URL
-} from '../../../constants/urls';
-
-import {
   generateSpriteStyle
 } from '../../../utils/sprites';
 
@@ -42,12 +37,9 @@ class HeroesGrid extends Component {
           heroes.map(hero => {
             const {
               id,
-              key,
               name,
-              image:{
-                full,
-                sprite
-              }
+              portrait,
+              class: type
             } = hero;
 
           return (
@@ -62,7 +54,7 @@ class HeroesGrid extends Component {
                       width="98"
                       height="138"
                       className="os-thumbnail"
-                      src="https://s3.amazonaws.com/solomid-resources/overwatch/heroes/ana/hero-select-portrait.png"
+                      src={ portrait }
                     />
                   {/*`${RIOT_HERO_ICONS_URL}/${full}`*/}
                   </div>

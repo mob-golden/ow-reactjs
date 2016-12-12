@@ -184,14 +184,14 @@ function mapStateToProps (state) {
     },
     riot: {
       heroes: {
-        data: heroesData,
+        _array: heroesArray,
         isFetching: isFetchingHeroes
       }
     }
   } = state;
 
   return {
-    heroes: heroesData,
+    heroesArray,
     isFetchingHeroes,
     counterTips: counterTipsData,
     isFetchingCounterTips

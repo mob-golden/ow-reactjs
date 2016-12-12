@@ -9,18 +9,8 @@ import HeroMatchupsList from './heromatchupslist';
 import Loader from '../../loader';
 import { fetchMatchupsForHero } from '../../../actions/api';
 
-import { LANES, TYPES } from '../../../constants/types';
-
 class HeroMatchupsPage extends Component {
-  // static propTypes = {
-  //   dispatch: PropTypes.func.isRequired,
-  //   heroes: PropTypes.object.isRequired,
-  //   counterTips: PropTypes.array.isRequired,
-  //   matchups: PropTypes.array.isRequired,
-  //   isFetchingHeroes: PropTypes.bool.isRequired,
-  //   isFetchingCounterTips: PropTypes.bool.isRequired,
-  //   isFetchingMatchups: PropTypes.bool.isRequired
-  // };
+
 
   constructor (props) {
     super(props);
@@ -85,10 +75,9 @@ class HeroMatchupsPage extends Component {
   }
 
   render () {
+    
     const {
       children,
-      heroes,
-      isFetchingHeroes,
       matchups,
       isFetchingMatchups,
       params: {
@@ -102,42 +91,72 @@ class HeroMatchupsPage extends Component {
     // } = this.state;
 
     const heroKey = changeCase.lower(_heroKey);
-
-    return (
-      <div className="os-hero-matchups-container">
-        <div className="row">
-          <div className="os-hero-matchups-col">
-            <div className="os-hero-matchups-body">
-              <span className="os-matchups-hero-name">
-                {changeCase.upper(heroes.data[heroKey].name)} 
-              </span>
-              <h5 className="os-matchups-title">COUNTERS</h5>
-              {!isFetchingMatchups && matchups.general ?
-                <HeroMatchupsList
-                  heroesMap={heroes.data}
-                  matchups={matchups.general.counter}
-                  shouldHideMeta={true}
-                />: <Loader />}
-              <div className="row">
-                <div className="col-lg-12 center-text"> 
-                  <a href="#" className="btn btn-default os-btn-white">VIEW ALL</a>
+    if(!isFetchingMatchups && matchups.positive){
+      const heroName = changeCase.upper(matchups.positive.data.name);
+      return (
+        <div className="os-hero-matchups-container">
+          <div className="row">
+            <div className="os-hero-matchups-col">
+              <div className="os-hero-matchups-body">
+                <span className="os-matchups-hero-name">
+                  {heroName}  
+                </span>
+                <h5 className="os-matchups-title">COUNTERS</h5>
+                
+                  <HeroMatchupsList
+                    heroKey={heroKey}
+                    matchups={matchups.positive}
+                  />
+                <div className="row">
+                  <div className="col-lg-12 center-text"> 
+                    <a href="#" className="btn btn-secondary os-btn-white">VIEW ALL</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="os-hero-matchups-col">
+              <div className="os-hero-matchups-body">
+                <span className="os-matchups-hero-name">
+                  {heroName}  
+                </span>
+                <h5 className="os-matchups-title">COUNTERED BY</h5>
+                
+                  <HeroMatchupsList
+                    heroKey={heroKey}
+                    matchups={matchups.negative}
+                  />
+                <div className="row">
+                  <div className="col-lg-12 center-text"> 
+                    <a href="#" className="btn btn-secondary os-btn-white">VIEW ALL</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="os-hero-matchups-col">
+              <div className="os-hero-matchups-body">
+                <span className="os-matchups-hero-name">
+                  {heroName}  
+                </span>
+                <h5 className="os-matchups-title">TEAM WITH</h5>
+                
+                  <HeroMatchupsList
+                    heroKey={heroKey}
+                    matchups={matchups.teamup}
+                  />
+                <div className="row">
+                  <div className="col-lg-12 center-text"> 
+                    <a href="#" className="btn btn-secondary os-btn-white">VIEW ALL</a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="os-hero-matchups-col">
-            <div className="os-hero-matchups-body">
-              
-            </div>
-          </div>
-          <div className="os-hero-matchups-col">
-            <div className="os-hero-matchups-body">
-              
-            </div>
-          </div>
         </div>
-      </div>
-    );
+      );
+    }
+    else{
+      return (<Loader/>);
+    }
   }
 }
 
@@ -149,19 +168,11 @@ function mapStateToProps (state) {
         matchups: matchupsData,
         isFetching: isFetchingMatchups
       }
-    },
-    riot: {
-      heroes: {
-        data: heroesData,
-        isFetching: isFetchingHeroes
-      }
     }
   } = state;
 
   return {
-    heroes: heroesData,
     matchups: matchupsData,
-    isFetchingHeroes,
     isFetchingMatchups
   };
 }

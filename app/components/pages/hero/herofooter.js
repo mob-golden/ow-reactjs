@@ -39,25 +39,22 @@ class HeroFooter extends Component {
             heroes.map(hero => {
               const {
                 id,
-                image:{
-                  full,
-                }
+                icon: image
               } = hero;
 
             return (
-              <div
-                className="os-hero-footer-thumb"
-                key={hero.id}
-              >
-                <Link to={`/heroes/${id}`}>
+              <Link to={`/heroes/${id}`}>
+                <div
+                  className="os-hero-footer-thumb"
+                >
                   <img
                     width="75"
                     height="75"
                     className="os-hero-footer-thumb-img"
-                    src={`${RIOT_HERO_ICONS_URL}/${full}`}
+                    src={image}
                   />
-                </Link>   
-              </div>
+                </div>
+              </Link>   
             );
           })}
         </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import changeCase from 'change-case';
 import classNames from 'classnames';
-import { take, toArray } from 'lodash';
+import { take, toArray, findIndex } from 'lodash';
 
 import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
@@ -17,12 +17,20 @@ class HeroMatchupsList extends Component {
 
   render () {
     const {
+      heroKey,
       heroesMap,
       matchups,
       shouldHideMeta
     } = this.props;
 
-    const counterMatchups = take(matchups.data,6);
+    if (matchups.data.matchups.length === 0) {
+      return (
+        <div className="os-counter-matchups-list">
+          <div className="alert alert-warning">No matchups!</div>
+        </div>
+      );
+    }
+    const matchupsData = take(matchups.data.matchups,6);
 
     if (!localStorage.getItem('matchupVotes')) localStorage.setItem('matchupVotes', JSON.stringify({}));
     const votes =  JSON.parse(localStorage.getItem('matchupVotes'));
@@ -30,25 +38,23 @@ class HeroMatchupsList extends Component {
     return (
       <div className="os-matchups-list">
       {
-        counterMatchups.map(matchup => {
+        matchupsData.map(matchup => {
           const {
-            champKey: heroKey,
-            downvotes,
-            upvotes,
-            score,
-            lane,
+            score:{
+              total: score,
+              downvotes,
+              upvotes
+            },
             type,
-            matchupChampKey: matchupHeroKey,
+            opponent: matchupHeroKey,
           } = matchup;
 
           const {
-            image: {
-              full
-            },
+            portrait,
             name
           } = heroesMap[matchupHeroKey];
 
-          const key = matchupHeroKey + lane + type;
+          const key = matchupHeroKey + type;
 
           const downvoteClass = classNames({
             'fa fa-fw': true,
@@ -90,9 +96,9 @@ class HeroMatchupsList extends Component {
                     width = "50"
                     height = "86"
                     className="os-matchup-thumb-img"
-                    src="https://s3.amazonaws.com/solomid-resources/overwatch/heroes/ana/hero-select-portrait.png"
+                    src={portrait}
                   />
-                {/*`${RIOT_HERO_ICONS_URL}/${full}`*/}
+                {/*"https://s3.amazonaws.com/solomid-resources/overwatch/heroes/ana/hero-select-portrait.png"*/}
                 </div>
               </Link>
               <div className="media-body">
@@ -100,7 +106,7 @@ class HeroMatchupsList extends Component {
                 <div className="os-matchup-vote-score">
                   <div
                     className={upvotesClass}
-                    onClick={this.handleVote.bind(null, key, heroKey, matchupHeroKey, lane, type, 'upvote')}
+                    onClick={this.handleVote.bind(null, key, heroKey, matchupHeroKey, 'upvote')}
                   >
                     <i className={upvoteClass}></i>
                     &nbsp;
@@ -108,7 +114,7 @@ class HeroMatchupsList extends Component {
                   </div>
                   <div
                     className={downvotesClass}
-                    onClick={this.handleVote.bind(null, key, heroKey, matchupHeroKey, lane, type, 'downvote')}
+                    onClick={this.handleVote.bind(null, key, heroKey, matchupHeroKey, 'downvote')}
                   >
                     <i className={downvoteClass}></i>
                     &nbsp;
@@ -123,7 +129,7 @@ class HeroMatchupsList extends Component {
     );
   }
 
-  handleVote = (key, heroKey, matchupHeroKey, lane, type, downOrUp) => {
+  handleVote = (key, heroKey, matchupHeroKey, downOrUp) => {
     const {
       dispatch
     } = this.props;
@@ -131,7 +137,7 @@ class HeroMatchupsList extends Component {
     const votes = JSON.parse(localStorage.getItem('matchupVotes'));
 
     if (!votes[key]) {
-      dispatch(voteMatchup(heroKey, matchupHeroKey, lane, type, downOrUp));
+      dispatch(voteMatchup(heroKey, matchupHeroKey, downOrUp));
 
       const selector = `.jq-matchup-${downOrUp}-${key}`;
       const score = parseInt($(selector).text());
@@ -152,4 +158,19 @@ class HeroMatchupsList extends Component {
   };
 }
 
-export default connect()(HeroMatchupsList);
+function mapStateToProps (state) {
+  const {
+    riot: {
+      heroes: {
+        _map: heroesMap,
+        isFetching: isFetchingHeroes
+      }
+    }
+  } = state;
+
+  return {
+    heroesMap,
+    isFetchingHeroes
+  };
+}
+export default connect(mapStateToProps)(HeroMatchupsList);

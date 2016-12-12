@@ -3,12 +3,8 @@ import {
 } from 'redux';
 
 import {
-  REQUEST_CHAMPION,
-  RECEIVE_CHAMPION,
-  REQUEST_COUNTER_TIPS,
-  RECEIVE_COUNTER_TIPS,
-  REQUEST_HOME_COUNTER_TIPS,
-  RECEIVE_HOME_COUNTER_TIPS,
+  REQUEST_SINGLE_HERO,
+  RECEIVE_SINGLE_HERO,
   REQUEST_MATCHUPS,
   REQUEST_MATCHUPS_SUCCESS,
   REQUEST_MATCHUPS_FAILURE,
@@ -16,54 +12,30 @@ import {
 } from '../actions/api';
 
 import {
-  LANES
+  MATCHUP_TYPES
 } from '../constants/types';
 
-const initialHeroState = {
-  isFetching: false,
-  data: null
-};
-
-function hero (state = initialHeroState, action) {
-  switch (action.type) {
-    case REQUEST_CHAMPION:
-      return {
-        ...state,
-        heroKey: action.heroKey,
-        isFetching: true
-      };
-    case RECEIVE_CHAMPION:
-      return {
-        ...state,
-        isFetching: false,
-        data: action.data
-      };
-    default:
-      return state;
-  }
-}
-
-const initialCounterTipsState = {
+const initialSingleHeroState = {
   isFetching: false,
   data: null,
   shouldInvalidate: false
 };
 
-function counterTips (state = initialCounterTipsState, action) {
+function singleHero (state = initialSingleHeroState, action) {
   switch (action.type) {
-    case REQUEST_COUNTER_TIPS:
+    case REQUEST_SINGLE_HERO:
       return {
         ...state,
         heroKey: action.heroKey,
         isFetching: true
       };
-    case RECEIVE_COUNTER_TIPS:
+    case RECEIVE_SINGLE_HERO:
       return {
         ...state,
         isFetching: false,
         data: action.data
       };
-    case 'INVALIDATE_COUNTER_TIPS_CHAMPION':
+    case 'INVALIDATE_SINGLE_HERO':
       return {
         ...state,
         shouldInvalidate: true
@@ -73,16 +45,10 @@ function counterTips (state = initialCounterTipsState, action) {
   }
 }
 
-const initialHomeCounterTipsState = {
-  isFetching: false,
-  data: []
-};
-
-
-const initializedMatchups = LANES.reduce((acc, lane) => {
+const initializedMatchups = MATCHUP_TYPES.reduce((acc, type) => {
   return {
     ...acc,
-    [lane]: null
+    [type]: null
   };
 }, {});
 
@@ -109,7 +75,7 @@ function matchups (state = initialMatchupsState, action) {
         ...state,
         matchups: {
           ...matchups,
-          [action.lane]: action.matchup
+          [action.matchupType]: action.matchup
         }
       };
     case REQUEST_MATCHUPS_SUCCESS:
@@ -128,8 +94,7 @@ function matchups (state = initialMatchupsState, action) {
 }
 
 const api = combineReducers({
-  hero,
-  counterTips,
+  singleHero,
   matchups
 });
 

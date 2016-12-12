@@ -5,7 +5,7 @@ import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import TipsList from './tipslist';
 import Loader from '../../loader';
-import { fetchCounterTipsForHero } from '../../../actions/api';
+import { fetchSingleHero } from '../../../actions/api';
 
 class StrategyTipsPage extends Component {
   // static propTypes = {
@@ -55,7 +55,7 @@ class StrategyTipsPage extends Component {
 
     const heroKey = changeCase.lower(_heroKey);
 
-    dispatch(fetchCounterTipsForHero(heroKey));
+    dispatch(fetchSingleHero(heroKey));
   }
 
   componentWillReceiveProps (nextProps) {
@@ -76,28 +76,29 @@ class StrategyTipsPage extends Component {
     const nextHeroKey = changeCase.lower(_nextHeroKey);
 
     if (heroKey !== nextHeroKey) {
-      dispatch(fetchCounterTipsForHero(nextHeroKey));
+      dispatch(fetchSingleHero(nextHeroKey));
     }
   }
 
   render () {
     const {
       children,
-      heroes,
-      counterTips,
-      isFetchingCounterTips,
       params: {
         heroKey: _heroKey
       },
-      token
+      singleHero,
+      isFetchingSingleHero
     } = this.props;
+
+    if(isFetchingSingleHero || !singleHero){
+      return (<Loader />);
+    }
 
     // const {
     //   showCounterTipsForm
     // } = this.state;
     let  showCounterTipsForm = true;
     const heroKey = changeCase.lower(_heroKey);
-    const heroName = changeCase.upper(heroes.data[heroKey].name);
 
     return (
       <div className="os-hero-tip-container">
@@ -105,12 +106,12 @@ class StrategyTipsPage extends Component {
           <div className="os-hero-viewall-tip-col">
             <div className="os-hero-tip-body">
               <span className="os-hero-tip-name">
-                {heroName} 
+                {changeCase.upper(singleHero.data.name)} 
               </span>
               <h5 className="os-hero-tip-title">STRATEGY & TIPS</h5>
-              {!isFetchingCounterTips && counterTips ?
+              {!isFetchingSingleHero && singleHero ?
                 <TipsList
-                  counterTips={counterTips.data}
+                  tips={take(singleHero.data.tips, 5)}
                   shouldHideMeta={true}
                 />
               : <Loader />}
@@ -124,7 +125,7 @@ class StrategyTipsPage extends Component {
                     <fieldset className="form-group">
                       <textarea
                         className="form-control os-textarea"
-                        placeholder={`Share strategies and tips on how to play ${heroName}`}
+                        placeholder={`Share strategies and tips on how to play ${singleHero.data.name}`}
                         ref={c => this._counterTipsBox = c}
                         rows={9}
                       >
@@ -149,24 +150,16 @@ class StrategyTipsPage extends Component {
 function mapStateToProps (state) {
   const {
     api: {
-      counterTips: {
-        data: counterTipsData,
-        isFetching: isFetchingCounterTips
-      }
-    },
-    riot: {
-      heroes: {
-        data: heroesData,
-        isFetching: isFetchingHeroes
+      singleHero: {
+        data: singleHeroData,
+        isFetching: isFetchingSingleHero
       }
     }
   } = state;
 
   return {
-    heroes: heroesData,
-    counterTips: counterTipsData,
-    isFetchingHeroes,
-    isFetchingCounterTips
+    singleHero: singleHeroData,
+    isFetchingSingleHero
   };
 }
 

@@ -132,10 +132,10 @@ class Typeahead extends Component {
                 'active': suggestions[selection] == hero
               });
 
-              const image = hero.image;
+              const image = hero.icon;
 
               const spriteStyle = {
-                backgroundImage: `url(${RIOT_SPRITES_URL}/${image.sprite})`,
+                backgroundImage: `url(${image})`,
 
                 // TODO: abstract
                 // icons will be shrunk to 2/3 of their original size
@@ -177,11 +177,11 @@ class Typeahead extends Component {
 
   handleChange = e => {
     const {
-      heroes,
+      heroesArray,
       isFetchingHeroes
     } = this.props;
 
-    if (!isFetchingHeroes && heroes) {
+    if (!isFetchingHeroes && heroesArray) {
       const query = e.target.value;
       const areSuggestionsVisible = query.length > 0 ? true : false;
 
@@ -190,7 +190,7 @@ class Typeahead extends Component {
         threshold: 0.1
       };
 
-      const heroesData = values(heroes.data);
+      const heroesData = values(heroesArray);
       const fuse = new Fuse(heroesData, options);
       const suggestions = fuse.search(query);
 
@@ -273,14 +273,14 @@ function mapStateToProps (state) {
   const {
     riot: {
       heroes: {
-        data: heroesData,
+        _array: heroesArray,
         isFetching: isFetchingHeroes
       }
     }
   } = state;
 
   return {
-    heroes: heroesData,
+    heroesArray,
     isFetchingHeroes
   };
 }

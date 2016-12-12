@@ -9,8 +9,6 @@ import MapRankingsList from './maprankingslist';
 import Loader from '../../loader';
 import { fetchMatchupsForHero } from '../../../actions/api';
 
-import { LANES, TYPES } from '../../../constants/types';
-
 class MapRankingsPage extends Component {
   // static propTypes = {
   //   dispatch: PropTypes.func.isRequired,

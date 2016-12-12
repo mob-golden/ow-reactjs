@@ -2,7 +2,7 @@ import Ad from 'react-google-publisher-tag';
 import React from 'react';
 import changeCase from 'change-case';
 
-import { take, uniqBy, toArray, slice } from 'lodash';
+import { take, uniqBy, toArray, slice, findIndex } from 'lodash';
 import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
@@ -15,9 +15,6 @@ import HeroFooter from './herofooter';
 import { prepareAds } from '../../ads';
 import { adDimensions } from '../../../constants/ads';
 
-import { fetchCounterTipsIfNeeded } from '../../../actions/api';
-
-import { RIOT_HERO_ICONS_URL } from '../../../constants/urls';
 import { TIP_TYPES } from '../../../constants/types';
 
 class SingleHeroPage extends Component {
@@ -39,14 +36,14 @@ class SingleHeroPage extends Component {
   componentWillUnmount () {
 
   }
+
   render () {
     const {
       children,
       ads,
-      heroes,
+      heroesMap,
+      heroesArray,
       isFetchingHeroes,
-      counterTips,
-      isFetchingCounterTips,
       params: {
         heroKey: _heroKey
       },
@@ -64,15 +61,11 @@ class SingleHeroPage extends Component {
     else _generaltips = "active";
 
     const heroKey = changeCase.lower(_heroKey);
-    if (!isFetchingHeroes && heroes) {
-      const heroesMap = heroes.data;
-
+    if (!isFetchingHeroes && heroesMap) {
       const {
         id,
         name,
-        image: {
-          full
-        }
+        portrait
       } = heroesMap[heroKey];
 
       return (
@@ -94,13 +87,13 @@ class SingleHeroPage extends Component {
                             width="72"
                             height="124"
                             className="os-hero-profile-icon"
-                            src= "https://s3.amazonaws.com/solomid-resources/overwatch/heroes/ana/hero-select-portrait.png"
+                            src= {portrait}
                           />
-                          {/*`${RIOT_HERO_ICONS_URL}/${full}`*/}
+                          {/* "https://s3.amazonaws.com/solomid-resources/overwatch/heroes/ana/hero-select-portrait.png" */}
                           <div className="os-hero-profile-type">
                             <img width="16" height="17" src="/images/offense.png"/>
                           </div>
-                          <h5 className="os-hero-profile-name">{changeCase.upper(heroesMap[heroKey].name)}</h5>
+                          <h5 className="os-hero-profile-name">{changeCase.upper(name)}</h5>
                         </Link>
                       </div>
                     </div>
@@ -108,7 +101,7 @@ class SingleHeroPage extends Component {
                   <div className="col-lg-9">
                     <div className="os-hero-search">
                       <Typeahead
-                        constructLink={(id) => `/heroes/${id.toLowerCase()}`}
+                        constructLink={(id) => `/heroes/${id.toLowerCase()}/${activePath}`}
                         inputGroupClass="input-group"
                         placeholder={"Search for a matchup"}
                       />
@@ -158,9 +151,9 @@ class SingleHeroPage extends Component {
             />
           </div>
           <div className="os-hero-footer">
-            {!isFetchingHeroes && heroes ?
+            {!isFetchingHeroes && heroesArray ?
                 <HeroFooter
-                  heroes={take(toArray(heroes.data),22)}
+                  heroes={heroesArray}
                 /> : <Loader /> }
           </div>
         </div>
@@ -172,25 +165,19 @@ class SingleHeroPage extends Component {
 
 function mapStateToProps (state) {
   const {
-    api: {
-      counterTips: {
-        data: counterTipsData,
-        isFetching: isFetchingCounterTips
-      }
-    },
     riot: {
       heroes: {
-        data: heroesData,
+        _array: heroesArray,
+        _map: heroesMap,
         isFetching: isFetchingHeroes
       }
     }
   } = state;
 
   return {
-    heroes: heroesData,
-    isFetchingHeroes,
-    counterTips: counterTipsData,
-    isFetchingCounterTips
+    heroesArray,
+    heroesMap,
+    isFetchingHeroes
   };
 }
 

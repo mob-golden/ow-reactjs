@@ -17,8 +17,8 @@ import {
 } from 'react-router';
 
 import {
-  invalidateCounterTips,
-  voteCounterTip
+  invalidateTips,
+  voteTip
 } from '../../../actions/all';
 
 import {
@@ -32,40 +32,36 @@ class TipsList extends Component {
 
   render () {
     const {
-      counterTips,
+      tips,
       shouldHideMeta
     } = this.props;
 
-    if (!localStorage.getItem('counterTipVotes')) localStorage.setItem('counterTipVotes', JSON.stringify({}));
-    const votes =  JSON.parse(localStorage.getItem('counterTipVotes'));
+    if (!localStorage.getItem('tipVotes')) localStorage.setItem('tipVotes', JSON.stringify({}));
+    const votes =  JSON.parse(localStorage.getItem('tipVotes'));
 
-    if (counterTips.length === 0) {
+    if (tips.length === 0) {
       return (
         <div className="os-counter-tips-list">
-          <div className="alert alert-warning">Be the first to submit a counter tip!</div>
+          <div className="alert alert-warning">Be the first to submit a tip!</div>
         </div>
       );
     }
 
     return (
       <div className="os-counter-tips-list">
-        {counterTips.map(counterTip => {
+        {tips.map(tip => {
           const {
-            commentTree: {
-              _id: id,
-              author: {
-                name: authorName
-              },
-              content,
-              createdAt,
-              score: {
-                upvotes,
-                downvotes,
-                total: scoreTotal
-              },
-            },
-            matchupHeroKey: matchupHeroKey
-          } = counterTip;
+            _id: id,
+            authorName,
+            type,
+            contentRaw: content,
+            createdAt,
+            score: {
+              upvotes,
+              downvotes,
+              total: scoreTotal
+            }
+          } = tip;
 
           const name = authorName ? authorName : 'anonymous';
           const formattedCreatedAt = moment(parseInt(createdAt)).fromNow();
@@ -174,10 +170,10 @@ class TipsList extends Component {
       shouldHideMeta
     } = this.props;
 
-    const votes = JSON.parse(localStorage.getItem('counterTipVotes'));
+    const votes = JSON.parse(localStorage.getItem('tipVotes'));
 
     if (!votes[id]) {
-      dispatch(voteCounterTip(id, downOrUp));
+      dispatch(voteTip(id, downOrUp));
 
       const selector = `.jq-counter-tip-${id}`;
       const score = parseInt($(selector).text());
@@ -209,7 +205,7 @@ class TipsList extends Component {
       }
 
       votes[id] = downOrUp;
-      localStorage.setItem('counterTipVotes', JSON.stringify(votes));
+      localStorage.setItem('tipVotes', JSON.stringify(votes));
     }
   };
 }

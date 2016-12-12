@@ -1,17 +1,8 @@
-export const LANES = [
-  'all',
-  'general',
-  'top',
-  'middle',
-  'bottom',
-  'jungle'
-];
-
-export const TYPES = [
-  'counter',
-  'strongpick',
-  'synergy',
-  'tie'
+export const MATCHUP_TYPES = [
+  'teamup',
+  'negative',
+  'positive',
+  'map'
 ];
 
 export const HERO_TYPES = [
@@ -50,8 +41,3 @@ export const TIP_TYPES = [
   'hero matchups',
   'map rankings'
 ];
-
-// Temporary until API is updated.
-export const HEROES_COUNT = 133;
-
-export const MATCHUPS_COUNT = (HEROES_COUNT - 1) * (LANES.length - 1);

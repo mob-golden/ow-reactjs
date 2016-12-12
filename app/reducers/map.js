@@ -2,22 +2,23 @@ import { combineReducers } from 'redux';
 import { toArray } from 'lodash';
 
 import {
-  REQUEST_HEROES,
-  RECEIVE_HEROES
-} from '../actions/riot';
+  REQUEST_MAPS,
+  RECEIVE_MAPS
+} from '../actions/map';
+
 const initialState = {
   isFetching: false,
   data: null
 };
 
-function heroes (state = initialState, action) {
+function maps (state = initialState, action) {
   switch (action.type) {
-    case REQUEST_HEROES:
+    case REQUEST_MAPS:
       return {
         ...state,
         isFetching: true
       };
-    case RECEIVE_HEROES:
+    case RECEIVE_MAPS:
       return {
         ...state,
         isFetching: false,
@@ -29,8 +30,8 @@ function heroes (state = initialState, action) {
   }
 }
 
-const riot = combineReducers({
-  heroes
+const map = combineReducers({
+  maps
 });
 
-export default riot;
+export default map;
