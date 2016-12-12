@@ -8,10 +8,15 @@ import {
   REQUEST_MATCHUPS,
   REQUEST_MATCHUPS_SUCCESS,
   REQUEST_MATCHUPS_FAILURE,
-  RECEIVE_MATCHUP
+  RECEIVE_MATCHUP,
+  REQUEST_TIPS,
+  REQUEST_TIPS_SUCCESS,
+  REQUEST_TIPS_FAILURE,
+  RECEIVE_TIPS
 } from '../actions/api';
 
 import {
+  TIP_TYPES,
   MATCHUP_TYPES
 } from '../constants/types';
 
@@ -93,8 +98,58 @@ function matchups (state = initialMatchupsState, action) {
   }
 }
 
+
+const initializedTips = TIP_TYPES.reduce((acc, type) => {
+  return {
+    ...acc,
+    [type]: null
+  };
+}, {});
+
+const initialTipsState = {
+  heroKey: null,
+  tips: initializedTips,
+  isFetching: false,
+};
+
+function tips (state = initialTipsState, action) {
+  switch (action.type) {
+    case REQUEST_TIPS:
+      return {
+        ...state,
+        heroKey: action.heroKey,
+        isFetching: true
+      };
+    case RECEIVE_TIPS:
+      const {
+        tips
+      } = state;
+
+      return {
+        ...state,
+        tips: {
+          ...tips,
+          [action.tipType]: action.tip
+        }
+      };
+    case REQUEST_TIPS_SUCCESS:
+      return {
+        ...state,
+        isFetching: false
+      };
+    case REQUEST_TIPS_FAILURE:
+      return {
+        ...state,
+        isFetching: false
+      };
+    default:
+      return state;
+  }
+}
+
 const api = combineReducers({
   singleHero,
+  tips,
   matchups
 });
 

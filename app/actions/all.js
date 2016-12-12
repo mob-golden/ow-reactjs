@@ -8,87 +8,6 @@ import {
   CS_COUNTER_TIPS_URL
 } from '../constants/urls';
 
-// export const REQUEST_ALL_COMMENTS = 'REQUEST_ALL_COMMENTS';
-// export const REQUEST_ALL_COMMENTS_SUCCESS = 'REQUEST_ALL_COMMENTS_SUCCESS';
-// export const REQUEST_ALL_COMMENTS_FAILURE = 'REQUEST_ALL_COMMENTS_FAILURE';
-// export const RECEIVE_ALL_COMMENTS = 'RECEIVE_ALL_COMMENTS';
-
-// export function fetchCommentsIfNeeded (params) {
-//   return (dispatch, getState) => {
-//     if (shouldFetchComments(getState())) {
-//       const fullUrl = `${CS_COMMENTS_URL}?${qs.stringify(params)}`;
-
-//       return dispatch(fetchComments(fullUrl));
-//     }
-//   };
-// }
-
-// function shouldFetchComments (state) {
-//   const {
-//     all: {
-//       comments
-//     }
-//   } = state;
-
-//   if (comments.isFetching)
-//     return false;
-
-//   return true;
-// }
-
-// function fetchComments (url) {
-//   return dispatch => {
-//     dispatch(requestComments());
-
-//     return fetch(url)
-//       .then(response => {
-//         const {
-//           status,
-//           statusText
-//         } = response;
-
-//         if (status >= 200 && status < 300) {
-//           return response;
-//         } else {
-//           const error = new Error(statusText);
-//           console.log(`Response returned an error for ${url}: ${error.message}`);
-
-//           return Promise.reject(error);
-//         }
-//       })
-//       .then(response => response.json())
-//       .then(json => dispatch(receiveComments(json)))
-//       .catch (error => {
-//         console.log(`Request failed for ${url}: ${error.message}`);
-//       });
-//   }
-// }
-
-// function requestComments () {
-//   return {
-//     type: REQUEST_ALL_COMMENTS
-//   };
-// }
-
-// function requestCommentsSuccess () {
-//   return {
-//     type: REQUEST_ALL_COMMENTS_SUCCESS
-//   };
-// }
-
-// function requestCommentsFailure () {
-//   return {
-//     type: REQUEST_ALL_COMMENTS_FAILURE
-//   };
-// }
-
-// function receiveComments (data) {
-//   return {
-//     type: RECEIVE_ALL_COMMENTS,
-//     data
-//   };
-// }
-
 export const ADD_TO_ALL_COMMENTS = 'ADD_TO_ALL_COMMENTS';
 export const UPVOTE_ON_ALL_COMMENTS = 'UPVOTE_ON_ALL_COMMENTS';
 export const DOWNVOTE_ON_ALL_COMMENTS = 'DOWNVOTE_ON_ALL_COMMENTS';
@@ -148,7 +67,6 @@ export function addTip ({
       })
   };
 }
-
 
 export function voteTip (id, downOrUp) {
   return dispatch => {

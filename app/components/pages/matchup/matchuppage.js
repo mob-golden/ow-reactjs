@@ -17,8 +17,6 @@ import { adDimensions } from '../../../constants/ads';
 
 import { fetchCounterTipsIfNeeded } from '../../../actions/api';
 
-import { RIOT_HERO_ICONS_URL } from '../../../constants/urls';
-import { TIP_TYPES } from '../../../constants/types';
 
 class MatchupPage extends Component {
   static defaultProps = {
@@ -94,7 +92,6 @@ class MatchupPage extends Component {
                             className="os-hero-profile-icon"
                             src= "https://s3.amazonaws.com/solomid-resources/overwatch/heroes/ana/hero-select-portrait.png"
                           />
-                          {/*`${RIOT_HERO_ICONS_URL}/${full}`*/}
                           <div className="os-hero-profile-type">
                             <img width="16" height="17" src="/images/support.png"/>
                           </div>
@@ -121,7 +118,6 @@ class MatchupPage extends Component {
                             className="os-hero-profile-icon"
                             src= "https://s3.amazonaws.com/solomid-resources/overwatch/heroes/mccree/hero-select-portrait.png"
                           />
-                          {/*`${RIOT_HERO_ICONS_URL}/${full}`*/}
                           <div className="os-hero-profile-type">
                             <img width="16" height="17" src="/images/defense.png"/>
                           </div>

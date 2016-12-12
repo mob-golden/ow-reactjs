@@ -43,7 +43,7 @@ class HeroFooter extends Component {
               } = hero;
 
             return (
-              <Link to={`/heroes/${id}`}>
+              <Link to={`/heroes/${id}`} >
                 <div
                   className="os-hero-footer-thumb"
                 >

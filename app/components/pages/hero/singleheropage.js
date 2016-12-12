@@ -15,8 +15,6 @@ import HeroFooter from './herofooter';
 import { prepareAds } from '../../ads';
 import { adDimensions } from '../../../constants/ads';
 
-import { TIP_TYPES } from '../../../constants/types';
-
 class SingleHeroPage extends Component {
   static defaultProps = {
     ads: [

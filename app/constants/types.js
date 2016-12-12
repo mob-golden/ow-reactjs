@@ -5,6 +5,11 @@ export const MATCHUP_TYPES = [
   'map'
 ];
 
+export const TIP_TYPES = [
+  'for',
+  'against'
+];
+
 export const HERO_TYPES = [
   {
     'key':'all',
@@ -49,10 +54,4 @@ export const MAP_TYPES = [
     'key':'control',
     'title':'control',
   }
-];
-
-export const TIP_TYPES = [
-  'genenral tips',
-  'hero matchups',
-  'map rankings'
 ];
