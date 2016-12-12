@@ -38,9 +38,8 @@ class MapsGrid extends Component {
             image,
             type
           } = _map;
-          const map_type = MAP_TYPES[type].key;
 
-          if(filter !== "all" && filter!== map_type) return null;
+          if(filter !== "all" && filter!== type) return null;
           return (
           <div
             className={colClass}
@@ -48,7 +47,7 @@ class MapsGrid extends Component {
           >
             <div className="os-map">
               <div className="os-map-profile">
-                <span className="os-map-profile-type">{changeCase.upper(map_type)}</span>
+                <span className="os-map-profile-type">{changeCase.upper(type)}</span>
                 <h5 className="os-map-profile-title">{name}</h5>
                 <div className="os-map-btn">
                   <Link
