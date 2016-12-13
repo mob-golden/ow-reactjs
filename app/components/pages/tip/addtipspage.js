@@ -134,8 +134,6 @@ class AddTipsPage extends Component {
                       tipType: tipType,
                       token
                     }));
-
-                    //location.reload();
                   }
                 }}>
                   <fieldset className="form-group">

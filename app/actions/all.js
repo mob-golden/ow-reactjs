@@ -28,12 +28,9 @@ export function addHeroTip ({
       type:tipType
     });
 
-    console.log(body);
-
     return fetch(`${OW_HERO_URL}/${heroKey}/tips`, {
       body,
       headers: {
-
         'Accept': 'application/json',
         'Content-Type': 'application/x-www-form-urlencoded',
         'Authorization': token
