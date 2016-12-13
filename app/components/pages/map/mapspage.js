@@ -22,28 +22,11 @@ import {
   connect
 } from 'react-redux';
 
-import {
-  adDimensions
-} from '../../../constants/ads';
-
-import {
-  prepareAds
-} from '../../ads';
 import { MAP_TYPES } from '../../../constants/types';
+import { adDimensions } from '../../../constants/ads';
 
 class MapsPage extends Component {
-  static defaultProps = {
-    ads: [
-      'div-gpt-ad-1468534690919-8',
-      'div-gpt-ad-1468534690919-9'
-    ]
-  };
 
-  // static propTypes = {
-  //   maps: PropTypes.object.isRequired,
-  //   dispatch: PropTypes.func.isRequired,
-  //   isFetchingMaps: PropTypes.bool.isRequired
-  // };
   constructor (props) {
     super(props);
 
@@ -54,12 +37,10 @@ class MapsPage extends Component {
 
   componentWillMount () {
     const {
-      ads,
       dispatch
     } = this.props;
 
     dispatch(fetchMapsIfNeeded());
-    prepareAds(ads);
   };
 
   componentWillUnmount () {
@@ -72,7 +53,6 @@ class MapsPage extends Component {
     } = this.state;
 
     const {
-      ads,
       mapsArray,
       isFetchingMaps
     } = this.props;

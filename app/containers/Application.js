@@ -48,4 +48,3 @@ export default class Application extends React.Component {
     )
   }
 }
-//add this when pushing to prod  onUpdate={() => this.handlePageView()}

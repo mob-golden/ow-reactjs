@@ -29,14 +29,7 @@ import {
 } from 'react-router-redux';
 
 class Typeahead extends Component {
-  // static propTypes = {
-  //   dispatch: PropTypes.func.isRequired,
-  //   heroes: PropTypes.object.isRequired,
-  //   isFetchingHeroes: PropTypes.bool.isRequired
-  // };
-
   static defaultProps = {
-    // ref attribute for typeahead's input
     ref: 'input',
     miniTag: 'none'
   };
@@ -54,8 +47,6 @@ class Typeahead extends Component {
   }
 
   componentDidMount () {
-    // Focus the search input on render.
-    // ReactDOM.findDOMNode(this.refs[this.props.ref]).focus()
   }
 
   render () {

@@ -30,7 +30,6 @@ export const adDimensions = {
     [336, 768]
   ],
   RIGHT_SIDEBAR: [
-    // Why is this 1px longer?
     [336, 769]
   ]
 };

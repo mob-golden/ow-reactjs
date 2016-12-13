@@ -5,7 +5,7 @@ import update from 'lodash/update';
 import {
   OW_TIPS_URL,
   OW_MATCHUPS_URL,
-  CS_COUNTER_TIPS_URL
+  OW_HERO_URL
 } from '../constants/urls';
 
 export const ADD_TO_ALL_COMMENTS = 'ADD_TO_ALL_COMMENTS';
@@ -24,21 +24,21 @@ export function addHeroTip ({
     const body = qs.stringify({
       authorId,
       authorName,
-      heroKey,
       content,
-      matchupHeroKey,
-      token
+      type:tipType
     });
 
     console.log(body);
 
-    return fetch(CS_COUNTER_TIPS_URL, {
+    return fetch(`${OW_HERO_URL}/${heroKey}/tips`, {
       body,
       headers: {
+
         'Accept': 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': token
       },
-      method: 'POST'
+      method: 'PUT'
     })
       .then(response => {
         const {

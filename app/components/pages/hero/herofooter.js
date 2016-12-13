@@ -11,10 +11,6 @@ import {
 } from '../../../constants/urls';
 
 import {
-  generateSpriteStyle
-} from '../../../utils/sprites';
-
-import {
   HERO_TYPES
 } from '../../../constants/types';
 

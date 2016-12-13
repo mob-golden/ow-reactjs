@@ -11,23 +11,11 @@ import Typeahead from '../../typeahead';
 import HeroesGrid from './heroesgrid';
 import TabsNav from '../../tabsnav';
 
-import { prepareAds } from '../../ads';
-import { adDimensions } from '../../../constants/ads';
 import { HERO_TYPES } from '../../../constants/types';
-
+import { adDimensions } from '../../../constants/ads';
 
 class HomePage extends Component {
-  static defaultProps = {
-    ads: [
-      'div-gpt-ad-1468534690919-8',
-      'div-gpt-ad-1468534690919-9'
-    ]
-  };
 
-  // static propTypes = {
-  //   heroes: PropTypes.object.isRequired,
-  //   isFetchingHeroes: PropTypes.bool.isRequired
-  // };
   constructor (props) {
     super(props);
 
@@ -38,11 +26,9 @@ class HomePage extends Component {
 
   componentWillMount () {
     const {
-      ads,
       dispatch
     } = this.props;
 
-    prepareAds(ads);
   };
   componentWillUnmount () {
 
@@ -53,7 +39,6 @@ class HomePage extends Component {
     } = this.state;
     
     const {
-      ads,
       heroes,
       isFetchingHeroes
     } = this.props;

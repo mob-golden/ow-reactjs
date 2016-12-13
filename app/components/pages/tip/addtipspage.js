@@ -15,6 +15,22 @@ class AddTipsPage extends Component {
   }
 
   componentDidMount () {
+    const {
+      dispatch,
+      token,
+      username,
+      userId
+    } = this.props;
+
+    if (!token && !username && !userId) {
+      const localToken = localStorage.getItem('token');
+      const localUsername = localStorage.getItem('username');
+      const localUserId = localStorage.getItem('userId');
+
+      if (localToken && localUsername && localUserId) {
+        dispatch(setUser(localToken, localUsername, localUserId));
+      }
+    }
   }
 
   componentWillMount () {
@@ -60,7 +76,8 @@ class AddTipsPage extends Component {
         tipType: _tipType
       },
       tips,
-      isFetchingTips
+      isFetchingTips,
+      token
     } = this.props;
 
     if(isFetchingTips || !tips.for || !tips.against){
@@ -118,7 +135,7 @@ class AddTipsPage extends Component {
                       token
                     }));
 
-                    location.reload();
+                    //location.reload();
                   }
                 }}>
                   <fieldset className="form-group">
@@ -150,6 +167,11 @@ class AddTipsPage extends Component {
 
 function mapStateToProps (state) {
   const {
+    auth: {
+      token,
+      username,
+      userId,
+    },
     api: {
       tips: {
         tips: tipsData,
@@ -159,6 +181,9 @@ function mapStateToProps (state) {
   } = state;
 
   return {
+    token,
+    username,
+    userId,
     tips: tipsData,
     isFetchingTips
   };

@@ -12,27 +12,15 @@ import Typeahead from '../../typeahead';
 import TabsNav from '../../tabsnav';
 import HeroFooter from '../hero/herofooter';
 
-import { prepareAds } from '../../ads';
+import { fetchCounterTipsIfNeeded } from '../../../actions/api';
 import { adDimensions } from '../../../constants/ads';
 
-import { fetchCounterTipsIfNeeded } from '../../../actions/api';
-
-
 class MatchupPage extends Component {
-  static defaultProps = {
-    ads: [
-      'div-gpt-ad-1468534690919-8',
-      'div-gpt-ad-1468534690919-9'
-    ]
-  };
 
   componentWillMount () {
     const {
-      ads,
       dispatch
     } = this.props;
-
-    prepareAds(ads);
   };
   componentWillUnmount () {
 
@@ -40,7 +28,6 @@ class MatchupPage extends Component {
   render () {
     const {
       children,
-      ads,
       heroes,
       isFetchingHeroes,
       params: {

@@ -2,13 +2,12 @@ import fetch from 'isomorphic-fetch';
 import qs from 'querystring';
 
 import {
-  CS_CHAMPION_URL
+  OW_HERO_URL
 } from '../constants/urls';
 
 export const REQUEST_MATCHUP_COUNTER_TIPS = 'REQUEST_MATCHUP_COUNTER_TIPS';
 export const RECEIVE_MATCHUP_COUNTER_TIPS = 'RECEIVE_MATCHUP_COUNTER_TIPS';
 
-// 50 items with highest score in descending order
 const defaultParams = {
   limit: 100,
   orderBy: 'score',
@@ -18,7 +17,7 @@ const defaultParams = {
 export function fetchCounterTipsIfNeeded (heroKey, matchupHeroKey, params = defaultParams) {
   return (dispatch, getState) => {
     if (shouldFetchCounterTips(getState(), heroKey, matchupHeroKey)) {
-      const root = `${CS_CHAMPION_URL}/${heroKey}/${matchupHeroKey}/countertips`;
+      const root = `${OW_HERO_URL}/${heroKey}/${matchupHeroKey}/countertips`;
       const fullUrl = `${root}?${qs.stringify(params)}`;
 
       return dispatch(fetchCounterTips(fullUrl, heroKey, matchupHeroKey));
@@ -91,7 +90,7 @@ export const RECEIVE_MATCHUP_MATCHUPS = 'RECEIVE_MATCHUP_MATCHUPS';
 export function fetchMatchupsIfNeeded (heroKey, matchupHeroKey, params = defaultParams) {
   return (dispatch, getState) => {
     if (shouldFetchMatchups(getState(), heroKey, matchupHeroKey)) {
-      const root = `${CS_CHAMPION_URL}/${heroKey}/${matchupHeroKey}/matchups`;
+      const root = `${OW_HERO_URL}/${heroKey}/${matchupHeroKey}/matchups`;
       const fullUrl = `${root}?${qs.stringify(params)}`;
 
       return dispatch(fetchMatchups(fullUrl, heroKey, matchupHeroKey));
@@ -167,7 +166,7 @@ export const RECEIVE_MATCHUP_COMMENTS = 'RECEIVE_MATCHUP_COMMENTS';
 export function fetchCommentsIfNeeded (heroKey, matchupHeroKey, params = defaultCommentsParams) {
   return (dispatch, getState) => {
     if (shouldFetchComments(getState(), heroKey, matchupHeroKey)) {
-      const root = `${CS_CHAMPION_URL}/${heroKey}/${matchupHeroKey}/comments`;
+      const root = `${OW_HERO_URL}/${heroKey}/${matchupHeroKey}/comments`;
       const fullUrl = `${root}?${qs.stringify(params)}`;
 
       return dispatch(fetchComments(fullUrl, heroKey, matchupHeroKey));

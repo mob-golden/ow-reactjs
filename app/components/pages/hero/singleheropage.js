@@ -11,25 +11,14 @@ import Loader from '../../loader';
 import Typeahead from '../../typeahead';
 import TabsNav from '../../tabsnav';
 import HeroFooter from './herofooter';
-
-import { prepareAds } from '../../ads';
 import { adDimensions } from '../../../constants/ads';
 
 class SingleHeroPage extends Component {
-  static defaultProps = {
-    ads: [
-      'div-gpt-ad-1468534690919-8',
-      'div-gpt-ad-1468534690919-9'
-    ]
-  };
-
+  
   componentWillMount () {
     const {
-      ads,
       dispatch
     } = this.props;
-
-    prepareAds(ads);
   };
   componentWillUnmount () {
 
@@ -38,7 +27,6 @@ class SingleHeroPage extends Component {
   render () {
     const {
       children,
-      ads,
       heroesMap,
       heroesArray,
       isFetchingHeroes,
