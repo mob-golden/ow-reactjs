@@ -11,17 +11,15 @@ import { RIOT_HERO_ICONS_URL, RIOT_SPRITES_URL } from '../../../constants/urls';
 
 
 class MapRankingsList extends Component {
-  static defaultProps: {
-    shouldHideMeta: false
-  }
 
   render () {
     const {
-      heroesMap,
+      heroKey,
+      maps,
       matchups,
-      shouldHideMeta
     } = this.props;
 
+    const mapRankings = matchups.data.matchups;
     const counterMatchups = take(matchups.data,12);
 
     if (!localStorage.getItem('matchupVotes')) localStorage.setItem('matchupVotes', JSON.stringify({}));
@@ -30,25 +28,23 @@ class MapRankingsList extends Component {
     return (
       <div className="os-maprankings-list">
       {
-        counterMatchups.map(matchup => {
+        mapRankings.map(matchup => {
           const {
-            champKey: heroKey,
-            downvotes,
-            upvotes,
-            score,
-            lane,
-            type,
-            matchupChampKey :matchupHeroKey,
+            score:{
+              score,
+              upvotes,
+              downvotes
+            },
+            opponent : mapKey,
           } = matchup;
 
           const {
-            image: {
-              full
-            },
+            image,
+            type: mapType,
             name
-          } = heroesMap[matchupHeroKey];
+          } = maps[mapKey];
 
-          const key = matchupHeroKey + lane + type;
+          const key = mapKey;
 
           const downvoteClass = classNames({
             'fa fa-fw': true,
@@ -77,46 +73,38 @@ class MapRankingsList extends Component {
           return (
             <div
               className="col-lg-4"
-              key={key}
+              key={mapKey}
             >
-              <Link
-                className="media-left"
-                to={`/matchups/${heroKey}/${matchupHeroKey}`}
-              >
-                <div className="os-matchup-thumb">
-                  <img
-                    width = "50"
-                    height = "86"
-                    className="os-matchup-thumb-img"
-                    src="https://s3.amazonaws.com/solomid-resources/overwatch/heroes/ana/hero-select-portrait.png"
-                  />
-                {/*`${RIOT_HERO_ICONS_URL}/${full}`*/}
-                </div>
-              </Link>
-              <div className="media-body">
-                <span className="os-matchup-item-name media-heading">{name}</span>
-                <ul className="os-matchup-item-score list-unstyled list-inline">
-                  <li className="list-inline-item">
+              <div className="os-map">
+                <div className="os-map-profile">
+                  <span className="os-map-profile-type">{changeCase.upper(mapType)}</span>
+                  <h5 className="os-map-profile-title">{name}</h5>
+                  <div className="os-map-vote-group">
                     <span
                       className={upvotesClass}
-                      onClick={this.handleVote.bind(null, key, heroKey, matchupHeroKey, lane, type, 'upvote')}
+                      onClick={this.handleVote.bind(null, key, heroKey, mapKey, 'upvote')}
                     >
                       <i className={upvoteClass}></i>
                       &nbsp;
                       <span className={`jq-matchup-upvote-${key}`}>{upvotes}</span>
                     </span>
-                  </li>
-                  <li className="list-inline-item">
                     <span
                       className={downvotesClass}
-                      onClick={this.handleVote.bind(null, key, heroKey, matchupHeroKey, lane, type, 'downvote')}
+                      onClick={this.handleVote.bind(null, key, heroKey, mapKey, 'downvote')}
                     >
                       <i className={downvoteClass}></i>
                       &nbsp;
                       <span className={`jq-matchup-downvote-${key}`}>{downvotes}</span>
                     </span>
-                  </li>
-                </ul>
+                  </div>
+                </div>
+                
+                <img
+                  width="100%"
+                  height="212"
+                  className="os-map-image"
+                  src={image}
+                />
               </div>
             </div>
           );

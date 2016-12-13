@@ -25,12 +25,12 @@ export const OW_MATCHUPS_URL = `${OW_API_ROOT}/matchups`;
 // //export const CS_COUNTER_TIPS_URL = `${CS_API_ROOT}/countertips`;
 // export const CS_COMMENTS_URL = `${CS_API_ROOT}/comments`;
 
-// export const SOLOMID_AUTH_ROOT = 'http://auth.solomid.net';
-// // export const SOLOMID_AUTH_ROOT = 'http://localhost:5000';
-// export const SOLOMID_AUTH_SIGN_IN_URL = `${SOLOMID_AUTH_ROOT}/token`;
-// export const SOLOMID_AUTH_SIGN_UP_URL = `${SOLOMID_AUTH_ROOT}/user/create`;
-// export const SOLOMID_AUTH_FORGOT_PASS_URL = `${SOLOMID_AUTH_ROOT}/user/forgot/password`;
-// export const SOLOMID_AUTH_RESET_PASS_URL = `${SOLOMID_AUTH_ROOT}/user/update/password`;
+export const SOLOMID_AUTH_ROOT = 'http://auth.solomid.net';
+// export const SOLOMID_AUTH_ROOT = 'http://localhost:5000';
+export const SOLOMID_AUTH_SIGN_IN_URL = `${SOLOMID_AUTH_ROOT}/token`;
+export const SOLOMID_AUTH_SIGN_UP_URL = `${SOLOMID_AUTH_ROOT}/user/create`;
+export const SOLOMID_AUTH_FORGOT_PASS_URL = `${SOLOMID_AUTH_ROOT}/user/forgot/password`;
+export const SOLOMID_AUTH_RESET_PASS_URL = `${SOLOMID_AUTH_ROOT}/user/update/password`;
 
 // export const CHAMPION_GG_ROOT = 'http://api.champion.gg';
 // export const CHAMPION_GG_MOST_PLAYED_URL = `${CHAMPION_GG_ROOT}/stats/champs/mostPlayed`;

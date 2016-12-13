@@ -12,12 +12,12 @@ export const ADD_TO_ALL_COMMENTS = 'ADD_TO_ALL_COMMENTS';
 export const UPVOTE_ON_ALL_COMMENTS = 'UPVOTE_ON_ALL_COMMENTS';
 export const DOWNVOTE_ON_ALL_COMMENTS = 'DOWNVOTE_ON_ALL_COMMENTS';
 
-export function addTip ({
+export function addHeroTip ({
   authorId,
   authorName,
   heroKey,
   content,
-  matchupHeroKey,
+  tipType,
   token
 }) {
   return (dispatch, getState) => {

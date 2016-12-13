@@ -9,11 +9,11 @@ import HomePage from '../components/pages/hero/homepage';
 import MapsPage from '../components/pages/map/mapspage';
 import SingleHeroPage from '../components/pages/hero/singleheropage';
 import GeneralTipsPage from '../components/pages/tip/generaltipspage';
-import StrategyTipsPage from '../components/pages/tip/strategytipspage';
 import HeroMatchupsPage from '../components/pages/matchup/heromatchupspage';
 import MapRankingsPage from '../components/pages/map/maprankingspage';
 import MatchupPage from '../components/pages/matchup/matchuppage';
 import MatchupTipsPage from '../components/pages/matchup/matchuptipspage';
+import AddTipsPage from '../components/pages/tip/addtipspage';
 
 export const routes = (
   <Route path="/" component={Root} >
@@ -27,7 +27,7 @@ export const routes = (
       <Route path="/heroes/:heroKey/generaltips" component={GeneralTipsPage}/>
       <Route path="/heroes/:heroKey/matchups" component={HeroMatchupsPage}/>
       <Route path="/heroes/:heroKey/maprankings" component={MapRankingsPage}/>
-      <Route path="/heroes/:heroKey/strategytips" component={StrategyTipsPage}/>
+      <Route path="/heroes/:heroKey/:tipType" component={AddTipsPage}/>
     </Route>
 
     <Route path="/matchups/:heroKey/:matchupHeroKey" component={MatchupPage}>

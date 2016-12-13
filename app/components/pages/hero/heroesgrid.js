@@ -54,7 +54,7 @@ class HeroesGrid extends Component {
                   <div className="os-thumb-photo">
                     <img
                       width="98"
-                      height="138"
+                      height="168"
                       className="os-thumbnail"
                       src={ portrait }
                     />

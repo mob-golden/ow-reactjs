@@ -19,14 +19,10 @@ import {
 } from '../../../constants/types';
 
 class HeroFooter extends Component {
-  // static defaultProps = {
-  //   colClass: 'col-xs-3 os-col-sm-1'
-  // };
 
   render () {
     const {
-      heroes,
-      colClass
+      heroes
     } = this.props;
 
     return (
@@ -42,21 +38,22 @@ class HeroFooter extends Component {
                 icon: image
               } = hero;
 
-            return (
-              <Link to={`/heroes/${id}`} >
-                <div
-                  className="os-hero-footer-thumb"
-                >
-                  <img
-                    width="75"
-                    height="75"
-                    className="os-hero-footer-thumb-img"
-                    src={image}
-                  />
-                </div>
-              </Link>   
-            );
-          })}
+              return (
+                <Link to={`/heroes/${id}`} key={id}>
+                  <div
+                    className="os-hero-footer-thumb"
+                  >
+                    <img
+                      width="75"
+                      height="75"
+                      className="os-hero-footer-thumb-img"
+                      src={image}
+                    />
+                  </div>
+                </Link>   
+              );
+            })
+          }
         </div>
       </div>
     );

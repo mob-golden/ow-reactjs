@@ -88,18 +88,15 @@ class GeneralTipsPage extends Component {
                 <div className="col-lg-3">
                   <Link
                     className="btn btn-primary os-btn-blue"
-                    to={`/heroes/${heroKey}/strategytips`}
+                    to={`/heroes/${heroKey}/for`}
                   >
                   ADD A TIP
                   </Link>
                 </div>
                 <div className="col-lg-3"> 
-                  <Link
+                  <button
                     className="btn btn-secondary os-btn-white"
-                    to={`/heroes/${heroKey}/strategytips`}
-                  >
-                  VIEW ALL
-                  </Link>
+                  >VIEW ALL</button>
                 </div>
               </div>
             </div>
@@ -120,18 +117,15 @@ class GeneralTipsPage extends Component {
                 <div className="col-lg-3">
                   <Link
                     className="btn btn-primary os-btn-blue"
-                    to={`/heroes/${heroKey}/strategytips`}
+                    to={`/heroes/${heroKey}/against`}
                   >
                   ADD A TIP
                   </Link>
                 </div>
                 <div className="col-lg-3"> 
-                  <Link
+                  <button
                     className="btn btn-secondary os-btn-white"
-                    to={`/heroes/${heroKey}/strategytips`}
-                  >
-                  VIEW ALL
-                  </Link>
+                  >VIEW ALL</button>
                 </div>
               </div>
             </div>
