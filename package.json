@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack -p --config webpack.config.prod.js",
     "dev": "webpack-dev-server --progress --inline --hot --history-api-fallback",
-    "prestart": "npm run build",
+    
     "start": "node server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
