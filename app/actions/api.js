@@ -73,7 +73,10 @@ function fetchMatchupTips (heroKey, matchupHeroKey, params) {
             statusText
           } = response;
 
-          if (response.status >= 200 && response.status < 300 ) {
+          if(response.status == 404){
+            return {data:{}};
+          }
+          else if (response.status >= 200 && response.status < 300) {
             return response;
           } else {
             const error = new Error(statusText);

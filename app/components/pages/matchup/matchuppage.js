@@ -128,7 +128,7 @@ class MatchupPage extends Component {
                   </div>
                 </div>
                 <div className="row">
-                  {/*children*/}
+                  {children}
                 </div>
               </div>
             </div>

@@ -87,7 +87,7 @@ class MatchupTipsPage extends Component {
     const heroKey = changeCase.lower(_heroKey);
     const matchupHeroKey = changeCase.lower(_matchupHeroKey);
 
-    if(isFetchingMatchupTips || !matchupTips.for){
+    if(isFetchingMatchupTips || !matchupTips.for || !matchupTips.against){
       return (<Loader/>);
     }
 
