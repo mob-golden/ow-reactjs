@@ -5,7 +5,7 @@ import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import TipsList from '../tip/tipslist';
 import Loader from '../../loader';
-import { fetchCounterTipsIfNeeded } from '../../../actions/matchup';
+import { fetchMatchupTipsForVS } from '../../../actions/api';
 
 class MatchupTipsPage extends Component {
   // static propTypes = {
@@ -20,29 +20,9 @@ class MatchupTipsPage extends Component {
 
   constructor (props) {
     super(props);
-
-    // this.state = {
-    //   showCounterTipsForm: false
-    // };
   }
 
   componentDidMount () {
-    // const {
-    //   dispatch,
-    //   token,
-    //   username,
-    //   userId
-    // } = this.props;
-
-    // if (!token && !username && !userId) {
-    //   const localToken = localStorage.getItem('token');
-    //   const localUsername = localStorage.getItem('username');
-    //   const localUserId = localStorage.getItem('userId');
-
-    //   if (localToken && localUsername && localUserId) {
-    //     dispatch(setUser(localToken, localUsername, localUserId));
-    //   }
-    // }
   }
 
   componentWillMount () {
@@ -58,7 +38,7 @@ class MatchupTipsPage extends Component {
     const matchupHeroKey = changeCase.lower(_matchupHeroKey);
 
 
-    dispatch(fetchCounterTipsIfNeeded(heroKey,matchupHeroKey));
+    dispatch(fetchMatchupTipsForVS(heroKey,matchupHeroKey));
   }
 
   componentWillReceiveProps (nextProps) {
@@ -84,15 +64,15 @@ class MatchupTipsPage extends Component {
     const nextMatchupHeroKey = changeCase.lower(_nextMatchupHeroKey);
 
     if (heroKey !== nextHeroKey || matchupHeroKey !== nextMatchupHeroKey) {
-      dispatch(fetchCounterTipsIfNeeded(nextHeroKey,nextMatchupHeroKey));
+      dispatch(fetchMatchupTipsForVS(nextHeroKey,nextMatchupHeroKey));
     }
   }
 
   render () {
     const {
       heroes,
-      counterTips,
-      isFetchingCounterTips,
+      matchupTips,
+      isFetchingMatchupTips,
       params: {
         heroKey: _heroKey,
         matchupHeroKey: _matchupHeroKey
@@ -107,21 +87,24 @@ class MatchupTipsPage extends Component {
     const heroKey = changeCase.lower(_heroKey);
     const matchupHeroKey = changeCase.lower(_matchupHeroKey);
 
+    if(isFetchingMatchupTips || !matchupTips.for){
+      return (<Loader/>);
+    }
+
     return (
       <div className="os-matchup-tip-container">
         <div className="row">
           <div className="os-matchup-tip-col">
             <div className="os-matchup-tip-body">
               <span className="os-matchup-tip-name">
-                TIPS VS. {changeCase.upper(heroes.data[matchupHeroKey].name)} 
+                TIPS VS. {/*changeCase.upper(heroes.data[matchupHeroKey].name)*/} 
               </span>
               <h5 className="os-matchup-left-title">AS <span>{changeCase.upper(heroes.data[heroKey].name)}</span></h5>
-              {!isFetchingCounterTips && counterTips ?
-                <TipsList
-                  counterTips={take(counterTips.data, 5)}
-                  shouldHideMeta={true}
-                />
-              : <Loader />}
+
+              <TipsList
+                tips={take(matchupTips.for.data, 5)}
+                shouldHideMeta={true}
+              />
               <div className="row">
                 <div className="col-lg-3">
                   <a href="#" className="btn btn-primary os-btn-blue">ADD A TIP</a>
@@ -146,25 +129,17 @@ class MatchupTipsPage extends Component {
 
 function mapStateToProps (state) {
   const {
-    matchup: {
-      counterTips: {
-        data: counterTipsData,
-        isFetching: isFetchingCounterTips
-      }
-    },
-    riot: {
-      heroes: {
-        data: heroesData,
-        isFetching: isFetchingHeroes
+    api: {
+      matchupTips: {
+        matchupTips: matchupTipsData,
+        isFetching: isFetchingTips
       }
     }
   } = state;
 
   return {
-    heroes: heroesData,
-    counterTips: counterTipsData,
-    isFetchingHeroes,
-    isFetchingCounterTips
+    matchupTips: matchupTipsData,
+    isFetchingTips
   };
 }
 

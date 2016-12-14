@@ -3,12 +3,14 @@ import {
 } from 'redux';
 
 import {
-  REQUEST_SINGLE_HERO,
-  RECEIVE_SINGLE_HERO,
+  REQUEST_MATCHUP_TIPS,
+  REQUEST_MATCHUP_TIPS_SUCCESS,
+  REQUEST_MATCHUP_TIPS_FAILURE,
+  RECEIVE_MATCHUP_TIPS,
   REQUEST_MATCHUPS,
   REQUEST_MATCHUPS_SUCCESS,
   REQUEST_MATCHUPS_FAILURE,
-  RECEIVE_MATCHUP,
+  RECEIVE_MATCHUPS,
   REQUEST_TIPS,
   REQUEST_TIPS_SUCCESS,
   REQUEST_TIPS_FAILURE,
@@ -20,35 +22,56 @@ import {
   MATCHUP_TYPES
 } from '../constants/types';
 
-const initialSingleHeroState = {
+const initializedMatchupTips = TIP_TYPES.reduce((acc, type) => {
+  return {
+    ...acc,
+    [type]: null
+  };
+}, {});
+
+const initialMatchupTipsState = {
+  heroKey: null,
+  matchupHeroKey: null,
+  matchupTips: initializedMatchupTips,
   isFetching: false,
-  data: null,
-  shouldInvalidate: false
 };
 
-function singleHero (state = initialSingleHeroState, action) {
+function matchupTips (state = initialMatchupTipsState, action) {
   switch (action.type) {
-    case REQUEST_SINGLE_HERO:
+    case REQUEST_MATCHUP_TIPS:
       return {
         ...state,
         heroKey: action.heroKey,
+        matchupHeroKey: action.matchupHeroKey,
         isFetching: true
       };
-    case RECEIVE_SINGLE_HERO:
+    case RECEIVE_MATCHUP_TIPS:
+      const {
+        matchupTips
+      } = state;
+
       return {
         ...state,
-        isFetching: false,
-        data: action.data
+        matchupTips: {
+          ...matchupTips,
+          [action.matchupTipType]: action.matchupTip
+        }
       };
-    case 'INVALIDATE_SINGLE_HERO':
+    case REQUEST_MATCHUP_TIPS_SUCCESS:
       return {
         ...state,
-        shouldInvalidate: true
+        isFetching: false
+      };
+    case REQUEST_MATCHUP_TIPS_FAILURE:
+      return {
+        ...state,
+        isFetching: false
       };
     default:
       return state;
   }
 }
+
 
 const initializedMatchups = MATCHUP_TYPES.reduce((acc, type) => {
   return {
@@ -71,7 +94,7 @@ function matchups (state = initialMatchupsState, action) {
         heroKey: action.heroKey,
         isFetching: true
       };
-    case RECEIVE_MATCHUP:
+    case RECEIVE_MATCHUPS:
       const {
         matchups
       } = state;
@@ -148,7 +171,7 @@ function tips (state = initialTipsState, action) {
 }
 
 const api = combineReducers({
-  singleHero,
+  matchupTips,
   tips,
   matchups
 });

@@ -11,79 +11,128 @@ import {
   OW_MATCHUPS_URL
 } from '../constants/urls';
 
-// export const REQUEST_MATCHUP_TIPS = 'REQUEST_MATCHUP_TIPS';
-// export const RECEIVE_MATCHUP_TIPS = 'RECEIVE_MATCHUP_TIPS';
+export const REQUEST_MATCHUP_TIPS = 'REQUEST_MATCHUP_TIPS';
+export const RECEIVE_MATCHUP_TIPS = 'RECEIVE_MATCHUP_TIPS';
+export const REQUEST_MATCHUP_TIPS_SUCCESS = 'REQUEST_MATCHUP_TIPS_SUCCESS';
+export const REQUEST_MATCHUP_TIPS_FAILURE = 'REQUEST_MATCHUP_TIPS_SUCCESS';
 
-// export function fetchMatchupTipsIfNeeded (heroKey, matchupHeroKey, params) {
-//   return (dispatch, getState) => {
-//     if (shouldFetchMatchupTips(getState(), heroKey, matchupHeroKey)) {
-//       const url = `${CS_TIPS_URL}?${qs.stringify(params)}`;
+export function fetchMatchupTipsForVS(heroKey,matchupHeroKey) {
+  return dispatch => {
+    const params = {
+      // 50 is the max limit
+      //limit: 50,
+      sort: 'score.total-desc',
+      //order: -1,
+      //page: 1
+    };
 
-//       return dispatch(fetchMatchupTips(url));
-//     }
-//   };
-// }
+    return dispatch(fetchMatchupTipsIfNeeded(heroKey, matchupHeroKey, params));
+  };
+}
 
-// function shouldFetchMatchupTips (state, heroKey, matchupHeroKey) {
-//   const {
-//     api: {
-//       matchupTips
-//     }
-//   } = state;
+export function fetchMatchupTipsIfNeeded (heroKey, matchupHeroKey, params) {
+  return (dispatch, getState) => {
+    if (shouldFetchMatchupTips(getState(), heroKey, matchupHeroKey)) {
+      const url = `${OW_MATCHUPS_URL}/${heroKey}/${matchupHeroKey}`;
 
-//   if (matchupTips.isFetching)
-//     return false;
+      return dispatch(fetchMatchupTips(heroKey, matchupHeroKey, params));
+    }
+  };
+}
 
-//   return true;
-// }
+function shouldFetchMatchupTips (state, heroKey, matchupHeroKey) {
+  const {
+    api: {
+      matchupTips
+    }
+  } = state;
 
-// function fetchMatchupTips (url, heroKey, matchupHeroKey) {
-//   return dispatch => {
-//     dispatch(requestMatchupTips(heroKey, matchupHeroKey));
+  if (matchupTips.isFetching)
+    return false;
 
-//     return fetch(url)
-//       .then(response => {
-//         const {
-//           status,
-//           statusText
-//         } = response;
+  return true;
+}
 
-//         if (status >= 200 && status < 300) {
-//           return response;
-//         } else {
-//           const error = new Error(statusText);
-//           console.log(`Response returned an error for ${url}: ${error.message}`);
+function fetchMatchupTips (heroKey, matchupHeroKey, params) {
+  return dispatch => {
+    dispatch(requestMatchupTips(heroKey, matchupHeroKey));
 
-//           return Promise.reject(error);
-//         }
-//       })
-//       .then(response => response.json())
-//       .then(json => dispatch(receiveMatchupTips(json)))
-//       .catch (error => {
-//         console.log(`Request failed for ${url}: ${error.message}`);
-//       });
-//   }
-// }
+    Promise.all(TIP_TYPES.map(matchupTipType => {
 
-// function requestMatchupTips (heroKey, matchupHeroKey) {
-//   return {
-//     type: REQUEST_MATCHUP_TIPS,
-//     heroKey,
-//     matchupHeroKey
-//   };
-// }
+      let root = `${OW_MATCHUPS_URL}/${heroKey}/${matchupHeroKey}`;
+      if(matchupTipType == "against")
+        root = `${OW_MATCHUPS_URL}/${matchupHeroKey}/${heroKey}`;
+      // `/matchups/:heroKey/:mathcup` returns matchups from all types
+      
+      const fullUrl = `${root}?${qs.stringify(params)}`;
 
-// function receiveMatchupTips (data) {
-//   return {
-//     type: RECEIVE_MATCHUP_TIPS,
-//     data
-//   };
-// }
+      return fetch(fullUrl)
+        .then(response => {
+          const {
+            status,
+            statusText
+          } = response;
+
+          if (response.status >= 200 && response.status < 300) {
+            return response;
+          } else {
+            const error = new Error(statusText);
+            console.log(`Response returned an error for ${fullUrl}: ${error.message}`);
+
+            return Promise.reject(error);
+          }
+        })
+        .then(response => response.json())
+        .then(matchupTip => dispatch(receiveMatchupTips(matchupTip, heroKey, matchupHeroKey, matchupTipType)))
+    }))
+      .then(responses => {
+        dispatch(requestMatchupTipsSuccess(responses));
+      })
+      .catch(error => {
+        console.log(`Response returned an error for fetching matchups for ${heroKey}: ${error.message}`);
+        dispatch(requestMatchupTipsFailure(error));
+      });
+  };
+}
+
+function requestMatchupTips (heroKey, matchupHeroKey) {
+  return {
+    type: REQUEST_MATCHUP_TIPS,
+    heroKey,
+    matchupHeroKey
+  };
+}
+
+function receiveMatchupTips (matchupTip, heroKey, matchupHeroKey, matchupTipType) {
+  return {
+    type: RECEIVE_MATCHUP_TIPS,
+    heroKey,
+    matchupHeroKey,
+    matchupTipType,
+    matchupTip
+  };
+}
+
+function requestMatchupTipsSuccess (responses) {
+  return {
+    type: REQUEST_MATCHUP_TIPS_SUCCESS,
+    responses
+  };
+}
+
+function requestMatchupTipsFailure (error) {
+  return {
+    type: REQUEST_MATCHUP_TIPS_FAILURE,
+    error
+  };
+}
+
+//================================HERO MATCHUPS API=================================//
 
 export const REQUEST_MATCHUPS = 'REQUEST_MATCHUPS';
 export const REQUEST_MATCHUPS_SUCCESS = 'REQUEST_MATCHUPS_SUCCESS';
 export const REQUEST_MATCHUPS_FAILURE = 'REQUEST_MATCHUPS_FAILURE';
-export const RECEIVE_MATCHUP = 'RECEIVE_MATCHUP';
+export const RECEIVE_MATCHUPS = 'RECEIVE_MATCHUPS';
 
 export function fetchMatchupsForHero (heroKey) {
   return dispatch => {
@@ -144,7 +193,7 @@ function fetchMatchups (heroKey, params) {
             return response;
           } else {
             const error = new Error(statusText);
-            console.log(`Response returned an error for ${url}: ${error.message}`);
+            console.log(`Response returned an error for ${fullUrl}: ${error.message}`);
 
             return Promise.reject(error);
           }
@@ -185,14 +234,14 @@ function requestMatchupsFailure (error) {
 
 function receiveMatchup (matchup, heroKey, matchupType) {
   return {
-    type: RECEIVE_MATCHUP,
+    type: RECEIVE_MATCHUPS,
     heroKey,
     matchupType,
     matchup
   };
 }
 
-
+//================================HERO TIPS API=================================//
 
 export const REQUEST_TIPS = 'REQUEST_TIPS';
 export const REQUEST_TIPS_SUCCESS = 'REQUEST_TIPS_SUCCESS';
@@ -258,7 +307,7 @@ function fetchTips (heroKey, params) {
             return response;
           } else {
             const error = new Error(statusText);
-            console.log(`Response returned an error for ${url}: ${error.message}`);
+            console.log(`Response returned an error for ${fullUrl}: ${error.message}`);
 
             return Promise.reject(error);
           }

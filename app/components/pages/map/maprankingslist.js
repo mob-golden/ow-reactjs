@@ -20,8 +20,15 @@ class MapRankingsList extends Component {
     } = this.props;
 
     const mapRankings = matchups.data.matchups;
-    const counterMatchups = take(matchups.data,12);
-
+    if (mapRankings.length === 0) {
+      return (
+        <div className="os-maprankings-list">
+          <div className="col-lg-4">
+            <div className="alert alert-warning">No Map Rankings!</div>
+          </div>
+        </div>
+      );
+    }
     if (!localStorage.getItem('matchupVotes')) localStorage.setItem('matchupVotes', JSON.stringify({}));
     const votes =  JSON.parse(localStorage.getItem('matchupVotes'));
     
