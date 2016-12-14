@@ -28,21 +28,18 @@ module.exports = {
       include: path.join(__dirname, './app')
     },{
       test: /\.s?css$/,
-      loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!sass-loader')
-    },{
-      test: /\.svg(\?.*)$/,
-      loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=image/svg+xml'
+      loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader')
     }]
   },
 
   plugins: [
+    new webpack.DefinePlugin({
+      // A common mistake is not stringifying the "production" string.
+      'process.env.NODE_ENV': JSON.stringify('production')
+    }),
     new webpackMd5Hash(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
-        dead_code: true,
-        drop_console: true,
-        join_vars: true,
-        unused: true,
         warnings: false
       }
     }),
@@ -52,9 +49,7 @@ module.exports = {
       minChunks: Infinity
     }),
     new ExtractTextPlugin('style.[contenthash].css', { allChunks: true }),
-    new CopyWebpackPlugin([
-      { from: __dirname + '/app/styles/img', to: 'app/styles/img' }
-    ]),
+
     new HtmlWebpackPlugin({
       title: 'overwatch-select',
       filename: 'index.html',
