@@ -63,7 +63,7 @@ function fetchMatchupTips (heroKey, matchupHeroKey, params) {
       if(matchupTipType == "against")
         root = `${OW_MATCHUPS_URL}/${matchupHeroKey}/${heroKey}`;
       // `/matchups/:heroKey/:mathcup` returns matchups from all types
-      
+
       const fullUrl = `${root}?${qs.stringify(params)}`;
 
       return fetch(fullUrl)
@@ -73,10 +73,7 @@ function fetchMatchupTips (heroKey, matchupHeroKey, params) {
             statusText
           } = response;
 
-          if(response.status == 404){
-            return {data:{}};
-          }
-          else if (response.status >= 200 && response.status < 300) {
+          if (response.status >= 200 && response.status < 300) {
             return response;
           } else {
             const error = new Error(statusText);
@@ -87,6 +84,14 @@ function fetchMatchupTips (heroKey, matchupHeroKey, params) {
         })
         .then(response => response.json())
         .then(matchupTip => dispatch(receiveMatchupTips(matchupTip, heroKey, matchupHeroKey, matchupTipType)))
+        .catch(error => {
+          console.log(error);
+          if (error.message === 'Not Found') {
+            dispatch(receiveMatchupTips({data:{}}, heroKey, matchupHeroKey, matchupTipType));
+          }
+
+          console.log(`Response returned an error for a single matchup: ${error}`);
+        });
     }))
       .then(responses => {
         dispatch(requestMatchupTipsSuccess(responses));
@@ -97,6 +102,7 @@ function fetchMatchupTips (heroKey, matchupHeroKey, params) {
       });
   };
 }
+
 
 function requestMatchupTips (heroKey, matchupHeroKey) {
   return {

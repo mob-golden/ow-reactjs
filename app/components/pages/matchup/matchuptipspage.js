@@ -70,7 +70,8 @@ class MatchupTipsPage extends Component {
 
   render () {
     const {
-      heroes,
+      heroesMap,
+      isFetchingHeroes,
       matchupTips,
       isFetchingMatchupTips,
       params: {
@@ -87,7 +88,7 @@ class MatchupTipsPage extends Component {
     const heroKey = changeCase.lower(_heroKey);
     const matchupHeroKey = changeCase.lower(_matchupHeroKey);
 
-    if(isFetchingMatchupTips || !matchupTips.for || !matchupTips.against){
+    if(isFetchingMatchupTips || !matchupTips.for || !matchupTips.against || isFetchingHeroes || !heroesMap){
       return (<Loader/>);
     }
 
@@ -97,9 +98,9 @@ class MatchupTipsPage extends Component {
           <div className="os-matchup-tip-col">
             <div className="os-matchup-tip-body">
               <span className="os-matchup-tip-name">
-                TIPS VS. {/*changeCase.upper(heroes.data[matchupHeroKey].name)*/} 
+                TIPS VS. {changeCase.upper(heroesMap[matchupHeroKey].name)} 
               </span>
-              <h5 className="os-matchup-left-title">AS <span>{changeCase.upper(heroes.data[heroKey].name)}</span></h5>
+              <h5 className="os-matchup-left-title">AS <span>{changeCase.upper(heroesMap[heroKey].name) }</span></h5>
 
               <TipsList
                 tips={take(matchupTips.for.data, 5)}
@@ -115,9 +116,26 @@ class MatchupTipsPage extends Component {
               </div>
             </div>
           </div>
+
           <div className="os-hero-tip-col">
             <div className="os-hero-tip-body">
-              {/* TODO HERE */}
+              <span className="os-matchup-tip-name">
+                TIPS VS. {changeCase.upper(heroesMap[heroKey].name)} 
+              </span>
+              <h5 className="os-matchup-right-title">AS <span>{changeCase.upper(heroesMap[matchupHeroKey].name) }</span></h5>
+
+              <TipsList
+                tips={take(matchupTips.against.data, 5)}
+                shouldHideMeta={true}
+              />
+              <div className="row">
+                <div className="col-lg-3">
+                  <a href="#" className="btn btn-primary os-btn-blue">ADD A TIP</a>
+                </div>
+                <div className="col-lg-3"> 
+                  <a href="#" className="btn btn-secondary os-btn-white">VIEW ALL</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -129,6 +147,12 @@ class MatchupTipsPage extends Component {
 
 function mapStateToProps (state) {
   const {
+    riot: {
+      heroes: {
+        _map: heroesMap,
+        isFetching: isFetchingHeroes
+      }
+    },
     api: {
       matchupTips: {
         matchupTips: matchupTipsData,
@@ -138,6 +162,8 @@ function mapStateToProps (state) {
   } = state;
 
   return {
+    heroesMap,
+    isFetchingHeroes, 
     matchupTips: matchupTipsData,
     isFetchingTips
   };

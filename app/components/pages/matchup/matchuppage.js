@@ -76,7 +76,7 @@ class MatchupPage extends Component {
                         <div className="os-hero-profile-type">
                           <img width="16" height="17" src={`/images/${heroesMap[heroKey].type}.png`}/>
                         </div>
-                        <h5 className="os-hero-profile-name">{changeCase.upper(heroesMap[heroKey].type)}</h5>
+                        <h5 className="os-hero-profile-name">{changeCase.upper(heroesMap[heroKey].name)}</h5>
                       </Link>
                     </div>
                   </div>
