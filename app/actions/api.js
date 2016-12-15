@@ -16,7 +16,7 @@ export const RECEIVE_MATCHUP_TIPS = 'RECEIVE_MATCHUP_TIPS';
 export const REQUEST_MATCHUP_TIPS_SUCCESS = 'REQUEST_MATCHUP_TIPS_SUCCESS';
 export const REQUEST_MATCHUP_TIPS_FAILURE = 'REQUEST_MATCHUP_TIPS_SUCCESS';
 
-export function fetchMatchupTipsForVS(heroKey,matchupHeroKey) {
+export function fetchMatchupTips(heroKey,matchupHeroKey) {
   return dispatch => {
     const params = {
       // 50 is the max limit
@@ -35,7 +35,7 @@ export function fetchMatchupTipsIfNeeded (heroKey, matchupHeroKey, params) {
     if (shouldFetchMatchupTips(getState(), heroKey, matchupHeroKey)) {
       const url = `${OW_MATCHUPS_URL}/${heroKey}/${matchupHeroKey}`;
 
-      return dispatch(fetchMatchupTips(heroKey, matchupHeroKey, params));
+      return dispatch(fetchMatchupTipsAPI(heroKey, matchupHeroKey, params));
     }
   };
 }
@@ -53,7 +53,7 @@ function shouldFetchMatchupTips (state, heroKey, matchupHeroKey) {
   return true;
 }
 
-function fetchMatchupTips (heroKey, matchupHeroKey, params) {
+function fetchMatchupTipsAPI (heroKey, matchupHeroKey, params) {
   return dispatch => {
     dispatch(requestMatchupTips(heroKey, matchupHeroKey));
 

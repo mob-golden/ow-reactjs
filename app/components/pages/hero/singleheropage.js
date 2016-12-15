@@ -27,7 +27,7 @@ class SingleHeroPage extends Component {
   render () {
     const {
       children,
-      heroesMap,
+      heroesHash,
       heroesArray,
       isFetchingHeroes,
       params: {
@@ -38,16 +38,17 @@ class SingleHeroPage extends Component {
       }
     } = this.props;
 
-    if (isFetchingHeroes || !heroesMap) {
+    if (isFetchingHeroes || !heroesHash) {
       return <Loader />;
     }
     
     const activePath = _activePath.split('/').pop();
-    let _generaltips,_heromatchups,_maprankings, _fulltips = false;
+    let _generaltips,_heromatchups,_maprankings, _fulltips, _maprankingtips = false;
 
     if(activePath == "matchups" ) _heromatchups = 'active';
     else if(activePath == "maprankings" ) _maprankings = 'active';
-    else if(activePath.includes("for") || activePath.includes("against")) _fulltips = 'active';
+    else if(_activePath.includes("for") || _activePath.includes("against")) _fulltips = 'active';
+    else if(_activePath.includes("maprankingtips")) _maprankingtips = 'active';
     else _generaltips = "active";
 
     const heroKey = changeCase.lower(_heroKey);
@@ -56,7 +57,7 @@ class SingleHeroPage extends Component {
       name,
       type,
       portrait
-    } = heroesMap[heroKey];
+    } = heroesHash[heroKey];
 
     return (
       <div className="os-body row">
@@ -127,6 +128,17 @@ class SingleHeroPage extends Component {
                   </div>
                 </div> : null
                 }
+
+                { _maprankingtips?
+                <div className="row">
+                  <div className="col-lg-12">
+                    <Link to={`/heroes/${id}/maprankings`}>
+                      <i className="fa fa-long-arrow-left" aria-hidden="true"/> back to Map Matchups
+                    </Link>
+                  </div>
+                </div> : null
+                }
+
                 <div className="row">
                   {children}
                 </div>
@@ -152,10 +164,10 @@ class SingleHeroPage extends Component {
 
 function mapStateToProps (state) {
   const {
-    riot: {
+    hero: {
       heroes: {
         _array: heroesArray,
-        _map: heroesMap,
+        _hash: heroesHash,
         isFetching: isFetchingHeroes
       }
     }
@@ -163,7 +175,7 @@ function mapStateToProps (state) {
 
   return {
     heroesArray,
-    heroesMap,
+    heroesHash,
     isFetchingHeroes
   };
 }

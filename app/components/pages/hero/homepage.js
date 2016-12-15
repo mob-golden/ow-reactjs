@@ -98,10 +98,9 @@ class HomePage extends Component {
 
 function mapStateToProps (state) {
   const {
-    riot: {
+    hero: {
       heroes: {
         _array: heroesArray,
-        _map: heroesMap,
         isFetching: isFetchingHeroes
       }
     }

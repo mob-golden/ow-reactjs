@@ -21,10 +21,6 @@ import {
   voteTip
 } from '../../../actions/all';
 
-import {
-  RIOT_HERO_ICONS_URL
-} from '../../../constants/urls';
-
 class TipsList extends Component {
   static defaultProps: {
     shouldHideMeta: false
@@ -117,23 +113,6 @@ class TipsList extends Component {
               className="os-counter-tip"
               key={id}
             >
-              {shouldHideMeta ? null :
-                <Link
-                  to={linkTo}
-                >
-                    <ul className="list-unstyled list-inline">
-                      <li className="list-inline-item">
-                        <img
-                          className="os-counter-tip-icon img-rounded"
-                          src="{`${RIOT_HERO_ICONS_URL}/${fullImageHero}`}"
-                        />
-                      </li>
-                      <li className="list-inline-item">
-                        {matchupHeroIcon}
-                      </li>
-                    </ul>
-                </Link>
-              }
               {shouldHideMeta ?
                 <div className="os-counter-tip-score-alt">
                   <div className="os-counter-tip-vote-alt os-counter-tip-upvote-alt">

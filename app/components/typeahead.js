@@ -7,10 +7,6 @@ import classNames from 'classnames';
 import values from 'lodash/values';
 
 import {
-  RIOT_SPRITES_URL
-} from '../constants/urls';
-
-import {
   Component,
   PropTypes
 } from 'react';
@@ -262,7 +258,7 @@ class Typeahead extends Component {
 
 function mapStateToProps (state) {
   const {
-    riot: {
+    hero: {
       heroes: {
         _array: heroesArray,
         isFetching: isFetchingHeroes

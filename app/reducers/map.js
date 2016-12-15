@@ -22,7 +22,7 @@ function maps (state = initialState, action) {
       return {
         ...state,
         isFetching: false,
-        _map: action.data.data,
+        _hash: action.data.data,
         _array: toArray(action.data.data)
       };
     default:

@@ -96,7 +96,7 @@ function mapStateToProps (state) {
     },
     map: {
       maps: {
-        _map: mapsHash,
+        _hash: mapsHash,
         isFetching: isFetchingMaps
       }
     }

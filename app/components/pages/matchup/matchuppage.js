@@ -28,7 +28,7 @@ class MatchupPage extends Component {
   render () {
     const {
       children,
-      heroesMap,
+      heroesHash,
       heroesArray,
       isFetchingHeroes,
       params: {
@@ -40,7 +40,7 @@ class MatchupPage extends Component {
     const heroKey = changeCase.lower(_heroKey);
     const matchupHeroKey = changeCase.lower(_matchupHeroKey);
 
-    if (isFetchingHeroes && !heroesMap) {
+    if (isFetchingHeroes && !heroesHash) {
       return <Loader />;
     }
     
@@ -71,12 +71,12 @@ class MatchupPage extends Component {
                           width="72"
                           height="124"
                           className="os-hero-profile-icon"
-                          src= {heroesMap[heroKey].portrait}
+                          src= {heroesHash[heroKey].portrait}
                         />
                         <div className="os-hero-profile-type">
-                          <img width="16" height="17" src={`/images/${heroesMap[heroKey].type}.png`}/>
+                          <img width="16" height="17" src={`/images/${heroesHash[heroKey].type}.png`}/>
                         </div>
-                        <h5 className="os-hero-profile-name">{changeCase.upper(heroesMap[heroKey].name)}</h5>
+                        <h5 className="os-hero-profile-name">{changeCase.upper(heroesHash[heroKey].name)}</h5>
                       </Link>
                     </div>
                   </div>
@@ -97,12 +97,12 @@ class MatchupPage extends Component {
                           width="72"
                           height="124"
                           className="os-hero-profile-icon"
-                          src= {heroesMap[matchupHeroKey].portrait}
+                          src= {heroesHash[matchupHeroKey].portrait}
                         />
                         <div className="os-hero-profile-type">
-                          <img width="16" height="17" src={`/images/${heroesMap[matchupHeroKey].type}.png`}/>
+                          <img width="16" height="17" src={`/images/${heroesHash[matchupHeroKey].type}.png`}/>
                         </div>
-                        <h5 className="os-hero-profile-name">{changeCase.upper(heroesMap[matchupHeroKey].name)}</h5>
+                        <h5 className="os-hero-profile-name">{changeCase.upper(heroesHash[matchupHeroKey].name)}</h5>
                       </Link>
                     </div>
                   </div>
@@ -152,10 +152,10 @@ class MatchupPage extends Component {
 
 function mapStateToProps (state) {
   const {
-    riot: {
+    hero: {
       heroes: {
         _array: heroesArray,
-        _map: heroesMap,
+        _hash: heroesHash,
         isFetching: isFetchingHeroes
       }
     }
@@ -163,7 +163,7 @@ function mapStateToProps (state) {
 
   return {
     heroesArray,
-    heroesMap,
+    heroesHash,
     isFetchingHeroes
   };
 }

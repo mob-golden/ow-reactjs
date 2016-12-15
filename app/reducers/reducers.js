@@ -1,5 +1,5 @@
 import auth from './auth';
-import riot from './riot';
+import hero from './hero';
 import map from './map';
 import api from './api';
 
@@ -14,7 +14,7 @@ import {
 const rootReducer = combineReducers({
   auth,
   api,
-  riot,
+  hero,
   map,
   routing: routerReducer
 });

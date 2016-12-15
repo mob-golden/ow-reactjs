@@ -6,11 +6,6 @@ import changeCase from 'change-case';
 import Loader from '../../loader';
 
 import {
-  RIOT_HERO_ICONS_URL,
-  RIOT_SPRITES_URL
-} from '../../../constants/urls';
-
-import {
   HERO_TYPES
 } from '../../../constants/types';
 

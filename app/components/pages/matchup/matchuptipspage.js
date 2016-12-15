@@ -5,19 +5,9 @@ import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import TipsList from '../tip/tipslist';
 import Loader from '../../loader';
-import { fetchMatchupTipsForVS } from '../../../actions/api';
+import { fetchMatchupTips } from '../../../actions/api';
 
 class MatchupTipsPage extends Component {
-  // static propTypes = {
-  //   dispatch: PropTypes.func.isRequired,
-  //   heroes: PropTypes.object.isRequired,
-  //   counterTips: PropTypes.array.isRequired,
-  //   matchups: PropTypes.array.isRequired,
-  //   isFetchingHeroes: PropTypes.bool.isRequired,
-  //   isFetchingCounterTips: PropTypes.bool.isRequired,
-  //   isFetchingMatchups: PropTypes.bool.isRequired
-  // };
-
   constructor (props) {
     super(props);
   }
@@ -38,7 +28,7 @@ class MatchupTipsPage extends Component {
     const matchupHeroKey = changeCase.lower(_matchupHeroKey);
 
 
-    dispatch(fetchMatchupTipsForVS(heroKey,matchupHeroKey));
+    dispatch(fetchMatchupTips(heroKey,matchupHeroKey));
   }
 
   componentWillReceiveProps (nextProps) {
@@ -64,13 +54,13 @@ class MatchupTipsPage extends Component {
     const nextMatchupHeroKey = changeCase.lower(_nextMatchupHeroKey);
 
     if (heroKey !== nextHeroKey || matchupHeroKey !== nextMatchupHeroKey) {
-      dispatch(fetchMatchupTipsForVS(nextHeroKey,nextMatchupHeroKey));
+      dispatch(fetchMatchupTips(nextHeroKey,nextMatchupHeroKey));
     }
   }
 
   render () {
     const {
-      heroesMap,
+      heroesHash,
       isFetchingHeroes,
       matchupTips,
       isFetchingMatchupTips,
@@ -88,7 +78,7 @@ class MatchupTipsPage extends Component {
     const heroKey = changeCase.lower(_heroKey);
     const matchupHeroKey = changeCase.lower(_matchupHeroKey);
 
-    if(isFetchingMatchupTips || !matchupTips.for || !matchupTips.against || isFetchingHeroes || !heroesMap){
+    if(isFetchingMatchupTips || !matchupTips.for || !matchupTips.against || isFetchingHeroes || !heroesHash){
       return (<Loader/>);
     }
 
@@ -98,9 +88,9 @@ class MatchupTipsPage extends Component {
           <div className="os-matchup-tip-col">
             <div className="os-matchup-tip-body">
               <span className="os-matchup-tip-name">
-                TIPS VS. {changeCase.upper(heroesMap[matchupHeroKey].name)} 
+                TIPS VS. {changeCase.upper(heroesHash[matchupHeroKey].name)} 
               </span>
-              <h5 className="os-matchup-left-title">AS <span>{changeCase.upper(heroesMap[heroKey].name) }</span></h5>
+              <h5 className="os-matchup-left-title">AS <span>{changeCase.upper(heroesHash[heroKey].name) }</span></h5>
 
               <TipsList
                 tips={take(matchupTips.for.data, 5)}
@@ -120,9 +110,9 @@ class MatchupTipsPage extends Component {
           <div className="os-hero-tip-col">
             <div className="os-hero-tip-body">
               <span className="os-matchup-tip-name">
-                TIPS VS. {changeCase.upper(heroesMap[heroKey].name)} 
+                TIPS VS. {changeCase.upper(heroesHash[heroKey].name)} 
               </span>
-              <h5 className="os-matchup-right-title">AS <span>{changeCase.upper(heroesMap[matchupHeroKey].name) }</span></h5>
+              <h5 className="os-matchup-right-title">AS <span>{changeCase.upper(heroesHash[matchupHeroKey].name) }</span></h5>
 
               <TipsList
                 tips={take(matchupTips.against.data, 5)}
@@ -147,9 +137,9 @@ class MatchupTipsPage extends Component {
 
 function mapStateToProps (state) {
   const {
-    riot: {
+    hero: {
       heroes: {
-        _map: heroesMap,
+        _hash: heroesHash,
         isFetching: isFetchingHeroes
       }
     },
@@ -162,7 +152,7 @@ function mapStateToProps (state) {
   } = state;
 
   return {
-    heroesMap,
+    heroesHash,
     isFetchingHeroes, 
     matchupTips: matchupTipsData,
     isFetchingTips

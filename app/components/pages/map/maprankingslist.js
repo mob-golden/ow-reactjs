@@ -7,8 +7,6 @@ import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { voteMatchup } from '../../../actions/all';
-import { RIOT_HERO_ICONS_URL, RIOT_SPRITES_URL } from '../../../constants/urls';
-
 
 class MapRankingsList extends Component {
 
@@ -105,13 +103,14 @@ class MapRankingsList extends Component {
                     </span>
                   </div>
                 </div>
-                
-                <img
-                  width="100%"
-                  height="212"
-                  className="os-map-image"
-                  src={image}
-                />
+                <Link to={`/maprankingtips/${heroKey}/${mapKey}`}>
+                  <img
+                    width="100%"
+                    height="212"
+                    className="os-map-image"
+                    src={image}
+                  />
+                </Link>
               </div>
             </div>
           );

@@ -9,11 +9,6 @@ import {
   Link
 } from 'react-router';
 
-import {
-  RIOT_HERO_ICONS_URL,
-  RIOT_SPRITES_URL
-} from '../../../constants/urls';
-
 import {  MAP_TYPES } from '../../../constants/types'
 
 class MapsGrid extends Component {

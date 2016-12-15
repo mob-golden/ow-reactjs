@@ -14,7 +14,7 @@ import {
 
 import {
   fetchHeroesIfNeeded
-} from '../actions/riot';
+} from '../actions/hero';
 import {
   fetchMapsIfNeeded
 } from '../actions/map';

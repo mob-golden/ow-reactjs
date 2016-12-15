@@ -54,7 +54,6 @@ class HeroesGrid extends Component {
                       className="os-thumbnail"
                       src={ portrait }
                     />
-                  {/*`${RIOT_HERO_ICONS_URL}/${full}`*/}
                   </div>
                   <div className="os-thumb-name">
                     <span>{changeCase.upper(name)}</span>

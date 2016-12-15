@@ -7,8 +7,6 @@ import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { voteMatchup } from '../../../actions/all';
-import { RIOT_HERO_ICONS_URL, RIOT_SPRITES_URL } from '../../../constants/urls';
-
 
 class HeroMatchupsList extends Component {
   static defaultProps: {
@@ -18,7 +16,7 @@ class HeroMatchupsList extends Component {
   render () {
     const {
       heroKey,
-      heroesMap,
+      heroesHash,
       matchups,
       shouldHideMeta
     } = this.props;
@@ -52,7 +50,7 @@ class HeroMatchupsList extends Component {
           const {
             portrait,
             name
-          } = heroesMap[matchupHeroKey];
+          } = heroesHash[matchupHeroKey];
 
           const key = matchupHeroKey + type;
 
@@ -160,16 +158,16 @@ class HeroMatchupsList extends Component {
 
 function mapStateToProps (state) {
   const {
-    riot: {
+    hero: {
       heroes: {
-        _map: heroesMap,
+        _hash: heroesHash,
         isFetching: isFetchingHeroes
       }
     }
   } = state;
 
   return {
-    heroesMap,
+    heroesHash,
     isFetchingHeroes
   };
 }
