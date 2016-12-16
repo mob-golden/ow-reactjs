@@ -1,7 +1,6 @@
 import React from 'react';
 import changeCase from 'change-case';
 import classNames from 'classnames';
-import moment from 'moment';
 
 import {
   Component,
@@ -60,7 +59,6 @@ class TipsList extends Component {
           } = tip;
 
           const name = authorName ? authorName : 'anonymous';
-          const formattedCreatedAt = moment(parseInt(createdAt)).fromNow();
 
           const downvoteClass = classNames({
             'fa fa-fw fa-caret-down': true,
@@ -91,7 +89,6 @@ class TipsList extends Component {
                 }}
               ></p>
               <div className="os-counter-tip-footer clearfix">
-                {/* <span className="os-counter-tip-metadata">{formattedCreatedAt} by <a href="javascript:;">{name}</a></span> */}
                 <span className="os-counter-tip-metadata">by <span className="os-counter-tip-author">{name}</span></span>
                 {shouldHideMeta ? null
                   : <span className="os-counter-tip-score">

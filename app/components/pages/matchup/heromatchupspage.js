@@ -1,16 +1,13 @@
 import React from 'react';
 import changeCase from 'change-case';
-
-import { toArray } from 'lodash';
 import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import HeroMatchupsList from './heromatchupslist';
 import Loader from '../../loader';
-import { fetchMatchupsForHero } from '../../../actions/api';
+import { fetchMatchupsIfNeeded } from '../../../actions/api';
 
 class HeroMatchupsPage extends Component {
-
 
   constructor (props) {
     super(props);
@@ -30,7 +27,7 @@ class HeroMatchupsPage extends Component {
 
     const heroKey = changeCase.lower(_heroKey);
 
-    dispatch(fetchMatchupsForHero(heroKey));
+    dispatch(fetchMatchupsIfNeeded(heroKey));
   }
 
   componentWillReceiveProps (nextProps) {
@@ -51,7 +48,7 @@ class HeroMatchupsPage extends Component {
     const nextHeroKey = changeCase.lower(_nextHeroKey);
 
     if (heroKey !== nextHeroKey) {
-      dispatch(fetchMatchupsForHero(nextHeroKey));
+      dispatch(fetchMatchupsIfNeeded(nextHeroKey));
     }
   }
 
@@ -85,6 +82,7 @@ class HeroMatchupsPage extends Component {
                 <HeroMatchupsList
                   heroKey={heroKey}
                   matchups={matchups.positive}
+                  matchupType = "positive"
                 />
               <div className="row">
                 <div className="col-lg-12 center-text"> 
@@ -103,6 +101,7 @@ class HeroMatchupsPage extends Component {
                 <HeroMatchupsList
                   heroKey={heroKey}
                   matchups={matchups.negative}
+                  matchupType = "negative"
                 />
               <div className="row">
                 <div className="col-lg-12 center-text"> 
@@ -121,6 +120,7 @@ class HeroMatchupsPage extends Component {
                 <HeroMatchupsList
                   heroKey={heroKey}
                   matchups={matchups.teamup}
+                  matchupType = "teamup"
                 />
               <div className="row">
                 <div className="col-lg-12 center-text"> 

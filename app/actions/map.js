@@ -1,6 +1,4 @@
 import fetch from 'isomorphic-fetch';
-import mapKeys from 'lodash/mapKeys';
-
 import {
   OW_MAPS_URL
 } from '../constants/urls';
@@ -63,8 +61,6 @@ function requestMaps () {
 }
 
 function receiveMaps (data) {
-  // const cleanedData = mapKeys(data.data, (v, k) => ("" + k).replace(/[-\+'`´\s]+/g, '').toLowerCase());
-  // data.data = cleanedData;
 
   return {
     type: RECEIVE_MAPS,

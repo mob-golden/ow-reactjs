@@ -1,7 +1,7 @@
 import React from 'react';
 import changeCase from 'change-case';
 import classNames from 'classnames';
-import { take, toArray, findIndex } from 'lodash';
+import { take } from 'lodash';
 
 import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
@@ -18,6 +18,7 @@ class HeroMatchupsList extends Component {
       heroKey,
       heroesHash,
       matchups,
+      matchupType,
       shouldHideMeta
     } = this.props;
 
@@ -52,18 +53,16 @@ class HeroMatchupsList extends Component {
             name
           } = heroesHash[matchupHeroKey];
 
-          const key = matchupHeroKey + type;
+          const key = heroKey + matchupHeroKey + type;
 
           const downvoteClass = classNames({
             'fa fa-fw': true,
-            'fa-thumbs-o-down': true,
-            'invisible': votes[key] === 'upvote'
+            'fa-thumbs-o-down': true
           });
 
           const upvoteClass = classNames({
             'fa fa-fw': true,
-            'fa-thumbs-o-up': true,
-            'invisible': votes[key] === 'downvote'
+            'fa-thumbs-o-up': true
           });
 
           const downvotesClass = classNames({
@@ -104,7 +103,7 @@ class HeroMatchupsList extends Component {
                 <div className="os-matchup-vote-score">
                   <div
                     className={upvotesClass}
-                    onClick={this.handleVote.bind(null, key, heroKey, matchupHeroKey, 'upvote')}
+                    onClick={this.handleVote.bind(null, key, heroKey, matchupHeroKey, 'upvote', matchupType)}
                   >
                     <i className={upvoteClass}></i>
                     &nbsp;
@@ -112,7 +111,7 @@ class HeroMatchupsList extends Component {
                   </div>
                   <div
                     className={downvotesClass}
-                    onClick={this.handleVote.bind(null, key, heroKey, matchupHeroKey, 'downvote')}
+                    onClick={this.handleVote.bind(null, key, heroKey, matchupHeroKey, 'downvote', matchupType)}
                   >
                     <i className={downvoteClass}></i>
                     &nbsp;
@@ -127,7 +126,7 @@ class HeroMatchupsList extends Component {
     );
   }
 
-  handleVote = (key, heroKey, matchupHeroKey, downOrUp) => {
+  handleVote = (key, heroKey, matchupHeroKey, downOrUp, matchupType) => {
     const {
       dispatch
     } = this.props;
@@ -135,7 +134,7 @@ class HeroMatchupsList extends Component {
     const votes = JSON.parse(localStorage.getItem('matchupVotes'));
 
     if (!votes[key]) {
-      dispatch(voteMatchup(heroKey, matchupHeroKey, downOrUp));
+      dispatch(voteMatchup(heroKey, matchupHeroKey, downOrUp, matchupType));
 
       const selector = `.jq-matchup-${downOrUp}-${key}`;
       const score = parseInt($(selector).text());
@@ -143,7 +142,6 @@ class HeroMatchupsList extends Component {
 
       const otherDownOrUp = downOrUp === 'downvote' ? 'upvote' : 'downvote';
       const otherSelector = `.jq-matchup-${otherDownOrUp}-${key}`;
-      $(otherSelector).prev().addClass(`invisible`);
 
       $(selector).parent().addClass('os-matchup-item-votes-active');
       $(otherSelector).parent().addClass('os-matchup-item-votes-active');

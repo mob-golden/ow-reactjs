@@ -1,10 +1,7 @@
-// TODO: comment and document
-
 import Fuse from 'fuse.js';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import classNames from 'classnames';
-import values from 'lodash/values';
+import { values } from 'lodash';
 
 import {
   Component,

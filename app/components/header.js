@@ -1,20 +1,10 @@
 import React from 'react';
-import qs from 'querystring';
-
 import Modal from './modal';
 
-import {
-  Component,
-  PropTypes
-} from 'react';
+import { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 
-import {
-  connect
-} from 'react-redux';
-
-import {
-  Link
-} from 'react-router';
+import { Link } from 'react-router';
 
 import {
   setUser,

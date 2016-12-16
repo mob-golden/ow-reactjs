@@ -1,11 +1,11 @@
 import React from 'react';
 import changeCase from 'change-case';
-import take from 'lodash/take';
+import { take } from 'lodash';
 import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import TipsList from '../tip/tipslist';
 import Loader from '../../loader';
-import { fetchMatchupTips } from '../../../actions/api';
+import { fetchMatchupTipsIfNeeded } from '../../../actions/api';
 
 class MatchupTipsPage extends Component {
   constructor (props) {
@@ -28,7 +28,7 @@ class MatchupTipsPage extends Component {
     const matchupHeroKey = changeCase.lower(_matchupHeroKey);
 
 
-    dispatch(fetchMatchupTips(heroKey,matchupHeroKey));
+    dispatch(fetchMatchupTipsIfNeeded(heroKey,matchupHeroKey));
   }
 
   componentWillReceiveProps (nextProps) {
@@ -54,7 +54,7 @@ class MatchupTipsPage extends Component {
     const nextMatchupHeroKey = changeCase.lower(_nextMatchupHeroKey);
 
     if (heroKey !== nextHeroKey || matchupHeroKey !== nextMatchupHeroKey) {
-      dispatch(fetchMatchupTips(nextHeroKey,nextMatchupHeroKey));
+      dispatch(fetchMatchupTipsIfNeeded(nextHeroKey,nextMatchupHeroKey));
     }
   }
 
@@ -146,7 +146,7 @@ function mapStateToProps (state) {
     api: {
       matchupTips: {
         matchupTips: matchupTipsData,
-        isFetching: isFetchingTips
+        isFetching: isFetchingMatchupTips
       }
     }
   } = state;
@@ -155,7 +155,7 @@ function mapStateToProps (state) {
     heroesHash,
     isFetchingHeroes, 
     matchupTips: matchupTipsData,
-    isFetchingTips
+    isFetchingMatchupTips
   };
 }
 

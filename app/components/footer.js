@@ -1,12 +1,8 @@
 import React from 'react';
 
-import {
-  Component
-} from 'react';
+import { Component } from 'react';
 
-import {
-  connect
-} from 'react-redux';
+import { connect } from 'react-redux';
 
 class Footer extends Component {
   render () {
@@ -50,14 +46,4 @@ class Footer extends Component {
   }
 }
 
-function mapStateToProps (state, ownProps) {
-  const {
-    params
-  } = ownProps;
-
-  return {
-    router: ownProps
-  };
-}
-
-export default connect(mapStateToProps)(Footer);
+export default connect()(Footer);

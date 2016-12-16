@@ -1,13 +1,12 @@
 import React from 'react';
 import changeCase from 'change-case';
-import take from 'lodash/take';
+import { take } from 'lodash';
 import { Link } from 'react-router';
 import { Component, PropTypes } from 'react';
-import { findIndex } from 'lodash';
 import { connect } from 'react-redux';
 import TipsList from './tipslist';
 import Loader from '../../loader';
-import { fetchTipsForHero } from '../../../actions/api';
+import { fetchTipsIfNeeded } from '../../../actions/api';
 
 class GeneralTipsPage extends Component {
 
@@ -28,7 +27,7 @@ class GeneralTipsPage extends Component {
 
     const heroKey = changeCase.lower(_heroKey);
 
-    dispatch(fetchTipsForHero(heroKey));
+    dispatch(fetchTipsIfNeeded(heroKey));
   }
 
   componentWillReceiveProps (nextProps) {
@@ -49,7 +48,7 @@ class GeneralTipsPage extends Component {
     const nextHeroKey = changeCase.lower(_nextHeroKey);
 
     if (heroKey !== nextHeroKey) {
-      dispatch(fetchTipsForHero(nextHeroKey));
+      dispatch(fetchTipsIfNeeded(nextHeroKey));
     }
   }
 

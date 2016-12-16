@@ -1,12 +1,14 @@
 import React from 'react';
 import changeCase from 'change-case';
-import take from 'lodash/take';
+import classNames from 'classnames';
 import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+
 import TipsList from '../tip/tipslist';
 import Loader from '../../loader';
-import { fetchTipsForHero } from '../../../actions/api';
-import { addHeroTip } from '../../../actions/all';
+import { addHeroMatchupTip } from '../../../actions/all';
+import { fetchMatchupTipsIfNeeded } from '../../../actions/api';
+import { voteMatchup } from '../../../actions/all';
 
 class MapRankingTipsPage extends Component {
 
@@ -37,34 +39,40 @@ class MapRankingTipsPage extends Component {
     const {
       dispatch,
       params: {
-        heroKey: _heroKey
+        heroKey: _heroKey,
+        mapKey: _mapKey
       }
     } = this.props;
 
     const heroKey = changeCase.lower(_heroKey);
+    const mapKey = changeCase.lower(_mapKey);
 
-    dispatch(fetchTipsForHero(heroKey));
+    dispatch(fetchMatchupTipsIfNeeded(heroKey,mapKey));
   }
 
   componentWillReceiveProps (nextProps) {
     const {
       dispatch,
       params: {
-        heroKey: _heroKey
+        heroKey: _heroKey,
+        mapKey: _mapKey
       }
     } = this.props;
 
     const {
       params: {
-        heroKey: _nextHeroKey
+        heroKey: _nextHeroKey,
+        mapKey: _nextMapKey
       }
     } = nextProps;
 
     const heroKey = changeCase.lower(_heroKey);
     const nextHeroKey = changeCase.lower(_nextHeroKey);
+    const mapKey = changeCase.lower(_mapKey);
+    const nextMapKey = changeCase.lower(_nextMapKey);
 
-    if (heroKey !== nextHeroKey) {
-      dispatch(fetchTipsForHero(nextHeroKey));
+    if (heroKey !== nextHeroKey || mapKey !== nextMapKey) {
+      dispatch(fetchMatchupTipsIfNeeded(nextHeroKey,nextMapKey));
     }
   }
 
@@ -73,6 +81,8 @@ class MapRankingTipsPage extends Component {
       
       heroesHash,
       isFetchingHeroes,
+      mapsHash,
+      isFetchingMaps,
       matchupTips,
       isFetchingMatchupTips,
       params: {
@@ -83,34 +93,96 @@ class MapRankingTipsPage extends Component {
     } = this.props;
 
 
-    if(isFetchingMatchupTips || !matchupTips.for || !matchupTips.against || isFetchingHeroes || !heroesHash){
+    if(isFetchingMatchupTips || !matchupTips.for || isFetchingHeroes || !heroesHash || isFetchingMaps || !mapsHash){
       return (<Loader/>);
     }
 
 
     const showAddForm = true;
-    const tipType = _tipType;
     const heroKey = changeCase.lower(_heroKey);
-    const heroName = changeCase.upper(tips.for.data.name);
+    const heroName = heroesHash[heroKey].name;
+    const mapKey = changeCase.lower(_mapKey);
+    const mapName = mapsHash[mapKey].name;
+    const mapType = changeCase.upper(mapsHash[mapKey].type);
+    const key = heroKey + mapKey;
+
+    if (!localStorage.getItem('matchupVotes')) localStorage.setItem('matchupVotes', JSON.stringify({}));
+    const votes =  JSON.parse(localStorage.getItem('matchupVotes'));
+
+    const downvoteClass = classNames({
+      'fa fa-fw': true,
+      'fa-thumbs-o-down': true
+    });
+
+    const upvoteClass = classNames({
+      'fa fa-fw': true,
+      'fa-thumbs-o-up': true
+    });
+
+    const downvotesClass = classNames({
+      'os-matchup-vote-down': true,
+      'os-matchup-item-votes-active': votes[key],
+      'os-matchup-item-votes-non-active': !votes[key]
+    });
+
+    const upvotesClass = classNames({
+      'os-matchup-vote-up': true,
+      'os-matchup-item-votes-active': votes[key],
+      'os-matchup-item-votes-non-active': !votes[key]
+    });
+
 
     return (
       <div className="os-hero-tip-container">
         <div className="row">
+          <div className="os-map-header-nav">
+            <div className="os-map-header-background">
+              <img className="os-map-header-image" src={mapsHash[mapKey].image}/>
+            </div>
+            <div className="os-map-ranking-info">
+              <span className="os-map-header-typename">
+                { mapType } 
+              </span>
+              <h5 className="os-white os-font-size-24">
+                { mapName }
+              </h5>
+            </div>
+            <div className="os-map-ranking-vote-group">
+              <span
+                className={upvotesClass}
+                onClick={this.handleVote.bind(null, key, heroKey, mapKey, 'upvote')}
+              >
+                <i className={upvoteClass}></i>
+                &nbsp;
+                <span className={`jq-matchup-upvote-${key}`}>{matchupTips.for.data.score.upvotes}</span>
+              </span>
+              <span
+                className={downvotesClass}
+                onClick={this.handleVote.bind(null, key, heroKey, mapKey, 'downvote')}
+              >
+                <i className={downvoteClass}></i>
+                &nbsp;
+                <span className={`jq-matchup-downvote-${key}`}>{matchupTips.for.data.score.downvotes}</span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="row">
           <div className="os-hero-viewall-tip-col">
             <div className="os-hero-tip-body">
               <span className="os-hero-tip-name">
-                {heroName} 
+                TIPS FOR {changeCase.upper(heroName)} 
               </span>
               <h5 className="os-hero-tip-title">
-                { tipType == "for" ? `ALL STRATEGY & TIPS` : `ALL COUNTER TIPS` }
+                { changeCase.upper(mapName) }
               </h5>
               <TipsList
-                tips={tipType == "for" ? tips.for.data.tips : tips.against.data.tips}
+                tips={matchupTips.for.data.tips}
                 shouldHideMeta={true}
               />
             </div>
           </div>
-          {/*token &&*/ showAddForm ?
+          {/*token && */ showAddForm ?
             <div className="os-hero-addtip-tip-col">
               <div className="os-hero-addtip-body">
                 <h5 className="os-hero-tip-title">ADD A TIP</h5>
@@ -130,12 +202,13 @@ class MapRankingTipsPage extends Component {
                     const localUserId = localStorage.getItem('userId');
                     const localUsername = localStorage.getItem('username');
 
-                    dispatch(addHeroTip({
+                    dispatch(addHeroMatchupTip({
                       authorId: localUserId,
                       authorName: localUsername,
                       heroKey: heroKey,
+                      matchupKey: mapKey,
                       content: textarea.value,
-                      tipType: tipType,
+                      tipType: "map",
                       token
                     }));
                   }
@@ -143,9 +216,7 @@ class MapRankingTipsPage extends Component {
                   <fieldset className="form-group">
                     <textarea
                       className="form-control os-textarea"
-                      placeholder={tipType == "for" ? 
-                                    `Share strategies and tips on how to play ${heroName}.`:
-                                    `Share counter tips on how to play ${heroName}.`}
+                      placeholder={ `Share strategies and tips on how to play ${heroName} on ${mapName}.` }
                       ref={c => this._tipsBox = c}
                       rows={9}
                     >
@@ -159,11 +230,38 @@ class MapRankingTipsPage extends Component {
                 </form>
               </div>
             </div>
-          : null}
+          : null }
         </div>
       </div>
     );
   }
+
+  handleVote = (key, heroKey, matchupHeroKey, downOrUp) => {
+    const {
+      dispatch
+    } = this.props;
+
+    const votes = JSON.parse(localStorage.getItem('matchupVotes'));
+
+    if (!votes[key]) {
+      dispatch(voteMatchup(heroKey, matchupHeroKey, downOrUp, 'map'));
+
+      const selector = `.jq-matchup-${downOrUp}-${key}`;
+      const score = parseInt($(selector).text());
+      $(selector).text(score + 1);
+
+      const otherDownOrUp = downOrUp === 'downvote' ? 'upvote' : 'downvote';
+      const otherSelector = `.jq-matchup-${otherDownOrUp}-${key}`;
+      
+      $(selector).parent().addClass('os-matchup-item-votes-active');
+      $(otherSelector).parent().addClass('os-matchup-item-votes-active');
+      $(selector).parent().removeClass('os-matchup-item-votes-non-active');
+      $(otherSelector).parent().removeClass('os-matchup-item-votes-non-active');
+
+      votes[key] = downOrUp;
+      localStorage.setItem('matchupVotes', JSON.stringify(votes));
+    }
+  };
 }
 
 
@@ -176,7 +274,7 @@ function mapStateToProps (state) {
     },
     map: {
       maps: {
-        _array: mapsArray,
+        _hash: mapsHash,
         isFetching: isFetchingMaps
       }
     },
@@ -189,7 +287,7 @@ function mapStateToProps (state) {
     api: {
       matchupTips: {
         matchupTips: matchupTipsData,
-        isFetching: isFetchingTips
+        isFetching: isFetchingMatchupTips
       }
     }
   } = state;
@@ -200,10 +298,10 @@ function mapStateToProps (state) {
     userId,
     heroesHash,
     isFetchingHeroes, 
-    mapsArray,
+    mapsHash,
     isFetchingMaps,
     matchupTips: matchupTipsData,
-    isFetchingTips
+    isFetchingMatchupTips
   };
 }
 

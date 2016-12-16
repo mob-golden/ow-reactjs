@@ -2,7 +2,6 @@ import Ad from 'react-google-publisher-tag';
 import React from 'react';
 import changeCase from 'change-case';
 
-import { take, uniqBy, toArray } from 'lodash';
 import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 

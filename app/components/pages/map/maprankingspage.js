@@ -1,13 +1,13 @@
 import React from 'react';
 import changeCase from 'change-case';
-
-import { toArray } from 'lodash';
 import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+
 import MapRankingsList from './maprankingslist';
 import Loader from '../../loader';
-import { fetchMatchupsForHero } from '../../../actions/api';
+
+import { fetchMatchupsIfNeeded } from '../../../actions/api';
 
 class MapRankingsPage extends Component {
 
@@ -28,7 +28,7 @@ class MapRankingsPage extends Component {
 
     const heroKey = changeCase.lower(_heroKey);
 
-    dispatch(fetchMatchupsForHero(heroKey));
+    dispatch(fetchMatchupsIfNeeded(heroKey));
   }
 
   componentWillReceiveProps (nextProps) {
@@ -49,7 +49,7 @@ class MapRankingsPage extends Component {
     const nextHeroKey = changeCase.lower(_nextHeroKey);
 
     if (heroKey !== nextHeroKey) {
-      dispatch(fetchMatchupsForHero(nextHeroKey));
+      dispatch(fetchMatchupsIfNeeded(nextHeroKey));
     }
   }
 

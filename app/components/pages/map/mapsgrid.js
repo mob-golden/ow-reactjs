@@ -1,13 +1,7 @@
 import React from 'react';
 import changeCase from 'change-case';
-
-import {
-  Component
-} from 'react';
-
-import {
-  Link
-} from 'react-router';
+import { Component } from 'react';
+import { Link } from 'react-router';
 
 import {  MAP_TYPES } from '../../../constants/types'
 

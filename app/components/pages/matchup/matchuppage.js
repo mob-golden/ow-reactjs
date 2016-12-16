@@ -2,17 +2,14 @@ import Ad from 'react-google-publisher-tag';
 import React from 'react';
 import changeCase from 'change-case';
 
-import { take, uniqBy, toArray, slice } from 'lodash';
 import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 import Loader from '../../loader';
 import Typeahead from '../../typeahead';
-import TabsNav from '../../tabsnav';
 import HeroFooter from '../hero/herofooter';
 
-import { fetchCounterTipsIfNeeded } from '../../../actions/api';
 import { adDimensions } from '../../../constants/ads';
 
 class MatchupPage extends Component {

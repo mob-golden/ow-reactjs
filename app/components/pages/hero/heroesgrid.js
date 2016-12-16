@@ -1,20 +1,10 @@
 import React from 'react';
 
-import Loader from '../../loader';
 import changeCase from 'change-case';
+import { Component } from 'react';
+import { Link } from 'react-router';
 
-
-import {
-  Component
-} from 'react';
-
-import {
-  Link
-} from 'react-router';
-
-import {
-  HERO_TYPES
-} from '../../../constants/types';
+import {  HERO_TYPES } from '../../../constants/types';
 
 class HeroesGrid extends Component {
   static defaultProps = {

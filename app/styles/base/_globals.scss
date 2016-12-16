@@ -16,6 +16,10 @@
   font-size: 18px;
 }
 
+.os-font-size-24{
+  font-size: 24px;
+}
+
 a, p, h1, h2, h3, h4, h5, h6 {
   font-family: $FONT_2;
 }
@@ -76,6 +80,10 @@ body {
   color: $GRAY_3;
 }
 
+.os-textarea {
+  padding: 15px 20px;
+}
+
 .os-textarea::-webkit-input-placeholder {
   font-family: $FONT_1;
   font-size: 14px;
@@ -89,4 +97,10 @@ body {
 .os-textarea:-ms-input-placeholder {
   font-family: $FONT_1;
   font-size: 14px;
+}
+.modal-backdrop.in{
+  opacity: 0.9;
+}
+.modal-backdrop {
+  color: $BLACK_3;
 }

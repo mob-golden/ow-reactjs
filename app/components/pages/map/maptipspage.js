@@ -1,17 +1,14 @@
 import Ad from 'react-google-publisher-tag';
 import React from 'react';
 import changeCase from 'change-case';
+import { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+
 import Loader from '../../loader';
 import TabsNav from '../../tabsnav';
 import MapsGrid from './mapsgrid';
 
-import { fetchMapsIfNeeded } from '../../../actions/map';
-
-import { Component, PropTypes } from 'react';
-
-import {
-  connect
-} from 'react-redux';
+import { fetchMapTipsIfNeeded } from '../../../actions/api';
 
 import { MAP_TYPES } from '../../../constants/types';
 import { adDimensions } from '../../../constants/ads';

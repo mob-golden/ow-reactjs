@@ -1,9 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
 import { Link } from 'react-router';
-import changeCase from 'change-case';
-
-import Loader from '../../loader';
 
 import {
   HERO_TYPES

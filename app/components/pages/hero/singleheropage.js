@@ -2,14 +2,12 @@ import Ad from 'react-google-publisher-tag';
 import React from 'react';
 import changeCase from 'change-case';
 
-import { take, uniqBy, toArray, slice, findIndex } from 'lodash';
 import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 import Loader from '../../loader';
 import Typeahead from '../../typeahead';
-import TabsNav from '../../tabsnav';
 import HeroFooter from './herofooter';
 import { adDimensions } from '../../../constants/ads';
 

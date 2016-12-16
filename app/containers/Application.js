@@ -15,6 +15,7 @@ import MapRankingTipsPage from '../components/pages/map/maprankingtipspage';
 import MatchupPage from '../components/pages/matchup/matchuppage';
 import MatchupTipsPage from '../components/pages/matchup/matchuptipspage';
 import AddTipsPage from '../components/pages/tip/addtipspage';
+import MapTipsPage from '../components/pages/map/maptipspage';
 
 export const routes = (
   <Route path="/" component={Root} >
@@ -37,6 +38,7 @@ export const routes = (
     </Route>
 
     <Route path="/maps" component={MapsPage} />
+    <Route path="/maps/:mapKey" component={MapTipsPage} />
   </Route>
 );
 

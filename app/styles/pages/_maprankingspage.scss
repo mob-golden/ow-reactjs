@@ -20,6 +20,44 @@
   box-shadow: 0px 2px 2px 0 rgba($BLACK_0, 0.1) ;
 }
 
+.os-map-header-image{
+  background-color: black;
+  filter: blur(3px);
+  -webkit-filter: blur(3px);
+  margin: -10px;
+  opacity: 0.3;
+  width: 100%;
+  left: 0px;
+  top: 0px;
+}
+
+.os-map-header-background{
+  background-color: $BLACK_2;
+  opacity: 0.5;
+  height: 138px;
+}
+
+.os-map-header-nav{
+  overflow: hidden;
+  height: 138px;
+  position:relative;
+  margin: 0px 10px 15px 10px;
+}
+.os-map-header-typename{
+  font-size: 14px;
+  color: $GRAY_1;
+}
+.os-map-ranking-vote-group{
+  top: 60px;
+  right: 50px;
+  position: absolute;
+}
+.os-map-ranking-info{
+  top: 45px;
+  left: 50px;
+  position: absolute;
+}
+
 .os-maprankings-list {
 	padding: 20px 0px;
 }

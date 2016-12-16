@@ -2,8 +2,6 @@ require("./styles/main.scss");
 
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
 import initialization from './store/initialization';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { browserHistory } from 'react-router';
