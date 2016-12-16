@@ -8,6 +8,7 @@ import {
 
 import {
   OW_HERO_URL,
+  OW_MAP_URL,
   OW_MATCHUPS_URL
 } from '../constants/urls';
 
@@ -328,5 +329,83 @@ function receiveTips (tip, heroKey, tipType) {
     heroKey,
     tipType,
     tip
+  };
+}
+
+
+//================================MAP TIPS API=================================//
+
+export const REQUEST_MAP_TIPS = 'REQUEST_MAP_TIPS';
+export const REQUEST_MAP_TIPS_SUCCESS = 'REQUEST_MAP_TIPS_SUCCESS';
+export const REQUEST_MAP_TIPS_FAILURE = 'REQUEST_MAP_TIPS_FAILURE';
+export const RECEIVE_MAP_TIPS = 'RECEIVE_MAP_TIPS';
+
+export function fetchMapTipsIfNeeded (mapKey) {
+  const params = {
+    sort: 'score.total-desc',
+  };
+  return (dispatch, getState) => {
+    if (shouldFetchMapTips(getState(), mapKey))
+      return dispatch(fetchMapTips(mapKey, params));
+  };
+}
+
+function shouldFetchMapTips (state, mapKey) {
+  const {
+    api: {
+      mapTips
+    }
+  } = state;
+
+  if (mapTips.isFetching)
+    return false;
+
+  // if (mapTips.isFetching || mapKey === mapTips.mapKey)
+  //   return false;
+
+  return true;
+}
+
+function fetchMapTips (mapKey, params) {
+  return dispatch => {
+    dispatch(requestMapTips(mapKey));
+
+    const url = `${OW_MAP_URL}/${mapKey}`;
+    return fetch(url)
+      .then(response => {
+        const {
+          status,
+          statusText
+        } = response;
+
+        if (status >= 200 && status < 300) {
+          return response;
+        } else {
+          const error = new Error(statusText);
+          console.log(`Response returned an error for ${url}: ${error.message}`);
+
+          return Promise.reject(error);
+        }
+      })
+      .then(response => response.json())
+      .then(json => dispatch(receiveMapTips(json)))
+      .catch (error => {
+        console.log(`Request failed for ${url}: ${error.message}`);
+      });
+  }
+}
+
+function requestMapTips (mapKey) {
+  return {
+    type: REQUEST_MAP_TIPS,
+    mapKey
+  };
+}
+
+function receiveMapTips (mapTip, mapKey,) {
+  return {
+    type: RECEIVE_MAP_TIPS,
+    mapKey,
+    mapTip
   };
 }

@@ -14,7 +14,9 @@ import {
   REQUEST_TIPS,
   REQUEST_TIPS_SUCCESS,
   REQUEST_TIPS_FAILURE,
-  RECEIVE_TIPS
+  RECEIVE_TIPS,
+  REQUEST_MAP_TIPS,
+  RECEIVE_MAP_TIPS
 } from '../actions/api';
 
 import {
@@ -170,10 +172,35 @@ function tips (state = initialTipsState, action) {
   }
 }
 
+const initialMapTipsState = {
+  isFetching: false,
+  data: null
+};
+
+function mapTips (state = initialMapTipsState, action) {
+  switch (action.type) {
+    case REQUEST_MAP_TIPS:
+      return {
+        ...state,
+        isFetching: true
+      };
+    case RECEIVE_MAP_TIPS:
+      return {
+        ...state,
+        isFetching: false,
+        data: action.mapTip,
+      };
+    default:
+      return state;
+  }
+}
+
+
 const api = combineReducers({
   matchupTips,
   tips,
-  matchups
+  matchups,
+  mapTips
 });
 
 export default api;

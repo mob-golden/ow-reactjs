@@ -3,32 +3,30 @@ import React from 'react';
 import changeCase from 'change-case';
 import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
+import TipsList from '../tip/tipslist';
 import Loader from '../../loader';
-import TabsNav from '../../tabsnav';
-import MapsGrid from './mapsgrid';
 
 import { fetchMapTipsIfNeeded } from '../../../actions/api';
-
-import { MAP_TYPES } from '../../../constants/types';
 import { adDimensions } from '../../../constants/ads';
 
-class MapsPage extends Component {
+class MapTipsPage extends Component {
 
   constructor (props) {
     super(props);
-
-    this.state = {
-      activeTabId: "all"
-    };
   }
 
   componentWillMount () {
     const {
+      params:{
+        mapKey: _mapKey
+      },
       dispatch
     } = this.props;
 
-    dispatch(fetchMapsIfNeeded());
+    const mapKey = changeCase.lower(_mapKey);
+    dispatch(fetchMapTipsIfNeeded(mapKey));
   };
 
   componentWillUnmount () {
@@ -36,14 +34,27 @@ class MapsPage extends Component {
   }
 
   render () {
-    const {
-      activeTabId
-    } = this.state;
 
     const {
-      mapsArray,
+      params:{
+        mapKey: _mapKey
+      },
+      mapTips,
+      isFetchingMapTips,
+      mapsHash,
       isFetchingMaps
     } = this.props;
+
+    if(isFetchingMaps || !mapsHash || isFetchingMapTips || !mapTips){
+      return (<Loader/>);
+    }
+
+    const mapKey = changeCase.lower(_mapKey);
+    const{
+      type: mapType,
+      name: mapName,
+      image: mapImage
+    } = mapsHash[mapKey];
 
     return (
       <div className="container os-content">
@@ -52,39 +63,56 @@ class MapsPage extends Component {
           dimensions={adDimensions.BEFORE_RECT}
           path={'/22280732/ChampionSelect_728x90_HP_BTF1'}
         />
-        <div className="os-maps row">
+        
+        <div className="os-map row">
           <div className="col-lg-12">
-            <div className="os-maps-top">
-              <h2 className="os-white">CHOOSE A MAP</h2>
-              <p className="os-white hidden-xs-down os-font-size-18">
-                The list below is sorted alphabetically, the maps are not ranked in any way. <br/>
-                Choose a map below to find recommended Heroes for each map.
-              </p>
-            </div>
-          </div>
-          <div className="col-lg-12">
-            <div className="os-maps-body">
-              <div>
-                <TabsNav
-                  activeTabId={activeTabId}
-                  handleClick={activeTabId => this.setState({activeTabId})}
-                  tabs={MAP_TYPES.map(type => {
-                    return {
-                      id: type.key,
-                      label: changeCase.upper(type.title)
-                    };
-                  })}
-                />
+            <div className="os-map-tip-header">
+              <div className="os-map-tip-header-background">
+                <img className="os-map-tip-header-image" src={mapImage}/>
               </div>
-              { !isFetchingMaps && mapsArray ? 
-                <MapsGrid
-                  filter={activeTabId}
-                  maps={mapsArray}
-                /> : <Loader /> } 
+              <div className="os-map-tip-header-title">
+                <span className="os-white os-font-size-20">
+                  { changeCase.upper(mapType) } 
+                </span>
+                <h5 className="os-white os-font-size-32">
+                  { mapName }
+                </h5>
+              </div>
             </div>
           </div>
-          
+          <div className="col-lg-12">
+            <div className="os-map-tip-body">
+              <div className="row">
+                <div className="col-lg-12">
+                  <Link to={`/maps`}>
+                    <i className="fa fa-long-arrow-left" aria-hidden="true"/> back to All Maps
+                  </Link>
+                </div>
+              </div>
+              <div className="row">
+                <div className="os-map-tip-container">
+                  <div className="row">
+                    <div className="col-lg-7">
+                      <div className="os-map-tip-col">
+                        <span className="os-hero-tip-name">
+                          {changeCase.upper(mapName)} 
+                        </span>
+                        <h5 className="os-hero-tip-title">
+                          MAP TIPS
+                        </h5>
+                        <TipsList 
+                          tips={mapTips.data.tips}
+                          shouldHideMeta={true}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      
         <Ad
           className="os-ad os-ad-bottom"
           dimensions={adDimensions.AFTER_SQUARE}
@@ -97,17 +125,25 @@ class MapsPage extends Component {
 
 function mapStateToProps (state) {
   const {
+    api: {
+      mapTips:{
+        data: mapTips,
+        isFetching: isFetchingMapTips
+      }
+    },
     map: {
       maps: {
-        _array: mapsArray,
+        _hash: mapsHash,
         isFetching: isFetchingMaps
       }
     }
   } = state;
   return {
-    mapsArray,
+    mapTips,
+    isFetchingMapTips,
+    mapsHash,
     isFetchingMaps
   };
 }
 
-export default connect(mapStateToProps)(MapsPage);
+export default connect(mapStateToProps)(MapTipsPage);
