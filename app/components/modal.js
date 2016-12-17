@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Modal = ({children, id, text}) => (
+const Modal = ({children, id}) => (
   <div
     className="modal fade"
     id={id}
@@ -17,19 +17,7 @@ const Modal = ({children, id, text}) => (
           </button>
         </div>
         <div className="modal-body clearfix">
-          <h6 className="modal-title m-b-1">{text}</h6>
           {children}
-        </div>
-        <div className="modal-footer">
-          <button
-            className="btn btn-primary"
-            type="submit"
-          >{text}</button>
-          <button
-            className="btn btn-secondary"
-            data-dismiss="modal"
-            type="button"
-          >Close</button>
         </div>
       </div>
     </div>

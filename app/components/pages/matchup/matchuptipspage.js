@@ -94,7 +94,6 @@ class MatchupTipsPage extends Component {
 
               <TipsList
                 tips={take(matchupTips.for.data, 5)}
-                shouldHideMeta={true}
               />
               <div className="row">
                 <div className="col-lg-3">
@@ -116,7 +115,6 @@ class MatchupTipsPage extends Component {
 
               <TipsList
                 tips={take(matchupTips.against.data, 5)}
-                shouldHideMeta={true}
               />
               <div className="row">
                 <div className="col-lg-3">

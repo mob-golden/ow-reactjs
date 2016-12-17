@@ -67,7 +67,7 @@ class GeneralTipsPage extends Component {
     }
 
     const heroKey = changeCase.lower(_heroKey);
-    const heroName = changeCase.upper(tips.for.data.name);
+    const heroName = tips.for.data.name;
     return (
       <div className="os-hero-tip-container">
         <div className="row">
@@ -80,23 +80,19 @@ class GeneralTipsPage extends Component {
               { 
                 <TipsList
                   tips={take(tips.for.data.tips, 5)}
-                  shouldHideMeta={true}
+                  firstText={`Share a tip on how to play ${heroName}`}
                 />
               }
-              <div className="row">
-                <div className="col-lg-3">
-                  <Link
-                    className="btn btn-primary os-btn-blue"
-                    to={`/heroes/${heroKey}/for`}
-                  >
-                  ADD A TIP
-                  </Link>
-                </div>
-                <div className="col-lg-3"> 
-                  <button
-                    className="btn btn-secondary os-btn-white"
-                  >VIEW ALL</button>
-                </div>
+              <div className="os-hero-tip-button-group">
+                <Link
+                  className="btn btn-primary os-btn-blue"
+                  to={`/heroes/${heroKey}/for`}
+                >
+                ADD A TIP
+                </Link>
+                <button
+                  className="btn btn-secondary os-btn-white"
+                >VIEW ALL</button>
               </div>
             </div>
           </div>
@@ -109,23 +105,19 @@ class GeneralTipsPage extends Component {
               { 
                 <TipsList
                   tips={take(tips.against.data.tips, 5)}
-                  shouldHideMeta={true}
+                  firstText={`Share a tip on how to play against ${heroName}`}
                 />
               }
-              <div className="row">
-                <div className="col-lg-3">
-                  <Link
-                    className="btn btn-primary os-btn-blue"
-                    to={`/heroes/${heroKey}/against`}
-                  >
-                  ADD A TIP
-                  </Link>
-                </div>
-                <div className="col-lg-3"> 
-                  <button
-                    className="btn btn-secondary os-btn-white"
-                  >VIEW ALL</button>
-                </div>
+              <div className="os-hero-tip-button-group">
+                <Link
+                  className="btn btn-primary os-btn-blue"
+                  to={`/heroes/${heroKey}/against`}
+                >
+                ADD A TIP
+                </Link>
+                <button
+                  className="btn btn-secondary os-btn-white"
+                >VIEW ALL</button>
               </div>
             </div>
           </div>

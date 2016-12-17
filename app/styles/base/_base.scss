@@ -1,1 +1,69 @@
 @import './constants';
+
+// ========================== Bootstrap Customization ============================
+
+.btn-primary {
+  background-color: $BLUE_1;
+  border-color: $BLUE_1;
+}
+
+.modal-backdrop.in{
+  opacity: 0.9;
+}
+.modal-backdrop {
+  background-color: $BLACK_3;
+}
+
+.modal-dialog{
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.modal-content{
+  .close {
+    color: $WHITE;
+    opacity: 1;
+  }
+  .modal-body {
+    border-radius: 5px;
+    border: solid 1px $GRAY_2;
+    padding: 50px 50px 30px 50px;
+    background-color: $WHITE;
+  }
+  .modal-header{
+    padding: 15px 0px;
+    border:none;
+  }
+  border: none;
+  background: transparent;
+}
+
+// ========================== HTML TAGS ===========================================
+
+
+a, p, h1, h2, h3, h4, h5, h6 {
+  font-family: $FONT_2;
+}
+a {
+  color: $GRAY_4;
+}
+a:hover {
+  cursor: pointer;
+  color: $GRAY_4;
+}
+
+small{
+  font-size: 14px;
+}
+
+span, div{
+  font-family: $FONT_1;
+}
+
+body {
+  background-image: url("/images/background.jpg");
+  background-repeat: no-repeat;
+  background-color: $WHITE_1;
+  background-attachment: fixed;
+  background-position: center top;
+}

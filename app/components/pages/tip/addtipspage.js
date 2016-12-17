@@ -101,7 +101,6 @@ class AddTipsPage extends Component {
               </h5>
               <TipsList
                 tips={tipType == "for" ? tips.for.data.tips : tips.against.data.tips}
-                shouldHideMeta={true}
               />
             </div>
           </div>

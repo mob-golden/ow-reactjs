@@ -178,7 +178,6 @@ class MapRankingTipsPage extends Component {
               </h5>
               <TipsList
                 tips={matchupTips.for.data.tips}
-                shouldHideMeta={true}
               />
             </div>
           </div>

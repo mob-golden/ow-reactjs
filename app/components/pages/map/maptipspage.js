@@ -102,7 +102,6 @@ class MapTipsPage extends Component {
                         </h5>
                         <TipsList 
                           tips={mapTips.data.tips}
-                          shouldHideMeta={true}
                         />
                       </div>
                     </div>

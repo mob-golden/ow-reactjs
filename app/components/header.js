@@ -174,13 +174,16 @@ class Header extends Component {
         <form onSubmit={this.signIn}>
           <Modal
             id={signInId}
-            text="Log in with your SoloMid account"
           >
-            {errorSignIn ? <div className="alert alert-warning">{errorSignIn.message}</div> : null}
-            <fieldset className="form-group">
-              <label htmlFor="email">Email address</label>
+            <fieldset className="os-modal-form-group-1">
+              <h4 className="os-modal-title">LOG IN</h4>
+              <span className="os-modal-description">You can login with your SoloMid Account.</span>
+              {errorSignIn ? <div className="alert alert-warning">{errorSignIn.message}</div> : null}
+            </fieldset>
+
+            <fieldset className="os-modal-form-group-2">
               <input
-                className="form-control"
+                className="form-control os-modal-input"
                 id="email"
                 onChange={this.handleEmailChange}
                 placeholder="Email"
@@ -189,10 +192,9 @@ class Header extends Component {
                 value={email}
               />
             </fieldset>
-            <fieldset className="form-group">
-              <label htmlFor="password">Password</label>
+            <fieldset className="os-modal-form-group-2">
               <input
-                className="form-control"
+                className="form-control os-modal-input"
                 id="password"
                 onChange={this.handlePasswordChange}
                 placeholder="Password"
@@ -201,25 +203,48 @@ class Header extends Component {
                 value={password}
               />
             </fieldset>
-            <Link
-              className="pull-xs-right"
-              onClick={e => {
-                $(`#${signInId}`).modal('hide');
-              }}
-              to="/forgot"
-            ><small>Forgot password?</small></Link>
+
+            <fieldset className="os-modal-form-group-3">
+              <button
+                className="btn btn-primary os-modal-btn"
+                type="submit"
+              >LOG IN</button>
+              <Link
+                className="os-modal-forgot-pwd-link"
+                onClick={e => {
+                  $(`#${signInId}`).modal('hide');
+                }}
+                to="/forgot"
+              ><small>Forgot password?</small></Link>
+            </fieldset>
+            <fieldset className="os-modal-form-group-4">
+              <small>Don't have an account? Register 
+                <Link
+                  className="os-modal-here-link"
+                  onClick={e => {
+                    $(`#${signInId}`).modal('hide');
+                  }}
+                  to="/signup"
+                > here
+                </Link>.
+              </small>
+            </fieldset>
           </Modal>
         </form>
+
         <form onSubmit={this.signUp}>
           <Modal
             id={signUpId}
             text="Sign up for a SoloMid account"
-          >
-            {errorSignUp ? <div className="alert alert-warning">{errorSignUp.message}</div> : null}
-            <fieldset className="form-group">
-              <label htmlFor="email">Username</label>
+          > 
+            <fieldset className="os-modal-form-group-1">
+              <h4 className="os-modal-title">SIGN UP</h4>
+              <span className="os-modal-description">Sign up for a SoloMid account.</span>
+              {errorSignUp ? <div className="alert alert-warning">{errorSignUp.message}</div> : null}
+            </fieldset>
+            <fieldset className="os-modal-form-group-2">
               <input
-                className="form-control"
+                className="form-control os-modal-input"
                 id="username"
                 onChange={this.handleUsernameChange}
                 pattern={`.{${MIN_LENGTH},${MAX_LENGTH}}`}
@@ -230,10 +255,9 @@ class Header extends Component {
                 value={username}
               />
             </fieldset>
-            <fieldset className="form-group">
-              <label htmlFor="email">Email address</label>
+            <fieldset className="os-modal-form-group-2">
               <input
-                className="form-control"
+                className="form-control os-modal-input"
                 id="email"
                 placeholder="Email"
                 onChange={this.handleEmailChange}
@@ -242,10 +266,9 @@ class Header extends Component {
                 value={email}
               />
             </fieldset>
-            <fieldset className="form-group">
-              <label htmlFor="password">Password</label>
+            <fieldset className="os-modal-form-group-2">
               <input
-                className="form-control"
+                className="form-control os-modal-input"
                 id="password"
                 onChange={this.handlePasswordChange}
                 pattern={`.{${MIN_LENGTH_PASSWORD},${MAX_LENGTH}}`}
@@ -256,10 +279,9 @@ class Header extends Component {
                 value={password}
               />
             </fieldset>
-            <fieldset className="form-group">
-              <label htmlFor="confirmPassword">Confirm password</label>
+            <fieldset className="os-modal-form-group-2">
               <input
-                className="form-control"
+                className="form-control os-modal-input"
                 id="confirmPassword"
                 pattern="*"
                 onChange={this.handleConfirmPasswordChange}
@@ -268,6 +290,25 @@ class Header extends Component {
                 value={confirmPassword}
               />
               {passwordMessage ?<small className="text-warning">{passwordMessage}</small> : null}
+            </fieldset>
+
+            <fieldset className="os-modal-form-group-3">
+              <button
+                className="btn btn-primary os-modal-btn"
+                type="submit"
+              >SIGN UP</button>
+            </fieldset>
+            <fieldset className="os-modal-form-group-4">
+              <small>Already have an account? Log
+                <Link
+                  className="os-modal-here-link"
+                  onClick={e => {
+                    $(`#${signInId}`).modal('hide');
+                  }}
+                  to="/login"
+                > here
+                </Link>.
+              </small>
             </fieldset>
           </Modal>
         </form>

@@ -28,28 +28,6 @@
   font-size: 32px;
 }
 
-a, p, h1, h2, h3, h4, h5, h6 {
-  font-family: $FONT_2;
-}
-a {
-  color: $GRAY_4;
-}
-a:hover {
-  cursor: pointer;
-  color: $GRAY_4;
-}
-
-span {
-  font-family: $FONT_1;
-}
-
-body {
-  background-image: url("/images/background.jpg");
-  background-repeat: no-repeat;
-  background-color: $WHITE_1;
-  background-attachment: fixed;
-  background-position: center top;
-}
 
 .os-content {
   padding-top: 100px;
@@ -73,19 +51,31 @@ body {
 }
 
 .os-btn-blue{
+  font-size: 12px;
   background-color: $BLUE_1;
   border-color: $BLUE_1;
-  font-size: 12px;
   border-radius: 2px;
-  padding: 0.75em 1.75em;
+  padding: 12px 30px;
+  margin: 0px 4px;
+  font-weight: bold;
 }
 
+.os-btn-blue:hover{
+  font-weight: bold;
+}
 .os-btn-white{
   font-size: 12px;
-  border-radius: 2px;
-  padding: 0.75em 1.75em;
   border: $GRAY_3 solid 1px;
   color: $GRAY_3;
+  border-radius: 2px;
+  padding: 12px 30px;
+  margin: 0px 4px;
+  font-weight: bold;
+}
+
+.os-btn-white:hover{
+  color: $GRAY_4;
+  font-weight: bold;
 }
 
 .os-textarea {
@@ -106,9 +96,13 @@ body {
   font-family: $FONT_1;
   font-size: 14px;
 }
-.modal-backdrop.in{
-  opacity: 0.9;
-}
-.modal-backdrop {
-  color: $BLACK_3;
+
+.os-alert-warning{
+  text-align: center;
+  padding: 15px;
+  margin-bottom: 16px;
+  background-color: $WHITE_2;
+  color: $GRAY_4;
+  font-size: 14px;
+  font-weight: bold;
 }

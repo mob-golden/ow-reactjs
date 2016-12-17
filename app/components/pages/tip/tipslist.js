@@ -21,14 +21,11 @@ import {
 } from '../../../actions/all';
 
 class TipsList extends Component {
-  static defaultProps: {
-    shouldHideMeta: false
-  }
 
   render () {
     const {
       tips,
-      shouldHideMeta
+      firstText
     } = this.props;
 
     if (!localStorage.getItem('tipVotes')) localStorage.setItem('tipVotes', JSON.stringify({}));
@@ -37,7 +34,7 @@ class TipsList extends Component {
     if (tips.length === 0) {
       return (
         <div className="os-counter-tips-list">
-          <div className="alert alert-warning">Be the first to submit a tip!</div>
+          <div className="os-alert-warning">{firstText}</div>
         </div>
       );
     }
@@ -90,17 +87,6 @@ class TipsList extends Component {
               ></p>
               <div className="os-counter-tip-footer clearfix">
                 <span className="os-counter-tip-metadata">by <span className="os-counter-tip-author">{name}</span></span>
-                {shouldHideMeta ? null
-                  : <span className="os-counter-tip-score">
-                    <i
-                      className={upvoteClass}
-                      onClick={this.handleVote.bind(null, id, 'upvote')}
-                    ></i><span className={`jq-counter-tip-${id}`}>{scoreTotal}</span><i
-                      className={downvoteClass}
-                      onClick={this.handleVote.bind(null, id, 'downvote')}
-                    ></i>
-                  </span>
-                }
               </div>
             </div>
           );
@@ -110,29 +96,25 @@ class TipsList extends Component {
               className="os-counter-tip"
               key={id}
             >
-              {shouldHideMeta ?
-                <div className="os-counter-tip-score-alt">
-                  <div className="os-counter-tip-vote-alt os-counter-tip-upvote-alt">
-                    <i
-                      className={upvoteClass}
-                      onClick={this.handleVote.bind(null, id, 'upvote')}
-                    ></i>
-                  </div>
-                  {/* <span className={`jq-counter-tip-${id} hidden-xs-up`}></span> */}
-                  <p className={`os-counter-tip-total-alt jq-counter-tip-${id}`}>{scoreTotal}</p>
-                  <div className="os-counter-tip-vote-alt os-counter-tip-downvote-alt">
-                    <i
-                      className={downvoteClass}
-                      onClick={this.handleVote.bind(null, id, 'downvote')}
-                    ></i>
-                  </div>
+              <div className="os-counter-tip-score-alt">
+                <div className="os-counter-tip-vote-alt os-counter-tip-upvote-alt">
+                  <i
+                    className={upvoteClass}
+                    onClick={this.handleVote.bind(null, id, 'upvote')}
+                  ></i>
                 </div>
-              : null}
-              {shouldHideMeta ?
-                <div className="os-counter-tip-content">
-                  {contentElement}
+                {/* <span className={`jq-counter-tip-${id} hidden-xs-up`}></span> */}
+                <p className={`os-counter-tip-total-alt jq-counter-tip-${id}`}>{scoreTotal}</p>
+                <div className="os-counter-tip-vote-alt os-counter-tip-downvote-alt">
+                  <i
+                    className={downvoteClass}
+                    onClick={this.handleVote.bind(null, id, 'downvote')}
+                  ></i>
                 </div>
-              : contentElement}
+              </div>
+              <div className="os-counter-tip-content">
+                {contentElement}
+              </div>
             </div>
           );
         })}
@@ -142,8 +124,7 @@ class TipsList extends Component {
 
   handleVote = (id, downOrUp) => {
     const {
-      dispatch,
-      shouldHideMeta
+      dispatch
     } = this.props;
 
     const votes = JSON.parse(localStorage.getItem('tipVotes'));
@@ -153,33 +134,19 @@ class TipsList extends Component {
 
       const selector = `.jq-counter-tip-${id}`;
       const score = parseInt($(selector).text());
+      if (downOrUp === 'downvote') {
+        $(selector).text(score - 1)
 
-      if (shouldHideMeta) {
-        if (downOrUp === 'downvote') {
-          $(selector).text(score - 1)
+        $(selector).next().find('i').addClass('os-counter-tip-vote-active-alt');
+      } else if (downOrUp === 'upvote') {
+        $(selector).text(score + 1)
 
-          $(selector).next().find('i').addClass('os-counter-tip-vote-active-alt');
-        } else if (downOrUp === 'upvote') {
-          $(selector).text(score + 1)
-
-          $(selector).prev().find('i').addClass('os-counter-tip-vote-active-alt');
-        }
-
-        $(selector).prev().find('i').removeClass('os-counter-tip-vote-non-active-alt');
-        $(selector).next().find('i').removeClass('os-counter-tip-vote-non-active-alt');
-      } else {
-        if (downOrUp === 'downvote') {
-          $(selector).text(score - 1);
-          $(selector).next().addClass('os-counter-tip-caret-active');
-        } else if (downOrUp === 'upvote') {
-          $(selector).text(score + 1);
-          $(selector).prev().addClass('os-counter-tip-caret-active');
-        }
-
-        $(selector).prev().removeClass('os-counter-tip-caret-non-active');
-        $(selector).next().removeClass('os-counter-tip-caret-non-active');
+        $(selector).prev().find('i').addClass('os-counter-tip-vote-active-alt');
       }
 
+      $(selector).prev().find('i').removeClass('os-counter-tip-vote-non-active-alt');
+      $(selector).next().find('i').removeClass('os-counter-tip-vote-non-active-alt');
+    
       votes[id] = downOrUp;
       localStorage.setItem('tipVotes', JSON.stringify(votes));
     }

@@ -9,17 +9,13 @@ import { Link } from 'react-router';
 import { voteMatchup } from '../../../actions/all';
 
 class HeroMatchupsList extends Component {
-  static defaultProps: {
-    shouldHideMeta: false
-  }
 
   render () {
     const {
       heroKey,
       heroesHash,
       matchups,
-      matchupType,
-      shouldHideMeta
+      matchupType
     } = this.props;
 
     if (matchups.data.matchups.length === 0) {
