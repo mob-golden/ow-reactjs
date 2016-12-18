@@ -27,17 +27,17 @@
   .os-nav-title {
   	margin: 17px 16px 12px 0;
   }
+  @media screen and (max-width: $BP_TABLET) {
+    .os-nav-menu,
+    .navbar-nav {
+      display: none;
+    }
+    .os-nav-lg-down {
+      padding: 0;
+    }
+  }
 }
 
-@media screen and (max-width: $BP_TABLET) {
-  .os-nav-menu,
-  .navbar-nav {
-    display: none;
-  }
-  .os-nav-lg-down {
-    padding: 0;
-  }
-}
 /* Defines the breakpoint at which the nav will collapse */
 $BP_NAV_COLLAPSE: $BP_TABLET;
 
@@ -114,7 +114,7 @@ $NAV_BODYBG: $BLACK_2;
   .logo {
     opacity: 0;
   }
- .mobile-link {
+  .mobile-link {
     .mobile-hamburger {
       border-color: transparent;
       z-index: 999999;
