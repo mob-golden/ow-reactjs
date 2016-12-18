@@ -65,6 +65,17 @@
     padding-right: 8px !important;
   }
 }
+// Tablet styles for tabs 
+@media screen and (max-width: $BP_LG) {
+  .os-tabs-nav { 
+    // Prevent overflowing of icons
+    .os-nav-link {
+      padding: 16px 20px;
+      display: block;
+      font-size: 12px;
+    }
+  }
+}
 // Mobile styles for tabs
 @media screen and (max-width: $BP_MD) {
   .os-tabs-nav,
@@ -81,7 +92,7 @@
       box-shadow: none;
       margin-left: 0;
       border-bottom: 1px solid $GRAY_5;
-      
+
       a {
         padding: 16px 20px;
         display: block;
