@@ -16,10 +16,6 @@
     
     a {
       color: $WHITE;
-
-      @media screen and (max-width: $BP_LG) {
-        padding: 16px 20px;
-      }
     }
     .os-tab-item-OFFENSE{
       width:16px;
@@ -91,49 +87,4 @@
 }
 .center-text .os-tabs-nav {
   display: inline-block;
-}
-// Mobile styles for tabs
-@media screen and (max-width: $BP_MD) {
-  .os-tabs-nav {
-    .os-tabnav-item {
-      text-align: left;
-      width: 100%;
-      background-color: $GRAY_3;
-      color: $GRAY_5;
-      border: none;
-      box-shadow: none;
-      margin-left: 0;
-      border-bottom: 1px solid $GRAY_5;
-      
-      a,
-      div {
-        color: $GRAY_5;
-      }
-      &:first-child,
-      &:last-child {
-        border-radius: 0;
-      }
-      &:last-child {
-        border-bottom: none;
-      }
-      .os-tab-icon,
-      .os-tab-text {
-        display: inline-block;
-        margin-right: 10px;
-      }
-      .os-tab-item-ALL {
-        margin-right: 0;
-      }
-    }
-    .os-tabnav-item.active {
-      background-color: $BLACK_3;
-      color: $WHITE;
-      border-left: 4px solid $BLUE_1;
-
-      a,
-      div {
-        color: $WHITE;
-      }
-    }
-  }
 }
