@@ -62,8 +62,10 @@ $RED_1: #DF3535;
 
 /* TENTATIVE Temporary Breakpoint Sizes */
 // Following bootstrap sizes
-$BP_MOBILE: 768px;
+$BP_XS: 480px;
 
-$BP_TABLET: 992px;
+$BP_SM: 768px;
 
-$BP_DESKTOP: 1200px;
+$BP_MD: 992px;
+
+$BP_LG: 1200px;

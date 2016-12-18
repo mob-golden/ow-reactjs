@@ -37,6 +37,10 @@
   text-align: center;
   left: -7px;
   top: -2px;
+
+  @media screen and (max-width: $BP_MD) {
+    margin: auto;
+  }
 }
 .os-hero-profile-type {
   position: absolute;
@@ -90,7 +94,7 @@
   box-shadow: $BLUE_1 0px 0px 4px 2px;
 }
 .os-card-wrapper {
-  @media screen and (min-width: $BP_TABLET) {
+  @media screen and (min-width: $BP_MD) {
     padding: 15px;
   }
 }
@@ -111,7 +115,7 @@
     width: 90%;
     font-size: 14px;
   }
-  @media screen and (min-width: $BP_TABLET) {
+  @media screen and (min-width: $BP_MD) {
     padding: 30px;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
 
@@ -130,6 +134,7 @@
   padding-left: 0px;
   margin: 16px 0px;
   list-style: none;
+  
   .os-hero-nav-item {
     float: left;
     text-align: center;

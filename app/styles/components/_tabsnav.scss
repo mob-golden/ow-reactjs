@@ -17,7 +17,7 @@
     a {
       color: $WHITE;
 
-      @media screen and (max-width: $BP_DESKTOP) {
+      @media screen and (max-width: $BP_LG) {
         padding: 16px 20px;
       }
     }
@@ -39,7 +39,7 @@
       background-image: url("/images/tank.png");
       float:left;
 
-      @media screen and (min-width: $BP_DESKTOP) {
+      @media screen and (min-width: $BP_LG) {
         margin-left: 12px;
       }
     }
@@ -93,7 +93,7 @@
   display: inline-block;
 }
 // Mobile styles for tabs
-@media screen and (max-width: $BP_TABLET) {
+@media screen and (max-width: $BP_MD) {
   .os-tabs-nav {
     .os-tabnav-item {
       text-align: left;

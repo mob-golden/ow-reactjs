@@ -101,7 +101,7 @@ class SingleHeroPage extends Component {
               <div className="os-hero-body">
                 { _heromatchups || _maprankings || _generaltips ?
                 <div className="row">
-                  <div className="center-text">
+                  <div className="col-lg-12 center-text">
                     <ul className="os-hero-nav">
                       <li className={`os-hero-nav-item ${_generaltips}`}> 
                         <Link to={`/heroes/${id}/generaltips`}>GENERAL TIPS</Link> 

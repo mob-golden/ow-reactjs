@@ -12,53 +12,6 @@
   padding: 30px 25px;
   background: $WHITE_1;
 }
-// Mobile-friendliness changes
-@media screen and (max-width: $BP_TABLET) {
-  .os-maps-top,
-  .os-maps-body,
-  .os-maps-top {
-    margin: 0;
-    padding-left: 25px;
-    padding-right: 25px;
-  }
-  .os-content {
-    padding-left: 25px;
-    padding-right: 25px;
-    margin: 0;
-    padding-top: 0;
-  }
-  .os-maps-body {
-    margin: 0;
-    padding-left: 0;
-    padding-right: 0;
-  }
-  .os-maps-top { // Combat absolutely positined search bar
-    padding-top: 20px;
-    padding-bottom: 10px;
-  }
-  .os-maps-top,
-  .os-hero-top,
-  .os-hero {
-    >.col-xs-12,
-    >.col-lg-12,
-    >.col-lg-3,
-    >.col-lg-9 {
-      padding: 0;
-    }
-  }
-  .os-container {
-    padding: 0;
-  }
-  .os-maps .col-lg-12 {
-    padding: 0;
-  }
-
-  // TODO: move this to appropriate place
-  // .input-group-btn,
-  // .os-search-input {
-  //   display: block;
-  // }
-}
 .os-maps-grid {
   margin:0px -8px;
 }

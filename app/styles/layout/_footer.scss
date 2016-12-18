@@ -18,7 +18,7 @@
   }
 
   .os-footer-ul {
-    @media screen and (max-width: $BP_TABLET) {
+    @media screen and (max-width: $BP_MD) {
       .nav-item {
         width: 100%;
         text-transform: uppercase;
