@@ -16,6 +16,10 @@
     
     a {
       color: $WHITE;
+
+      @media screen and (max-width: $BP_DESKTOP) {
+        padding: 16px 20px;
+      }
     }
     .os-tab-item-OFFENSE{
       width:16px;
@@ -35,7 +39,7 @@
       background-image: url("/images/tank.png");
       float:left;
 
-      @media screen and (min-width: $BP_TABLET) {
+      @media screen and (min-width: $BP_DESKTOP) {
         margin-left: 12px;
       }
     }
@@ -88,6 +92,7 @@
 .center-text .os-tabs-nav {
   display: inline-block;
 }
+// Mobile styles for tabs
 @media screen and (max-width: $BP_TABLET) {
   .os-tabs-nav {
     .os-tabnav-item {
