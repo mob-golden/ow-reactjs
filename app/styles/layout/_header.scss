@@ -9,6 +9,7 @@
   .os-nav-links {
     // Default (10) - 1/2 rem (8) (moved to <a>)
     padding-left: 2px; 
+    float: right;
   }
   .os-nav-item {
     +.nav-item {
