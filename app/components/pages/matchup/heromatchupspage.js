@@ -70,7 +70,7 @@ class HeroMatchupsPage extends Component {
     const heroKey = changeCase.lower(_heroKey);
     const heroName = changeCase.upper(matchups.positive.data.name);
     return (
-      <div className="os-hero-matchups-container">
+      <div className="os-card-container os-hero-matchups-container">
         <div className="row">
           <div className="os-card-col os-hero-matchups-col">
             <div className="os-card-body os-hero-matchups-body">

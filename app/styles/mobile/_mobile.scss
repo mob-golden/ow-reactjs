@@ -1,6 +1,4 @@
 // Mobile-friendliness changes
-
-// TODO: refactor
 @media screen and (max-width: $BP_MD) {
   .os-hero-top {
     margin: 0;
@@ -10,7 +8,9 @@
   .os-heroes-top,
   .os-heroes-body,
   .os-maps-top,
-  .os-maps-body {
+  .os-maps-body,
+  .os-map-tip-body,
+  .os-hero-body {
     margin: 0;
     padding-left: 25px;
     padding-right: 25px;
@@ -18,19 +18,9 @@
   .os-map-tip-header {
     margin: 0;
   }
-  .os-map-tip-body {
-    margin: 0;
-    padding-left: 25px;
-    padding-right: 25px;
-  }
   .os-content {
     padding-left: 0;
     padding-right: 0;
-    margin: 0;
-  }
-  .os-hero-body {
-    padding-left: 25px;
-    padding-right: 25px;
     margin: 0;
   }
   .os-heroes-top { 
@@ -38,7 +28,8 @@
     padding-top: 20px;
     padding-bottom: 10px;
   }
-  .os-container {
+  .os-container,
+  .os-hero-matchups-container {
     padding: 0;
   }
   .os-hero-tip-col,
@@ -47,35 +38,18 @@
     width: 100%;
   }
   .os-hero-tip-body,
-  .os-hero-matchups.body {
+  .os-hero-matchups-body {
     border-radius: 0;
     border: none;
+    box-shadow: none;
   }
   // TODO: move this to appropriate place
   // .input-group-btn,
   // .os-search-input {
   //   display: block;
   // }
-}
-@media screen and (max-width: $BP_SM) {
-  .os-card-col {
-    border-radius: 0;
-    border: none;
-  }
-}
-// Tablet styles for tabs 
-@media screen and (max-width: $BP_LG) {
-  .os-tabs-nav { 
-    // Prevent overflowing of icons
-    .os-nav-link {
-      padding: 16px 20px;
-      display: block;
-      font-size: 12px;
-    }
-  }
-}
-// Mobile styles for tabs
-@media screen and (max-width: $BP_MD) {
+
+  // For Tabs
   .os-tabs-nav,
   .os-hero-nav {
     width: 100%;
@@ -132,6 +106,24 @@
       div {
         color: $WHITE;
       }
+    }
+  }
+}
+@media screen and (max-width: $BP_SM) {
+  .os-card-col {
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+  }
+}
+// Tablet styles for tabs 
+@media screen and (max-width: $BP_LG) {
+  .os-tabs-nav { 
+    // Prevent overflowing of icons
+    .os-nav-link {
+      padding: 16px 20px;
+      display: block;
+      font-size: 12px;
     }
   }
 }
