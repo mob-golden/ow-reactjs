@@ -72,8 +72,8 @@ class HeroMatchupsPage extends Component {
     return (
       <div className="os-hero-matchups-container">
         <div className="row">
-          <div className="os-hero-matchups-col">
-            <div className="os-hero-matchups-body">
+          <div className="os-card-col os-hero-matchups-col">
+            <div className="os-card-body os-hero-matchups-body">
               <span className="os-matchups-hero-name">
                 {heroName}  
               </span>
@@ -91,8 +91,8 @@ class HeroMatchupsPage extends Component {
               </div>
             </div>
           </div>
-          <div className="os-hero-matchups-col">
-            <div className="os-hero-matchups-body">
+          <div className="os-card-col os-hero-matchups-col">
+            <div className="os-card-body os-hero-matchups-body">
               <span className="os-matchups-hero-name">
                 {heroName}  
               </span>
@@ -110,8 +110,8 @@ class HeroMatchupsPage extends Component {
               </div>
             </div>
           </div>
-          <div className="os-hero-matchups-col">
-            <div className="os-hero-matchups-body">
+          <div className="os-card-col os-hero-matchups-col">
+            <div className="os-card-body os-hero-matchups-body">
               <span className="os-matchups-hero-name">
                 {heroName}  
               </span>

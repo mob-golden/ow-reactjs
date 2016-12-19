@@ -69,10 +69,10 @@ class GeneralTipsPage extends Component {
     const heroKey = changeCase.lower(_heroKey);
     const heroName = tips.for.data.name;
     return (
-      <div className="os-hero-tip-container">
+      <div className="os-card-container os-hero-tip-container">
         <div className="row">
-          <div className="os-hero-tip-col">
-            <div className="os-hero-tip-body">
+          <div className="os-card-col os-hero-tip-col">
+            <div className="os-card-body os-hero-tip-body">
               <span className="os-hero-tip-name">
                 {changeCase.upper(heroName)} 
               </span>
@@ -96,8 +96,8 @@ class GeneralTipsPage extends Component {
               </div>
             </div>
           </div>
-          <div className="os-hero-tip-col">
-            <div className="os-hero-tip-body">
+          <div className="os-card-col os-hero-tip-col">
+            <div className="os-card-body os-hero-tip-body">
               <span className="os-hero-tip-name">
                 {changeCase.upper(heroName)} 
               </span>

@@ -10,8 +10,14 @@
   .os-heroes-top,
   .os-heroes-body,
   .os-maps-top,
-  .os-maps-body,
-  .os-map-tip-header,
+  .os-maps-body {
+    margin: 0;
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+  .os-map-tip-header {
+    margin: 0;
+  }
   .os-map-tip-body {
     margin: 0;
     padding-left: 25px;
@@ -50,6 +56,12 @@
   // .os-search-input {
   //   display: block;
   // }
+}
+@media screen and (max-width: $BP_SM) {
+  .os-card-col {
+    border-radius: 0;
+    border: none;
+  }
 }
 // Tablet styles for tabs 
 @media screen and (max-width: $BP_LG) {
