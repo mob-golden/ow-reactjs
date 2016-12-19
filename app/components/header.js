@@ -70,8 +70,9 @@ class Header extends Component {
     }
 
     // This closes the dropdown when a menu item is clicked
-    $(".header--dropdown-button").click(() => {
+    $(".os-mobile-link").click(() => {
       if (this.state.dropdownOpen) this.toggleDropdown();
+      $(window).scrollTop(0);
     })
   }
 
@@ -329,10 +330,10 @@ class Header extends Component {
       return (
         <ul>
           <li>
-            <Link to="/heroes">Heroes</Link>
+            <Link className="os-mobile-link" to="/heroes">Heroes</Link>
           </li>
           <li>
-            <Link to="/maps">Maps</Link>
+            <Link className="os-mobile-link" to="/maps">Maps</Link>
           </li>
         </ul>
       );
@@ -341,10 +342,10 @@ class Header extends Component {
     return (
       <ul>
         <li>
-          <Link to="/heroes">Heroes</Link>
+          <Link className="os-mobile-link" to="/heroes">Heroes</Link>
         </li>
         <li>
-          <Link to="/maps">Maps</Link>
+          <Link className="os-mobile-link" to="/maps">Maps</Link>
         </li>
         <li>
           <a
