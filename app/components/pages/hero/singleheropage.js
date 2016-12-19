@@ -58,7 +58,7 @@ class SingleHeroPage extends Component {
     } = heroesHash[heroKey];
 
     return (
-      <div className="os-body row">
+      <div className="os-body">
         <div className="os-content container">
           <Ad
             className="os-ad os-ad-top"
