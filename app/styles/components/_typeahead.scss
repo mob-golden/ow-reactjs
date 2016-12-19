@@ -3,6 +3,9 @@
 $suggestionPadding: 8px;
 $suggestionSize: 16px;
 
+.os-search-wrapper {
+  padding: 0;
+}
 .os-typeahead {
   .list-group {
     
@@ -47,6 +50,7 @@ $suggestionSize: 16px;
     line-height: $suggestionSize * 2;
   }
   .os-search-input {
+    border: none;
     padding: 12px 24px;
   }
 

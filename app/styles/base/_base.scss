@@ -2,6 +2,9 @@
 
 // ========================== Bootstrap Customization ============================
 
+.btn {
+  border: none;
+}
 .btn-primary {
   background-color: $BLUE_1;
   border-color: $BLUE_1;
