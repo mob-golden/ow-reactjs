@@ -140,8 +140,8 @@ class MatchupTipsPage extends Component {
             </div>
           </div>
 
-          <div className="os-hero-tip-col">
-            <div className="os-hero-tip-body">
+          <div className="os-matchup-tip-col">
+            <div className="os-matchup-tip-body">
               <span className="os-matchup-tip-name">
                 TIPS VS. {changeCase.upper(heroName)} 
               </span>

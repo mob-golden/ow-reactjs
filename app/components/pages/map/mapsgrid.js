@@ -3,7 +3,7 @@ import changeCase from 'change-case';
 import { Component } from 'react';
 import { Link } from 'react-router';
 
-import {  MAP_TYPES } from '../../../constants/types'
+import {  MAP_TYPES, MAPS_HASH } from '../../../constants/types';
 
 class MapsGrid extends Component {
   static defaultProps = {
@@ -28,7 +28,7 @@ class MapsGrid extends Component {
             type
           } = _map;
 
-          if(filter !== "all" && filter!== type) return null;
+          if(filter !== 0 && filter!== type) return null;
           return (
           <div
             className={colClass}
@@ -36,7 +36,7 @@ class MapsGrid extends Component {
           >
             <div className="os-map">
               <div className="os-map-profile">
-                <span className="os-map-profile-type">{changeCase.upper(type)}</span>
+                <span className="os-map-profile-type">{changeCase.upper(MAPS_HASH[type])}</span>
                 <h5 className="os-map-profile-title">{name}</h5>
                 <div className="os-map-btn">
                   <Link

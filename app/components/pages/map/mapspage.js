@@ -22,7 +22,7 @@ class MapsPage extends Component {
     super(props);
 
     this.state = {
-      activeTabId: "all"
+      activeTabId: 0
     };
   }
 

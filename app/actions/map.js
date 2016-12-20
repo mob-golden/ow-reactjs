@@ -1,4 +1,6 @@
 import fetch from 'isomorphic-fetch';
+import qs from 'querystring'
+
 import {
   OW_MAPS_URL
 } from '../constants/urls';
@@ -7,22 +9,25 @@ export const REQUEST_MAPS = 'REQUEST_MAPS';
 export const RECEIVE_MAPS = 'RECEIVE_MAPS';
 
 export function fetchMapsIfNeeded () {
+  const params = {
+    sort: 'type-asc,id-asc'
+  };
   return (dispatch, getState) => {
     if (shouldFetchMaps(getState())) {
-      return dispatch(fetchMaps(OW_MAPS_URL));
+      return dispatch(fetchMaps(`${OW_MAPS_URL}?${qs.stringify(params)}`));
     }
   };
 }
 
 function shouldFetchMaps (state) {
-  // const {
-  //   map: {
-  //     maps
-  //   }
-  // } = state;
+  const {
+    map: {
+      maps
+    }
+  } = state;
 
-  // if (maps.isFetching)
-  //   return false;
+  if (maps.isFetching)
+    return false;
   return true;
 }
 

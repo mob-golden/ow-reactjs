@@ -9,6 +9,7 @@ import TipsList from '../tip/tipslist';
 import Loader from '../../loader';
 
 import { fetchMapTipsIfNeeded } from '../../../actions/api';
+import { MAPS_HASH } from '../../../constants/types';
 import { adDimensions } from '../../../constants/ads';
 
 class MapTipsPage extends Component {
@@ -72,7 +73,7 @@ class MapTipsPage extends Component {
               </div>
               <div className="os-map-tip-header-title">
                 <span className="os-white os-font-size-20">
-                  { changeCase.upper(mapType) } 
+                  { changeCase.upper(MAPS_HASH[mapType]) } 
                 </span>
                 <h5 className="os-white os-font-size-32">
                   { mapName }
@@ -102,6 +103,7 @@ class MapTipsPage extends Component {
                         </h5>
                         <TipsList 
                           tips={mapTips.data.tips}
+                          firstText={`Share a tip on how to play on ${mapName}.`}
                         />
                       </div>
                     </div>

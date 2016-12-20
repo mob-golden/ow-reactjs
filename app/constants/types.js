@@ -33,25 +33,29 @@ export const HERO_TYPES = [
   }
 ];
 
+export const MAPS_HASH = [
+  'ALL', 'Assault', 'Escort', 'Hybrid', 'Control'
+]
+
 export const MAP_TYPES = [
   {
-    'key':'all',
+    'key':0,
     'title':'all maps',
   },
   {
-    'key':'assault',
+    'key': 1,
     'title':'assault',
   },
   {
-    'key':'escort',
+    'key': 2,
     'title':'escort',
   },
   {
-    'key':'hybrid',
+    'key': 3,
     'title':'hybrid',
   },
   {
-    'key':'control',
+    'key': 4,
     'title':'control',
   }
 ];

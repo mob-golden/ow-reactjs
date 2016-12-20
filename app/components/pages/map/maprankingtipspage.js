@@ -9,6 +9,7 @@ import Loader from '../../loader';
 import { addHeroMatchupTip } from '../../../actions/all';
 import { fetchMatchupTipsIfNeeded } from '../../../actions/api';
 import { voteMatchup } from '../../../actions/all';
+import { MAPS_HASH } from '../../../constants/types';
 
 class MapRankingTipsPage extends Component {
 
@@ -141,7 +142,7 @@ class MapRankingTipsPage extends Component {
             </div>
             <div className="os-map-ranking-info">
               <span className="os-map-header-typename">
-                { mapType } 
+                { MAPS_HASH[mapType] } 
               </span>
               <h5 className="os-white os-font-size-24">
                 { mapName }
