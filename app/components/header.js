@@ -48,7 +48,7 @@ class Header extends Component {
         email: '',
         password: '',
         username: '',
-        confirmPassword: '',
+        confirmPassword: ''
       });
     }
   }

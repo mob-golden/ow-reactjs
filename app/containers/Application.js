@@ -14,7 +14,6 @@ import MapRankingsPage from '../components/pages/map/maprankingspage';
 import MapRankingTipsPage from '../components/pages/map/maprankingtipspage';
 import MatchupPage from '../components/pages/matchup/matchuppage';
 import MatchupTipsPage from '../components/pages/matchup/matchuptipspage';
-import AddTipsPage from '../components/pages/tip/addtipspage';
 import MapTipsPage from '../components/pages/map/maptipspage';
 
 export const routes = (
@@ -29,7 +28,6 @@ export const routes = (
       <Route path="/heroes/:heroKey/generaltips" component={GeneralTipsPage}/>
       <Route path="/heroes/:heroKey/matchups" component={HeroMatchupsPage}/>
       <Route path="/heroes/:heroKey/maprankings" component={MapRankingsPage}/>
-      <Route path="/heroes/:heroKey/:tipType" component={AddTipsPage}/>
       <Route path="/maprankingtips/:heroKey/:mapKey" component={MapRankingTipsPage}/>
     </Route>
 

@@ -6,7 +6,7 @@ import {
   OW_MATCHUPS_URL,
   OW_HERO_URL
 } from '../constants/urls';
-
+import {fetchTipsIfNeeded} from './api';
 export function addHeroTip ({
   authorId,
   authorName,
@@ -40,11 +40,11 @@ export function addHeroTip ({
 
         // TODO: is this necessary for a POST request?
         if (response.status >= 200 && response.status < 300) {
+          dispatch(fetchTipsIfNeeded(heroKey));
           return response;
         } else {
           const error = new Error(statusText);
           console.log(`Response returned an error for ${url}: ${error.message}`);
-
           return Promise.reject(error);
         }
       })
