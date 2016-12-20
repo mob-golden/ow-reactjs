@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch';
+import qs from 'querystring'
 
 import {
   OW_HEROES_URL
@@ -8,9 +9,12 @@ export const REQUEST_HEROES = 'REQUEST_HEROES';
 export const RECEIVE_HEROES = 'RECEIVE_HEROES';
 
 export function fetchHeroesIfNeeded () {
+  const params = {
+    sort: 'type-asc,id-asc'
+  };
   return (dispatch, getState) => {
     if (shouldFetchHeroes(getState())) {
-      return dispatch(fetchHeroes(OW_HEROES_URL));
+      return dispatch(fetchHeroes(`${OW_HEROES_URL}?${qs.stringify(params)}`));
     }
   };
 }

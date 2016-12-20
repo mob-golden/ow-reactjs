@@ -92,7 +92,8 @@ class Typeahead extends Component {
 
   renderSuggestions = () => {
     const {
-      constructLink
+      constructLink,
+      handleHeroClick
     } = this.props;
 
     const {
@@ -130,7 +131,8 @@ class Typeahead extends Component {
                 <Link
                   className={listGroupItemClass}
                   key={hero.id.toLowerCase()}
-                  to={constructLink(hero.id)}
+                  to={handleHeroClick? null: constructLink(hero.id)}
+                  onClick={handleHeroClick?  e => {handleHeroClick(hero.id); return false; } : null}
                 >
                   <div className="media-left media-middle">
                     <div

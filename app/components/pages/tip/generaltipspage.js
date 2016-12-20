@@ -24,14 +24,6 @@ class GeneralTipsPage extends Component {
   componentDidMount () {
   }
 
-  handleLeftViewAll(){
-    this.setState({leftViewAll: !this.state.leftViewAll });
-  }
-
-  handleRightViewAll(){
-    this.setState({rightViewAll: !this.state.rightViewAll });
-  }
-
   componentWillMount () {
     const {
       dispatch,
@@ -108,7 +100,7 @@ class GeneralTipsPage extends Component {
                   tips.for.data.tips:
                   take(tips.for.data.tips, 5)
                 }
-                firstText={`Share a tip on how to play ${heroName}`}
+                firstText={`Share a tip on how to play ${heroName}.`}
               />
               <div className="os-hero-tip-button-group">
                 <button
@@ -120,7 +112,7 @@ class GeneralTipsPage extends Component {
                 </button>
                 <button
                   className={leftViewAllClassName}
-                  onClick={() => this.handleLeftViewAll()}
+                  onClick={() => this.setState({leftViewAll: !this.state.leftViewAll })}
                 >
                 { this.state.leftViewAll?`VIEW LESS`:`VIEW ALL`}
                 </button>
@@ -140,7 +132,7 @@ class GeneralTipsPage extends Component {
                   tips.against.data.tips:
                   take(tips.against.data.tips, 5)
                 }
-                firstText={`Share a tip on how to play against ${heroName}`}
+                firstText={`Share a tip on how to play against ${heroName}.`}
               />
               <div className="os-hero-tip-button-group">
                 <button
@@ -152,7 +144,7 @@ class GeneralTipsPage extends Component {
                 </button>
                 <button
                   className={rightViewAllClassName}
-                  onClick={() => this.handleRightViewAll()}
+                  onClick={() => this.setState({rightViewAll: !this.state.rightViewAll })}
                 >
                 { this.state.rightViewAll?`VIEW LESS`:`VIEW ALL`}
                 </button>

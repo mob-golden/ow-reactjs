@@ -12,23 +12,23 @@ export const TIP_TYPES = [
 
 export const HERO_TYPES = [
   {
-    'key':'all',
+    'key':0,
     'title':'all heroes'
   },
   {
-    'key':'offense',
+    'key':1,
     'title':'offense'
   },
   {
-    'key':'defense',
+    'key':2,
     'title':'defense'
   },
   {
-    'key':'tank',
+    'key':3,
     'title':'tank'
   },
   {
-    'key':'support',
+    'key':4,
     'title':'support'
   }
 ];

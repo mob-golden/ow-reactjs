@@ -6,7 +6,12 @@ import {
   OW_MATCHUPS_URL,
   OW_HERO_URL
 } from '../constants/urls';
-import {fetchTipsIfNeeded} from './api';
+
+import {
+  fetchTipsIfNeeded,
+  fetchMatchupsIfNeeded
+} from './api';
+
 export function addHeroTip ({
   authorId,
   authorName,
@@ -45,6 +50,56 @@ export function addHeroTip ({
         } else {
           const error = new Error(statusText);
           console.log(`Response returned an error for ${url}: ${error.message}`);
+          return Promise.reject(error);
+        }
+      })
+      .then(response => response.json())
+      .then(json => {
+        console.log(json);
+        if (json.hasOwnProperty('error')) {
+          const error = new Error(json.error);
+          console.log(error.message);
+        } else {
+        }
+      })
+  };
+}
+
+export function addHeroMatchup ({
+  heroKey,
+  matchupKey,
+  type,
+  token
+}) {
+  return (dispatch, getState) => {
+    const body = qs.stringify({
+      opponentId: matchupKey,
+      type
+    });
+
+    return fetch(`${OW_MATCHUPS_URL}/${heroKey}`, {
+      body,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': token
+      },
+      method: 'PUT'
+    })
+      .then(response => {
+        const {
+          status,
+          statusText
+        } = response;
+
+        // TODO: is this necessary for a POST request?
+        if (response.status >= 200 && response.status < 300) {
+          dispatch(fetchMatchupsIfNeeded(heroKey));
+          return response;
+        } else {
+          const error = new Error(statusText);
+          console.log(`Response returned an error for ${url}: ${error.message}`);
+
           return Promise.reject(error);
         }
       })

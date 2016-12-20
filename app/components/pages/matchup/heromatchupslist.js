@@ -1,7 +1,6 @@
 import React from 'react';
 import changeCase from 'change-case';
 import classNames from 'classnames';
-import { take } from 'lodash';
 
 import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
@@ -18,14 +17,26 @@ class HeroMatchupsList extends Component {
       matchupType
     } = this.props;
 
-    if (matchups.data.matchups.length === 0) {
+    const {
+      name: heroName 
+    } = heroesHash[heroKey];
+
+    let emptyString = "";
+    if(matchupType == "positive")
+      emptyString = `Add a Hero that ${heroName} counters.`;
+    if(matchupType == "negative")
+      emptyString = `Add a Hero that counters ${heroName}.`;
+    if(matchupType == "teamup")
+      emptyString = `Add a Hero that ${heroName} can team well with.`;
+    if (matchups.length === 0) {
       return (
         <div className="os-counter-matchups-list">
-          <div className="alert alert-warning">No matchups!</div>
+          <div className="os-alert-warning">
+            {emptyString}
+          </div>
         </div>
       );
     }
-    const matchupsData = take(matchups.data.matchups,6);
 
     if (!localStorage.getItem('matchupVotes')) localStorage.setItem('matchupVotes', JSON.stringify({}));
     const votes =  JSON.parse(localStorage.getItem('matchupVotes'));
@@ -33,7 +44,8 @@ class HeroMatchupsList extends Component {
     return (
       <div className="os-matchups-list">
       {
-        matchupsData.map(matchup => {
+        matchups.map(matchup => {
+          
           const {
             score:{
               total: score,
@@ -48,7 +60,7 @@ class HeroMatchupsList extends Component {
             portrait,
             name
           } = heroesHash[matchupHeroKey];
-
+          
           const key = heroKey + matchupHeroKey + type;
 
           const downvoteClass = classNames({
