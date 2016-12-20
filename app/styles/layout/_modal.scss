@@ -1,4 +1,5 @@
 @import '../base/_constants';
+
 .os-modal-title {
   font-size: 32px;
   font-weight: bolder;
@@ -60,4 +61,7 @@
 }
 .os-modal-here-link{
   color: $YELLOW_1;
+}
+.modal-dialog button.close {
+  outline: none;
 }
