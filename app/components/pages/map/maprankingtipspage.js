@@ -170,7 +170,7 @@ class MapRankingTipsPage extends Component {
         </div>
         <div className="row">
           <div className="os-hero-viewall-tip-col">
-            <div className="os-hero-tip-body">
+            <div className="os-card-body os-hero-tip-body">
               <span className="os-hero-tip-name">
                 TIPS FOR {changeCase.upper(heroName)} 
               </span>

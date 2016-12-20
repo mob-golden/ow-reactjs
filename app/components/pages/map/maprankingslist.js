@@ -6,6 +6,7 @@ import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { voteMatchup } from '../../../actions/all';
+import { MAPS_HASH } from '../../../constants/types';
 
 class MapRankingsList extends Component {
 
@@ -79,7 +80,7 @@ class MapRankingsList extends Component {
             >
               <div className="os-map">
                 <div className="os-map-profile">
-                  <span className="os-map-profile-type">{changeCase.upper(mapType)}</span>
+                  <span className="os-map-profile-type">{changeCase.upper(MAPS_HASH[mapType])}</span>
                   <h5 className="os-map-profile-title">{name}</h5>
                   <div className="os-map-vote-group">
                     <span
