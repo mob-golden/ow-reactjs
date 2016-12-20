@@ -179,8 +179,6 @@ class HeroMatchupsPage extends Component {
               </div>
             </div>
           </div>
-          <div className="os-hero-matchups-col">
-            <div className="os-hero-matchups-body">
           <div className="os-card-col os-hero-matchups-col">
             { this.renderModal('teamup', heroKey, heroName) }
             <div className="os-card-body os-hero-matchups-body">
