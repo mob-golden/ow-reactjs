@@ -109,11 +109,11 @@ class HeroMatchupsPage extends Component {
     });
 
     return (
-      <div className="os-hero-matchups-container">
+      <div className="os-card-container os-hero-matchups-container">
         <div className="row">
-          <div className="os-hero-matchups-col">
-            { this.renderModal('positive', heroKey, heroName) }
-            <div className="os-hero-matchups-body">
+          <div className="os-card-col os-hero-matchups-col">
+          { this.renderModal('positive', heroKey, heroName) }
+            <div className="os-card-body os-hero-matchups-body">
               <span className="os-matchups-hero-name">
                 {changeCase.upper(heroName)}  
               </span>
@@ -145,9 +145,9 @@ class HeroMatchupsPage extends Component {
               </div>
             </div>
           </div>
-          <div className="os-hero-matchups-col">
+          <div className="os-card-col os-hero-matchups-col">
             { this.renderModal('negative', heroKey, heroName) }
-            <div className="os-hero-matchups-body">
+            <div className="os-card-body os-hero-matchups-body">
               <span className="os-matchups-hero-name">
                 {changeCase.upper(heroName)} IS
               </span>
@@ -180,8 +180,10 @@ class HeroMatchupsPage extends Component {
             </div>
           </div>
           <div className="os-hero-matchups-col">
-            { this.renderModal('teamup', heroKey, heroName) }
             <div className="os-hero-matchups-body">
+          <div className="os-card-col os-hero-matchups-col">
+            { this.renderModal('teamup', heroKey, heroName) }
+            <div className="os-card-body os-hero-matchups-body">
               <span className="os-matchups-hero-name">
                 {changeCase.upper(heroName)} CAN
               </span>

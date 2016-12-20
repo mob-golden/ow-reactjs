@@ -28,12 +28,16 @@
   font-size: 32px;
 }
 
-
 .os-content {
   padding-top: 100px;
+
+  // Force center content by overriding grid
+  @media screen and (max-width: $BP_MD) {
+    margin: auto !important;
+  }
 }
 
-@media screen and (min-width: $BP_TABLET) {
+@media screen and (min-width: $BP_MD) {
   .os-col-sm-1 {
     width: 12.5%;
     float: left;

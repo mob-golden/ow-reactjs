@@ -53,7 +53,7 @@ class HomePage extends Component {
           <div className="col-lg-12">
             <div className="os-heroes-top">
               <p className="os-white os-font-size-18"> Search for a hero to find counterpicks, general counters, hero synergy, and more!</p>
-              <div className="col-lg-8 col-xs-12 col-lg-offset-2">
+              <div className="os-search-wrapper col-lg-8 col-xs-12 col-lg-offset-2">
                 <Typeahead
                   constructLink={(id) => `/heroes/${id.toLowerCase()}`}
                   inputGroupClass="input-group"

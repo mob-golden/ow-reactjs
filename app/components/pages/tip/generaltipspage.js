@@ -85,11 +85,11 @@ class GeneralTipsPage extends Component {
       'hidden': tips.against.data.tips.length < 6
     });
     return (
-      <div className="os-hero-tip-container">
+      <div className="os-card-container os-hero-tip-container">
         <div className="row">
-          <div className="os-hero-tip-col">
+          <div className="os-card-col os-hero-tip-col">
             { this.renderModal('for', heroKey, heroName) }
-            <div className="os-hero-tip-body">
+            <div className="os-card-body os-hero-tip-body">
               <span className="os-hero-tip-name">
                 {changeCase.upper(heroName)} 
               </span>
@@ -119,9 +119,9 @@ class GeneralTipsPage extends Component {
               </div>
             </div>
           </div>
-          <div className="os-hero-tip-col">
+          <div className="os-card-col os-hero-tip-col">
             { this.renderModal('against', heroKey, heroName) }
-            <div className="os-hero-tip-body">
+            <div className="os-card-body os-hero-tip-body">
               <span className="os-hero-tip-name">
                 {changeCase.upper(heroName)} 
               </span>

@@ -16,6 +16,7 @@
 @import './layout/_tipslist';
 @import './layout/_matchupslist';
 @import './layout/_modal';
+@import './layout/_card';
 
 /* 5. Components */
 @import './components/_tabsnav';
@@ -32,3 +33,6 @@
 @import './pages/_maprankingspage';
 @import './pages/_matchuppage';
 @import './pages/_matchuptipspage';
+
+/* 7. Mobile Changes */
+@import './mobile/_mobile';

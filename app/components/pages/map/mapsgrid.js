@@ -7,7 +7,7 @@ import {  MAP_TYPES } from '../../../constants/types'
 
 class MapsGrid extends Component {
   static defaultProps = {
-    colClass: 'col-xs-3 col-sm-2 col-lg-4'
+    colClass: 'col-xs-12 col-sm-6 col-lg-4'
   };
 
   render () {

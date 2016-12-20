@@ -16,6 +16,22 @@
     font-size: 14px;
     line-height: 28px;
   }
+
+  .os-footer-ul {
+    @media screen and (max-width: $BP_MD) {
+      .nav-item {
+        width: 100%;
+        text-transform: uppercase;
+        text-align: center;
+
+        +.nav-item {
+          // Remove higher specificity bootstrap left margin
+          margin-left: 0;
+          margin-top: 4px;
+        }
+      }
+    }
+  }
 }
 
 .os-footer-links {

@@ -64,7 +64,7 @@ class MapTipsPage extends Component {
           path={'/22280732/ChampionSelect_728x90_HP_BTF1'}
         />
         
-        <div className="os-map row">
+        <div className="os-map-tip row">
           <div className="col-lg-12">
             <div className="os-map-tip-header">
               <div className="os-map-tip-header-background">
@@ -90,10 +90,10 @@ class MapTipsPage extends Component {
                 </div>
               </div>
               <div className="row">
-                <div className="os-map-tip-container">
+                <div className="os-card-container os-map-tip-container">
                   <div className="row">
                     <div className="col-lg-7">
-                      <div className="os-map-tip-col">
+                      <div className="os-card-col os-map-tip-col">
                         <span className="os-hero-tip-name">
                           {changeCase.upper(mapName)} 
                         </span>

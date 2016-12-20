@@ -2,6 +2,9 @@
 
 // ========================== Bootstrap Customization ============================
 
+.btn {
+  border: none;
+}
 .btn-primary {
   background-color: $BLUE_1;
   border-color: $BLUE_1;
@@ -67,4 +70,8 @@ body {
   background-color: $WHITE_1;
   background-attachment: fixed;
   background-position: center top;
+}
+
+#container {
+  overflow-x: hidden;
 }

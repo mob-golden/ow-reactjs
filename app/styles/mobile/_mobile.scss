@@ -1,0 +1,129 @@
+// Mobile-friendliness changes
+@media screen and (max-width: $BP_MD) {
+  .os-hero-top {
+    margin: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .os-heroes-top,
+  .os-heroes-body,
+  .os-maps-top,
+  .os-maps-body,
+  .os-map-tip-body,
+  .os-hero-body {
+    margin: 0;
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+  .os-map-tip-header {
+    margin: 0;
+  }
+  .os-content {
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0;
+  }
+  .os-heroes-top { 
+    // Combat absolutely positined search bar
+    padding-top: 20px;
+    padding-bottom: 10px;
+  }
+  .os-container,
+  .os-hero-matchups-container {
+    padding: 0;
+  }
+  .os-hero-tip-col,
+  .os-hero-matchups-col {
+    padding: 0;
+    width: 100%;
+  }
+  .os-hero-tip-body,
+  .os-hero-matchups-body {
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+  }
+  // TODO: move this to appropriate place
+  // .input-group-btn,
+  // .os-search-input {
+  //   display: block;
+  // }
+
+  // For Tabs
+  .os-tabs-nav,
+  .os-hero-nav {
+    width: 100%;
+    
+    .os-tabnav-item,
+    .os-hero-nav-item {
+      text-align: left;
+      width: 100%;
+      background-color: $GRAY_3;
+      color: $GRAY_5;
+      border: none;
+      box-shadow: none;
+      margin-left: 0;
+      border-bottom: 1px solid $GRAY_5;
+
+      a {
+        padding: 16px 20px;
+        display: block;
+        font-size: 12px;
+      }
+      a,
+      div {
+        border: none;
+        color: $GRAY_5;
+
+        &:hover {
+          border: none;
+          color: $GRAY_5;
+        }
+      }
+      &:first-child,
+      &:last-child {
+        border-radius: 0;
+      }
+      &:last-child {
+        border-bottom: none;
+      }
+      .os-tab-icon,
+      .os-tab-text {
+        display: inline-block;
+        margin-right: 10px;
+      }
+      .os-tab-item-ALL {
+        margin-right: 0;
+      }
+    }
+    .os-tabnav-item.active,
+    .os-hero-nav-item.active {
+      background-color: $BLACK_3;
+      color: $WHITE;
+      border-left: 4px solid $BLUE_1;
+
+      a,
+      div {
+        color: $WHITE;
+      }
+    }
+  }
+}
+@media screen and (max-width: $BP_SM) {
+  .os-card-col {
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+  }
+}
+// Tablet styles for tabs 
+@media screen and (max-width: $BP_LG) {
+  .os-tabs-nav { 
+    // Prevent overflowing of icons
+    .os-nav-link {
+      padding: 16px 20px;
+      display: block;
+      font-size: 12px;
+    }
+  }
+}

@@ -61,6 +61,11 @@ $GREEN_1: #13B019;
 $RED_1: #DF3535;
 
 /* TENTATIVE Temporary Breakpoint Sizes */
-$BP_MOBILE: 650px;
+// Following bootstrap sizes
+$BP_XS: 480px;
 
-$BP_TABLET: 900px;
+$BP_SM: 768px;
+
+$BP_MD: 992px;
+
+$BP_LG: 1200px;

@@ -70,8 +70,9 @@ class Header extends Component {
     }
 
     // This closes the dropdown when a menu item is clicked
-    $(".header--dropdown-button").click(() => {
+    $(".os-mobile-link").click(() => {
       if (this.state.dropdownOpen) this.toggleDropdown();
+      $(window).scrollTop(0);
     })
   }
 
@@ -116,29 +117,31 @@ class Header extends Component {
         {this.renderModals()}
         <nav className="os-nav navbar navbar-full navbar-light navbar-fixed-top">
           <div className="container">
-            <div className="col-lg-8 col-xs-12">
-              <Link
-                className="navbar-brand os-white os-nav-title"
-                to="/"
-              >
-                <h4>
-                  OVERWATCH
-                </h4>
-              </Link>
-            </div>
-            <div className="col-lg-4 col-xs-12">
-              <div className="row os-nav-menu">
-                {this.renderLinks()}
+            <div className="row">
+              <div className="col-lg-7 col-md-6 col-xs-12">
+                <Link
+                  className="navbar-brand os-white os-nav-title"
+                  to="/"
+                >
+                  <h4>
+                    OVERWATCH
+                  </h4>
+                </Link>
               </div>
-            </div>
-            <a
-              className="mobile-link"
-              onClick={() => this.toggleDropdown()}
-            >
-              <span className="mobile-hamburger"></span>
-            </a>
-            <div className="navigation nav-right">
-              {nav_auth_content}
+              <div className="col-lg-5 col-md-6 col-xs-12">
+                <div className="row os-nav-menu">
+                  {this.renderLinks()}
+                </div>
+              </div>
+              <a
+                className="mobile-link"
+                onClick={() => this.toggleDropdown()}
+              >
+                <span className="mobile-hamburger"></span>
+              </a>
+              <div className="navigation nav-right">
+                {this.renderMobileLinks()}
+              </div>
             </div>
         <div
           className="header--dropdown-toggle-bg hidden"
@@ -315,6 +318,58 @@ class Header extends Component {
       </div>
     );
   };
+
+  renderMobileLinks = () => {
+    const {
+      signInId,
+      signUpId,
+      token,
+      username
+    } = this.props;
+    if (token && username) {
+      return (
+        <ul>
+          <li>
+            <Link className="os-mobile-link" to="/heroes">Heroes</Link>
+          </li>
+          <li>
+            <Link className="os-mobile-link" to="/maps">Maps</Link>
+          </li>
+        </ul>
+      );
+    }
+
+    return (
+      <ul>
+        <li>
+          <Link className="os-mobile-link" to="/heroes">Heroes</Link>
+        </li>
+        <li>
+          <Link className="os-mobile-link" to="/maps">Maps</Link>
+        </li>
+        <li>
+          <a
+            className="os-white os-font-size-12"
+            data-toggle="modal"
+            data-target={`#${signInId}`}
+            href="javascript:;"
+          >
+            LOG IN
+          </a>
+        </li>
+        <li>
+          <a
+            className="os-white os-font-size-12"
+            data-toggle="modal"
+            data-target={`#${signUpId}`}
+            href="javascript:;"
+          >
+            SIGN UP
+          </a>
+        </li>
+      </ul>
+    );
+  }
 
   renderLinks = (classes = 'os-nav-links nav navbar-nav navbar-desktop') => {
     const {
