@@ -177,6 +177,12 @@ $NAV_BODYBG: $BLACK_1;
     display: block;
     font-size: 16px;
     padding: 20px 0px;
+
+    &:focus {
+      outline: none;
+      -webkit-appearance: none;
+      appearance: none;
+    }
   }
   li {
     display: block;
