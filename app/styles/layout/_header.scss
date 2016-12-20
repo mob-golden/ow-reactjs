@@ -29,6 +29,12 @@
       &:hover {
         background-color: $BLUE_1;
       }
+      &:focus {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        outline: none;
+      }
     }
   }
   .os-nav-menu {
@@ -181,6 +187,7 @@ $NAV_BODYBG: $BLACK_1;
     &:focus {
       outline: none;
       -webkit-appearance: none;
+      -moz-appearance: none;
       appearance: none;
     }
   }
