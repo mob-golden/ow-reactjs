@@ -54,7 +54,7 @@ $suggestionSize: 16px;
     padding: 12px 24px;
   }
 
-  .os-search-btn{
+  .os-search-btn {
     padding: 12px 27px;
   }
 
@@ -84,4 +84,11 @@ $suggestionSize: 16px;
     border-radius: 3px;
     color: $GRAY_1;
   }
+}
+// Do not remove outline for modals
+.modal-dialog .os-search-input {
+  border: 1px solid $BLACK_4;
+}
+.modal-dialog .os-search-btn {
+  border: 1px solid $ORANGE_1;
 }
