@@ -103,10 +103,10 @@ class MatchupTipsPage extends Component {
       //'hidden': tipsAgainst.length < 6
     });
     return (
-      <div className="os-matchup-tip-container">
+      <div className="os-card-container os-matchup-tip-container">
         <div className="row">
-          <div className="os-matchup-tip-col">
-            <div className="os-matchup-tip-body">
+          <div className="os-card-col os-matchup-tip-col">
+            <div className="os-card-body os-matchup-tip-body">
               <span className="os-matchup-tip-name">
                 TIPS VS. {changeCase.upper(matchupName)} 
               </span>

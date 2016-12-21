@@ -10,7 +10,9 @@
   .os-maps-top,
   .os-maps-body,
   .os-map-tip-body,
-  .os-hero-body {
+  .os-hero-body,
+  .os-matchup-top,
+  .os-matchup-body {
     margin: 0;
     padding-left: 25px;
     padding-right: 25px;
@@ -29,16 +31,19 @@
     padding-bottom: 10px;
   }
   .os-container,
-  .os-hero-matchups-container {
+  .os-hero-matchups-container,
+  .os-matchup-tip-container {
     padding: 0;
   }
   .os-hero-tip-col,
-  .os-hero-matchups-col {
+  .os-hero-matchups-col,
+  .os-matchup-tip-col {
     padding: 0;
     width: 100%;
   }
   .os-hero-tip-body,
-  .os-hero-matchups-body {
+  .os-hero-matchups-body,
+  .os-matchup-tip-body {
     border-radius: 0;
     border: none;
     box-shadow: none;
