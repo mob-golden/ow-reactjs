@@ -1,5 +1,7 @@
 @import '../base/constants';
 
+/* This module contains all the styles for the cards system */
+
 .os-card-container {
   @media screen and (max-width: $BP_MD) {
     margin-left: -10px;

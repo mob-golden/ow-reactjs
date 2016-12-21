@@ -30,20 +30,17 @@
     padding-top: 20px;
     padding-bottom: 10px;
   }
-  .os-container,
-  .os-hero-matchups-container,
-  .os-matchup-tip-container {
+  .os-container {
     padding: 0;
   }
-  .os-hero-tip-col,
-  .os-hero-matchups-col,
-  .os-matchup-tip-col {
+  .os-card-container {
+    padding: 0;
+  }
+  .os-card-col {
     padding: 0;
     width: 100%;
   }
-  .os-hero-tip-body,
-  .os-hero-matchups-body,
-  .os-matchup-tip-body {
+  .os-card-body {
     border-radius: 0;
     border: none;
     box-shadow: none;
