@@ -31,28 +31,6 @@ class MapRankingsPage extends Component {
     dispatch(fetchMatchupsIfNeeded(heroKey));
   }
 
-  componentWillReceiveProps (nextProps) {
-    const {
-      dispatch,
-      params: {
-        heroKey: _heroKey
-      }
-    } = this.props;
-
-    const {
-      params: {
-        heroKey: _nextHeroKey
-      }
-    } = nextProps;
-
-    const heroKey = changeCase.lower(_heroKey);
-    const nextHeroKey = changeCase.lower(_nextHeroKey);
-
-    if (heroKey !== nextHeroKey) {
-      dispatch(fetchMatchupsIfNeeded(nextHeroKey));
-    }
-  }
-
   render () {
     const {
       children,

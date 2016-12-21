@@ -17,8 +17,9 @@ export const RECEIVE_MATCHUP_TIPS = 'RECEIVE_MATCHUP_TIPS';
 export const REQUEST_MATCHUP_TIPS_SUCCESS = 'REQUEST_MATCHUP_TIPS_SUCCESS';
 export const REQUEST_MATCHUP_TIPS_FAILURE = 'REQUEST_MATCHUP_TIPS_SUCCESS';
 
-export function fetchMatchupTipsIfNeeded (heroKey, matchupHeroKey) {
+export function fetchMatchupTipsIfNeeded (heroKey, matchupHeroKey, matchupType) {
   const params = {
+    type: matchupType,
     sort: 'score.total-desc'
   };
   return (dispatch, getState) => {
@@ -84,7 +85,6 @@ function fetchMatchupTips(heroKey, matchupHeroKey, params) {
             };
             dispatch(receiveMatchupTips(result, heroKey, matchupHeroKey, matchupTipType));
           }
-
           console.log(`Response returned an error for a single matchup: ${error}`);
         });
     }))
