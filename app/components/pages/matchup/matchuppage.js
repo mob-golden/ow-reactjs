@@ -51,7 +51,7 @@ class MatchupPage extends Component {
           />
           <div className="os-matchup row">
             <div className="col-lg-12">
-              <div className="os-matchup-top">
+              <div className="os-content-top os-matchup-top">
                 <div className="col-lg-4">
                   <div className="os-hero-left-search">
                     <Typeahead
@@ -116,7 +116,7 @@ class MatchupPage extends Component {
             </div>
 
             <div className="col-lg-12">
-              <div className="os-matchup-body">
+              <div className="os-content-body os-matchup-body">
                 <div className="row">
                   <div className="col-lg-12">
                     <Link to={`/heroes/${heroKey}/matchups`}>

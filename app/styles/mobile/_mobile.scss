@@ -1,24 +1,17 @@
 // Mobile-friendliness changes
 @media screen and (max-width: $BP_MD) {
-  .os-hero-top {
-    margin: 0;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-  .os-heroes-top,
-  .os-heroes-body,
-  .os-maps-top,
-  .os-maps-body,
-  .os-map-tip-body,
-  .os-hero-body,
-  .os-matchup-top,
-  .os-matchup-body {
+  .os-content-top,
+  .os-content-body {
     margin: 0;
     padding-left: 25px;
     padding-right: 25px;
   }
+  .os-hero-top {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
   .os-map-tip-header {
-    margin: 0;
+    padding: 0;
   }
   .os-content {
     padding-left: 0;

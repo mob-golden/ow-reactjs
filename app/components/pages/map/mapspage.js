@@ -57,7 +57,7 @@ class MapsPage extends Component {
         />
         <div className="os-maps row">
           <div className="col-lg-12">
-            <div className="os-maps-top">
+            <div className="os-content-top os-maps-top">
               <h2 className="os-white">CHOOSE A MAP</h2>
               <p className="os-white hidden-xs-down os-font-size-18">
                 The list below is sorted alphabetically, the maps are not ranked in any way. <br/>
@@ -66,7 +66,7 @@ class MapsPage extends Component {
             </div>
           </div>
           <div className="col-lg-12">
-            <div className="os-maps-body">
+            <div className="os-content-body os-maps-body">
               <div>
                 <TabsNav
                   activeTabId={activeTabId}
