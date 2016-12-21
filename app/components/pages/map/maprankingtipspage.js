@@ -51,6 +51,32 @@ class MapRankingTipsPage extends Component {
     dispatch(fetchMatchupTipsIfNeeded(heroKey,mapKey, 'map'));
   }
 
+  componentWillReceiveProps (nextProps) {
+    const {
+      dispatch,
+      params: {
+        heroKey: _heroKey,
+        mapKey: _mapKey
+      }
+    } = this.props;
+
+    const {
+      params: {
+        heroKey: _nextHeroKey,
+        mapKey: _nextMapKey
+      }
+    } = nextProps;
+
+    const heroKey = changeCase.lower(_heroKey);
+    const nextHeroKey = changeCase.lower(_nextHeroKey);
+    const mapKey = changeCase.lower(_mapKey);
+    const nextMapKey = changeCase.lower(_nextMapKey);
+
+    if (heroKey !== nextHeroKey || mapKey !== nextMapKey) {
+      dispatch(fetchMatchupTipsIfNeeded(nextHeroKey,nextMapKey,'map'));
+    }
+  }
+
   render () {
     const {
       

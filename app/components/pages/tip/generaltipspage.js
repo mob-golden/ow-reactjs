@@ -37,6 +37,28 @@ class GeneralTipsPage extends Component {
     dispatch(fetchTipsIfNeeded(heroKey));
   }
 
+  componentWillReceiveProps (nextProps) {
+    const {
+      dispatch,
+      params: {
+        heroKey: _heroKey
+      }
+    } = this.props;
+
+    const {
+      params: {
+        heroKey: _nextHeroKey
+      }
+    } = nextProps;
+
+    const heroKey = changeCase.lower(_heroKey);
+    const nextHeroKey = changeCase.lower(_nextHeroKey);
+
+    if (heroKey !== nextHeroKey) {
+      dispatch(fetchTipsIfNeeded(nextHeroKey));
+    }
+  }
+
   render () {
     const {
       children,

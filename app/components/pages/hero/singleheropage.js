@@ -40,14 +40,17 @@ class SingleHeroPage extends Component {
       return <Loader />;
     }
     
-    const activePath = _activePath.split('/').pop();
+    let activePath = _activePath.split('/').pop();
     let _generaltips,_heromatchups,_maprankings, _fulltips, _maprankingtips = false;
 
     if(activePath == "matchups" ) _heromatchups = 'active';
     else if(activePath == "maprankings" ) _maprankings = 'active';
     else if(_activePath.includes("for") || _activePath.includes("against")) _fulltips = 'active';
     else if(_activePath.includes("maprankingtips")) _maprankingtips = 'active';
-    else _generaltips = "active";
+    else {
+      activePath = "generaltips";
+      _generaltips = "active";
+    }
 
     const heroKey = changeCase.lower(_heroKey);
     const {
@@ -89,7 +92,7 @@ class SingleHeroPage extends Component {
                 <div className="col-lg-9">
                   <div className="os-hero-search">
                     <Typeahead
-                      constructLink={(id) => `/heroes/${id.toLowerCase()}/${activePath}`}
+                      constructLink={(id) => `/heroes/${id}/${activePath}`}
                       inputGroupClass="input-group"
                       placeholder={"Search for a matchup"}
                     />
