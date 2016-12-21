@@ -151,7 +151,7 @@ export function addHeroMatchupTip ({
 
         // TODO: is this necessary for a POST request?
         if (response.status >= 200 && response.status < 300) {
-          fetchMatchupTipsIfNeeded(heroKey, matchupKey, tipType);
+          dispatch(fetchMatchupTipsIfNeeded(heroKey, matchupKey, tipType));
           return response;
         } else {
           const error = new Error(statusText);
