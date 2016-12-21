@@ -6,7 +6,9 @@ import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import TipsList from '../tip/tipslist';
 import Loader from '../../loader';
+import Modal from '../../modal';
 import { fetchMatchupTipsIfNeeded } from '../../../actions/api';
+import { addHeroMatchupTip } from '../../../actions/all';
 
 class MatchupTipsPage extends Component {
   constructor (props) {
@@ -100,12 +102,13 @@ class MatchupTipsPage extends Component {
 
     const rightViewAllClassName = classNames({
       'btn btn-secondary os-btn-white':true,
-      //'hidden': tipsAgainst.length < 6
+      'hidden': tipsAgainst.length < 6
     });
     return (
       <div className="os-matchup-tip-container">
         <div className="row">
           <div className="os-matchup-tip-col">
+            { this.renderModal('for', heroKey, matchupHeroKey, heroName) }
             <div className="os-matchup-tip-body">
               <span className="os-matchup-tip-name">
                 TIPS VS. {changeCase.upper(matchupName)} 
@@ -126,7 +129,7 @@ class MatchupTipsPage extends Component {
                 <button
                   className="btn btn-primary os-btn-blue"
                   data-toggle="modal"
-                  data-target={`#modal-add-tip-for`}
+                  data-target={`#modal-add-matchup-tip-for`}
                 >
                   ADD A TIP
                 </button>
@@ -141,6 +144,7 @@ class MatchupTipsPage extends Component {
           </div>
 
           <div className="os-matchup-tip-col">
+            { this.renderModal('against', heroKey, matchupHeroKey, heroName) }
             <div className="os-matchup-tip-body">
               <span className="os-matchup-tip-name">
                 TIPS VS. {changeCase.upper(heroName)} 
@@ -161,7 +165,7 @@ class MatchupTipsPage extends Component {
                 <button
                   className="btn btn-primary os-btn-blue"
                   data-toggle="modal"
-                  data-target={`#modal-add-tip-against`}
+                  data-target={`#modal-add-matchup-tip-against`}
                 >
                   ADD A TIP
                 </button>
@@ -178,11 +182,78 @@ class MatchupTipsPage extends Component {
       </div>
     );
   }
+
+  renderModal = (type, heroKey, matchupHeroKey, heroName) => {
+    const {
+      dispatch,
+      token
+    } = this.props;
+    this._tipsBox = {
+      type: {}
+    };
+    if(token){
+      return (
+        <div>
+          <form onSubmit={e => {
+              e.preventDefault();
+              const textarea = this._tipsBox[type];
+              if (textarea && textarea.value) {
+                const localUserId = localStorage.getItem('userId');
+                const localUsername = localStorage.getItem('username');
+
+                dispatch(addHeroMatchupTip({
+                  authorId: localUserId,
+                  authorName: localUsername,
+                  heroKey: heroKey,
+                  matchupKey: matchupHeroKey,
+                  content: textarea.value,
+                  tipType: type,
+                  token
+                }));
+                // dispatch(fetchTipsIfNeeded(heroKey));
+              }
+              $(`#modal-add-matchup-tip-${type}`).modal('hide');
+              // location.reload();
+            }}>
+            <Modal 
+              id={`modal-add-matchup-tip-${type}`}
+            >
+              <fieldset className="os-modal-form-group-1">
+                <h4 className="os-modal-title">{`NEW TIP ${changeCase.upper(type)} ${changeCase.upper(heroName)}`}</h4>
+                <span className="os-modal-description">{`Add a tip ${type} ${heroName}`}</span>
+              </fieldset>
+              <fieldset className="os-modal-form-group-2">
+                <textarea
+                  className="form-control os-textarea"
+                  placeholder={type == "for" ? 
+                                `Share strategies and tips on how to play ${heroName}.`:
+                                `Share counter tips on how to play ${heroName}.`}
+                  ref={c => this._tipsBox[type] = c}
+                  rows={9}
+                >
+                </textarea>
+              </fieldset>
+              <fieldset className="os-modal-form-group-2">
+                <button
+                  className="btn btn-primary os-btn-blue"
+                  type="submit"
+                >SUBMIT</button>
+              </fieldset>
+            </Modal>
+          </form>
+        </div>
+      );
+    }
+  };
+
 }
 
 
 function mapStateToProps (state) {
   const {
+    auth: {
+      token
+    },
     hero: {
       heroes: {
         _hash: heroesHash,
@@ -198,6 +269,7 @@ function mapStateToProps (state) {
   } = state;
 
   return {
+    token,
     heroesHash,
     isFetchingHeroes, 
     matchupTips: matchupTipsData,

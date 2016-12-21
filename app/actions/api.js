@@ -76,7 +76,13 @@ function fetchMatchupTips(heroKey, matchupHeroKey, params) {
         .catch(error => {
           console.log(error);
           if (error.message === 'Not Found') {
-            dispatch(receiveMatchupTips({data:{}}, heroKey, matchupHeroKey, matchupTipType));
+            const result = {
+              data:{
+                tips:[]
+              },
+              noMatchup: true
+            };
+            dispatch(receiveMatchupTips(result, heroKey, matchupHeroKey, matchupTipType));
           }
 
           console.log(`Response returned an error for a single matchup: ${error}`);

@@ -9,7 +9,8 @@ import {
 
 import {
   fetchTipsIfNeeded,
-  fetchMatchupsIfNeeded
+  fetchMatchupsIfNeeded,
+  fetchMatchupTipsIfNeeded
 } from './api';
 
 export function addHeroTip ({
@@ -55,7 +56,7 @@ export function addHeroTip ({
       })
       .then(response => response.json())
       .then(json => {
-        console.log(json);
+        // console.log(json);
         if (json.hasOwnProperty('error')) {
           const error = new Error(json.error);
           console.log(error.message);
@@ -105,7 +106,7 @@ export function addHeroMatchup ({
       })
       .then(response => response.json())
       .then(json => {
-        console.log(json);
+        // console.log(json);
         if (json.hasOwnProperty('error')) {
           const error = new Error(json.error);
           console.log(error.message);
@@ -150,6 +151,7 @@ export function addHeroMatchupTip ({
 
         // TODO: is this necessary for a POST request?
         if (response.status >= 200 && response.status < 300) {
+          fetchMatchupTipsIfNeeded(heroKey, matchupKey);
           return response;
         } else {
           const error = new Error(statusText);
@@ -160,7 +162,7 @@ export function addHeroMatchupTip ({
       })
       .then(response => response.json())
       .then(json => {
-        console.log(json);
+        // console.log(json);
         if (json.hasOwnProperty('error')) {
           const error = new Error(json.error);
           console.log(error.message);
