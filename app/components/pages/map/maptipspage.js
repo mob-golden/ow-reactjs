@@ -92,7 +92,7 @@ class MapTipsPage extends Component {
               </div>
               <div className="row">
                 <div className="os-card-container os-map-tip-container">
-                  <div className="row">
+                  <div className="row os-card-body">
                     <div className="col-lg-7">
                       <div className="os-card-col os-map-tip-col">
                         <span className="os-hero-tip-name">
