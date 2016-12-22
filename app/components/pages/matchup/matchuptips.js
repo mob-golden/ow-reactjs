@@ -151,7 +151,7 @@ class MatchupTips extends Component {
           </div>
 
           <div className="os-matchup-tip-col">
-            { this.renderModal('against', heroKey, matchupHeroKey, heroName) }
+            { this.renderModal('against', matchupHeroKey, heroKey, matchupName) }
             <div className="os-matchup-tip-body">
               <span className="os-matchup-tip-name">
                 TIPS VS. {changeCase.upper(heroName)} 

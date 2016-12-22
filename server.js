@@ -8,7 +8,7 @@ var fetch = require('isomorphic-fetch');
 var qs = require('querystring');
 var React = require('react');
 var Router = require('react-router');
-var routes = require('./app/containers/Application');
+var routes = require('./app/containers/Application').routes;
 
 var urls = require('./app/constants/urls');
 
@@ -28,7 +28,14 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-app.get('/', handleRender);
+app.set('trust proxy', true);
+app.use(redirectWww);
+function redirectWww(req, res, next) {
+  if (!req.headers.host.slice(0, 4) === 'www.') {
+    return res.redirect(301, req.protocol + '://www.' + req.headers.host + req.originalUrl);
+  }
+  next();
+}
 
 app.post('/signin', function (req, res) {
   const {
@@ -82,6 +89,25 @@ app.post('/signup', function (req, res) {
     });
 });
 
+app.get('/', handleRender);
+app.get('/heroes', handleRender);
+app.get('/heroes/:heroKey', handleRender);
+app.get('/heroes/:heroKey/generaltips', handleRender);
+app.get('/heroes/:heroKey/matchups', handleRender);
+app.get('/heroes/:heroKey/maprankings', handleRender);
+app.get('/maprankingtips/:heroKey/:mapKey', handleRender);
+app.get('/matchups/:heroKey/:matchupHeroKey/:matchupType', handleRender);
+app.get('/maps', handleRender);
+app.get('/maps/:mapKey', handleRender);
+app.get('/forgot', handleRender);
+app.get('/reset', handleRender);
+
+app.all('*', send404);
+
+function send404 (req, res) {
+  res.setHeader('Cache-Control', `max-age=${S_IN_YR}`);
+  res.status(404).send('Not found.');
+}
 
 function handleRender(req, res) {
   match({ routes, location: req.url }, function(error, redirectLocation, renderProps) {
