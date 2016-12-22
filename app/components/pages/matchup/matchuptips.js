@@ -132,7 +132,7 @@ class MatchupTips extends Component {
                 }
                 firstText={`Share a tip on how to play ${heroName}.`}
               />
-              <div className="os-hero-tip-button-group">
+              <div className="os-tip-button-group">
                 <button
                   className="btn btn-primary os-btn-blue"
                   data-toggle="modal"
@@ -168,7 +168,7 @@ class MatchupTips extends Component {
                 }
                 firstText={`Share a tip on how to play against ${heroName}.`}
               />
-              <div className="os-hero-tip-button-group">
+              <div className="os-tip-button-group">
                 <button
                   className="btn btn-primary os-btn-blue"
                   data-toggle="modal"
@@ -209,12 +209,8 @@ class MatchupTips extends Component {
               e.preventDefault();
               const textarea = this._tipsBox[type];
               if (textarea && textarea.value) {
-                const localUserId = localStorage.getItem('userId');
-                const localUsername = localStorage.getItem('username');
 
                 dispatch(addHeroMatchupTip({
-                  authorId: localUserId,
-                  authorName: localUsername,
                   heroKey: heroKey,
                   matchupKey: matchupHeroKey,
                   content: textarea.value,

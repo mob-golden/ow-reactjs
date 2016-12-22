@@ -4,18 +4,18 @@ import qs from 'querystring';
 import {
   OW_TIPS_URL,
   OW_MATCHUPS_URL,
-  OW_HERO_URL
+  OW_HERO_URL,
+  OW_MAP_URL
 } from '../constants/urls';
 
 import {
   fetchTipsIfNeeded,
   fetchMatchupsIfNeeded,
-  fetchMatchupTipsIfNeeded
+  fetchMatchupTipsIfNeeded,
+  fetchMapTipsIfNeeded
 } from './api';
 
 export function addHeroTip ({
-  authorId,
-  authorName,
   heroKey,
   content,
   tipType,
@@ -23,8 +23,6 @@ export function addHeroTip ({
 }) {
   return (dispatch, getState) => {
     const body = qs.stringify({
-      authorId,
-      authorName,
       content,
       type:tipType
     });
@@ -118,8 +116,6 @@ export function addHeroMatchup ({
 
 
 export function addHeroMatchupTip ({
-  authorId,
-  authorName,
   heroKey,
   matchupKey,
   content,
@@ -128,8 +124,6 @@ export function addHeroMatchupTip ({
 }) {
   return (dispatch, getState) => {
     const body = qs.stringify({
-      authorId,
-      authorName,
       content,
       type:tipType
     });
@@ -157,6 +151,53 @@ export function addHeroMatchupTip ({
           const error = new Error(statusText);
           console.log(`Response returned an error for ${url}: ${error.message}`);
 
+          return Promise.reject(error);
+        }
+      })
+      .then(response => response.json())
+      .then(json => {
+        // console.log(json);
+        if (json.hasOwnProperty('error')) {
+          const error = new Error(json.error);
+          console.log(error.message);
+        } else {
+        }
+      })
+  };
+}
+
+export function addMapTip ({
+  mapKey,
+  content,
+  token
+}) {
+  return (dispatch, getState) => {
+    const body = qs.stringify({
+      content
+    });
+
+    return fetch(`${OW_MAP_URL}/${mapKey}/tips`, {
+      body,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': token
+      },
+      method: 'PUT'
+    })
+      .then(response => {
+        const {
+          status,
+          statusText
+        } = response;
+
+        // TODO: is this necessary for a POST request?
+        if (response.status >= 200 && response.status < 300) {
+          dispatch(fetchMapTipsIfNeeded(mapKey));
+          return response;
+        } else {
+          const error = new Error(statusText);
+          console.log(`Response returned an error for ${url}: ${error.message}`);
           return Promise.reject(error);
         }
       })

@@ -102,7 +102,7 @@ class GeneralTipsPage extends Component {
                 }
                 firstText={`Share a tip on how to play ${heroName}.`}
               />
-              <div className="os-hero-tip-button-group">
+              <div className="os-tip-button-group">
                 <button
                   className="btn btn-primary os-btn-blue"
                   data-toggle="modal"
@@ -134,7 +134,7 @@ class GeneralTipsPage extends Component {
                 }
                 firstText={`Share a tip on how to play against ${heroName}.`}
               />
-              <div className="os-hero-tip-button-group">
+              <div className="os-tip-button-group">
                 <button
                   className="btn btn-primary os-btn-blue"
                   data-toggle="modal"
@@ -171,21 +171,15 @@ class GeneralTipsPage extends Component {
               e.preventDefault();
               const textarea = this._tipsBox[type];
               if (textarea && textarea.value) {
-                const localUserId = localStorage.getItem('userId');
-                const localUsername = localStorage.getItem('username');
 
                 dispatch(addHeroTip({
-                  authorId: localUserId,
-                  authorName: localUsername,
                   heroKey: heroKey,
                   content: textarea.value,
                   tipType: type,
                   token
                 }));
-                // dispatch(fetchTipsIfNeeded(heroKey));
               }
               $(`#modal-add-tip-${type}`).modal('hide');
-              // location.reload();
             }}>
             <Modal 
               id={`modal-add-tip-${type}`}

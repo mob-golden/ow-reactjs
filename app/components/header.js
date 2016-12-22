@@ -226,8 +226,8 @@ class Header extends Component {
                   className="os-modal-here-link"
                   onClick={e => {
                     $(`#${signInId}`).modal('hide');
+                    $(`#${signUpId}`).modal('show');
                   }}
-                  to="/signup"
                 > here
                 </Link>.
               </small>
@@ -306,7 +306,8 @@ class Header extends Component {
                 <Link
                   className="os-modal-here-link"
                   onClick={e => {
-                    $(`#${signInId}`).modal('hide');
+                    $(`#${signUpId}`).modal('hide');
+                    $(`#${signInId}`).modal('show');
                   }}
                   to="/login"
                 > here

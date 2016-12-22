@@ -199,12 +199,8 @@ class MapRankingTipsPage extends Component {
                   const textarea = this._tipsBox;
 
                   if (textarea && textarea.value && token) {
-                    const localUserId = localStorage.getItem('userId');
-                    const localUsername = localStorage.getItem('username');
 
                     dispatch(addHeroMatchupTip({
-                      authorId: localUserId,
-                      authorName: localUsername,
                       heroKey: heroKey,
                       matchupKey: mapKey,
                       content: textarea.value,
