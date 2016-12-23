@@ -31,12 +31,14 @@ class MatchupTipsPage extends Component {
       isFetchingHeroes,
       params: {
         heroKey: _heroKey,
-        matchupHeroKey: _matchupHeroKey
+        matchupHeroKey: _matchupHeroKey,
+        matchupType: _matchupType
       },
     } = this.props;
     
     const heroKey = changeCase.lower(_heroKey);
     const matchupHeroKey = changeCase.lower(_matchupHeroKey);
+    const matchupType = changeCase.lower(_matchupType);
 
     if (isFetchingHeroes && !heroesHash) {
       return <Loader />;
@@ -81,7 +83,7 @@ class MatchupTipsPage extends Component {
                 </div>
                 
                 <div className="col-lg-4">
-                  <Link to={`/matchups/${matchupHeroKey}/${heroKey}`}>
+                  <Link to={`/matchups/${matchupHeroKey}/${heroKey}/${matchupType}`}>
                     <div className="os-matchup-vs-img">
                     </div>
                   </Link>
