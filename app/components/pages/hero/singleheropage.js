@@ -41,12 +41,14 @@ class SingleHeroPage extends Component {
     }
     
     let activePath = _activePath.split('/').pop();
-    let _generaltips,_heromatchups,_maprankings, _fulltips, _maprankingtips = false;
+    let _generaltips,_heromatchups,_maprankings, _maprankingtips = false;
 
     if(activePath == "matchups" ) _heromatchups = 'active';
     else if(activePath == "maprankings" ) _maprankings = 'active';
-    else if(_activePath.includes("for") || _activePath.includes("against")) _fulltips = 'active';
-    else if(_activePath.includes("maprankingtips")) _maprankingtips = 'active';
+    else if(_activePath.includes("maprankingtips")) { 
+      activePath = "maprankings"; 
+      _maprankingtips = 'active';
+    }
     else {
       activePath = "generaltips";
       _generaltips = "active";
@@ -103,41 +105,31 @@ class SingleHeroPage extends Component {
             <div className="col-lg-12">
               <div className="os-hero-body">
                 { _heromatchups || _maprankings || _generaltips ?
-                <div className="row">
-                  <div className="col-lg-12 center-text">
-                    <ul className="os-hero-nav">
-                      <li className={`os-hero-nav-item ${_generaltips}`}> 
-                        <Link to={`/heroes/${id}/generaltips`}>GENERAL TIPS</Link> 
-                      </li>
-                      <li className={`os-hero-nav-item ${_heromatchups}`}> 
-                        <Link to={`/heroes/${id}/matchups`}>HERO MATCHUPS</Link> 
-                      </li>
-                      <li className={`os-hero-nav-item ${_maprankings}`}> 
-                        <Link to={`/heroes/${id}/maprankings`}>MAP RANKINGS</Link> 
-                      </li>
-                    </ul>
-                  </div>
-                </div> : null
-                }
-
-                { _fulltips?
-                <div className="row">
-                  <div className="col-lg-12">
-                    <Link to={`/heroes/${id}/generaltips`}>
-                      <i className="fa fa-long-arrow-left" aria-hidden="true"/> back to Hero Matchups
-                    </Link>
-                  </div>
-                </div> : null
+                  <div className="row">
+                    <div className="col-lg-12 center-text">
+                      <ul className="os-hero-nav">
+                        <li className={`os-hero-nav-item ${_generaltips}`}> 
+                          <Link to={`/heroes/${id}/generaltips`}>GENERAL TIPS</Link> 
+                        </li>
+                        <li className={`os-hero-nav-item ${_heromatchups}`}> 
+                          <Link to={`/heroes/${id}/matchups`}>HERO MATCHUPS</Link> 
+                        </li>
+                        <li className={`os-hero-nav-item ${_maprankings}`}> 
+                          <Link to={`/heroes/${id}/maprankings`}>MAP RANKINGS</Link> 
+                        </li>
+                      </ul>
+                    </div>
+                  </div> : null
                 }
 
                 { _maprankingtips?
-                <div className="row">
-                  <div className="col-lg-12">
-                    <Link to={`/heroes/${id}/maprankings`}>
-                      <i className="fa fa-long-arrow-left" aria-hidden="true"/> back to Map Matchups
-                    </Link>
-                  </div>
-                </div> : null
+                  <div className="row">
+                    <div className="col-lg-12">
+                      <Link to={`/heroes/${id}/maprankings`}>
+                        <i className="fa fa-long-arrow-left" aria-hidden="true"/> back to Map Matchups
+                      </Link>
+                    </div>
+                  </div> : null
                 }
 
                 <div className="row">

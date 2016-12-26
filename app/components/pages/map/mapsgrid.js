@@ -3,7 +3,7 @@ import changeCase from 'change-case';
 import { Component } from 'react';
 import { Link } from 'react-router';
 
-import {  MAP_TYPES, MAPS_HASH } from '../../../constants/types';
+import {  MAPS_HASH } from '../../../constants/types';
 
 class MapsGrid extends Component {
   static defaultProps = {

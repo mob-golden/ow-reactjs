@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import TipsList from '../tip/tipslist';
+import TipList from '../tip/tiplist';
 import Loader from '../../loader';
 import { addHeroMatchupTip } from '../../../actions/all';
 import { fetchMatchupTipsIfNeeded } from '../../../actions/api';
@@ -177,8 +177,9 @@ class MapRankingTipsPage extends Component {
               <h5 className="os-hero-tip-title">
                 { changeCase.upper(mapName) }
               </h5>
-              <TipsList
+              <TipList
                 tips={matchupTips.for.data.tips}
+                firstText={`Share a tip on how to play ${heroName} on ${mapName}.`}
               />
             </div>
           </div>

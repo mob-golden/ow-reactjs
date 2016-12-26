@@ -12,6 +12,8 @@ import {
   OW_MATCHUPS_URL
 } from '../constants/urls';
 
+//================================HERO MATCHUP TIPS API=================================//
+
 export const REQUEST_MATCHUP_TIPS = 'REQUEST_MATCHUP_TIPS';
 export const RECEIVE_MATCHUP_TIPS = 'RECEIVE_MATCHUP_TIPS';
 export const REQUEST_MATCHUP_TIPS_SUCCESS = 'REQUEST_MATCHUP_TIPS_SUCCESS';
@@ -342,8 +344,6 @@ function receiveTips (tip, heroKey, tipType) {
 //================================MAP TIPS API=================================//
 
 export const REQUEST_MAP_TIPS = 'REQUEST_MAP_TIPS';
-export const REQUEST_MAP_TIPS_SUCCESS = 'REQUEST_MAP_TIPS_SUCCESS';
-export const REQUEST_MAP_TIPS_FAILURE = 'REQUEST_MAP_TIPS_FAILURE';
 export const RECEIVE_MAP_TIPS = 'RECEIVE_MAP_TIPS';
 
 export function fetchMapTipsIfNeeded (mapKey) {
@@ -415,3 +415,81 @@ function receiveMapTips (mapTip, mapKey,) {
     mapTip
   };
 }
+
+
+
+//================================MAP MATCHUP API=================================//
+
+export const REQUEST_MAP_MATCHUPS = 'REQUEST_MAP_MATCHUPS';
+export const RECEIVE_MAP_MATCHUPS = 'RECEIVE_MAP_MATCHUPS';
+
+export function fetchMapMatchupsIfNeeded (mapKey) {
+  const params = {
+    sort: 'score.total-desc',
+  };
+  return (dispatch, getState) => {
+    if (shouldFetchMapMatchups(getState(), mapKey))
+      return dispatch(fetchMapMatchups(mapKey, params));
+  };
+}
+
+function shouldFetchMapMatchups (state, mapKey) {
+  const {
+    api: {
+      mapMatchups
+    }
+  } = state;
+
+  if (mapMatchups.isFetching)
+    return false;
+
+  // if (mapMatchups.isFetching || mapKey === mapMatchups.mapKey)
+  //   return false;
+
+  return true;
+}
+
+function fetchMapMatchups (mapKey, params) {
+  return dispatch => {
+    dispatch(requestMapMatchups(mapKey));
+
+    const url = `${OW_MATCHUPS_URL}/${mapKey}`;
+    return fetch(url)
+      .then(response => {
+        const {
+          status,
+          statusText
+        } = response;
+
+        if (status >= 200 && status < 300) {
+          return response;
+        } else {
+          const error = new Error(statusText);
+          console.log(`Response returned an error for ${url}: ${error.message}`);
+
+          return Promise.reject(error);
+        }
+      })
+      .then(response => response.json())
+      .then(json => dispatch(receiveMapMatchups(json)))
+      .catch (error => {
+        console.log(`Request failed for ${url}: ${error.message}`);
+      });
+  }
+}
+
+function requestMapMatchups (mapKey) {
+  return {
+    type: REQUEST_MAP_MATCHUPS,
+    mapKey
+  };
+}
+
+function receiveMapMatchups (mapMatchup, mapKey,) {
+  return {
+    type: RECEIVE_MAP_MATCHUPS,
+    mapKey,
+    mapMatchup
+  };
+}
+

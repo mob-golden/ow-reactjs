@@ -105,9 +105,20 @@
   background-color: #FFFFFF;
   border: #DDE1E8 solid 1px;
   border-radius: 5px;
-  min-height: 685px;
+  min-height: 820px; 
   box-shadow: 0px 2px 2px 0 rgba(0, 0, 0, 0.1);
 }
+
+.os-map-stats-col{
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #FFFFFF;
+  border: #DDE1E8 solid 1px;
+  border-radius: 5px;
+  min-height: 400px;
+  box-shadow: 0px 2px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
 .os-map-tip-name {
   font-size: 14px;
   color: $GRAY_3;
@@ -117,4 +128,14 @@
   font-size: 20px;
   font-weight: bolder;
   color: $GRAY_4;
+}
+
+.os-map-new{
+  text-align: center;
+  padding-top: 200px;
+  border: $GRAY_4 1px dashed;
+  position: relative;
+  margin: 0px -8px 20px -8px;
+  height: 289px;
+  border-radius: 5px;
 }

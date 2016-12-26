@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { take } from 'lodash';
 import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import TipsList from '../tip/tipslist';
+import TipList from '../tip/tiplist';
 import Loader from '../../loader';
 import Modal from '../../modal';
 import { fetchMatchupTipsIfNeeded } from '../../../actions/api';
@@ -124,7 +124,7 @@ class MatchupTips extends Component {
                 AS <span>{changeCase.upper(heroName) }</span>
               </h5>
 
-              <TipsList
+              <TipList
                 tips={
                   this.state.leftViewAll?
                   tipsFor:
@@ -160,7 +160,7 @@ class MatchupTips extends Component {
                 AS <span>{changeCase.upper(matchupName) }</span>
               </h5>
 
-              <TipsList
+              <TipList
                 tips={
                   this.state.rightViewAll?
                   tipsAgainst:

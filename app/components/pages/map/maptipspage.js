@@ -8,10 +8,15 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import Modal from '../../modal';
 
-import TipsList from '../tip/tipslist';
+import TipList from '../tip/tiplist';
+import MatchupList from '../matchup/matchuplist';
 import Loader from '../../loader';
 
-import { fetchMapTipsIfNeeded } from '../../../actions/api';
+import { 
+  fetchMapTipsIfNeeded,
+  fetchMapMatchupsIfNeeded
+} from '../../../actions/api';
+
 import { addMapTip } from '../../../actions/all';
 import { MAPS_HASH } from '../../../constants/types';
 import { adDimensions } from '../../../constants/ads';
@@ -25,6 +30,9 @@ class MapTipsPage extends Component {
     };
   }
 
+  handleMatchupViewAll(){
+    this.setState({matchupViewAll: !this.state.matchupViewAll });
+  }
   componentWillMount () {
     const {
       params:{
@@ -35,6 +43,7 @@ class MapTipsPage extends Component {
 
     const mapKey = changeCase.lower(_mapKey);
     dispatch(fetchMapTipsIfNeeded(mapKey));
+    dispatch(fetchMapMatchupsIfNeeded(mapKey));
   };
 
   componentWillUnmount () {
@@ -49,11 +58,11 @@ class MapTipsPage extends Component {
       },
       mapTips,
       isFetchingMapTips,
-      mapsHash,
-      isFetchingMaps
+      mapMatchups,
+      isFetchingMapMatchups
     } = this.props;
 
-    if(isFetchingMaps || !mapsHash || isFetchingMapTips || !mapTips){
+    if( isFetchingMapTips || !mapTips || isFetchingMapMatchups || !mapMatchups){
       return (<Loader/>);
     }
 
@@ -66,7 +75,12 @@ class MapTipsPage extends Component {
       type: mapType,
       name: mapName,
       image: mapImage
-    } = mapsHash[mapKey];
+    } = mapTips.data;
+
+    const matchupViewAllClassName = classNames({
+      'btn btn-secondary os-btn-white':true,
+      'hidden': mapMatchups.data.matchups.length < 4
+    });
 
     return (
       <div className="container os-content">
@@ -104,7 +118,7 @@ class MapTipsPage extends Component {
               <div className="row">
                 <div className="os-card-container os-map-tip-container">
                   <div className="row">
-                    <div className="col-lg-7">
+                    <div className="col-lg-8">
                       { this.renderModal(mapKey, mapName) }
                       <div className="os-card-col os-map-tip-col">
                         <span className="os-map-tip-name">
@@ -113,7 +127,7 @@ class MapTipsPage extends Component {
                         <h5 className="os-map-tip-title">
                           MAP TIPS
                         </h5>
-                        <TipsList 
+                        <TipList 
                           tips={
                             this.state.viewAll?
                             mapTips.data.tips:
@@ -134,6 +148,34 @@ class MapTipsPage extends Component {
                             onClick={() => this.setState({viewAll: !this.state.viewAll })}
                           >
                           { this.state.viewAll?`VIEW LESS`:`VIEW ALL`}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-lg-4">
+                      <div className="os-card-col os-map-stats-col">
+                        <span className="os-map-tip-name"> TOP HEROES </span>
+                        <h5 className="os-map-tip-title"> BASED ON STATS </h5>
+                      </div>
+                      <div className="os-card-col os-map-stats-col">
+                        <span className="os-map-tip-name"> TOP HEROES </span>
+                        <h5 className="os-map-tip-title"> VOTED BY PLAYERS </h5>
+                        <MatchupList
+                          heroKey={mapKey}
+                          matchups={
+                            this.state.matchupViewAll?
+                            mapMatchups.data.matchups:
+                            take(mapMatchups.data.matchups, 3)
+                          }
+                          matchupType = "map"
+                          firstText = {`No Heres.`}
+                        />
+                        <div className="row center-text">
+                          <button
+                            className={matchupViewAllClassName}
+                            onClick={() => this.handleMatchupViewAll()}
+                          >
+                            { this.state.matchupViewAll?`VIEW LESS`:`VIEW ALL`}
                           </button>
                         </div>
                       </div>
@@ -213,12 +255,10 @@ function mapStateToProps (state) {
       mapTips:{
         data: mapTips,
         isFetching: isFetchingMapTips
-      }
-    },
-    map: {
-      maps: {
-        _hash: mapsHash,
-        isFetching: isFetchingMaps
+      },
+      mapMatchups: {
+        data: mapMatchups,
+        isFetching: isFetchingMapMatchups
       }
     }
   } = state;
@@ -226,8 +266,8 @@ function mapStateToProps (state) {
     token,
     mapTips,
     isFetchingMapTips,
-    mapsHash,
-    isFetchingMaps
+    mapMatchups,
+    isFetchingMapMatchups
   };
 }
 

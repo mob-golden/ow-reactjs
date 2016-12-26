@@ -6,7 +6,7 @@ import { Link } from 'react-router';
 import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Modal from '../../modal';
-import TipsList from './tipslist';
+import TipList from './tiplist';
 import Loader from '../../loader';
 import { fetchTipsIfNeeded } from '../../../actions/api';
 import { addHeroTip } from '../../../actions/all';
@@ -94,7 +94,7 @@ class GeneralTipsPage extends Component {
                 {changeCase.upper(heroName)} 
               </span>
               <h5 className="os-hero-tip-title">STRATEGY & TIPS</h5>
-              <TipsList
+              <TipList
                 tips={
                   this.state.leftViewAll?
                   tips.for.data.tips:
@@ -126,7 +126,7 @@ class GeneralTipsPage extends Component {
                 {changeCase.upper(heroName)} 
               </span>
               <h5 className="os-hero-tip-title">COUNTER TIPS</h5>
-              <TipsList
+              <TipList
                 tips={
                   this.state.rightViewAll?
                   tips.against.data.tips:

@@ -3,6 +3,7 @@
 .os-hero-maprankings-container {
   padding: 0px 16px;
   min-height: 120px;
+  margin-top: 20px;
 }
 .os-hero-maprankings-col {
   width: 100%;
@@ -59,9 +60,35 @@
 }
 
 .os-maprankings-list {
-	padding: 20px 0px;
+	/* padding: 20px 0px; */
 }
 
 .os-map-vote-group {
   margin: 24px 0px;
+}
+
+.os-map-item{
+  display: flex;
+  background-color: $WHITE_2;
+  margin: 15px 0px;
+  border-radius: 4px;
+  overflow: hidden;
+  .os-map-info{
+    display: inline-block;
+    padding: 15px 15px;
+    
+    .os-map-type{
+      font-weight: bold;
+      color: $GRAY_3;
+    }
+    .os-map-name{
+      font-weight: bold;
+      color: $GRAY_4;
+      margin-bottom: 0px;
+    }
+  }
+  &:hover{
+    text-decoration: none;
+    box-shadow: #3EABF0 0px 0px 4px 2px;    
+  }
 }

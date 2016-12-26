@@ -6,11 +6,11 @@ import { take } from 'lodash';
 import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import HeroMatchupsList from './heromatchupslist';
+import MatchupList from './matchuplist';
 import Loader from '../../loader';
 import Typeahead from '../../typeahead';
 
-import { addHeroMatchup } from '../../../actions/all'
+import { addHeroMatchup } from '../../../actions/all';
 import { fetchMatchupsIfNeeded } from '../../../actions/api';
 
 class HeroMatchupsPage extends Component {
@@ -119,7 +119,7 @@ class HeroMatchupsPage extends Component {
               </span>
               <h5 className="os-matchups-title">COUNTERS</h5>
               
-                <HeroMatchupsList
+                <MatchupList
                   heroKey={heroKey}
                   matchups={
                     this.state.positiveViewAll?
@@ -127,6 +127,7 @@ class HeroMatchupsPage extends Component {
                     take(matchups.positive.data.matchups, 6)
                   }
                   matchupType = "positive"
+                  firstText = {`Add a Hero that ${heroName} counters.`}
                 />
               <div className="row center-text">
                 <button
@@ -140,7 +141,7 @@ class HeroMatchupsPage extends Component {
                   className={positiveViewAllClassName}
                   onClick={() => this.handlePositiveViewAll()}
                 >
-                { this.state.positiveViewAll?`VIEW LESS`:`VIEW ALL`}
+                  { this.state.positiveViewAll?`VIEW LESS`:`VIEW ALL`}
                 </button>
               </div>
             </div>
@@ -153,7 +154,7 @@ class HeroMatchupsPage extends Component {
               </span>
               <h5 className="os-matchups-title">COUNTERED BY</h5>
               
-                <HeroMatchupsList
+                <MatchupList
                   heroKey={heroKey}
                   matchups={
                     this.state.negativeViewAll?
@@ -161,6 +162,7 @@ class HeroMatchupsPage extends Component {
                     take(matchups.negative.data.matchups, 6)
                   }
                   matchupType = "negative"
+                  firstText = {`Add a Hero that counters ${heroName}.`}
                 />
               <div className="row center-text">
                 <button
@@ -174,7 +176,7 @@ class HeroMatchupsPage extends Component {
                   className={negativeViewAllClassName}
                   onClick={() => this.handleNegativeViewAll()}
                 >
-                { this.state.negativeViewAll?`VIEW LESS`:`VIEW ALL`}
+                  { this.state.negativeViewAll?`VIEW LESS`:`VIEW ALL`}
                 </button>
               </div>
             </div>
@@ -187,7 +189,7 @@ class HeroMatchupsPage extends Component {
               </span>
               <h5 className="os-matchups-title">TEAM WITH</h5>
               
-                <HeroMatchupsList
+                <MatchupList
                   heroKey={heroKey}
                   matchups={
                     this.state.teamupViewAll?
@@ -195,6 +197,7 @@ class HeroMatchupsPage extends Component {
                     take(matchups.teamup.data.matchups, 6)
                   }
                   matchupType = "teamup"
+                  firstText = {`Add a Hero that ${heroName} can team well with.`}
                 />
               <div className="row center-text">
                 <button
@@ -208,7 +211,7 @@ class HeroMatchupsPage extends Component {
                   className={teamupViewAllClassName}
                   onClick={() => this.handleTeamupViewAll()}
                 >
-                { this.state.teamupViewAll?`VIEW LESS`:`VIEW ALL`}
+                  { this.state.teamupViewAll?`VIEW LESS`:`VIEW ALL`}
                 </button>
               </div>
             </div>
