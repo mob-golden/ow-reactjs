@@ -1,6 +1,6 @@
 
 //=================OVERWATCH BACKEND API ===============================//
-export const OW_API_ROOT = `http://overwatch-select-api-prod.herokuapp.com`;
+export const OW_API_ROOT = `https://overwatch-select-api-prod.herokuapp.com`;
 export const OW_HEROES_URL = `${OW_API_ROOT}/heroes`;
 export const OW_MAPS_URL = `${OW_API_ROOT}/maps`;
 export const OW_COUNTER_TIPS_URL = `${OW_API_ROOT}/countertips`;
