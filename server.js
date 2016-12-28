@@ -103,7 +103,6 @@ app.post('/forgot', function (req, res) {
 
         sg.API(sgReq)
           .then(sgRes => {
-            console.log(sgRes);
             res.json(json);
           });
           // TODO: do not rely on catch here
