@@ -72,7 +72,7 @@ app.post('/forgot', function (req, res) {
         const helper = sendgrid.mail;
         const from = new helper.Email('no-reply@overwatchselect.net');
         const to = new helper.Email(email);
-        const subject = 'Overwatc password reset'
+        const subject = 'Overwatch password reset'
         const params = qs.stringify({
           token,
           user_id
@@ -93,7 +93,7 @@ app.post('/forgot', function (req, res) {
 
         const content = new helper.Content('text/html', body);
         const mail = new helper.Mail(from, subject, to, content);
-        const sg = sendgrid(process.env.SENDGRID_API_KEY);
+        const sg = sendgrid(process.env.SENDGRID_KEY);
 
         const sgReq = sg.emptyRequest({
           method: 'POST',
@@ -104,7 +104,7 @@ app.post('/forgot', function (req, res) {
         sg.API(sgReq)
           .then(sgRes => {
             res.json(json);
-          })
+          });
           // TODO: do not rely on catch here
           // .catch(error => {
           //   console.log(error);
