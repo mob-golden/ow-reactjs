@@ -38,6 +38,7 @@
     width: 100%;
   }
   .os-card-body {
+    margin: 0px 5px;
     border-radius: 0;
     border: none;
     box-shadow: none;
@@ -55,7 +56,9 @@
     height: 42px;
     margin-top: 70px;
   }
-
+  .os-hero-footer-thumb{
+    margin: 4px;
+  }
   .mobile-hidden {
     display: none;
   }
