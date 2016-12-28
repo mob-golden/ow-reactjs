@@ -19,21 +19,21 @@ class Footer extends Component {
                   className="os-white"
                   href="http://solomid.net/info/tos"
                   target="_blank"
-                >Terms of Service</a>
+                >TERMS OF SERVICE</a>
               </li>
               <li className="nav-item">
                 <a
                   className="os-white"
                   href="http://solomid.net/info/privacy"
                   target="_blank"
-                >Privacy Policy</a>
+                >PRIVACY POLICY</a>
               </li>
               <li className="nav-item">
                 <a
                   className="os-white"
                   href="http://solomid.net/info/contact"
                   target="_blank"
-                >Contact Us</a>
+                >CONTACT US</a>
               </li>
             </ul>
           </div>

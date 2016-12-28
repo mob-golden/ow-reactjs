@@ -38,9 +38,10 @@ class ResetPassword extends Component {
     } = this.props;
 
     return (
-      <div className="os-forgot row">
-        <div className="col-xs-6 col-xs-offset-3">
-          <h3>Reset your password</h3>
+      <div className="os-reset row">
+        <div className="os-reset-body">
+          <h2>RESET PASSWORD</h2>
+          <p>Update your password below.</p>
           {errorResetPassword && !messageResetPassword ?
             <div className="alert alert-warning">{errorResetPassword.message}</div>
             : null
@@ -51,13 +52,12 @@ class ResetPassword extends Component {
           }
           <form onSubmit={this.resetPassword}>
             <div className="form-group">
-              <label htmlFor="resetPassword">New password</label>
               <input
-                className="form-control"
+                className="form-control os-modal-input"
                 id="resetPassword"
                 onChange={this.handleChange.bind(null, 'password')}
                 pattern={`.{${MIN_LENGTH_PASSWORD},${MAX_LENGTH_PASSWORD}}`}
-                placeholder="Password"
+                placeholder="New Password"
                 required
                 title={`Password length must be ${MIN_LENGTH_PASSWORD} to ${MAX_LENGTH_PASSWORD} characters.`}
                 type="password"
@@ -65,9 +65,8 @@ class ResetPassword extends Component {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="resetConfirmPassword">Confirm new password</label>
               <input
-                className="form-control"
+                className="form-control os-modal-input"
                 id="resetConfirmPassword"
                 placeholder="Confirm new password"
                 onChange={this.handleChange.bind(null, 'confirmPassword')}
@@ -81,10 +80,10 @@ class ResetPassword extends Component {
               }
             </div>
             <button
-              className="btn btn-primary"
+              className="btn btn-primary os-btn-blue"
               disabled={isResetPasswordPending}
               type="submit">
-              Submit {isResetPasswordPending ?
+              SUBMIT {isResetPasswordPending ?
                 <i className="fa fa-fw fa-circle-o-notch fa-spin"></i>
                 : null
               }

@@ -60,6 +60,17 @@
   .os-hero-footer {
     text-align: center;
   }
+  .os-forgot,
+  .os-reset
+  {
+    padding: 50px 0px;
+    height: initial; 
+  }
+
+  .os-forgot-body,
+  .os-reset-body{
+    width: 350px !important;
+  }
 
   .mobile-hidden {
     display: none;

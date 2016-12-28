@@ -33,10 +33,9 @@ class ForgotPassword extends Component {
 
     return (
       <div className="os-forgot row">
-        <div className="col-xs-6 col-xs-offset-3">
-          <h3>Forgot your password?</h3>
-          <p>Enter your email address to reset your password. You may need to check your spam folder or unblock no-reply@overwatchselect.net.</p>
-          <p>(It may take several minutes for the email to send.)</p>
+        <div className="os-forgot-body">
+          <h2>FORGOT PASSWORD</h2>
+          <p>We will send you an email to reset your password.</p>
           {errorPasswordChange ?
             <div className="alert alert-warning">{errorPasswordChange.message}</div>
             : null
@@ -47,9 +46,8 @@ class ForgotPassword extends Component {
           }
           <form onSubmit={this.requestPasswordChange}>
             <div className="form-group">
-              <label htmlFor="forgotEmail">Email address</label>
               <input
-                className="form-control"
+                className="form-control os-modal-input"
                 id="forgotEmail"
                 placeholder="Email"
                 onChange={this.handleEmailChange}
@@ -59,10 +57,10 @@ class ForgotPassword extends Component {
               />
             </div>
             <button
-              className="btn btn-primary"
+              className="btn btn-primary os-btn-blue"
               disabled={isRequestPasswordChangePending}
               type="submit">
-              Submit {isRequestPasswordChangePending ?
+              SUBMIT {isRequestPasswordChangePending ?
                 <i className="fa fa-fw fa-circle-o-notch fa-spin"></i>
                 : null
               }
