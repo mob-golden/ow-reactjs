@@ -45,7 +45,6 @@ class MatchupTipsPage extends Component {
     }
     
     return (
-<<<<<<< HEAD
       <div className="os-body">
         <div className="os-content container">
           <Ad
