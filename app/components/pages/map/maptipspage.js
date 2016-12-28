@@ -117,7 +117,7 @@ class MapTipsPage extends Component {
               </div>
               <div className="row">
                 <div className="os-card-container os-map-tip-container">
-                  <div className="row os-card-body">
+                  <div className="row">
                     <div className="col-lg-8">
                       { this.renderModal(mapKey, mapName) }
                       <div className="os-card-col os-map-tip-col">
