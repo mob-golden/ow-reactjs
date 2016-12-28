@@ -70,9 +70,9 @@ app.post('/forgot', function (req, res) {
         } = json;
 
         const helper = sendgrid.mail;
-        const from = new helper.Email('no-reply@championselect.net');
+        const from = new helper.Email('no-reply@overwatchselect.net');
         const to = new helper.Email(email);
-        const subject = 'OverwatchSelect password reset'
+        const subject = 'Overwatc password reset'
         const params = qs.stringify({
           token,
           user_id
