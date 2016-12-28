@@ -55,8 +55,8 @@ class MatchupTipsPage extends Component {
           <div className="os-matchup row">
             <div className="col-lg-12">
               <div className="os-matchup-top">
-                <div className="col-lg-4">
-                  <div className="os-hero-left-search">
+                <div className="col-lg-4 col-xs-4">
+                  <div className="os-hero-left-search mobile-hidden">
                     <Typeahead
                       constructLink={(id) => `/heroes/${id.toLowerCase()}`}
                       inputGroupClass="input-group"
@@ -82,14 +82,14 @@ class MatchupTipsPage extends Component {
                   </div>
                 </div>
                 
-                <div className="col-lg-4">
+                <div className="col-lg-4 col-xs-4">
                   <Link to={`/matchups/${matchupHeroKey}/${heroKey}/${matchupType}`}>
                     <div className="os-matchup-vs-img">
                     </div>
                   </Link>
                 </div>
 
-                <div className="col-lg-4">
+                <div className="col-lg-4 col-xs-4">
                   <div className="os-hero-right-profile">
                     <div className="os-profile-mask">
                       <Link to={`/heroes/${matchupHeroKey}`}>
@@ -106,7 +106,7 @@ class MatchupTipsPage extends Component {
                       </Link>
                     </div>
                   </div>
-                  <div className="os-hero-right-search">
+                  <div className="os-hero-right-search mobile-hidden">
                     <Typeahead
                       constructLink={(id) => `/heroes/${id.toLowerCase()}`}
                       inputGroupClass="input-group"

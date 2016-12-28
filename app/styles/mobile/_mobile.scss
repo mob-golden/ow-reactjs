@@ -34,7 +34,7 @@
     }
   }
   .os-card-col {
-    padding: 0;
+    padding: 20px 0px;
     width: 100%;
   }
   .os-card-body {
@@ -42,6 +42,24 @@
     border: none;
     box-shadow: none;
   }
+
+  .os-matchup-top,
+  .os-matchup-body {
+    padding: 20px;
+    margin: 0;
+  }
+
+  .os-matchup-vs-img {
+    background-size: contain;
+    width: 80px;
+    height: 42px;
+    margin-top: 70px;
+  }
+
+  .mobile-hidden {
+    display: none;
+  }
+
   // TODO: move this to appropriate place
   // .input-group-btn,
   // .os-search-input {
@@ -109,6 +127,7 @@
   }
 }
 @media screen and (max-width: $BP_SM) {
+
   .os-card-col {
     border-radius: 0;
     border: none;
