@@ -144,7 +144,7 @@ class SingleHeroPage extends Component {
             path={'/22280732/ChampionSelect_728x90_HP_BTF1'}
           />
         </div>
-        <div className="os-hero-footer row">
+        <div className="os-hero-footer">
           {!isFetchingHeroes && heroesArray ?
               <HeroFooter
                 heroes={heroesArray}
