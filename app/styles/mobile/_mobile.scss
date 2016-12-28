@@ -1,22 +1,17 @@
 // Mobile-friendliness changes
 @media screen and (max-width: $BP_MD) {
-  .os-hero-top {
-    margin: 0;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-  .os-heroes-top,
-  .os-heroes-body,
-  .os-maps-top,
-  .os-maps-body,
-  .os-map-tip-body,
-  .os-hero-body {
+  .os-content-top,
+  .os-content-body {
     margin: 0;
     padding-left: 25px;
     padding-right: 25px;
   }
+  .os-hero-top {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
   .os-map-tip-header {
-    margin: 0;
+    padding: 0;
   }
   .os-content {
     padding-left: 0;
@@ -28,17 +23,21 @@
     padding-top: 20px;
     padding-bottom: 10px;
   }
-  .os-container,
-  .os-hero-matchups-container {
+  .os-container {
     padding: 0;
   }
-  .os-hero-tip-col,
-  .os-hero-matchups-col {
+  .os-card-container {
+    padding: 0;
+
+    .row {
+      margin: 0;
+    }
+  }
+  .os-card-col {
     padding: 0;
     width: 100%;
   }
-  .os-hero-tip-body,
-  .os-hero-matchups-body {
+  .os-card-body {
     border-radius: 0;
     border: none;
     box-shadow: none;

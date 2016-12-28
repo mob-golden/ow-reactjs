@@ -64,14 +64,14 @@ class MatchupList extends Component {
           });
 
           const downvotesClass = classNames({
-            'col-lg-6': true,
+            'col-xs-6': true,
             'os-matchup-vote-down': true,
             'os-matchup-item-votes-active': votes[key],
             'os-matchup-item-votes-non-active': !votes[key]
           });
 
           const upvotesClass = classNames({
-            'col-lg-6': true,
+            'col-xs-6': true,
             'os-matchup-vote-up': true,
             'os-matchup-item-votes-active': votes[key],
             'os-matchup-item-votes-non-active': !votes[key]

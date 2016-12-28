@@ -12,14 +12,13 @@ import HeroFooter from '../hero/herofooter';
 
 import { adDimensions } from '../../../constants/ads';
 
-class MatchupTipsPage extends Component {
+class MatchupPage extends Component {
 
   componentWillMount () {
     const {
       dispatch
     } = this.props;
   };
-  
   componentWillUnmount () {
 
   }
@@ -31,21 +30,18 @@ class MatchupTipsPage extends Component {
       isFetchingHeroes,
       params: {
         heroKey: _heroKey,
-        matchupHeroKey: _matchupHeroKey,
-        matchupType: _matchupType
+        matchupHeroKey: _matchupHeroKey
       },
     } = this.props;
     
     const heroKey = changeCase.lower(_heroKey);
     const matchupHeroKey = changeCase.lower(_matchupHeroKey);
-    const matchupType = changeCase.lower(_matchupType);
 
     if (isFetchingHeroes && !heroesHash) {
       return <Loader />;
     }
     
     return (
-<<<<<<< HEAD
       <div className="os-body">
         <div className="os-content container">
           <Ad
@@ -55,7 +51,7 @@ class MatchupTipsPage extends Component {
           />
           <div className="os-matchup row">
             <div className="col-lg-12">
-              <div className="os-matchup-top">
+              <div className="os-content-top os-matchup-top">
                 <div className="col-lg-4">
                   <div className="os-hero-left-search">
                     <Typeahead
@@ -84,7 +80,7 @@ class MatchupTipsPage extends Component {
                 </div>
                 
                 <div className="col-lg-4">
-                  <Link to={`/matchups/${matchupHeroKey}/${heroKey}/${matchupType}`}>
+                  <Link to={`/matchups/${matchupHeroKey}/${heroKey}`}>
                     <div className="os-matchup-vs-img">
                     </div>
                   </Link>
@@ -120,7 +116,7 @@ class MatchupTipsPage extends Component {
             </div>
 
             <div className="col-lg-12">
-              <div className="os-matchup-body">
+              <div className="os-content-body os-matchup-body">
                 <div className="row">
                   <div className="col-lg-12">
                     <Link to={`/heroes/${heroKey}/matchups`}>
@@ -169,4 +165,4 @@ function mapStateToProps (state) {
   };
 }
 
-export default connect(mapStateToProps)(MatchupTipsPage);
+export default connect(mapStateToProps)(MatchupPage);

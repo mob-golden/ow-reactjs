@@ -72,7 +72,7 @@ class SingleHeroPage extends Component {
           />
           <div className="os-hero row">
             <div className="col-lg-12">
-              <div className="os-hero-top">
+              <div className="os-content-top os-hero-top">
                 <div className="col-lg-3">
                   <div className="os-hero-profile">
                     <div className="os-profile-mask">
@@ -103,7 +103,7 @@ class SingleHeroPage extends Component {
               </div>
             </div>
             <div className="col-lg-12">
-              <div className="os-hero-body">
+              <div className="os-content-body os-hero-body">
                 { _heromatchups || _maprankings || _generaltips ?
                   <div className="row">
                     <div className="col-lg-12 center-text">

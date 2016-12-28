@@ -51,7 +51,7 @@ class HomePage extends Component {
         />
         <div className="os-heroes row">
           <div className="col-lg-12">
-            <div className="os-heroes-top">
+            <div className="os-content-top os-heroes-top">
               <p className="os-white os-font-size-18"> Search for a hero to find counterpicks, general counters, hero synergy, and more!</p>
               <div className="os-search-wrapper col-lg-8 col-xs-12 col-lg-offset-2">
                 <Typeahead
@@ -63,7 +63,7 @@ class HomePage extends Component {
             </div>
           </div>
           <div className="col-lg-12">
-            <div className="os-heroes-body">
+            <div className="os-content-body os-heroes-body">
               <p className="hidden-xs-down os-font-size-18"> Choose a hero below to find counterpicks, general counters, hero synergy, and more!</p>
               <div>
                 <TabsNav

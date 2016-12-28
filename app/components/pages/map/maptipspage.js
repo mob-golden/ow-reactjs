@@ -92,7 +92,7 @@ class MapTipsPage extends Component {
         
         <div className="os-map-tip row">
           <div className="col-lg-12">
-            <div className="os-map-tip-header">
+            <div className="os-content-top os-map-tip-header">
               <div className="os-map-tip-header-background">
                 <img className="os-map-tip-header-image" src={mapImage}/>
               </div>
@@ -107,7 +107,7 @@ class MapTipsPage extends Component {
             </div>
           </div>
           <div className="col-lg-12">
-            <div className="os-map-tip-body">
+            <div className="os-content-body os-map-tip-body">
               <div className="row">
                 <div className="col-lg-12">
                   <Link to={`/maps`}>
@@ -117,7 +117,7 @@ class MapTipsPage extends Component {
               </div>
               <div className="row">
                 <div className="os-card-container os-map-tip-container">
-                  <div className="row">
+                  <div className="row os-card-body">
                     <div className="col-lg-8">
                       { this.renderModal(mapKey, mapName) }
                       <div className="os-card-col os-map-tip-col">

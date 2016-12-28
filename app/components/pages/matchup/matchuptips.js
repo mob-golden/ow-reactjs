@@ -112,11 +112,11 @@ class MatchupTips extends Component {
       'hidden': tipsAgainst.length < 6
     });
     return (
-      <div className="os-matchup-tip-container">
+      <div className="os-card-container os-matchup-tip-container">
         <div className="row">
-          <div className="os-matchup-tip-col">
+          <div className="os-card-col os-matchup-tip-col">
             { this.renderModal('for', heroKey, matchupHeroKey, heroName, ) }
-            <div className="os-matchup-tip-body">
+            <div className="os-card-body os-matchup-tip-body">
               <span className="os-matchup-tip-name">
                 TIPS VS. {changeCase.upper(matchupName)} 
               </span>
@@ -150,9 +150,9 @@ class MatchupTips extends Component {
             </div>
           </div>
 
-          <div className="os-matchup-tip-col">
+          <div className="os-card-col os-matchup-tip-col">
             { this.renderModal('against', matchupHeroKey, heroKey, matchupName) }
-            <div className="os-matchup-tip-body">
+            <div className="os-card-body os-matchup-tip-body">
               <span className="os-matchup-tip-name">
                 TIPS VS. {changeCase.upper(heroName)} 
               </span>
