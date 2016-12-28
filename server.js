@@ -37,6 +37,131 @@ function redirectWww(req, res, next) {
   next();
 }
 
+app.post('/forgot', function (req, res) {
+  const {
+    email
+  } = req.body;
+
+  const data = qs.stringify({
+    email
+  });
+
+  fetch(`${urls.SOLOMID_AUTH_FORGOT_PASS_URL}`, {
+    body: data,
+    headers: constructHeaders(data),
+    method: 'POST'
+  })
+    .then(authResponse => {
+      if (!authResponse.ok) {
+        // TODO: check specific error messages
+        res.statusMessage = "A user with that email wasn't found.";
+        res.status(500).send();
+        return Promise.reject(error);
+      }
+
+      return authResponse;
+    })
+    .then(authResponse => authResponse.json())
+    .then(json => {
+        const {
+          email,
+          token,
+          user_id
+        } = json;
+
+        const helper = sendgrid.mail;
+        const from = new helper.Email('no-reply@championselect.net');
+        const to = new helper.Email(email);
+        const subject = 'OverwatchSelect password reset'
+        const params = qs.stringify({
+          token,
+          user_id
+        })
+
+        // TODO: clean up
+        const host = process.env.HOST || req.headers.host;
+        const url = `${req.protocol}://${host}/reset?${params}`;
+
+        const body = `
+          <p>Hi ${email},</p>
+          <p>You've recently requested your SoloMid Network password to be reset. Set a new password by following the link below:</p>
+          <a href="${url}">Reset password</a>
+          <p>If you didn't request a password reset, please ignore this email.</p>
+          <p>Your password won't change until you access the link above and create a new one.</p>
+          <p>Thanks! <br />Team SoloMid </p>
+        `;
+
+        const content = new helper.Content('text/html', body);
+        const mail = new helper.Mail(from, subject, to, content);
+        const sg = sendgrid(process.env.SENDGRID_API_KEY);
+
+        const sgReq = sg.emptyRequest({
+          method: 'POST',
+          path: '/v3/mail/send',
+          body: mail.toJSON()
+        })
+
+        sg.API(sgReq)
+          .then(sgRes => {
+            res.json(json);
+          })
+          // TODO: do not rely on catch here
+          // .catch(error => {
+          //   console.log(error);
+          // });
+
+    })
+    .then(json => json)
+});
+
+app.post('/reset', function (req, res) {
+  const {
+    password,
+    token,
+    userId
+  } = req.body;
+
+  const data = qs.stringify({
+    password,
+    token,
+
+    // TODO: clean up
+    user_id: userId
+  });
+
+  fetch(`${urls.SOLOMID_AUTH_RESET_PASS_URL}`, {
+    body: data,
+    headers: constructHeaders(data),
+    method: 'POST'
+  })
+    .then(authResponse => {
+      return authResponse.json(json => {
+        const {
+          error
+        } = json;
+
+        if (!response.ok) {
+          res.statusMessage = error;
+          res.status(500).send();
+          Promise.reject(error);
+        }
+
+        return response.json();
+      });
+    })
+    .then(json => {
+      // TODO: DRY
+      const error = json.error;
+
+      if (error) {
+        res.statusMessage = error;
+        res.status(500).send();
+      }
+
+      res.json(json)
+    })
+});
+
 app.post('/signin', function (req, res) {
   const {
     email,
