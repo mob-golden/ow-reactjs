@@ -62,10 +62,11 @@
 .os-thumbnail:hover {
   width: 126px;
   height: 217px;
-  margin-top: -24px;
-  margin-left: -14px;
+  position: absolute;
+  left: 0px;
+  top: -10px;
   border: solid $WHITE_1 5px;
-  z-index: 999;
+  z-index: 1;
   box-shadow: $BLUE_1 1px 1px 40px 8px;
 }
 
