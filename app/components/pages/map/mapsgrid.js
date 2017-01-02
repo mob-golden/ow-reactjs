@@ -35,6 +35,11 @@ class MapsGrid extends Component {
             key={_map.id}
           >
             <div className="os-map">
+              <Link 
+                className="os-map-tile-link"
+                to={`/maps/${id}`}
+              >
+              </Link>
               <div className="os-map-profile">
                 <span className="os-map-profile-type">{changeCase.upper(MAPS_HASH[type])}</span>
                 <h5 className="os-map-profile-title">{name}</h5>

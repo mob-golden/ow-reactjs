@@ -8,7 +8,7 @@ import {  HERO_TYPES } from '../../../constants/types';
 
 class HeroesGrid extends Component {
   static defaultProps = {
-    colClass: 'col-xs-4 os-col-sm-1'
+    colClass: 'col-xs-4 col-md-2 os-col-sm-1'
   };
 
   render () {
@@ -38,12 +38,17 @@ class HeroesGrid extends Component {
               <div className="os-thumb-container">
                 <Link to={`/heroes/${id}`}>
                   <div className="os-thumb-photo">
-                    <img
-                      width="98"
-                      height="168"
-                      className="os-thumbnail"
-                      src={ portrait }
-                    />
+                    <div className="os-thumbnail-wrapper">
+                      <img
+                        width="98"
+                        height="168"
+                        className="os-thumbnail"
+                        style={{
+                          background: `url(${portrait}) no-repeat center center`,
+                          backgroundSize: "cover",
+                        }}
+                      />
+                    </div>
                   </div>
                   <div className="os-thumb-name">
                     <span>{changeCase.upper(name)}</span>

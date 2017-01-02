@@ -34,13 +34,27 @@
 .os-thumb-container {
   min-width: 48px;
   text-align: center;
+  margin-bottom: 20px;
+
   a {
     text-decoration: none;
     color: $BLACK_3;
   }
   // @media (min-width: Breakpoints.LG)
   //   max-width 5.75rem
+}
 
+.os-thumbnail-wrapper {
+  border-radius: 5px;
+  background-color: $GRAY_4;
+  margin-bottom: 16px;
+  -webkit-transition: all 0.2s ease; // For Safari 
+  -moz--webkit-transition: all 0.2s ease; // For Safari 
+  transition: all 0.2s ease;
+}
+
+.os-thumbnail-wrapper:hover {
+  transform: scale(1.2);
 }
 
 .os-thumbnail {
@@ -49,7 +63,6 @@
   border-radius: 5px;
   background-position: center;
   background-size: 120%;
-  margin-bottom: 16px;
   -webkit-transition: all 0.2s ease; // For Safari 
   -moz--webkit-transition: all 0.2s ease; // For Safari 
   transition: all 0.2s ease;
@@ -57,22 +70,32 @@
 
 .os-thumb-photo{
   max-height: 180px;
+
+  img {
+    background-color: $GRAY_4;
+  }
 }
 
 .os-thumbnail:hover {
-  width: 126px;
-  height: 217px;
-  margin-top: -24px;
-  margin-left: -14px;
+  // width: 126px;
+  // height: 217px;
+  // margin-top: -24px;
+  // margin-left: -14px;
+  // transform: scale(1.2);
   border: solid $WHITE_1 5px;
   box-shadow: $BLUE_1 1px 1px 40px 8px;
 }
 
 .os-thumb-name{
-  width: 110px;
-  margin-left: -6px;
-  position: absolute;
-  top: 186px;
+  // width: 110px;
+  // margin-left: -6px;
+  // position: absolute;
+  // top: 186px;
+  position: relative;
+  top: -12px;
+  text-align: center;
+  height: 20px;
+
   span {
     font-size: 13px;
     border-radius: 3px;

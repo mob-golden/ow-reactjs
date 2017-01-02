@@ -118,9 +118,9 @@ class MapTipsPage extends Component {
               <div className="row">
                 <div className="os-card-container os-map-tip-container">
                   <div className="row">
-                    <div className="col-lg-8">
+                    <div className="os-card-col os-map-tip-col col-lg-8">
                       { this.renderModal(mapKey, mapName) }
-                      <div className="os-card-col os-map-tip-col">
+                      <div className="os-card-body">
                         <span className="os-map-tip-name">
                           {changeCase.upper(mapName)} 
                         </span>
@@ -152,12 +152,12 @@ class MapTipsPage extends Component {
                         </div>
                       </div>
                     </div>
-                    <div className="col-lg-4">
-                      <div className="os-card-col os-map-stats-col">
+                    <div className="os-card-col os-map-stats-col col-lg-4">
+                      <div className="os-card-body">
                         <span className="os-map-tip-name"> TOP HEROES </span>
                         <h5 className="os-map-tip-title"> BASED ON STATS </h5>
                       </div>
-                      <div className="os-card-col os-map-stats-col">
+                      <div className="os-card-body">
                         <span className="os-map-tip-name"> TOP HEROES </span>
                         <h5 className="os-map-tip-title"> VOTED BY PLAYERS </h5>
                         <MatchupList
