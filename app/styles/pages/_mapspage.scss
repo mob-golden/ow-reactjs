@@ -55,6 +55,18 @@
   transition: all 0.2s ease;
 }
 
+.os-map-tile-link {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  @media screen and (min-width: $BP_MD) {
+    display: none;
+  }
+}
+
 .os-map:hover .os-map-btn {
   padding: 15px 0px 5px 0px;
   height: 58px;
