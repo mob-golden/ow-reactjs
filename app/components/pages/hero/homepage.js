@@ -36,12 +36,12 @@ class HomePage extends Component {
     const {
       activeTabId
     } = this.state;
-    
+
     const {
       heroes,
       isFetchingHeroes
     } = this.props;
-      
+
     return (
       <div className="os-content container">
         <Ad
@@ -81,7 +81,7 @@ class HomePage extends Component {
                 <HeroesGrid
                   filter={activeTabId}
                   heroes={heroes}
-                /> : <Loader /> } 
+                /> : <Loader /> }
             </div>
           </div>
         </div>
@@ -104,7 +104,7 @@ function mapStateToProps (state) {
       }
     }
   } = state;
-  
+
   return {
     heroes: heroesArray,
     isFetchingHeroes
