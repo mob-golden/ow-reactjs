@@ -6,6 +6,7 @@ import Root from './Root';
 import ForgotPassword from '../components/pages/password/forgot';
 import ResetPassword from '../components/pages/password/reset';
 import HomePage from '../components/pages/hero/homepage';
+import CommunityPage from '../components/pages/community/communitypage';
 import MapsPage from '../components/pages/map/mapspage';
 import SingleHeroPage from '../components/pages/hero/singleheropage';
 import GeneralTipsPage from '../components/pages/tip/generaltipspage';
@@ -15,6 +16,7 @@ import MapRankingTipsPage from '../components/pages/map/maprankingtipspage';
 import MatchupTipsPage from '../components/pages/matchup/matchuptipspage';
 import MatchupTips from '../components/pages/matchup/matchuptips';
 import MapTipsPage from '../components/pages/map/maptipspage';
+
 
 export const routes = (
   <Route path="/" component={Root} >
@@ -37,6 +39,8 @@ export const routes = (
 
     <Route path="/maps" component={MapsPage} />
     <Route path="/maps/:mapKey" component={MapTipsPage} />
+
+    <Route path="/community" component={CommunityPage} />
   </Route>
 );
 

@@ -3,6 +3,7 @@
 export const OW_API_ROOT = `https://overwatch-select-api-prod.herokuapp.com`;
 export const OW_HEROES_URL = `${OW_API_ROOT}/heroes`;
 export const OW_MAPS_URL = `${OW_API_ROOT}/maps`;
+export const OW_COMMUNITY_URL = `${OW_API_ROOT}/community`;
 export const OW_COUNTER_TIPS_URL = `${OW_API_ROOT}/countertips`;
 export const OW_HERO_URL = `${OW_API_ROOT}/hero`;
 export const OW_MAP_URL = `${OW_API_ROOT}/map`;
