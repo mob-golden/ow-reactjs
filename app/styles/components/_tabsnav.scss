@@ -1,0 +1,90 @@
+@import '../base/constants';
+
+.os-tabs-nav {
+  padding-left: 0px;
+  margin-bottom: 32px;
+  list-style: none;
+
+  .os-tabnav-item {
+    min-width: 15%;
+    float: left;
+    border-radius: 0px;
+    text-align: center;
+    margin-left: 1px;
+    box-shadow: -1px 0px;
+    background-color: $BLACK_3;
+    
+    a {
+      color: $WHITE;
+    }
+    .os-tab-item-OFFENSE{
+      width:16px;
+      height: 16px;
+      background-image: url("/images/1.png");
+      float:left;
+    }
+    .os-tab-item-DEFENSE{
+      width:16px;
+      height: 16px;
+      background-image: url("/images/2.png");
+      float:left;
+    }
+    .os-tab-item-TANK{
+      width:16px;
+      height: 16px;
+      background-image: url("/images/3.png");
+      float:left;
+
+      @media screen and (min-width: $BP_LG) {
+        margin-left: 12px;
+      }
+    }
+    .os-tab-item-SUPPORT{
+      width:16px;
+      height: 16px;
+      background-image: url("/images/4.png");
+      float:left;
+    }
+  }
+  .os-tabnav-item:first-child {
+    border-radius: 6px 0px 0px 6px;
+    margin-left: 0px;
+    box-shadow: 0px 0px;
+  }
+
+  .os-tabnav-item.active {
+    background-color: $BLUE_1;
+  }
+  
+  .os-tabnav-item:last-child {
+    border-radius: 0px 6px 6px 0px;
+  }
+  .os-tabnav-item:active {
+    background-color: $BLUE_1;
+  }
+  .os-tabnav-item:focus {
+    background-color: $BLUE_1;
+  }
+  .os-tabnav-item:hover {
+    background-color: $BLUE_1;
+  }
+  .os-nav-link {
+    display: block;
+    padding: 16px 30px;
+  }
+
+  .os-nav-link:hover {
+    text-decoration: none;
+  }
+  .os-nav-link:focus {
+    text-decoration: none;
+  }
+}
+.os-tabs-nav:after {
+  display: table;
+  clear: both;
+  content: "";
+}
+.center-text .os-tabs-nav {
+  display: inline-block;
+}

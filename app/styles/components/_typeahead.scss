@@ -1,0 +1,95 @@
+@import '../base/_constants';
+
+$suggestionPadding: 8px;
+$suggestionSize: 16px;
+
+.os-search-wrapper {
+  padding: 0;
+}
+.os-typeahead {
+  .list-group {
+    
+    position: absolute;
+    top: 50px;
+    z-index: 999;
+
+    // add scrolling after 5 suggestions
+
+    // (suggestion height + vertical padding) * 5 + border thickness
+    max-height: 241px;
+    overflow-y: scroll;
+  }
+  .list-group-item {
+    padding: $suggestionPadding;
+  }
+
+  .media-object {
+    width: $suggestionSize * 2;
+    height: $suggestionSize * 2;
+
+    // TODO: cleanup hard-coded value
+    background-size: 36px 32px;
+  }
+  .media {
+    margin-top: 0px;
+  }
+
+  // avoid double vertical borders
+  .media:not(:last-child) {
+    border-bottom: none;
+  }
+
+  .media-heading {
+    // pixel adjustment
+    position: relative;
+    top: -1px;
+  
+    // vertically center
+    height: $suggestionSize * 2;
+    margin-bottom: 0;
+    line-height: $suggestionSize * 2;
+  }
+  .os-search-input {
+    border: none;
+    padding: 12px 24px;
+  }
+
+  .os-search-btn {
+    border: none;
+    padding: 12px 27px;
+  }
+
+  // Chrome/Opera/Safari
+  .os-search-input::-webkit-input-placeholder  {
+    font-size: 14px;
+    color: $BLACK_3;
+  }
+
+  // Firefox 19+ 
+  .os-search-input::-moz-placeholder {
+    font-size: 14px;
+    color: $BLACK_3;
+  }
+  // IE 10+
+  .os-search-input:-ms-input-placeholder {
+    font-size: 14px;
+    color: $BLACK_3;
+  }
+}
+.os-mini-typeahead{
+  .os-mini-search-btn {
+    cursor: pointer;
+    display: inline-block;
+    padding: 1px 14px;
+    border: $GRAY_1 solid 2px;
+    border-radius: 3px;
+    color: $GRAY_1;
+  }
+}
+// Do not remove outline for modals
+.modal-dialog .os-search-input {
+  border: 1px solid $BLACK_4;
+}
+.modal-dialog .os-search-btn {
+  border: 1px solid $ORANGE_1;
+}

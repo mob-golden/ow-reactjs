@@ -1,0 +1,56 @@
+@import '../base/constants';
+
+.os-matchup-thumb {
+  margin-top: 4px;
+  border-radius: 4px;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+}
+
+.os-matchup-thumb-img {
+  background-color: $GRAY_4;
+  margin-top: -12px;
+}
+
+.os-matchup-item-name {
+  font-size: 16px;
+  font-weight: bolder;
+  color: $BLACK_3;
+}
+
+.os-matchup-item-votes-non-active {
+  cursor: pointer;
+}
+
+.os-matchup-item-votes-active {
+  cursor: default;
+}
+
+.os-matchup-vote-up {
+  margin-right: 10px;
+  width: 45%;
+  text-align: center;
+  color: $GREEN_1;
+  border: $GREEN_1 solid 1px;
+  border-radius: 3px;
+  font-size: 12px;
+  padding: 7px 24px;
+}
+.os-matchup-vote-up:hover {
+  color: $WHITE;
+  background-color: $GREEN_1;
+}
+.os-matchup-vote-down {
+  width: 45%;
+  text-align: center;
+  color: $RED_1;
+  border: $RED_1 solid 1px;
+  border-radius: 3px;
+  font-size: 12px;
+  padding: 7px 24px;
+}
+.os-matchup-vote-down:hover {
+  color: $WHITE;
+  background: $RED_1;
+}

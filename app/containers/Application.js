@@ -1,32 +1,50 @@
 import React from 'react'
 import { Provider } from 'react-redux';
-//import ReactGA from 'react-ga';
-import Home from '../components/pages/Home/Home';
-import Root from './Root';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import Root from './Root';
 
-//if (typeof window !== 'undefined')  {
-//  ReactGA.initialize('UA-51583717-1');
-//}
+import ForgotPassword from '../components/pages/password/forgot';
+import ResetPassword from '../components/pages/password/reset';
+import HomePage from '../components/pages/hero/homepage';
+import MapsPage from '../components/pages/map/mapspage';
+import SingleHeroPage from '../components/pages/hero/singleheropage';
+import GeneralTipsPage from '../components/pages/tip/generaltipspage';
+import HeroMatchupsPage from '../components/pages/matchup/heromatchupspage';
+import MapRankingsPage from '../components/pages/map/maprankingspage';
+import MapRankingTipsPage from '../components/pages/map/maprankingtipspage';
+import MatchupTipsPage from '../components/pages/matchup/matchuptipspage';
+import MatchupTips from '../components/pages/matchup/matchuptips';
+import MapTipsPage from '../components/pages/map/maptipspage';
+
 export const routes = (
   <Route path="/" component={Root} >
-    <IndexRoute component={Home} />
+    <IndexRoute component={HomePage} />
+    <Route path="/forgot" component={ForgotPassword} />
+    <Route path="/reset" component={ResetPassword} />
+    <Route path="/heroes" component={HomePage} />
+
+    <Route path="/heroes/:heroKey" component={SingleHeroPage}>
+      <IndexRoute component={GeneralTipsPage} />
+      <Route path="/heroes/:heroKey/generaltips" component={GeneralTipsPage}/>
+      <Route path="/heroes/:heroKey/matchups" component={HeroMatchupsPage}/>
+      <Route path="/heroes/:heroKey/maprankings" component={MapRankingsPage}/>
+      <Route path="/maprankingtips/:heroKey/:mapKey" component={MapRankingTipsPage}/>
+    </Route>
+
+    <Route path="/matchups/:heroKey/:matchupHeroKey/:matchupType" component={MatchupTipsPage}>
+      <IndexRoute component={MatchupTips} />
+    </Route>
+
+    <Route path="/maps" component={MapsPage} />
+    <Route path="/maps/:mapKey" component={MapTipsPage} />
   </Route>
 );
 
 export default class Application extends React.Component {
-
-//  handlePageView () {
-//    if (window !== undefined) {
-//      ReactGA.set({ page: window.location.pathname });
-//      ReactGA.pageview(window.location.pathname);
-//      window.scrollTo(0, 0);
-//    }
-//  }
   render () {
     return (
       <Provider store={ this.props.store }>
-        <Router history={ this.props.history }> //add this when pushing to prod  onUpdate={() => this.handlePageView()}
+        <Router history={ this.props.history }>
           {routes}
         </Router>
       </Provider>

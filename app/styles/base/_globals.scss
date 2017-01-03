@@ -1,0 +1,112 @@
+@import '_constants';
+
+.os-white {
+  color: $WHITE !important;
+}
+
+.os-font-size-12 {
+  font-size: 12px;
+}
+
+.os-font-size-16 {
+  font-size: 16px;
+}
+
+.os-font-size-18 {
+  font-size: 18px;
+}
+
+.os-font-size-20 {
+  font-size: 20px;
+}
+
+.os-font-size-24{
+  font-size: 24px;
+}
+
+.os-font-size-32{
+  font-size: 32px;
+}
+
+.os-content {
+  padding-top: 100px;
+
+  // Force center content by overriding grid
+  @media screen and (max-width: $BP_MD) {
+    margin: auto !important;
+  }
+}
+
+@media screen and (min-width: $BP_MD) {
+  .os-col-sm-1 {
+    width: 12.5%;
+    float: left;
+    padding: 12px; 
+    // margin-bottom: 30px;
+  }
+}
+
+// .form-control {
+//   border-color: $WHITE;
+// }
+
+.center-text {
+  text-align: center;
+}
+
+.os-btn-blue{
+  font-size: 12px;
+  background-color: $BLUE_1;
+  border-color: $BLUE_1;
+  border-radius: 2px;
+  padding: 12px 30px;
+  margin: 0px 4px;
+  font-weight: bold;
+}
+
+.os-btn-blue:hover{
+  font-weight: bold;
+}
+.os-btn-white{
+  font-size: 12px;
+  border: $GRAY_3 solid 1px;
+  color: $GRAY_3;
+  border-radius: 2px;
+  padding: 12px 30px;
+  margin: 0px 4px;
+  font-weight: bold;
+}
+
+.os-btn-white:hover{
+  color: $GRAY_4;
+  font-weight: bold;
+}
+
+.os-textarea {
+  padding: 15px 20px;
+}
+
+.os-textarea::-webkit-input-placeholder {
+  font-family: $FONT_1;
+  font-size: 14px;
+}
+
+.os-textarea::-moz-placeholder {
+  font-family: $FONT_1;
+  font-size: 14px;
+}
+
+.os-textarea:-ms-input-placeholder {
+  font-family: $FONT_1;
+  font-size: 14px;
+}
+
+.os-alert-warning{
+  text-align: center;
+  padding: 15px;
+  margin-bottom: 16px;
+  background-color: $WHITE_2;
+  color: $GRAY_4;
+  font-size: 14px;
+  font-weight: bold;
+}

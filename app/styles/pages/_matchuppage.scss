@@ -1,0 +1,46 @@
+@import '../base/constants';
+
+.os-matchup-top {
+  min-height: 242px;
+  padding: 30px 100px 70px 100px;
+  margin: 0px 55px;
+  background: $BLACK_2;
+}
+.os-matchup-body{
+  margin: 0px 55px;
+  padding: 20px 25px;
+  background: $WHITE_1;
+}
+.os-matchup-vs-img {
+  margin: auto;
+  margin-top: 48px;
+  background-image: url("/images/vs.png");
+  background-size: cover;
+  width: 132px;
+  height: 69px;
+}
+.os-hero-left-profile{
+  margin-right: -16px;
+  float: right;
+  .os-profile-mask{
+    background-image:url(/images/hero-mask-left.png);
+    .os-hero-profile-name{
+      text-shadow: $BLUE_1 0px 0px 6px;
+    }
+  }
+}
+.os-hero-right-profile{
+  margin-left: -16px;
+  float: left;
+  .os-profile-mask{
+    background-image:url(/images/hero-mask-right.png);
+    .os-hero-profile-name{
+      text-shadow: $RED_1 0px 0px 6px;
+    }
+  }
+}
+
+.os-matchup-profile{
+  margin-left: -16px;
+  float: left;
+}

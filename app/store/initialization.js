@@ -1,15 +1,15 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
-import { routerReducer } from 'react-router-redux';
-import {news} from '../reducers/reducers';
+import rootReducer from '../reducers/reducers';
 
-export default function (data) {
-  var reducer = combineReducers({
-    news,
-    routing: routerReducer
-});
-
-  var createFinalStore = applyMiddleware(thunk)(createStore);
-  var store = createFinalStore(reducer, data);
+export default function (preloadedState) {  
+  const store = createStore(
+    rootReducer,
+    preloadedState,
+    compose(
+      applyMiddleware(thunk),
+      typeof window === 'object' && typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : f => f
+    )
+  );
   return store;
 }
