@@ -29,8 +29,8 @@
   -webkit-clip-path: polygon(0px 8px, 72px 8px, 72px 80px, 71px 81px, 36px 101px, 1px 81px, 0px 80px);
   -ms-input-clip-path: polygon(0px 8px, 72px 8px, 72px 80px, 71px 81px, 36px 101px, 1px 81px, 0px 80px);
 }
-.os-profile-mask { 
-  background-image: url(/images/hero-mask-left.png);
+.os-profile-mask {
+  background-image: url("https://s3.amazonaws.com/solomid-resources/overwatch/icons/hero-mask-left.png");
   background-size: cover;
   width: 129px;
   height: 135px;
@@ -46,7 +46,7 @@
   position: absolute;
   margin-left: 27px;
   margin-top: -60px;
-  background-image: url(/images/oval.png);
+  background-image: url("https://s3.amazonaws.com/solomid-resources/overwatch/icons/oval.png");
   background-size: cover;
   width: 75px;
   height: 75px;
@@ -81,8 +81,8 @@
   border-radius: 5px;
   background-color: $GRAY_4;
   position: absolute;
-  -webkit-transition: box-shadow 0.2s; // For Safari 
-  -moz--webkit-transition: box-shadow 0.2s; // For Safari 
+  -webkit-transition: box-shadow 0.2s; // For Safari
+  -moz--webkit-transition: box-shadow 0.2s; // For Safari
   transition: box-shadow 0.2s;
 }
 .os-hero-footer-thumb-img:hover {
@@ -124,21 +124,21 @@
       left: -8px;
     }
     &:last-of-type {
-      position: relative; 
+      position: relative;
       left: 8px;
     }
   }
-} 
+}
 .os-hero-nav {
   display: inline-block;
   padding-left: 0px;
   margin: 16px 0px;
   list-style: none;
-  
+
   .os-hero-nav-item {
     float: left;
     text-align: center;
-    
+
     a {
       text-decoration: none;
       padding: 8px 16px;

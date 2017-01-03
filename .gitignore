@@ -21,6 +21,7 @@ coverage
 .lock-wscript
 
 # Webpack build directory
+dist
 
 # Dependency directories
 node_modules

@@ -53,7 +53,7 @@ module.exports = {
     }),
     new ExtractTextPlugin('style.[contenthash].css', { allChunks: true }),
     new CopyWebpackPlugin([
-      { from: __dirname + '/app/styles/img', to: 'app/styles/img' }
+      { from: __dirname + '/app/google.js', to: 'app/' }
     ]),
     new HtmlWebpackPlugin({
       title: 'overwatch-select',

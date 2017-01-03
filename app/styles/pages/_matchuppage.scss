@@ -14,7 +14,7 @@
 .os-matchup-vs-img {
   margin: auto;
   margin-top: 48px;
-  background-image: url("/images/vs.png");
+  background-image: url("https://s3.amazonaws.com/solomid-resources/overwatch/icons/vs.png");
   background-size: cover;
   width: 132px;
   height: 69px;
@@ -23,7 +23,7 @@
   margin-right: -16px;
   float: right;
   .os-profile-mask{
-    background-image:url(/images/hero-mask-left.png);
+    background-image:url("https://s3.amazonaws.com/solomid-resources/overwatch/icons/hero-mask-left.png");
     .os-hero-profile-name{
       text-shadow: $BLUE_1 0px 0px 6px;
     }
@@ -33,7 +33,7 @@
   margin-left: -16px;
   float: left;
   .os-profile-mask{
-    background-image:url(/images/hero-mask-right.png);
+    background-image:url("https://s3.amazonaws.com/solomid-resources/overwatch/icons/hero-mask-right.png");
     .os-hero-profile-name{
       text-shadow: $RED_1 0px 0px 6px;
     }

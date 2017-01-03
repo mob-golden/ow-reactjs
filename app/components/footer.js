@@ -9,7 +9,7 @@ class Footer extends Component {
     return (
       <div className="os-footer row">
         <div className="col-lg-12 os-footer-row os-footer-logo-row">
-          <img src="/images/solomid-logo.png"/>
+          <img src="https://s3.amazonaws.com/solomid-resources/overwatch/icons/solomid-logo.png"/>
         </div>
         <div className="col-lg-12 os-footer-row">
           <div className="os-footer-block">
@@ -40,7 +40,7 @@ class Footer extends Component {
         </div>
         <div className="col-lg-12 os-footer-row os-gray">
           <p><small>
-            Copyright © 2009-2016 SoloMid.  
+            Copyright © 2009-2016 SoloMid.
               <span className="hidden-sm-down">&nbsp;&nbsp;</span>
               <br className="hidden-md-up" />
             All Rights Reserved.
