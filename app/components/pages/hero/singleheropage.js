@@ -12,7 +12,7 @@ import HeroFooter from './herofooter';
 import { adDimensions } from '../../../constants/ads';
 
 class SingleHeroPage extends Component {
-  
+
   componentWillMount () {
     const {
       dispatch
@@ -39,14 +39,14 @@ class SingleHeroPage extends Component {
     if (isFetchingHeroes || !heroesHash) {
       return <Loader />;
     }
-    
+
     let activePath = _activePath.split('/').pop();
     let _generaltips,_heromatchups,_maprankings, _maprankingtips = false;
 
     if(activePath == "matchups" ) _heromatchups = 'active';
     else if(activePath == "maprankings" ) _maprankings = 'active';
-    else if(_activePath.includes("maprankingtips")) { 
-      activePath = "maprankings"; 
+    else if(_activePath.includes("maprankingtips")) {
+      activePath = "maprankings";
       _maprankingtips = 'active';
     }
     else {
@@ -84,7 +84,7 @@ class SingleHeroPage extends Component {
                           src= {portrait}
                         />
                         <div className="os-hero-profile-type">
-                          <img width="16" height="17" src={`/images/${type}.png`}/>
+                          <img width="16" height="17" src={`https://s3.amazonaws.com/solomid-resources/overwatch/icons/${type}.png`}/>
                         </div>
                         <h5 className="os-hero-profile-name">{changeCase.upper(name)}</h5>
                       </Link>
@@ -108,14 +108,14 @@ class SingleHeroPage extends Component {
                   <div className="row">
                     <div className="col-lg-12 center-text">
                       <ul className="os-hero-nav">
-                        <li className={`os-hero-nav-item ${_generaltips}`}> 
-                          <Link to={`/heroes/${id}/generaltips`}>GENERAL TIPS</Link> 
+                        <li className={`os-hero-nav-item ${_generaltips}`}>
+                          <Link to={`/heroes/${id}/generaltips`}>GENERAL TIPS</Link>
                         </li>
-                        <li className={`os-hero-nav-item ${_heromatchups}`}> 
-                          <Link to={`/heroes/${id}/matchups`}>HERO MATCHUPS</Link> 
+                        <li className={`os-hero-nav-item ${_heromatchups}`}>
+                          <Link to={`/heroes/${id}/matchups`}>HERO MATCHUPS</Link>
                         </li>
-                        <li className={`os-hero-nav-item ${_maprankings}`}> 
-                          <Link to={`/heroes/${id}/maprankings`}>MAP RANKINGS</Link> 
+                        <li className={`os-hero-nav-item ${_maprankings}`}>
+                          <Link to={`/heroes/${id}/maprankings`}>MAP RANKINGS</Link>
                         </li>
                       </ul>
                     </div>
