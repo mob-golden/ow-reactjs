@@ -168,7 +168,7 @@ class MapTipsPage extends Component {
                             take(mapMatchups.data.matchups, 3)
                           }
                           matchupType = "map"
-                          firstText = {`No Heres.`}
+                          firstText = {`No Heroes.`}
                         />
                         <div className="row center-text">
                           <button
