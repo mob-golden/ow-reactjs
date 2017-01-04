@@ -1,0 +1,147 @@
+@import '../base/_constants';
+
+.os-maps-top {
+  min-height: 190px;
+  margin: 0px 55px;
+  padding: 52px 100px 32px 100px;
+  background: $BLACK_2;
+  text-align: center;
+}
+.os-maps-body {
+  margin: 0px 55px;
+  padding: 30px 25px;
+  background: $WHITE_1;
+}
+.os-maps-grid {
+  margin:0px -8px;
+}
+.os-map {
+  box-shadow: rgba(0,0,0,0.1) 0px 2px 2px 0px;
+  position: relative;
+  margin: 0px -8px 20px -8px;
+  height: 289px;
+}
+.os-map-profile {
+  background-color: $WHITE;
+  padding: 16px;
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+  text-align: center;
+  border-radius: 0px 0px 5px 5px;
+}
+.os-map-image{
+  border-radius: 5px 5px 0px 0px;
+}
+
+.os-map-profile-type {
+  font-size: 14px;
+  font-family: $FONT_1;
+  color: $GRAY_3;
+}
+
+.os-map-profile-title {
+  font-size: 18px;
+  font-family: $FONT_1;
+  font-weight: bold;
+  color: $GRAY_4;
+}
+
+.os-map-btn {
+  height: 0px;
+  overflow: hidden;
+  -webkit-transition: all 0.2s ease; // For Safari 
+  -moz--webkit-transition: all 0.2s ease; // For Safari 
+  transition: all 0.2s ease;
+}
+
+.os-map-tile-link {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  @media screen and (min-width: $BP_MD) {
+    display: none;
+  }
+}
+
+.os-map:hover .os-map-btn {
+  padding: 15px 0px 5px 0px;
+  height: 58px;
+}
+
+
+.os-map-tip-header{
+  overflow: hidden;
+  height: 191px;
+  position:relative;
+  margin: 0px 55px;
+}
+.os-map-tip-header-image {
+  background-color: black;
+  filter: blur(3px);
+  -webkit-filter: blur(3px);
+  margin: -10px;  
+  width: 110%;
+  left: 0px;
+  top: 0px;
+}
+.os-map-tip-header-background {
+  background-color: $BLACK_2;
+  opacity: 1;
+  height: 191px;
+}
+.os-map-tip-header-title {
+  width: 100%;
+  top: 66px;
+  text-align: center;
+  position: absolute;
+}
+.os-map-header-typename {
+  font-size: 14px;
+  color: $GRAY_1;
+}
+
+.os-map-tip-body {
+  margin: 0px 55px;
+  padding: 15px 25px;
+  background-color: $WHITE_1;
+}
+.os-map-tip-container {
+  padding: 12px 16px;
+}
+.os-map-tip-col {
+  .os-card-body {
+    min-height: 820px; 
+  }
+}
+
+.os-map-stats-col{
+  .os-card-body {
+    min-height: 400px;
+    margin-bottom: 20px;
+  }
+}
+
+.os-map-tip-name {
+  font-size: 14px;
+  color: $GRAY_3;
+}
+
+.os-map-tip-title {
+  font-size: 20px;
+  font-weight: bolder;
+  color: $GRAY_4;
+}
+
+.os-map-new{
+  text-align: center;
+  padding-top: 200px;
+  border: $GRAY_4 1px dashed;
+  position: relative;
+  margin: 0px -8px 20px -8px;
+  height: 289px;
+  border-radius: 5px;
+}

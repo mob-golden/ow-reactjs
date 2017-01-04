@@ -1,0 +1,44 @@
+@import '../base/_constants';
+
+.os-hero-matchups-container {
+  padding: 0px 16px;
+
+  @media screen and (max-width: $BP_MD) {
+    .row {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+}
+.os-hero-matchups-col {
+  width: 33.33%;
+  float: left;
+  position: relative;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+.os-hero-matchups-body {
+  background-color: $WHITE;
+  border: $GRAY_2 solid 1px;
+  border-radius: 5px;
+  min-height: 650px;
+  box-shadow: 0px 2px 2px 0 rgba($BLACK_0, 0.1) ;
+
+  @media screen and (min-width: $BP_MD) {
+    padding: 25px 20px;
+  }
+}
+.os-matchups-hero-name {
+  font-size: 14px;
+  color: $GRAY_3;
+}
+
+.os-matchups-title {
+  font-size: 20px;
+  font-weight: bolder;
+  color: $GRAY_4;
+}
+
+.os-matchups-list {
+	padding: 20px 0px;
+}

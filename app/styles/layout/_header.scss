@@ -1,0 +1,206 @@
+@import '../base/_constants';
+
+.os-header {
+  .os-nav {
+    padding: 0;
+    background-color: $BLACK_1;
+    text-transform: uppercase;
+  }
+  .os-nav-links {
+    // Default (10) - 1/2 rem (8) (moved to <a>)
+    padding-left: 2px; 
+    float: right;
+  }
+  .os-nav-item {
+    +.nav-item {
+      // Remove default bootstrap margin on nav items
+      margin-left: 0;
+    }
+    a {
+      display: block;
+      height: 71px;
+      line-height: 71px;
+      padding: 0 18px;
+
+      &:hover,
+      &:focus {
+        text-decoration: none;
+      }
+      &:hover {
+        background-color: $BLUE_1;
+      }
+      &:focus {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        outline: none;
+      }
+    }
+  }
+  .os-nav-menu {
+  }
+  .os-nav-title {
+  	margin: 19px 16px 10px 0;
+  }
+  @media screen and (max-width: $BP_MD) {
+    .os-nav-menu,
+    .navbar-nav {
+      display: none;
+    }
+    .os-nav-lg-down {
+      padding: 0;
+    }
+  }
+}
+
+/* Defines the breakpoint at which the nav will collapse */
+$BP_NAV_COLLAPSE: $BP_MD;
+
+$NAV_SHADOW: 0px 1px 2px rgba(0,0,0,0.35);
+$NAV_BODYBG: $BLACK_1;
+
+/* Safari requires animations to be loaded before being called. */
+@keyframes header_fadeIn {
+  from { transform: translateY(-100px); }
+  to { transform: translateY(0px); }
+}
+/* Firefox < 16 */
+@-moz-keyframes header_fadeIn {
+  from { transform: translateY(-100px); }
+  to { transform: translateY(0px); }
+}
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes header_fadeIn {
+  from { transform: translateY(-100px); }
+  to { transform: translateY(0px); }
+}
+/* Internet Explorer */
+@-ms-keyframes header_fadeIn {
+  from { transform: translateY(-100px); }
+  to { transform: translateY(0px); }
+}
+/* Opera < 12.1 */
+@-o-keyframes header_fadeIn {
+  from { transform: translateY(-100px); }
+  to { transform: translateY(0px); }
+}
+.mobile-link {
+  cursor: pointer;
+  height: 32px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  width: 32px;
+
+  .mobile-hamburger {
+    border-top: 3px solid;
+    border-color: $WHITE;
+    height: auto;
+    position: relative;
+    transition: all 0.25s;
+    width: 100%;
+    display: inline-block;
+
+    &:before,
+    &:after {
+      border-top: 3px solid;
+      border-color: $WHITE;
+      content: ' ';
+      height: 0;
+      left: 0;
+      position: absolute;
+      right: 0;
+      transition: all 0.25s;
+    }
+    &:before {
+      top: -12px;
+    }
+    &:after {
+      bottom: -9px;
+    }
+  }
+  @media screen and (min-width: $BP_NAV_COLLAPSE) {
+    display: none;
+  }
+}
+.nav-open {
+  background-color: $NAV_BODYBG;
+
+  .logo {
+    opacity: 0;
+  }
+  .mobile-link {
+    .mobile-hamburger {
+      border-color: transparent;
+      z-index: 999999;
+
+      &:before,
+      &:after {
+        -webkit-transform-origin: 50% 50%;
+        -ms-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+        top: 0;
+      }
+      &:before {
+        transform: rotate3d(0, 0, 1, 45deg);
+      }
+      &:after {
+        transform: rotate3d(0, 0, 1, -45deg);
+      }
+    }
+  }
+  .navigation {
+    opacity: 1;
+    transform: translateY(0px);
+    transition-delay: 0s;
+    visibility: visible;
+
+    li {
+      transform: translateX(0px);
+    }
+  }
+}
+.navigation {
+  background: $NAV_BODYBG;
+  bottom: 0;
+  float: none;
+  left: 0;
+  margin-top: 0px;
+  opacity: 0;
+  padding: 0px 35px;;
+  position: fixed;
+  right: 0;
+  top: 69px;
+  transition: opacity 0.25s, visibility 0s linear 0.5s;
+  visibility: hidden;
+  z-index: 999;
+
+  a {
+    text-decoration: none;
+  }
+  li a {
+    color: $WHITE;
+    display: block;
+    font-size: 16px;
+    padding: 20px 0px;
+
+    &:focus {
+      outline: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+  }
+  li {
+    display: block;
+    transform: translateX(-10px);
+    transition: opacity 0.25s, transform 0.25s;
+    text-align: right;
+  }
+  .dropdown > a {
+    display: none;
+  }
+}
+.hidden {
+  display: none;
+}
