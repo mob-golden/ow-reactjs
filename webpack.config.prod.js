@@ -36,7 +36,6 @@ module.exports = {
   },
 
   plugins: [
-    new webpackMd5Hash(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         dead_code: true,
