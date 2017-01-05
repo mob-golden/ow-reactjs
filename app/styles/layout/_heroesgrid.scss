@@ -1,17 +1,13 @@
 @import '../base/constants';
-
 .os-heroes-grid {
   margin-bottom: 16px;
-
   // @media (min-width: Breakpoints.LG)
   //   margin-bottom 0
 }
-
 .os-heroes-grid-cell {
   position: relative;
   margin-bottom: 35%;
 }
-
 .os-heroes-grid-overlay{
   padding-top: 1px;
   padding-bottom: 1px;
@@ -25,17 +21,13 @@
   color: #fff;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
-
   // @media (min-width: Breakpoints.LG)
   //   font-size 0.875rem
 }
-
-
 .os-thumb-container {
   min-width: 48px;
   text-align: center;
   margin-bottom: 20px;
-
   a {
     text-decoration: none;
     color: $BLACK_3;
@@ -43,64 +35,41 @@
   // @media (min-width: Breakpoints.LG)
   //   max-width 5.75rem
 }
-
 .os-thumbnail-wrapper {
   border-radius: 5px;
   background-color: $GRAY_4;
-  margin-bottom: 16px;
-  -webkit-transition: all 0.2s ease; // For Safari 
-  -moz--webkit-transition: all 0.2s ease; // For Safari 
-  transition: all 0.2s ease;
+  border: 5px solid #ebeef4;
+  -webkit-transition: transform 0.25s, box-shadow 0.25s; // For Safari
+  -moz--webkit-transition: transform 0.25s, box-shadow 0.25s; // For Safari
+  transition: transform 0.25s, box-shadow 0.25s;
 }
-
 .os-thumbnail-wrapper:hover {
-  transform: scale(1.2);
+    box-shadow: 0px 0px 25px #3EABF0;
+    transform: scale(1.15);
 }
-
 .os-thumbnail {
-  background-color: $GRAY_4;
-  width: 100%;
-  border-radius: 5px;
-  background-position: center;
-  background-size: 120%;
-  -webkit-transition: all 0.2s ease; // For Safari 
-  -moz--webkit-transition: all 0.2s ease; // For Safari 
-  transition: all 0.2s ease;
+    border-radius: 5px;
+    height: 168px;
+    width: 90px;
 }
-
 .os-thumb-photo{
-  max-height: 180px;
-
-  img {
-    background-color: $GRAY_4;
-  }
+    position: relative;
+    z-index: 1;
 }
-
-.os-thumbnail:hover {
-  // width: 126px;
-  // height: 217px;
-  // margin-top: -24px;
-  // margin-left: -14px;
-  // transform: scale(1.2);
-  border: solid $WHITE_1 5px;
-  box-shadow: $BLUE_1 1px 1px 40px 8px;
-}
-
 .os-thumb-name{
-  // width: 110px;
-  // margin-left: -6px;
-  // position: absolute;
-  // top: 186px;
-  position: relative;
-  top: -12px;
-  text-align: center;
-  height: 20px;
-
+    position: relative;
+    text-align: center;
+    z-index: 2;
   span {
     font-size: 13px;
-    border-radius: 3px;
     background-color: $WHITE_1;
-    padding: 4px 4px;
     font-weight: bold;
+    border-radius: 3px;
+    display: inline-block;
+    padding: 4px;
+    transition: box-shadow 0.25s;
   }
+}
+.os-thumb-container:hover span {
+   box-shadow: 0px 0px 10px rgba(62, 171, 240, 0.5);
 }
