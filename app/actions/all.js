@@ -302,10 +302,8 @@ export function addThread ({
         name: userName,
         anonymous: false
       },
-      meta: {
-        title: topic,
-        views: 0
-      },
+      title: topic,
+      views: 0,
       class: ["overwatchselect", type],
       content: content
     });

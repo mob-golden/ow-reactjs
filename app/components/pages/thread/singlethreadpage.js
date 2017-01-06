@@ -7,12 +7,12 @@ import { Link } from 'react-router';
 
 import Modal from '../../modal';
 import Loader from '../../loader';
-import { fetchThreadsIfNeeded } from '../../../actions/community';
 import CommunityTypeAhead from '../../communitytypeahead';
 import { FORUM_STRINGS } from '../../../constants/types';
 import { addThread } from '../../../actions/all';
+import { fetchSingleThreadIfNeeded } from '../../../actions/community';
 
-class ThreadsListPage extends Component {
+class SingleThreadPage extends Component {
 
   constructor (props) {
     super(props);
@@ -23,74 +23,44 @@ class ThreadsListPage extends Component {
 
   componentWillMount () {    
     const {
-      dispatch
+      dispatch,
+      params: {
+        threadId
+      }
+
     } = this.props;
-    dispatch( fetchThreadsIfNeeded() );
+    dispatch( fetchSingleThreadIfNeeded(threadId) );
   }
 
   render() {
     const {
       params: {
-        commType
-      }
+        commType,
+        threadId
+      },
+      singleThread,
+      isFetchingSingleThread
     } = this.props;
-    if(!FORUM_STRINGS[commType]) return(null);
+
+    if(isFetchingSingleThread || !singleThread) 
+      return(<Loader/>);
+
     return (
       <div className="os-content container-fluid">
         <div className="row">
           <div className="col-lg-12">
-            <div className="os-threads-header">
-              <p className="os-white os-font-size-36 header-text">{changeCase.upper(FORUM_STRINGS[commType].title)}</p>
-              <p className="os-white os-font-size-18 header-text">{FORUM_STRINGS[commType].text}</p>
-            </div>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-lg-12">
-            <div className="os-threads-list-conainer">
-              <div className="os-threads-header-nav1">
-                <div className="os-threads-search-nav">
-                  <CommunityTypeAhead
-                    inputGroupClass="input-group"
-                    placeholder={"Search all forums"}
-                  />
-                </div>
-                <div className="os-threads-new">
-                  <button className="btn btn-primary os-btn-blue" data-toggle="modal" data-target="#modal-add-thread">
-                    <i className="fa fa-plus"></i> NEW {changeCase.upper(FORUM_STRINGS[commType].itemText)}
-                  </button>
-                </div>
-              </div>
-
-              <div className="os-threads-header-nav2">
+            <div className="os-singlethread-list-conainer">
+              <div className="os-singlethread-header">
                 <div className="os-page-path">
-                  <span className="path1">Home • Community • </span> 
-                  <span className="path2">{FORUM_STRINGS[commType].title}</span>
-                </div>
-                <div className="os-threads-sortby">
-                  <span className="sort-item active">Most Recent</span>
-                  <span className="sort-item">Popular</span>
+                  <span className="path1">Home • Community • {FORUM_STRINGS[commType].title} • </span> 
+                  <span className="path2">{singleThread.meta.title}</span>
                 </div>
               </div>
-
+{/*
               <div className="os-threads-list-body">
                 { this.renderModal(commType) }
                 { this.renderThreadsList(commType) }
-              </div>
-
-              <div className="os-threads-header-nav1">
-                <div className="os-threads-search-nav">
-                  <CommunityTypeAhead
-                    inputGroupClass="input-group"
-                    placeholder={"Search all forums"}
-                  />
-                </div>
-                <div className="os-threads-new">
-                  <button className="btn btn-primary os-btn-blue" data-toggle="modal" data-target="#modal-add-thread">
-                    <i className="fa fa-plus"></i> NEW {changeCase.upper(FORUM_STRINGS[commType].itemText)}
-                  </button>
-                </div>
-              </div>
+              </div>*/}
             </div>
           </div>
         </div>
@@ -231,18 +201,18 @@ function mapStateToProps (state) {
       token
     },
     community: {
-      threads: {
-        threads: threadsData,
-        isFetching: isFetchingThreads
+      singleThread: {
+        singleThread: singleThreadData,
+        isFetching: isFetchingSingleThread
       }
     }
   } = state;
 
   return {
     token,
-    threads: threadsData,
-    isFetchingThreads
+    singleThread: singleThreadData,
+    isFetchingSingleThread
   };
 }
 
-export default connect(mapStateToProps)(ThreadsListPage);
+export default connect(mapStateToProps)(SingleThreadPage);

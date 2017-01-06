@@ -227,6 +227,7 @@ app.get('/maps/:mapKey', handleRender);
 app.get('/forgot', handleRender);
 app.get('/reset', handleRender);
 app.get('/community', handleRender);
+app.get('/community/:commType', handleRender);
 
 app.all('*', send404);
 

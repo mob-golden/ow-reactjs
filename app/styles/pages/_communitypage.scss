@@ -93,11 +93,12 @@
 .boards-content:hover {
   background-color: $GRAY_1;
 }
+
 .os-threads-header {
   max-height: 200px;
   margin: 0px 160px;
   padding: 65px 200px;
-  background-image: url(https://s3.amazonaws.com/solomid-resources/overwatch/community/hero_bg.png);
+  background-image: url("https://s3.amazonaws.com/solomid-resources/overwatch/community/community_header.png");
   text-align: left;
   .header-text {
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
@@ -206,6 +207,29 @@
             margin-right:6px;
           }
         }
+      }
+    }
+  }
+}
+
+.os-singlethread-list-conainer{
+  margin: 0px 160px;
+  padding: 30px 200px;
+  background-color: $WHITE_1;
+  min-height: 800px;
+  .os-singlethread-header{
+    margin-top: 30px;
+    height: 35px;
+    border-bottom: 1px solid $GRAY_1;
+    .os-page-path{
+      float: left;
+      font-size: 12px;
+      font-weight: bold;
+      .path1 {
+        color: $GRAY_4;
+      }
+      .path2 {
+        color: $BLUE_1;
       }
     }
   }
