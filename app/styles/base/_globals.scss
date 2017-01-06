@@ -8,6 +8,10 @@
   font-size: 12px;
 }
 
+.os-font-size-14 {
+  font-size: 14px;
+}
+
 .os-font-size-16 {
   font-size: 16px;
 }
@@ -24,8 +28,19 @@
   font-size: 24px;
 }
 
+.os-font-size-30 {
+  font-size: 30px;
+}
+
+.os-font-size-36 {
+  font-size: 36px;
+}
 .os-font-size-32{
   font-size: 32px;
+}
+
+.os-font-size-45 {
+  font-size: 45px;
 }
 
 .os-content {
@@ -41,14 +56,14 @@
   .os-col-sm-1 {
     width: 12.5%;
     float: left;
-    padding: 12px; 
-    // margin-bottom: 30px;
+    padding: 12px;
+    /*margin-bottom: 30px;*/
   }
 }
 
-// .form-control {
-//   border-color: $WHITE;
-// }
+/*.form-control {
+  border-color: $WHITE;
+}*/
 
 .center-text {
   text-align: center;
@@ -58,7 +73,7 @@
   font-size: 12px;
   background-color: $BLUE_1;
   border-color: $BLUE_1;
-  border-radius: 2px;
+  border-radius: 5px;
   padding: 12px 30px;
   margin: 0px 4px;
   font-weight: bold;

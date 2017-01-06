@@ -93,7 +93,7 @@ app.post('/forgot', function (req, res) {
 
         const content = new helper.Content('text/html', body);
         const mail = new helper.Mail(from, subject, to, content);
-        const sg = sendgrid(process.env.SENDGRID_KEY);
+        const sg = sendgrid(process.env.SENDGRID_API_KEY);
 
         const sgReq = sg.emptyRequest({
           method: 'POST',
@@ -226,6 +226,7 @@ app.get('/maps', handleRender);
 app.get('/maps/:mapKey', handleRender);
 app.get('/forgot', handleRender);
 app.get('/reset', handleRender);
+app.get('/community', handleRender);
 
 app.all('*', send404);
 

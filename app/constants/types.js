@@ -59,3 +59,41 @@ export const MAP_TYPES = [
     'title':'control',
   }
 ];
+
+export const FORUM_TYPES = [
+  'discussion',
+  'announcement',
+  'guide',
+  'bugreport'
+];
+
+export const FORUM_STRINGS = {
+  discussion: {
+    title: "General Discussion",
+    itemText: "Discussion",
+    text: "Post your general discussion topics here.",
+    modalTitle: "NEW DISCUSSION TOPIC",
+    modalText: "Start a new topic in General Discussion."
+  },
+  announcement: {
+    title: "Announcements",
+    itemText: "Announcement",
+    text: "Post your announcement topics here.",
+    modalTitle: "NEW ANNOUNCEMENT TOPIC",
+    modalText: "Start a new topic in Announcement."
+  },
+  guide: {
+    title: "Guides",
+    itemText: "Guide",
+    text: "Post your guide topics here.",
+    modalTitle: "NEW GUIDE TOPIC",
+    modalText: "Start a new topic in Guides."
+  },
+  bugreport: {
+    title: "Bug Report",
+    itemText: "Bug Report",
+    text: "Post your bug report topics here.",
+    modalTitle: "NEW BUG REPORT TOPIC",
+    modalText: "Start a new topic in Bug Reports."
+  }
+};

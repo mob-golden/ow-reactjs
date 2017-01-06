@@ -5,7 +5,8 @@ import {
   OW_TIPS_URL,
   OW_MATCHUPS_URL,
   OW_HERO_URL,
-  OW_MAP_URL
+  OW_MAP_URL,
+  OW_COMMUNITY_URL
 } from '../constants/urls';
 
 import {
@@ -15,6 +16,9 @@ import {
   fetchMapTipsIfNeeded
 } from './api';
 
+import {
+  fetchThreadsIfNeeded
+} from './community';
 export function addHeroTip ({
   heroKey,
   content,
@@ -280,8 +284,65 @@ export function voteMatchup (heroKey, matchupHeroKey, downOrUp, matchupType) {
   }
 }
 
-export function invalidateTips (type) {
-  return {
-    type
+
+//=================================Community POST/PUT api ==============================
+
+export function addThread ({
+  type,
+  topic,
+  content,
+  userId,
+  userName,
+  token
+}) {
+  return (dispatch, getState) => {
+    const body = JSON.stringify({
+      author: {
+        id: userId,
+        name: userName,
+        anonymous: false
+      },
+      meta: {
+        title: topic,
+        views: 0
+      },
+      class: ["overwatchselect", type],
+      content: content
+    });
+
+    return fetch(`${OW_COMMUNITY_URL}/item`, {
+      body,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': token
+      },
+      method: 'POST'
+    })
+      .then(response => {
+        const {
+          status,
+          statusText
+        } = response;
+
+        // TODO: is this necessary for a POST request?
+        if (response.status >= 200 && response.status < 300) {
+          dispatch(fetchThreadsIfNeeded());
+          return response;
+        } else {
+          const error = new Error(statusText);
+          console.log(`Response returned an error for ${url}: ${error.message}`);
+
+          return Promise.reject(error);
+        }
+      })
+      .then(response => response.json())
+      .then(json => {
+        // console.log(json);
+        if (json.hasOwnProperty('error')) {
+          const error = new Error(json.error);
+          console.log(error.message);
+        } else {
+        }
+      })
   };
 }

@@ -16,7 +16,6 @@ import {
 } from 'react-router';
 
 import {
-  invalidateTips,
   voteTip
 } from '../../../actions/all';
 
