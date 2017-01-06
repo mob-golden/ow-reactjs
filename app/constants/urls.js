@@ -12,7 +12,7 @@ export const OW_MATCHUPS_URL = `${OW_API_ROOT}/matchups`;
 //================= SOLOMID DISCUSSION API ==============================//
 // export const OW_COMMUNITY_URL = `http://discussion.solomid.net`;
 // export const OW_COMMUNITY_URL = `http://alejandro-discussion.herokuapp.com`;
-export const OW_COMMUNITY_URL = `http://discussion-gamma.herokuapp.com`;
+export const OW_COMMUNITY_URL = `https://discussion-gamma.herokuapp.com`;
 
 //================= SOLOMID AUTH URL ====================================//
 export const SOLOMID_AUTH_ROOT = 'http://auth.solomid.net';
