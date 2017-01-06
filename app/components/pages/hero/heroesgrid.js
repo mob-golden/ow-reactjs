@@ -39,15 +39,15 @@ class HeroesGrid extends Component {
                 <Link to={`/heroes/${id}`}>
                   <div className="os-thumb-photo">
                     <div className="os-thumbnail-wrapper">
-                      <img
-                        width="98"
-                        height="168"
+                      <div
                         className="os-thumbnail"
                         style={{
                           background: `url(${portrait}) no-repeat center center`,
                           backgroundSize: "cover",
+                          width: "98px",
+                          height: "168px"
                         }}
-                      />
+                      ></div>
                     </div>
                   </div>
                   <div className="os-thumb-name">
