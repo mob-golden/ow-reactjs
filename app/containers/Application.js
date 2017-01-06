@@ -40,7 +40,7 @@ export const routes = (
 
     <Route path="/maps" component={MapsPage} />
     <Route path="/maps/:mapKey" component={MapTipsPage} />
-    
+                    
     <Route path="/community" component={CommunityPage} />
     <Route path="/community/:commType" component={ThreadsListPage} />
     <Route path="/community/:commType/:threadId" component={SingleThreadPage} />
