@@ -33,14 +33,14 @@ class MatchupPage extends Component {
         matchupHeroKey: _matchupHeroKey
       },
     } = this.props;
-    
+
     const heroKey = changeCase.lower(_heroKey);
     const matchupHeroKey = changeCase.lower(_matchupHeroKey);
 
     if (isFetchingHeroes && !heroesHash) {
       return <Loader />;
     }
-    
+
     return (
       <div className="os-body">
         <div className="os-content container">
@@ -71,14 +71,14 @@ class MatchupPage extends Component {
                           src= {heroesHash[heroKey].portrait}
                         />
                         <div className="os-hero-profile-type">
-                          <img width="16" height="17" src={`/images/${heroesHash[heroKey].type}.png`}/>
+                          <img width="16" height="17" src={`https://s3.amazonaws.com/solomid-resources/overwatch/icons/${heroesHash[heroKey].type}.png`}/>
                         </div>
                         <h5 className="os-hero-profile-name">{changeCase.upper(heroesHash[heroKey].name)}</h5>
                       </Link>
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="col-lg-4">
                   <Link to={`/matchups/${matchupHeroKey}/${heroKey}`}>
                     <div className="os-matchup-vs-img">
@@ -97,7 +97,7 @@ class MatchupPage extends Component {
                           src= {heroesHash[matchupHeroKey].portrait}
                         />
                         <div className="os-hero-profile-type">
-                          <img width="16" height="17" src={`/images/${heroesHash[matchupHeroKey].type}.png`}/>
+                          <img width="16" height="17" src={`https://s3.amazonaws.com/solomid-resources/overwatch/icons/${heroesHash[matchupHeroKey].type}.png`}/>
                         </div>
                         <h5 className="os-hero-profile-name">{changeCase.upper(heroesHash[matchupHeroKey].name)}</h5>
                       </Link>
