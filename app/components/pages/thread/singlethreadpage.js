@@ -56,11 +56,11 @@ class SingleThreadPage extends Component {
                   <span className="path2">{singleThread.meta.title}</span>
                 </div>
               </div>
-{/*
-              <div className="os-threads-list-body">
-                { this.renderModal(commType) }
-                { this.renderThreadsList(commType) }
-              </div>*/}
+
+              <div className="os-singlethread-body">
+                {/* this.renderModal(commType) */}
+                {/* this.renderCommentList() */}
+              </div>
             </div>
           </div>
         </div>
@@ -68,20 +68,20 @@ class SingleThreadPage extends Component {
     );
   }
 
-  renderThreadsList = (commType) =>{
+  renderCommentList = () =>{
     const {
       token,
-      threads,
-      isFetchingThreads
+      singleThread,
+      isFetchingSingleThread
     } = this.props;
 
-    if(isFetchingThreads || !threads.discussion){
+    if(isFetchingSingleThread || !singleThread){
       return (<Loader/>);
     }
     return(
       <div>
       {
-        threads[commType].map(thread => {
+        singleThread.map(thread => {
           const {
             _id,
             createdAt,
