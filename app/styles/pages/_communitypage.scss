@@ -1,0 +1,212 @@
+@import '../base/_constants';
+
+.os-comm-header {
+  max-height: 323px;
+  margin: 0px 55px;
+  padding: 75px 331px 75px 75px;
+  background-image: url("https://s3.amazonaws.com/solomid-resources/overwatch/community/hero_bg.png");
+  text-align: left;
+}
+.os-comm-welcome {
+  width: 330px;
+  height: 35px;
+  margin: 0;
+  padding-bottom: 7px;
+}
+.os-comm-big {
+  font-weight: bold;
+  width: 594px;
+  height: 54px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+.btn-comm {
+  width: 183px;
+  height: 47px;
+  margin-top: 30px;
+}
+//SEARCH
+.os-comm-body {
+  margin: 0px 40px;
+  padding: 20px 25px;
+  background: $WHITE_1;
+}
+.os-comm-search {
+  padding: 50px 200px;
+  height: 211px;
+  border-radius: 5px;
+  background-color: $GRAY_4;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+  margin: 0px 10px;
+}
+.os-comm-search-text {
+  font-weight: bold;
+  height: 39px;
+  color: $WHITE;
+  text-align: center;
+}
+//BOARDS
+.os-comm-boards {
+  padding: 12px 15px;
+}
+.os-comm-boards-section {
+  width: 50%;
+  display: inline-block;
+  min-height: 127px;
+  object-fit: contain;
+  padding: 10px;
+  a {
+    text-decoration: none;
+  }
+}
+.boards-content {
+  border-radius: 5px;
+  background-color: $WHITE;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+  border: solid 1px $GRAY_2;
+  display: flex;
+  padding: 20px;
+
+  .boards-img {
+    height: 40px;
+    margin: 30px 30px 47px 30px;
+  }
+  .boards-text {
+    height: auto;
+    width: auto;
+    padding-top: 22px;
+
+    .boards-header {
+      margin: 0;
+      color: $GRAY_4;
+      height: 24px;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+    .boards-description {
+      padding-top: 10px;
+      padding-left: 2px;
+      color: $GRAY_3;
+    }
+  }
+}
+
+.boards-content:hover {
+  background-color: $GRAY_1;
+}
+.os-threads-header {
+  max-height: 200px;
+  margin: 0px 160px;
+  padding: 65px 200px;
+  background-image: url(https://s3.amazonaws.com/solomid-resources/overwatch/community/hero_bg.png);
+  text-align: left;
+  .header-text {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+    margin-bottom: 0px;
+  }
+}
+
+.os-threads-list-conainer {
+  margin: 0px 160px;
+  padding: 30px 200px;
+  background-color: $WHITE_1;
+  min-height: 800px;
+  .os-threads-header-nav1 {
+    width: 100%;
+    min-height: 77px; 
+    border-radius: 5px;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.35);
+    background-color: $GRAY_4;
+    padding: 15px;
+    .os-threads-search-nav{
+      float: left;
+      width: 35%;
+    }
+    .os-threads-new {
+      float:right;
+    }
+  }
+  .os-threads-header-nav2 {
+    margin-top: 30px;
+    height: 35px;
+    border-bottom: 1px solid $GRAY_1;
+    .os-page-path{
+      float: left;
+      font-size: 12px;
+      font-weight: bold;
+      .path1 {
+        color: $GRAY_4;
+      }
+      .path2 {
+        color: $BLUE_1;
+      }
+    }
+    .os-threads-sortby{
+      float: right;
+      font-size: 14px;
+      font-weight: bold;
+      .sort-item {
+        cursor: pointer;
+        color: $GRAY_4;
+        margin:0px 15px;
+        padding-bottom: 10px;
+      }
+      .sort-item:hover{
+        color: $BLUE_1;
+      }
+      .sort-item.active {
+        color: $BLUE_1;
+        border-bottom: 4px solid $BLUE_1;
+      }
+    }
+  }
+
+  .os-threads-list-body{
+    margin-bottom: 30px;
+    .os-thread{
+      display: inline-block;
+      width: 100%;
+      margin-top: 15px;
+      padding: 30px 32px 26px 32px;
+      background-color: $WHITE;
+      border: $GRAY_2 solid 1px;
+      border-radius: 5px;
+      box-shadow: 0px 2px 2px 0 rgba(0, 0, 0, 0.1);
+
+      .os-thread-avatar {
+        float: left;
+        margin-right: 10px;
+        border-radius: 50%;
+      }
+      .os-thread-meta{
+        display: inline-block;
+        .os-thread-title {
+          font-size: 18px;
+          color: $BLACK_2;
+          margin-bottom: 4px;
+        }
+        .os-thread-time {
+          font-size: 12px;
+          color: $GRAY_3;
+        }
+        .os-thread-author{
+          color: $GRAY_3;
+          font-size: 12px;
+          font-weight: bold;
+        }
+      }
+
+      .os-thread-stats{
+        float: right;
+        margin-top: 10px;
+        span{
+          font-size: 14px;
+          color: $GRAY_4;
+          margin-right: 30px;
+          i{
+            margin-right:6px;
+          }
+        }
+      }
+    }
+  }
+}
