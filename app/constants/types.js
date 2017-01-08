@@ -73,27 +73,31 @@ export const FORUM_STRINGS = {
     itemText: "Discussion",
     text: "Post your general discussion topics here.",
     modalTitle: "NEW DISCUSSION TOPIC",
-    modalText: "Start a new topic in General Discussion."
+    modalText: "Start a new topic in General Discussion.",
+    link: "discussion"
   },
   announcement: {
     title: "Announcements",
     itemText: "Announcement",
     text: "Post your announcement topics here.",
     modalTitle: "NEW ANNOUNCEMENT TOPIC",
-    modalText: "Start a new topic in Announcement."
+    modalText: "Start a new topic in Announcement.",
+    link: "announcement"
   },
   guide: {
     title: "Guides",
     itemText: "Guide",
     text: "Post your guide topics here.",
     modalTitle: "NEW GUIDE TOPIC",
-    modalText: "Start a new topic in Guides."
+    modalText: "Start a new topic in Guides.",
+    link: "guide"
   },
   bugreport: {
     title: "Bug Report",
     itemText: "Bug Report",
     text: "Post your bug report topics here.",
     modalTitle: "NEW BUG REPORT TOPIC",
-    modalText: "Start a new topic in Bug Reports."
+    modalText: "Start a new topic in Bug Reports.",
+    link: "bugreport"
   }
 };

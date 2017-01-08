@@ -79,7 +79,7 @@ class SingleThreadPage extends Component {
               <div className="os-singlethread-header">
                 <div className="os-page-path">
                   <span className="path1">
-                    <Link to="/heroes">Home</Link> • <Link to="/community">Community</Link> • {FORUM_STRINGS[commType].title} •
+                    <Link to="/heroes">Home</Link> • <Link to="/community">Community</Link> • <Link to={`/community/${FORUM_STRINGS[commType].link}`}>{FORUM_STRINGS[commType].title}</Link> •
                   </span>
                   <span className="path2"> {singleThread.meta.title}</span>
                 </div>
