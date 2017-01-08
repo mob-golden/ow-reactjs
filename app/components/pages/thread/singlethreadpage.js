@@ -336,7 +336,9 @@ class SingleThreadPage extends Component {
                     &nbsp;
                     <span className={`jq-matchup-downvote-${key}`}>{downvotes}</span>
                   </div>
-                  <div className="os-comment-btn-gray">
+                  <div className="os-comment-btn-gray" 
+                    onClick={this.doQuote.bind(null, content)}
+                    >
                     <i className="fa fa-quote-left"></i> QUOTE
                   </div>
                   <div className="os-comment-btn-gray">
@@ -354,6 +356,13 @@ class SingleThreadPage extends Component {
       </div>
     );
   };
+
+  doQuote = (content) => {
+    if(this.textarea){
+      this.textarea.value = content;
+      this.textarea.focus();
+    }
+  }
 
   handleVote = (commentId, downOrUp) => {
     const {
