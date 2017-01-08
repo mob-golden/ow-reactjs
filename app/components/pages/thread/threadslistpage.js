@@ -123,13 +123,14 @@ class ThreadsListPage extends Component {
               id: authorId,
               name: authorName
             },
+            children,
             deleted
           } = thread;
           if(deleted) return;
           return (
             <Link to={`/community/${commType}/${_id}`}  key={_id}>
               <div className="os-thread">
-                <img className="os-thread-avatar" width="40" height="40" src="//portal.exceda.net/img/avatar.png"/>
+                <img className="os-thread-avatar" width="40" height="40" src="https://s3.amazonaws.com/solomid-resources/overwatch/icons/Group+15.png"/>
 
                 <div className="os-thread-meta">
                   <h5 className="os-thread-title">{title}</h5>
@@ -145,7 +146,7 @@ class ThreadsListPage extends Component {
                   </span>
                   <span className="os-thread-views">
                     <i className="fa fa-comment-o"></i> 
-                    {123}
+                    {children?children.length:0}
                   </span>
                 </div>
               </div>

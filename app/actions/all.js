@@ -17,7 +17,8 @@ import {
 } from './api';
 
 import {
-  fetchThreadsIfNeeded
+  fetchThreadsIfNeeded,
+  fetchSingleThreadIfNeeded
 } from './community';
 export function addHeroTip ({
   heroKey,
@@ -343,4 +344,92 @@ export function addThread ({
         }
       })
   };
+}
+
+
+export function addComment ({
+  type,
+  threadId,
+  content,
+  userId,
+  userName,
+  token
+}) {
+  return (dispatch, getState) => {
+    const body = JSON.stringify({
+      author: {
+        id: userId,
+        name: userName,
+        anonymous: false
+      },
+      views: 0,
+      class: ["overwatchselect", type],
+      parent: threadId,
+      content: content
+    });
+
+    return fetch(`${OW_COMMUNITY_URL}/item`, {
+      body,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': token
+      },
+      method: 'POST'
+    })
+      .then(response => {
+        const {
+          status,
+          statusText
+        } = response;
+
+        // TODO: is this necessary for a POST request?
+        if (response.status >= 200 && response.status < 300) {
+          dispatch(fetchSingleThreadIfNeeded(threadId));
+          return response;
+        } else {
+          const error = new Error(statusText);
+          console.log(`Response returned an error for ${url}: ${error.message}`);
+
+          return Promise.reject(error);
+        }
+      })
+      .then(response => response.json())
+      .then(json => {
+        // console.log(json);
+        if (json.hasOwnProperty('error')) {
+          const error = new Error(json.error);
+          console.log(error.message);
+        } else {
+        }
+      })
+  };
+}
+
+export function voteComment (id, downOrUp) {
+  return dispatch => {
+    return fetch(`${OW_COMMUNITY_URL}/${downOrUp}/${id}`, {
+      method: 'PUT'
+    })
+      .then(response => {
+        const {
+          status,
+          statusText
+        } = response;
+
+        if (status >= 200 && status < 300) {
+          return response;
+        } else {
+          const error = new Error(statusText);
+          console.log(`Response returned an ${error.message}`);
+
+          return Promise.reject(error);
+        }
+      })
+      .then(response => response.json())
+      .then(json => {
+        return {
+          type: 'NONE'
+        };
+      });
+  }
 }

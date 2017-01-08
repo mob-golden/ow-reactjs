@@ -82,6 +82,24 @@
 .os-btn-blue:hover{
   font-weight: bold;
 }
+
+.os-btn-gray{
+  font-size: 12px;
+  border: $GRAY_3 solid 1px;
+  color: $WHITE;
+  border-radius: 2px;
+  padding: 12px 30px;
+  margin: 0px 4px;
+  font-weight: bold;
+  background-color: $GRAY_3;
+}
+
+.os-btn-gray:hover{
+  color: $WHITE;
+  font-weight: bold;
+  background-color: $GRAY_4;
+}
+
 .os-btn-white{
   font-size: 12px;
   border: $GRAY_3 solid 1px;
