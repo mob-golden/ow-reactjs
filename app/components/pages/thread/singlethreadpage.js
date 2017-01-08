@@ -81,7 +81,7 @@ class SingleThreadPage extends Component {
                   <span className="path1">
                     <Link to="/heroes">Home</Link> • <Link to="/community">Community</Link> • {FORUM_STRINGS[commType].title} •
                   </span>
-                  <span className="path2">{singleThread.meta.title}</span>
+                  <span className="path2"> {singleThread.meta.title}</span>
                 </div>
               </div>
 
