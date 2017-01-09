@@ -25,7 +25,7 @@ class ThreadsListPage extends Component {
   componentDidMount () {
   }
 
-  componentWillMount () {    
+  componentWillMount () {
     const {
       dispatch,
       location: {
@@ -123,7 +123,7 @@ class ThreadsListPage extends Component {
 
               <div className="os-threads-header-nav2">
                 <div className="os-page-path">
-                  <span className="path1">Home • Community • </span> 
+                  <span className="path1"><Link to="/heroes">Home</Link> • <Link to="/community">Community</Link> • </span> 
                   <span className="path2">{FORUM_STRINGS[commType].title}</span>
                 </div>
                 <div className="os-threads-sortby">
@@ -184,7 +184,7 @@ class ThreadsListPage extends Component {
             meta:{
               title,
               views
-            }, 
+            },
             author:{
               id: authorId,
               name: authorName
@@ -201,17 +201,17 @@ class ThreadsListPage extends Component {
                 <div className="os-thread-meta">
                   <h5 className="os-thread-title">{title}</h5>
 
-                  <span className="os-thread-time">{moment(createdAt).fromNow()} by </span> 
+                  <span className="os-thread-time">{moment(createdAt).fromNow()} by </span>
                   <span className="os-thread-author">{authorName} </span>
                 </div>
 
                 <div className="os-thread-stats">
                   <span className="os-thread-views">
-                    <i className="fa fa-eye"></i> 
+                    <i className="fa fa-eye"></i>
                     {views}
                   </span>
                   <span className="os-thread-views">
-                    <i className="fa fa-comment-o"></i> 
+                    <i className="fa fa-comment-o"></i>
                     {children?children.length:0}
                   </span>
                 </div>
@@ -252,7 +252,7 @@ class ThreadsListPage extends Component {
               }
               $(`#modal-add-thread`).modal('hide');
             }}>
-            <Modal 
+            <Modal
               id={`modal-add-thread`}
             >
               <fieldset className="os-modal-form-group-1">
@@ -262,7 +262,7 @@ class ThreadsListPage extends Component {
               <fieldset className="os-modal-form-group-2">
                 <input
                   className="form-control os-modal-input"
-                  id="topic"                  
+                  id="topic"
                   placeholder="Topic"
                   required
                   type="text"
@@ -270,7 +270,7 @@ class ThreadsListPage extends Component {
                 />
               </fieldset>
               <fieldset className="os-modal-form-group-2">
-                <textarea       
+                <textarea
                   placeholder="Content"
                   className="form-control os-textarea"
                   ref={c => this.textarea = c}

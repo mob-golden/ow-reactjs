@@ -26,13 +26,30 @@
 }
 
 .os-counter-tip-text {
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   font-size: 14px;
   overflow-wrap: break-word;
   word-break: break-all;
 
   // for Webkit
   word-break: break-word;
+}
+.os-counter-tip-text-short {
+  // Show 3 lines by default
+  overflow: hidden;
+  height: 42px;
+}
+.os-counter-tip-text-short,
+.os-counter-tip-text-long {
+  margin-bottom: 10px;
+}
+.os-counter-tip-text-short~
+.os-counter-tip-text-short-helper {
+  display: none;
+}
+.os-counter-tip-text-long~
+.os-counter-tip-text-long-helper {
+  display: none;
 }
 .os-counter-tip-footer {
   margin-bottom: 8px;

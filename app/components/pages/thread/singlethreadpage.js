@@ -22,7 +22,7 @@ class SingleThreadPage extends Component {
   componentDidMount () {
   }
 
-  componentWillMount () {    
+  componentWillMount () {
     const {
       dispatch,
       params: {
@@ -43,7 +43,7 @@ class SingleThreadPage extends Component {
       isFetchingSingleThread
     } = this.props;
 
-    if(isFetchingSingleThread || !singleThread) 
+    if(isFetchingSingleThread || !singleThread)
       return(<Loader/>);
 
     if (!localStorage.getItem('commentVotes')) localStorage.setItem('commentVotes', JSON.stringify({}));
@@ -78,8 +78,10 @@ class SingleThreadPage extends Component {
             <div className="os-singlethread-list-conainer">
               <div className="os-singlethread-header">
                 <div className="os-page-path">
-                  <span className="path1">Home • Community • {FORUM_STRINGS[commType].title} • </span> 
-                  <span className="path2">{singleThread.meta.title}</span>
+                  <span className="path1">
+                    <Link to="/heroes">Home</Link> • <Link to="/community">Community</Link> • <Link to={`/community/${FORUM_STRINGS[commType].link}`}>{FORUM_STRINGS[commType].title}</Link> •
+                  </span>
+                  <span className="path2"> {singleThread.meta.title}</span>
                 </div>
               </div>
 
@@ -91,7 +93,7 @@ class SingleThreadPage extends Component {
                     <div className="os-thread-meta">
                       <h5 className="os-thread-title">{singleThread.meta.title}</h5>
 
-                      <span className="os-thread-time">{moment(singleThread.createdAt).fromNow()} by </span> 
+                      <span className="os-thread-time">{moment(singleThread.createdAt).fromNow()} by </span>
                       <span className="os-thread-author">{singleThread.author.name} </span>
 
                       <p className="os-thread-content">{singleThread.content}</p>
@@ -128,11 +130,11 @@ class SingleThreadPage extends Component {
                 <div className="os-singlethread-actions">
                   <div className="os-thread-stats">
                     <span className="os-thread-views">
-                      <i className="fa fa-eye"></i> 
+                      <i className="fa fa-eye"></i>
                       {singleThread.meta.views}
                     </span>
                     <span className="os-thread-attenders">
-                      <i className="fa fa-comment-o"></i> 
+                      <i className="fa fa-comment-o"></i>
                       {singleThread.children?singleThread.children.length:0}
                     </span>
                   </div>
@@ -190,7 +192,7 @@ class SingleThreadPage extends Component {
         <fieldset className="os-modal-form-group-1">
           <h4 className="os-modal-title">JOIN THE CONVERSATION</h4>
           {
-            !localToken? 
+            !localToken?
             <span className="os-modal-description">Please log in or sign up to join to conversation</span> :
             <span className="os-modal-description">Replying to "<b>{threadTitle}</b>"</span>
           }
@@ -199,7 +201,7 @@ class SingleThreadPage extends Component {
         localToken?
           <form onSubmit={e => {
               e.preventDefault();
-              
+
               const textarea = this.textarea;
               if (textarea && textarea.value) {
                 dispatch(addComment({
@@ -214,7 +216,7 @@ class SingleThreadPage extends Component {
               $(`#modal-add-thread`).modal('hide');
             }}>
             <fieldset className="os-modal-form-group-2">
-              <textarea       
+              <textarea
                 placeholder=""
                 className="form-control os-textarea"
                 ref={c => this.textarea = c}
@@ -272,7 +274,7 @@ class SingleThreadPage extends Component {
             meta:{
               title,
               views
-            }, 
+            },
             score:{
               upvotes,
               downvotes
@@ -317,7 +319,7 @@ class SingleThreadPage extends Component {
 
               <div className="os-comment-meta">
                 <h6 className="os-comment-author">{authorName}</h6>
-                <span className="os-comment-time">{moment(createdAt).fromNow()} </span> 
+                <span className="os-comment-time">{moment(createdAt).fromNow()} </span>
                 <p className="os-comment-content">{content}</p>
                 <div className="os-comment-vote-score">
                   <div
@@ -336,7 +338,7 @@ class SingleThreadPage extends Component {
                     &nbsp;
                     <span className={`jq-matchup-downvote-${key}`}>{downvotes}</span>
                   </div>
-                  <div className="os-comment-btn-gray" 
+                  <div className="os-comment-btn-gray"
                     onClick={this.doQuote.bind(null, content)}
                     >
                     <i className="fa fa-quote-left"></i> QUOTE

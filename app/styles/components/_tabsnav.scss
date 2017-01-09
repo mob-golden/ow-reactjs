@@ -79,6 +79,10 @@
   .os-nav-link {
     display: block;
     padding: 16px 30px;
+
+    @media screen and (max-width: $BP_LG) {
+      padding: 16px 16px;
+    }
   }
 
   .os-nav-link:hover {

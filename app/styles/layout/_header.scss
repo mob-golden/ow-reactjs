@@ -12,6 +12,9 @@
     float: right;
   }
   .os-nav-item {
+    &.active {
+      background-color: $BLUE_1;
+    }
     +.nav-item {
       // Remove default bootstrap margin on nav items
       margin-left: 0;

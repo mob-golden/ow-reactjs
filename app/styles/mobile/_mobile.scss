@@ -148,14 +148,3 @@
     box-shadow: none;
   }
 }
-// Tablet styles for tabs 
-@media screen and (max-width: $BP_LG) {
-  .os-tabs-nav { 
-    // Prevent overflowing of icons
-    .os-nav-link {
-      padding: 16px 20px;
-      display: block;
-      font-size: 12px;
-    }
-  }
-}
