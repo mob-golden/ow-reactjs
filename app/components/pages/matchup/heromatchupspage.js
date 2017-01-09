@@ -132,8 +132,7 @@ class HeroMatchupsPage extends Component {
               <div className="row center-text">
                 <button
                   className="btn btn-primary os-btn-blue"
-                  data-toggle="modal"
-                  data-target={`#modal-add-matchup-positive`}
+                  onClick={this.handleAddMatchup.bind(null,'positive')}
                 >
                   ADD A MATCHUP
                 </button>
@@ -167,8 +166,7 @@ class HeroMatchupsPage extends Component {
               <div className="row center-text">
                 <button
                   className="btn btn-primary os-btn-blue"
-                  data-toggle="modal"
-                  data-target={`#modal-add-matchup-negative`}
+                  onClick={this.handleAddMatchup.bind(null,'negative')}
                 >
                   ADD A MATCHUP
                 </button>
@@ -202,8 +200,7 @@ class HeroMatchupsPage extends Component {
               <div className="row center-text">
                 <button
                   className="btn btn-primary os-btn-blue"
-                  data-toggle="modal"
-                  data-target={`#modal-add-matchup-teamup`}
+                  onClick={this.handleAddMatchup.bind(null,'teamup')}
                 >
                   ADD A MATCHUP
                 </button>
@@ -220,6 +217,16 @@ class HeroMatchupsPage extends Component {
       </div>
     );
   };
+
+  handleAddMatchup = (type)=>{
+    const localToken = localStorage.getItem('token');
+    if(!localToken){
+      $('#sign-in').modal('show');
+    }
+    else{
+      $(`#modal-add-matchup-${type}`).modal('show');
+    }
+  }
 
   renderModal = (type, heroKey, heroName) => {
     const {
