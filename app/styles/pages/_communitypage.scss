@@ -132,6 +132,7 @@
 
   @media screen and (min-width: $BP_LG) {
     padding: 30px 160px;
+    margin: 0 160px;
   }
   @media screen and (max-width: $BP_SM) {
     padding: 15px !important;
@@ -264,6 +265,9 @@
   background-color: $WHITE_1;
   min-height: 800px;
 
+  @media screen and (max-width: $BP_LG) {
+    padding: 30px;
+  }
   .os-singlethread-header{
     margin-top: 30px;
     height: 35px;
