@@ -148,7 +148,7 @@ class CommunityTypeahead extends Component {
 
       const options = {
         keys: ['meta.title'],
-        threshold: 0.1
+        threshold: 1
       };
 
       const threadsData = values(threadsArray);
