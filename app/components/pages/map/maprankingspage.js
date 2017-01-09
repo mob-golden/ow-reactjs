@@ -90,8 +90,7 @@ class MapRankingsPage extends Component {
               <div className="os-map-new">
                 <button
                   className="btn btn-primary os-btn-blue"
-                  data-toggle="modal"
-                  data-target={`#modal-add-new-map`}
+                  onClick={this.handleAddMapRanking.bind(null)}
                 >
                   ADD A MAP
                 </button>
@@ -101,6 +100,16 @@ class MapRankingsPage extends Component {
         </div>
       </div>
     );
+  }
+
+  handleAddMapRanking = ()=>{
+    const localToken = localStorage.getItem('token');
+    if(!localToken){
+      $('#sign-in').modal('show');
+    }
+    else{
+      $(`#modal-add-new-map`).modal('show');
+    }
   }
 
   renderModal = (heroKey, heroName) => {

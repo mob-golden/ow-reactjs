@@ -135,8 +135,7 @@ class MatchupTips extends Component {
               <div className="os-tip-button-group">
                 <button
                   className="btn btn-primary os-btn-blue"
-                  data-toggle="modal"
-                  data-target={`#modal-add-matchup-tip-for`}
+                  onClick={this.handleAddMatchupTip.bind(null,'for')}
                 >
                   ADD A TIP
                 </button>
@@ -171,8 +170,7 @@ class MatchupTips extends Component {
               <div className="os-tip-button-group">
                 <button
                   className="btn btn-primary os-btn-blue"
-                  data-toggle="modal"
-                  data-target={`#modal-add-matchup-tip-against`}
+                  onClick={this.handleAddMatchupTip.bind(null,'against')}
                 >
                   ADD A TIP
                 </button>
@@ -188,6 +186,16 @@ class MatchupTips extends Component {
         </div>
       </div>
     );
+  }
+
+  handleAddMatchupTip = (type)=>{
+    const localToken = localStorage.getItem('token');
+    if(!localToken){
+      $('#sign-in').modal('show');
+    }
+    else{
+      $(`#modal-add-matchup-tip-${type}`).modal('show');
+    }
   }
 
   renderModal = (type, heroKey, matchupHeroKey, heroName) => {
