@@ -2,6 +2,7 @@ import Fuse from 'fuse.js';
 import React from 'react';
 import classNames from 'classnames';
 import { values } from 'lodash';
+import { fetchThreadsIfNeeded } from '../actions/community';
 
 import {
   Component,
@@ -23,9 +24,15 @@ import {
 
 class CommunityTypeahead extends Component {
   static defaultProps = {
-    ref: 'input',
-    miniTag: 'none'
+    ref: 'input'
   };
+
+  componentWillMount () {
+    const {
+      dispatch
+    } = this.props;
+    dispatch( fetchThreadsIfNeeded());
+  }
 
   constructor (props) {
     super(props);
@@ -81,10 +88,6 @@ class CommunityTypeahead extends Component {
   }
 
   renderSuggestions = () => {
-    const {
-      constructLink,
-      handleMapClick
-    } = this.props;
 
     const {
       selection,
@@ -107,31 +110,14 @@ class CommunityTypeahead extends Component {
                 'active': suggestions[selection] == _map
               });
 
-              const image = _map.image;
-
-              const spriteStyle = {
-                backgroundImage: `url(${image})`,
-
-                // TODO: abstract
-                // icons will be shrunk to 2/3 of their original size
-                backgroundPosition: `-${image.x / 1.5}px -${image.y / 1.5}px`
-              };
-
               return (
                 <Link
                   className={listGroupItemClass}
-                  key={_map.id.toLowerCase()}
-                  onClick={e => {handleMapClick(_map.id); return false; }}
+                  key={_map._id}
+                  to={`/community/${_map.class[1]}/${_map._id}`}
                 >
-                  <div className="media-left media-middle">
-                    <div
-                      className="media-object"
-                      style={spriteStyle}
-                    >
-                    </div>
-                  </div>
                   <div className="media-body">
-                    <h6 className="media-heading">{_map.name}</h6>
+                    <h6 className="media-heading">{_map.meta.title}</h6>
                   </div>
                 </Link>
               );
@@ -152,21 +138,21 @@ class CommunityTypeahead extends Component {
 
   handleChange = e => {
     const {
-      mapsArray,
-      isFetchingMaps
+      threadsArray,
+      isFetchingThreads
     } = this.props;
 
-    if (!isFetchingMaps && mapsArray) {
+    if (!isFetchingThreads && threadsArray) {
       const query = e.target.value;
       const areSuggestionsVisible = query.length > 0 ? true : false;
 
       const options = {
-        keys: ['name'],
+        keys: ['meta.title'],
         threshold: 0.1
       };
 
-      const mapsData = values(mapsArray);
-      const fuse = new Fuse(mapsData, options);
+      const threadsData = values(threadsArray);
+      const fuse = new Fuse(threadsData, options);
       const suggestions = fuse.search(query);
 
       this.setState({
@@ -246,17 +232,17 @@ class CommunityTypeahead extends Component {
 
 function mapStateToProps (state) {
   const {
-    map: {
-      maps: {
-        _array: mapsArray,
-        isFetching: isFetchingMaps
+    community: {
+      threads: {
+        threads: threadsArray,
+        isFetching: isFetchingThreads
       }
     }
   } = state;
 
   return {
-    mapsArray,
-    isFetchingMaps
+    threadsArray,
+    isFetchingThreads
   };
 }
 
