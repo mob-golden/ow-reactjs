@@ -43,8 +43,14 @@ function shouldFetchThreads (state, commType) {
 function fetchThreads (commType, params) {
   return dispatch => {
     dispatch(requestThreads());
-    if(params.page) params.page--;
-    const url = `${OW_COMMUNITY_URL}/class/overwatchselect,${commType}?sort=${params.sort}&limit=${params.limit}&page=${params.page}-${params.limit}`;
+    let url = `${OW_COMMUNITY_URL}/class/overwatchselect`;
+    if(commType){
+      url += `,${commType}`;
+    }
+    if(params.page){
+      params.page--;
+      url += `?sort=${params.sort}&limit=${params.limit}&page=${params.page}-${params.limit}`;
+    }
 
     return fetch(url)
       .then(response => {

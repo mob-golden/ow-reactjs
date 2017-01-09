@@ -37,7 +37,7 @@ class MapsGrid extends Component {
             <div className="os-map">
               <Link 
                 className="os-map-tile-link"
-                to={`/maps/${id}`}
+                to={`/map/${id}`}
               >
               </Link>
               <div className="os-map-profile">
@@ -46,7 +46,7 @@ class MapsGrid extends Component {
                 <div className="os-map-btn">
                   <Link
                     className="btn btn-primary os-btn-blue"
-                    to={`/maps/${id}`}
+                    to={`/map/${id}`}
                   >
                   VIEW MAP TIPS
                   </Link>

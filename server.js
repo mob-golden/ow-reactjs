@@ -225,7 +225,7 @@ app.get('/maprankingtips/:heroKey/:mapKey', handleRender);
 app.get('/matchups/:heroKey/:matchupHeroKey/:matchupType', handleRender);
 app.get('/maps', handleRender);
 app.get('/maps/:mapType', handleRender);
-app.get('/maps/:mapKey', handleRender);
+app.get('/map/:mapKey', handleRender);
 app.get('/forgot', handleRender);
 app.get('/reset', handleRender);
 app.get('/community', handleRender);
