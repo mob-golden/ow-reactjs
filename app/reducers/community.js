@@ -15,16 +15,10 @@ import {
   FORUM_TYPES
 } from '../constants/types';
 
-const initializedThreads = FORUM_TYPES.reduce((acc, threadType) => {
-  return {
-    ...acc,
-    [threadType]: null
-  };
-}, {});
 
 const initialThreadsState = {
-  threads: initializedThreads,
   isFetching: false,
+  threads: null
 };
 
 function threads (state = initialThreadsState, action) {
@@ -35,26 +29,10 @@ function threads (state = initialThreadsState, action) {
         isFetching: true
       };
     case RECEIVE_THREADS:
-      const {
-        threads
-      } = state;
-
       return {
         ...state,
-        threads: {
-          ...threads,
-          [action.threadType]: action.threads
-        }
-      };
-    case REQUEST_THREADS_SUCCESS:
-      return {
-        ...state,
-        isFetching: false
-      };
-    case REQUEST_THREADS_FAILURE:
-      return {
-        ...state,
-        isFetching: false
+        isFetching: false,
+        threads: action.threads
       };
     default:
       return state;

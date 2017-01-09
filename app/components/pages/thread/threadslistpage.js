@@ -11,6 +11,10 @@ import { fetchThreadsIfNeeded } from '../../../actions/community';
 import CommunityTypeAhead from '../../communitytypeahead';
 import { FORUM_STRINGS } from '../../../constants/types';
 import { addThread } from '../../../actions/all';
+import Pagination from '../../pagination'
+
+const THREADS_LIMIT_PER_PAGE = 6;
+const THREADS_MAX_COUNT = 6000;
 
 class ThreadsListPage extends Component {
 
@@ -23,13 +27,68 @@ class ThreadsListPage extends Component {
 
   componentWillMount () {    
     const {
-      dispatch
+      dispatch,
+      location: {
+        query: {
+          page = 1
+        }
+      },
+      params: {
+        commType: _type
+      }
     } = this.props;
-    dispatch( fetchThreadsIfNeeded() );
+    const commType = changeCase.lower(_type);
+    dispatch( fetchThreadsIfNeeded(commType, { 
+      limit: THREADS_LIMIT_PER_PAGE,
+      sort: 'date-desc',
+      page: page || 1
+    }));
+  }
+
+  componentWillReceiveProps (nextProps){
+    const {
+      dispatch,
+      location: {
+        query: {
+          page: page
+        }
+      },
+      params: {
+        commType: _type
+      }
+    } = this.props;
+
+    const {
+      location: {
+        query: {
+          page : nextPage
+        }
+      },
+      params: {
+        commType: _nextType
+      }
+    } = nextProps;
+
+    const commType = changeCase.lower(_type);
+    const nextCommType = changeCase.lower(_nextType);
+
+    if (commType !== nextCommType || page !== nextPage) {
+      dispatch( fetchThreadsIfNeeded(nextCommType, { 
+        limit: THREADS_LIMIT_PER_PAGE,
+        sort: 'date-desc',
+        page: nextPage
+      }));
+    }
   }
 
   render() {
     const {
+      threads,
+      location: {
+        query: {
+          page = 1
+        }
+      },
       params: {
         commType
       }
@@ -77,7 +136,14 @@ class ThreadsListPage extends Component {
                 { this.renderModal(commType) }
                 { this.renderThreadsList(commType) }
               </div>
-
+              <div>
+                <Pagination
+                  activePage={parseInt(page)}
+                  baseUrl={`/community/${commType}`}
+                  limit={THREADS_LIMIT_PER_PAGE}
+                  itemCount={THREADS_MAX_COUNT}
+                />
+              </div>
               <div className="os-threads-header-nav1">
                 <div className="os-threads-search-nav">
                   <CommunityTypeAhead
@@ -105,13 +171,13 @@ class ThreadsListPage extends Component {
       isFetchingThreads
     } = this.props;
 
-    if(isFetchingThreads || !threads.discussion){
+    if(isFetchingThreads || !threads){
       return (<Loader/>);
     }
     return(
       <div>
       {
-        threads[commType].map(thread => {
+        threads.map(thread => {
           const {
             _id,
             createdAt,
@@ -126,7 +192,7 @@ class ThreadsListPage extends Component {
             children,
             deleted
           } = thread;
-          if(deleted) return;
+          // if(deleted) return;
           return (
             <Link to={`/community/${commType}/${_id}`}  key={_id}>
               <div className="os-thread">

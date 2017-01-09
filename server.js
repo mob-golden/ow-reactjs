@@ -228,6 +228,7 @@ app.get('/forgot', handleRender);
 app.get('/reset', handleRender);
 app.get('/community', handleRender);
 app.get('/community/:commType', handleRender);
+app.get('/community/:commType/:threadId', handleRender);
 
 app.all('*', send404);
 
