@@ -44,7 +44,7 @@ function fetchThreads (commType, params) {
   return dispatch => {
     dispatch(requestThreads());
     let url = `${OW_COMMUNITY_URL}/class/overwatchselect`;
-    if(commType){
+    if(commType != 'all'){
       url += `,${commType}`;
     }
     if(params.page){
@@ -69,7 +69,7 @@ function fetchThreads (commType, params) {
         }
       })
       .then(response => response.json())
-      .then(threads => dispatch(receiveThreads(threads)));
+      .then(threads => dispatch(receiveThreads(commType,threads)));
   };
 }
 
@@ -79,9 +79,10 @@ function requestThreads () {
   };
 }
 
-function receiveThreads (threads) {
+function receiveThreads (commType, threads) {
   return {
     type: RECEIVE_THREADS,
+    commType,
     threads
   };
 }

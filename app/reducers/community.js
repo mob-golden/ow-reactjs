@@ -18,7 +18,8 @@ import {
 
 const initialThreadsState = {
   isFetching: false,
-  threads: null
+  threads: null,
+  threadsForSearch: null
 };
 
 function threads (state = initialThreadsState, action) {
@@ -29,11 +30,20 @@ function threads (state = initialThreadsState, action) {
         isFetching: true
       };
     case RECEIVE_THREADS:
-      return {
-        ...state,
-        isFetching: false,
-        threads: action.threads
-      };
+      if(action.commType == 'all'){
+        return {
+          ...state,
+          isFetching:false,
+          threadsForSearch: action.threads
+        };
+      }
+      else {
+        return {
+          ...state,
+          isFetching: false,
+          threads: action.threads
+        };
+      }
     default:
       return state;
   }

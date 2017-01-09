@@ -31,7 +31,7 @@ class CommunityTypeahead extends Component {
     const {
       dispatch
     } = this.props;
-    dispatch( fetchThreadsIfNeeded());
+    dispatch( fetchThreadsIfNeeded('all'));
   }
 
   constructor (props) {
@@ -234,7 +234,7 @@ function mapStateToProps (state) {
   const {
     community: {
       threads: {
-        threads: threadsArray,
+        threadsForSearch: threadsArray,
         isFetching: isFetchingThreads
       }
     }
