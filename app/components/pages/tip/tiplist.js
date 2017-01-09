@@ -86,18 +86,28 @@ class TipList extends Component {
             'os-counter-tip-vote-active-alt': votes[id] === 'downvote'
           });
 
+
+          let tipTextLongHelper = null;
+          if (content.length > 800) 
+            tipTextLongHelper = <div className="os-counter-tip-footer clearfix os-counter-tip-text-long-helper">Click tip to expand</div>;
+
+          let tipTextShortHelper = null;
+          if (content.length > 800) 
+            tipTextShortHelper = <div className="os-counter-tip-footer clearfix os-counter-tip-text-short-helper">Click tip again to shrink</div>;
+
+          let osTipOnClick = (content.length > 800) ? (e) => this.toggleTipShowMore(e) : () => {};
           const contentElement = (
             <div>
               <p
                 className="os-counter-tip-text os-counter-tip-text-short"
-                onClick={(e) => this.toggleTipShowMore(e)}
+                onClick={osTipOnClick}
                 dangerouslySetInnerHTML={{
                   __html: content
                 }}
               >
               </p>
-              <div className="os-counter-tip-footer clearfix os-counter-tip-text-long-helper">Click tip to expand</div>
-              <div className="os-counter-tip-footer clearfix os-counter-tip-text-short-helper">Click tip again to shrink</div>
+              {tipTextLongHelper}
+              {tipTextShortHelper}
               <div className="os-counter-tip-footer clearfix">
                 <span className="os-counter-tip-metadata">by <span className="os-counter-tip-author">{name}</span></span>
               </div>
