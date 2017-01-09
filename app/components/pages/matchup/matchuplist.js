@@ -93,7 +93,6 @@ class MatchupList extends Component {
                     className="os-matchup-thumb-img"
                     src={portrait}
                   />
-                {/*"https://s3.amazonaws.com/solomid-resources/overwatch/heroes/ana/hero-select-portrait.png"*/}
                 </div>
               </Link>
               <div className="media-body">

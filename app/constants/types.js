@@ -13,23 +13,33 @@ export const TIP_TYPES = [
 export const HERO_TYPES = [
   {
     'key':0,
-    'title':'all heroes'
+    'title':'all heroes',
+    'link': '/heroes',
+    'name': ''
   },
   {
     'key':1,
-    'title':'offense'
+    'title':'offense',
+    'link': '/heroes/offense',
+    'name': 'offense'
   },
   {
     'key':2,
-    'title':'defense'
+    'title':'defense',
+    'link': '/heroes/defense',
+    'name': 'defense'
   },
   {
     'key':3,
-    'title':'tank'
+    'title':'tank',
+    'link': '/heroes/tank',
+    'name': 'tank'
   },
   {
     'key':4,
-    'title':'support'
+    'title':'support',
+    'link': '/heroes/support',
+    'name': 'support'
   }
 ];
 
@@ -41,22 +51,32 @@ export const MAP_TYPES = [
   {
     'key':0,
     'title':'all maps',
+    'link': '/maps',
+    'name': ''
   },
   {
     'key': 1,
     'title':'assault',
+    'link': '/maps/assault',
+    'name': 'assault'
   },
   {
     'key': 2,
     'title':'escort',
+    'link': '/maps/escort',
+    'name': 'escort'
   },
   {
     'key': 3,
     'title':'hybrid',
+    'link': '/maps/hybrid',
+    'name': 'hybrid'
   },
   {
     'key': 4,
     'title':'control',
+    'link': '/maps/control',
+    'name': 'control'
   }
 ];
 

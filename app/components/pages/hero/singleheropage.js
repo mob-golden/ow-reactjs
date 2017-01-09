@@ -76,7 +76,7 @@ class SingleHeroPage extends Component {
                 <div className="col-lg-3">
                   <div className="os-hero-profile">
                     <div className="os-profile-mask">
-                      <Link to={`/heroes/${heroKey}`}>
+                      <Link to={`/hero/${heroKey}`}>
                         <img
                           width="72"
                           height="124"
@@ -94,7 +94,7 @@ class SingleHeroPage extends Component {
                 <div className="col-lg-9">
                   <div className="os-hero-search">
                     <Typeahead
-                      constructLink={(id) => `/heroes/${id}/${activePath}`}
+                      constructLink={(id) => `/hero/${id}/${activePath}`}
                       inputGroupClass="input-group"
                       placeholder={"Search for a matchup"}
                     />
@@ -109,13 +109,13 @@ class SingleHeroPage extends Component {
                     <div className="col-lg-12 center-text">
                       <ul className="os-hero-nav">
                         <li className={`os-hero-nav-item ${_generaltips}`}>
-                          <Link to={`/heroes/${id}/generaltips`}>GENERAL TIPS</Link>
+                          <Link to={`/hero/${id}/generaltips`}>GENERAL TIPS</Link>
                         </li>
                         <li className={`os-hero-nav-item ${_heromatchups}`}>
-                          <Link to={`/heroes/${id}/matchups`}>HERO MATCHUPS</Link>
+                          <Link to={`/hero/${id}/matchups`}>HERO MATCHUPS</Link>
                         </li>
                         <li className={`os-hero-nav-item ${_maprankings}`}>
-                          <Link to={`/heroes/${id}/maprankings`}>MAP RANKINGS</Link>
+                          <Link to={`/hero/${id}/maprankings`}>MAP RANKINGS</Link>
                         </li>
                       </ul>
                     </div>
@@ -125,7 +125,7 @@ class SingleHeroPage extends Component {
                 { _maprankingtips?
                   <div className="row">
                     <div className="col-lg-12">
-                      <Link to={`/heroes/${id}/maprankings`}>
+                      <Link to={`/hero/${id}/maprankings`}>
                         <i className="fa fa-long-arrow-left" aria-hidden="true"/> back to Map Matchups
                       </Link>
                     </div>

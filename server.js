@@ -216,13 +216,15 @@ app.post('/signup', function (req, res) {
 
 app.get('/', handleRender);
 app.get('/heroes', handleRender);
-app.get('/heroes/:heroKey', handleRender);
-app.get('/heroes/:heroKey/generaltips', handleRender);
-app.get('/heroes/:heroKey/matchups', handleRender);
-app.get('/heroes/:heroKey/maprankings', handleRender);
+app.get('/heroes/:heroType', handleRender);
+app.get('/hero/:heroKey', handleRender);
+app.get('/hero/:heroKey/generaltips', handleRender);
+app.get('/hero/:heroKey/matchups', handleRender);
+app.get('/hero/:heroKey/maprankings', handleRender);
 app.get('/maprankingtips/:heroKey/:mapKey', handleRender);
 app.get('/matchups/:heroKey/:matchupHeroKey/:matchupType', handleRender);
 app.get('/maps', handleRender);
+app.get('/maps/:mapType', handleRender);
 app.get('/maps/:mapKey', handleRender);
 app.get('/forgot', handleRender);
 app.get('/reset', handleRender);

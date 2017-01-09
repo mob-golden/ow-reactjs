@@ -433,7 +433,7 @@ class SingleThreadPage extends Component {
 
   doQuote = (content) => {
     if(this.textarea){
-      this.textarea.value = content;
+      this.textarea.value = '<blockquote>'+content+'</blockquote>';
       this.textarea.focus();
     }
   }

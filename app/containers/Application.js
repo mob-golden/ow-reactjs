@@ -25,12 +25,14 @@ export const routes = (
     <Route path="/forgot" component={ForgotPassword} />
     <Route path="/reset" component={ResetPassword} />
     <Route path="/heroes" component={HomePage} />
+    <Route path="/heroes/:heroType" component={HomePage} />
 
-    <Route path="/heroes/:heroKey" component={SingleHeroPage}>
+
+    <Route path="/hero/:heroKey" component={SingleHeroPage}>
       <IndexRoute component={GeneralTipsPage} />
-      <Route path="/heroes/:heroKey/generaltips" component={GeneralTipsPage}/>
-      <Route path="/heroes/:heroKey/matchups" component={HeroMatchupsPage}/>
-      <Route path="/heroes/:heroKey/maprankings" component={MapRankingsPage}/>
+      <Route path="/hero/:heroKey/generaltips" component={GeneralTipsPage}/>
+      <Route path="/hero/:heroKey/matchups" component={HeroMatchupsPage}/>
+      <Route path="/hero/:heroKey/maprankings" component={MapRankingsPage}/>
       <Route path="/maprankingtips/:heroKey/:mapKey" component={MapRankingTipsPage}/>
     </Route>
 
@@ -39,7 +41,8 @@ export const routes = (
     </Route>
 
     <Route path="/maps" component={MapsPage} />
-    <Route path="/maps/:mapKey" component={MapTipsPage} />
+    <Route path="/maps/:mapType" component={MapsPage} />
+    <Route path="/map/:mapKey" component={MapTipsPage} />
 
     <Route path="/community" component={CommunityPage} />
     <Route path="/community/:commType" component={ThreadsListPage} />

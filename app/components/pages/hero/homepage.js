@@ -17,10 +17,6 @@ class HomePage extends Component {
 
   constructor (props) {
     super(props);
-
-    this.state = {
-      activeTabId: 0
-    };
   }
 
   componentWillMount () {
@@ -34,14 +30,14 @@ class HomePage extends Component {
   }
   render () {
     const {
-      activeTabId
-    } = this.state;
-    
-    const {
       heroes,
-      isFetchingHeroes
+      isFetchingHeroes,
+      params:{
+        heroType: _heroType
+      }
     } = this.props;
       
+    const heroType = _heroType?changeCase.lower(_heroType):'';
     return (
       <div className="os-content container">
         <Ad
@@ -55,7 +51,7 @@ class HomePage extends Component {
               <p className="os-white os-font-size-18"> Search for a hero to find counterpicks, general counters, hero synergy, and more!</p>
               <div className="os-search-wrapper col-lg-8 col-xs-12 col-lg-offset-2">
                 <Typeahead
-                  constructLink={(id) => `/heroes/${id.toLowerCase()}`}
+                  constructLink={(id) => `/hero/${id.toLowerCase()}`}
                   inputGroupClass="input-group"
                   placeholder={"Search for a Hero"}
                 />
@@ -67,19 +63,19 @@ class HomePage extends Component {
               <p className="hidden-xs-down os-font-size-18"> Choose a hero below to find counterpicks, general counters, hero synergy, and more!</p>
               <div>
                 <TabsNav
-                  activeTabId={activeTabId}
-                  handleClick={activeTabId => this.setState({activeTabId})}
+                  activeType={heroType}
                   tabs={HERO_TYPES.map(type => {
                     return {
-                      id: type.key,
-                      label: changeCase.upper(type.title)
+                      label: changeCase.upper(type.title),
+                      link: type.link,
+                      name: type.name
                     };
                   })}
                 />
               </div>
               {!isFetchingHeroes && heroes ?
                 <HeroesGrid
-                  filter={activeTabId}
+                  filter={heroType}
                   heroes={heroes}
                 /> : <Loader /> } 
             </div>

@@ -58,7 +58,7 @@ class MatchupTipsPage extends Component {
                 <div className="col-lg-4 col-xs-4">
                   <div className="os-hero-left-search mobile-hidden">
                     <Typeahead
-                      constructLink={(id) => `/heroes/${id.toLowerCase()}`}
+                      constructLink={(id) => `/hero/${id.toLowerCase()}`}
                       inputGroupClass="input-group"
                       placeholder={"Search for a matchup"}
                       miniTag="left"
@@ -66,7 +66,7 @@ class MatchupTipsPage extends Component {
                   </div>
                   <div className="os-hero-left-profile">
                     <div className="os-profile-mask">
-                      <Link to={`/heroes/${heroKey}`}>
+                      <Link to={`/hero/${heroKey}`}>
                         <img
                           width="72"
                           height="124"
@@ -92,7 +92,7 @@ class MatchupTipsPage extends Component {
                 <div className="col-lg-4 col-xs-4">
                   <div className="os-hero-right-profile">
                     <div className="os-profile-mask">
-                      <Link to={`/heroes/${matchupHeroKey}`}>
+                      <Link to={`/hero/${matchupHeroKey}`}>
                         <img
                           width="72"
                           height="124"
@@ -108,7 +108,7 @@ class MatchupTipsPage extends Component {
                   </div>
                   <div className="os-hero-right-search mobile-hidden">
                     <Typeahead
-                      constructLink={(id) => `/heroes/${id.toLowerCase()}`}
+                      constructLink={(id) => `/hero/${id.toLowerCase()}`}
                       inputGroupClass="input-group"
                       placeholder={"Search for a matchup"}
                       miniTag="left"
@@ -122,7 +122,7 @@ class MatchupTipsPage extends Component {
               <div className="os-matchup-body">
                 <div className="row">
                   <div className="col-lg-12">
-                    <Link to={`/heroes/${heroKey}/matchups`}>
+                    <Link to={`/hero/${heroKey}/matchups`}>
                       <i className="fa fa-long-arrow-left" aria-hidden="true"/> back to Hero Matchups
                     </Link>
                   </div>
