@@ -277,6 +277,7 @@
       float: left;
       font-size: 12px;
       font-weight: bold;
+
       .path1 {
         color: $GRAY_4;
       }
@@ -319,7 +320,6 @@
       @media screen and (max-width: $BP_SM) {
         width: 100%;
       }
-
       .os-thread{
         display: flex;
         width: 100%;
@@ -464,7 +464,6 @@
 .os-comment-item-votes-non-active {
   cursor: pointer;
 }
-
 .os-comment-item-votes-active {
   cursor: default;
 }
@@ -472,12 +471,10 @@
   color: $WHITE !important;
   background-color: $GREEN_1;
 }
-
 .os-comment-voted-down{
   color: $WHITE !important;
   background-color: $RED_1;
 }
-
 .os-comment-vote-up {
   display: inline-block;
   margin-right: 10px;

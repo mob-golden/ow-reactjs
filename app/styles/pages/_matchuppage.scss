@@ -22,8 +22,10 @@
 .os-hero-left-profile{
   margin-right: -16px;
   float: right;
+
   .os-profile-mask{
     background-image:url("https://s3.amazonaws.com/solomid-resources/overwatch/icons/hero-mask-left.png");
+    
     .os-hero-profile-name{
       text-shadow: $BLUE_1 0px 0px 6px;
     }
@@ -32,8 +34,10 @@
 .os-hero-right-profile{
   margin-left: -16px;
   float: left;
+
   .os-profile-mask{
     background-image:url("https://s3.amazonaws.com/solomid-resources/overwatch/icons/hero-mask-right.png");
+
     .os-hero-profile-name{
       text-shadow: $RED_1 0px 0px 6px;
     }
