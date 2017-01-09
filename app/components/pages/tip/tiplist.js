@@ -21,6 +21,16 @@ import {
 
 class TipList extends Component {
 
+  constructor(props) {
+    super(props);
+
+    this.toggleTipShowMore = this.toggleTipShowMore.bind(this);
+  }
+
+  toggleTipShowMore (e) {
+    $(e.target).toggleClass("os-counter-tip-text-short").toggleClass("os-counter-tip-text-long");
+  }
+
   render () {
     const {
       tips,
@@ -79,11 +89,15 @@ class TipList extends Component {
           const contentElement = (
             <div>
               <p
-                className="os-counter-tip-text"
+                className="os-counter-tip-text os-counter-tip-text-short"
+                onClick={(e) => this.toggleTipShowMore(e)}
                 dangerouslySetInnerHTML={{
                   __html: content
                 }}
-              ></p>
+              >
+              </p>
+              <div className="os-counter-tip-footer clearfix os-counter-tip-text-long-helper">Click tip to expand</div>
+              <div className="os-counter-tip-footer clearfix os-counter-tip-text-short-helper">Click tip again to shrink</div>
               <div className="os-counter-tip-footer clearfix">
                 <span className="os-counter-tip-metadata">by <span className="os-counter-tip-author">{name}</span></span>
               </div>
