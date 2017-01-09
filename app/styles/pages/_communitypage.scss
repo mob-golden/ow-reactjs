@@ -127,12 +127,14 @@
 .os-threads-list-container {
   margin: 0px 160px;
   padding: 30px;
-  // padding: 30px 160px;
   background-color: $WHITE_1;
   min-height: 800px;
 
   @media screen and (min-width: $BP_LG) {
     padding: 30px 160px;
+  }
+  @media screen and (max-width: $BP_SM) {
+    padding: 15px !important;
   }
   .os-threads-header-nav1 {
     width: 100%;
@@ -141,12 +143,26 @@
     box-shadow: 0 2px 2px rgba(0,0,0,0.35);
     background-color: $GRAY_4;
     padding: 15px;
+
     .os-threads-search-nav{
       float: left;
       width: 35%;
+      min-width: 325px;
+
+      @media screen and (max-width: $BP_SM) {
+        width: 100%;
+        margin-bottom: 20px;
+        display: block;
+        min-width: none;
+        float: none;
+      }
     }
     .os-threads-new {
       float:right;
+
+      @media screen and (max-width: $BP_SM) {
+        float: none;
+      }
     }
   }
   .os-threads-header-nav2 {
@@ -186,6 +202,7 @@
 
   .os-threads-list-body{
     margin-bottom: 30px;
+    
     .os-thread{
       display: inline-block;
       width: 100%;
@@ -243,10 +260,12 @@
   padding: 30px 160px;
   background-color: $WHITE_1;
   min-height: 800px;
+
   .os-singlethread-header{
     margin-top: 30px;
     height: 35px;
     border-bottom: 1px solid $GRAY_1;
+
     .os-page-path{
       float: left;
       font-size: 12px;
