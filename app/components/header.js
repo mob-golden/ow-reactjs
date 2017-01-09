@@ -118,7 +118,7 @@ class Header extends Component {
         <nav className="os-nav navbar navbar-full navbar-light navbar-fixed-top">
           <div className="container">
             <div className="row">
-              <div className="col-lg-7 col-md-6 col-xs-12">
+              <div className="col-xl-7 col-lg-6 col-xs-12">
                 <Link
                   className="navbar-brand os-white os-nav-title"
                   to="/"
@@ -128,7 +128,7 @@ class Header extends Component {
                   </h4>
                 </Link>
               </div>
-              <div className="col-lg-5 col-md-6 col-xs-12">
+              <div className="col-xl-5 col-lg-6 col-xs-12">
                 <div className="row os-nav-menu">
                   {this.renderLinks()}
                 </div>
