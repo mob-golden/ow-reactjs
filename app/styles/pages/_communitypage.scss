@@ -1,11 +1,11 @@
 @import '../base/_constants';
 
 .os-comm-header {
-  max-height: 323px;
-  margin: 0px 55px;
-  padding: 75px 331px 75px 75px;
+  margin: 0px 40px;
+  padding: 75px 75px 75px 75px;
   background-image: url("https://s3.amazonaws.com/solomid-resources/overwatch/community/hero_bg.png");
   text-align: left;
+  background-size: cover;
 }
 .os-comm-welcome {
   width: 330px;
@@ -15,9 +15,13 @@
 }
 .os-comm-big {
   font-weight: bold;
-  width: 594px;
-  height: 54px;
+  line-height: 54px;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+
+  @media screen and (max-width: $BP_MD) {
+    margin-bottom: 0;
+    margin-top: 20px;
+  }
 }
 .btn-comm {
   width: 183px;
