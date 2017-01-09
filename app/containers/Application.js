@@ -40,7 +40,7 @@ export const routes = (
 
     <Route path="/maps" component={MapsPage} />
     <Route path="/maps/:mapKey" component={MapTipsPage} />
-                    
+
     <Route path="/community" component={CommunityPage} />
     <Route path="/community/:commType" component={ThreadsListPage} />
     <Route path="/community/:commType/:threadId" component={SingleThreadPage} />
@@ -48,10 +48,17 @@ export const routes = (
 );
 
 export default class Application extends React.Component {
+
+  handlePageView() {
+    if (window !== undefined) {
+      window.scrollTo(0, 0);
+    }
+  }
+
   render () {
     return (
       <Provider store={ this.props.store }>
-        <Router history={ this.props.history }>
+        <Router history={ this.props.history } onUpdate={() => this.handlePageView()}>
           {routes}
         </Router>
       </Provider>
