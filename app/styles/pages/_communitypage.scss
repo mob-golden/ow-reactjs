@@ -66,7 +66,7 @@
   object-fit: contain;
   padding: 10px;
   vertical-align: top;
-  
+
   a {
     text-decoration: none;
   }
@@ -111,20 +111,32 @@
 .os-threads-header {
   max-height: 200px;
   margin: 0px 160px;
-  padding: 65px 200px;
+  padding: 40px;
   background-image: url("https://s3.amazonaws.com/solomid-resources/overwatch/community/community_header.png");
   text-align: left;
+  
   .header-text {
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
     margin-bottom: 0px;
   }
+  @media screen and (min-width: $BP_LG) {
+    padding: 65px 160px;
+  }
 }
 
-.os-threads-list-conainer {
+.os-threads-list-container {
   margin: 0px 160px;
-  padding: 30px 160px;
+  padding: 30px;
   background-color: $WHITE_1;
   min-height: 800px;
+
+  @media screen and (min-width: $BP_LG) {
+    padding: 30px 160px;
+    margin: 0 160px;
+  }
+  @media screen and (max-width: $BP_SM) {
+    padding: 15px !important;
+  }
   .os-threads-header-nav1 {
     width: 100%;
     min-height: 77px; 
@@ -132,18 +144,33 @@
     box-shadow: 0 2px 2px rgba(0,0,0,0.35);
     background-color: $GRAY_4;
     padding: 15px;
+
     .os-threads-search-nav{
       float: left;
       width: 35%;
+      min-width: 325px;
+
+      @media screen and (max-width: $BP_SM) {
+        width: 100%;
+        margin-bottom: 20px;
+        display: block;
+        min-width: none;
+        float: none;
+      }
     }
     .os-threads-new {
       float:right;
+
+      @media screen and (max-width: $BP_SM) {
+        float: none;
+      }
     }
   }
   .os-threads-header-nav2 {
     margin-top: 30px;
     height: 35px;
     border-bottom: 1px solid $GRAY_1;
+
     .os-page-path{
       float: left;
       font-size: 12px;
@@ -159,6 +186,7 @@
       float: right;
       font-size: 14px;
       font-weight: bold;
+
       .sort-item {
         cursor: pointer;
         color: $GRAY_4;
@@ -177,6 +205,7 @@
 
   .os-threads-list-body{
     margin-bottom: 30px;
+    
     .os-thread{
       display: inline-block;
       width: 100%;
@@ -196,6 +225,7 @@
       }
       .os-thread-meta{
         display: inline-block;
+
         .os-thread-title {
           font-weight: bold;
           font-size: 18px;
@@ -229,19 +259,25 @@
   }
 }
 
-.os-singlethread-list-conainer{
+.os-singlethread-list-container{
   margin: 0px 160px;
   padding: 30px 160px;
   background-color: $WHITE_1;
   min-height: 800px;
+
+  @media screen and (max-width: $BP_LG) {
+    padding: 30px;
+  }
   .os-singlethread-header{
     margin-top: 30px;
     height: 35px;
     border-bottom: 1px solid $GRAY_1;
+
     .os-page-path{
       float: left;
       font-size: 12px;
       font-weight: bold;
+
       .path1 {
         color: $GRAY_4;
       }
@@ -252,6 +288,7 @@
   }
   .os-singlethread-footer{
     margin-top: 30px;
+
     .os-reply-form{
       padding: 30px 32px 26px 32px;
       background-color: $WHITE;
@@ -259,10 +296,12 @@
       border-radius: 5px;
       box-shadow: 0px 2px 2px 0 rgba(0, 0, 0, 0.1);
       margin: auto;
-      width: 600px;
+      max-width: 600px;
+
       .os-modal-description {
         font-weight: 100;
-        b{
+
+        b {
           font-weight: normal;
         }
       }
@@ -270,9 +309,17 @@
   }
   .os-singlethread-body {
     display: flex;
+
+    @media screen and (max-width: $BP_SM) {
+      display: block;
+    }
+
     .os-comment-list{
       width: 75%;
 
+      @media screen and (max-width: $BP_SM) {
+        width: 100%;
+      }
       .os-thread{
         display: flex;
         width: 100%;
@@ -283,6 +330,10 @@
         border: $GRAY_2 solid 1px;
         border-radius: 5px;
         box-shadow: 0px 2px 2px 0 rgba(0, 0, 0, 0.1);
+
+        @media screen and (max-width: $BP_SM) {
+          margin-bottom: 15px;
+        }
         .os-thread-avatar {
           width: 40px;
           height: 40px;
@@ -350,6 +401,11 @@
     .os-singlethread-actions {
       width: 25%;
       margin-left: 30px;
+
+      @media screen and (max-width: $BP_SM) {
+        width: 100%;
+        margin-left: 0;
+      }
       .os-thread-stats{
         text-align: center;
         margin-top: 15px;
@@ -358,10 +414,12 @@
         border: #DDE1E8 solid 1px;
         border-radius: 5px;
         box-shadow: 0px 2px 2px 0 rgba(0, 0, 0, 0.1);
+
         .os-thread-views {
           font-size: 14px;
           color: $GRAY_4;
           margin: 0px 10px;
+
           i{
             margin-right:6px;
           }
@@ -370,6 +428,7 @@
           font-size: 14px;
           color: $GRAY_4;
           margin: 0px 10px;
+
           i{
             margin-right:6px;
           }
@@ -379,6 +438,7 @@
         margin-top: 15px;
         margin-left:-3px;
         margin-right: 3px;
+
         button {
           width: 100%;
           padding: 16px 30px;
@@ -404,7 +464,6 @@
 .os-comment-item-votes-non-active {
   cursor: pointer;
 }
-
 .os-comment-item-votes-active {
   cursor: default;
 }
@@ -412,12 +471,10 @@
   color: $WHITE !important;
   background-color: $GREEN_1;
 }
-
 .os-comment-voted-down{
   color: $WHITE !important;
   background-color: $RED_1;
 }
-
 .os-comment-vote-up {
   display: inline-block;
   margin-right: 10px;

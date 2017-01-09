@@ -126,7 +126,7 @@ class SingleThreadPage extends Component {
       <div className="os-content container-fluid">
         <div className="row">
           <div className="col-lg-12">
-            <div className="os-singlethread-list-conainer">
+            <div className="os-content-body os-singlethread-list-container">
               <div className="os-singlethread-header">
                 <div className="os-page-path">
                   <span className="path1">
