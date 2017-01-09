@@ -16,7 +16,7 @@ export const RECEIVE_THREADS = 'RECEIVE_THREADS';
 
 // 12 items from newest
 const defaultParams = {
-  limit: 6,
+  limit: 10,
   sort: 'date-desc'
 };
 
@@ -44,7 +44,7 @@ function fetchThreads (commType, params) {
   return dispatch => {
     dispatch(requestThreads());
     if(params.page) params.page--;
-    const url = `${OW_COMMUNITY_URL}/class/overwatchselect,${commType}?${qs.stringify(params)}`;
+    const url = `${OW_COMMUNITY_URL}/class/overwatchselect,${commType}?sort=${params.sort}&limit=${params.limit}&page=${params.page}-${params.limit}`;
 
     return fetch(url)
       .then(response => {
@@ -88,14 +88,14 @@ export const REQUEST_SINGLETHREAD = 'REQUEST_SINGLETHREAD';
 export const RECEIVE_SINGLETHREAD = 'RECEIVE_SINGLETHREAD';
 
 
-export function fetchSingleThreadIfNeeded (threadId) {
+export function fetchSingleThreadIfNeeded (threadId, params=defaultParams) {
   // const params = {
   //   sort: 'score.total-desc'
   // };
 
   return (dispatch, getState) => {
     if (shouldFetchSingleThread(getState(),threadId))
-      return dispatch(fetchSingleThread(threadId));
+      return dispatch(fetchSingleThread(threadId, params));
   };
 }
 
@@ -112,11 +112,11 @@ function shouldFetchSingleThread (state) {
   return true;
 }
 
-function fetchSingleThread (threadId) {
+function fetchSingleThread (threadId, params) {
   return dispatch => {
     dispatch(requestSingleThread());
-
-    const url = `${OW_COMMUNITY_URL}/item/${threadId}`;
+    if(params.page) params.page--;
+    const url = `${OW_COMMUNITY_URL}/item/${threadId}?sort=${params.sort}&limit=${params.limit}&page=${params.page}-${params.limit}`;
 
     return fetch(url)
       .then(response => {

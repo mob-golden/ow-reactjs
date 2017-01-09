@@ -7,12 +7,15 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 import Modal from '../../modal';
+import Pagination from '../../pagination'
 import Loader from '../../loader';
 import CommunityTypeAhead from '../../communitytypeahead';
 import { FORUM_STRINGS } from '../../../constants/types';
 import { addComment, voteComment } from '../../../actions/all';
 import { fetchSingleThreadIfNeeded } from '../../../actions/community';
 
+const COMMENTS_LIMIT_PER_PAGE = 100;
+const COMMENTS_MAX_COUNT = 6000;
 class SingleThreadPage extends Component {
 
   constructor (props) {
@@ -27,10 +30,51 @@ class SingleThreadPage extends Component {
       dispatch,
       params: {
         threadId
+      },
+      location: {
+        query: {
+          page = 1
+        }
       }
-
     } = this.props;
-    dispatch( fetchSingleThreadIfNeeded(threadId) );
+    dispatch( fetchSingleThreadIfNeeded(threadId, { 
+      limit: COMMENTS_LIMIT_PER_PAGE,
+      sort: 'date-desc',
+      page: page || 1
+    }));
+  }
+
+  componentWillReceiveProps (nextProps){
+    const {
+      dispatch,
+      location: {
+        query: {
+          page: page
+        }
+      },
+      params: {
+        threadId: threadId
+      }
+    } = this.props;
+
+    const {
+      location: {
+        query: {
+          page : nextPage
+        }
+      },
+      params: {
+        threadId: nextThreadId
+      }
+    } = nextProps;
+
+    if (threadId !== nextThreadId || page !== nextPage) {
+      dispatch( fetchSingleThreadIfNeeded(nextThreadId, { 
+        limit: COMMENTS_LIMIT_PER_PAGE,
+        sort: 'date-desc',
+        page: nextPage
+      }));
+    }
   }
 
   render() {
@@ -38,6 +82,11 @@ class SingleThreadPage extends Component {
       params: {
         commType,
         threadId
+      },
+      location: {
+        query: {
+          page = 1
+        }
       },
       singleThread,
       isFetchingSingleThread
@@ -62,13 +111,15 @@ class SingleThreadPage extends Component {
     const downvotesClass = classNames({
       'os-comment-vote-down': true,
       'os-comment-item-votes-active': votes[key],
-      'os-comment-item-votes-non-active': !votes[key]
+      'os-comment-item-votes-non-active': !votes[key],
+      'os-comment-voted-down': votes[key] == 'downvote'
     });
 
     const upvotesClass = classNames({
       'os-comment-vote-up': true,
       'os-comment-item-votes-active': votes[key],
-      'os-comment-item-votes-non-active': !votes[key]
+      'os-comment-item-votes-non-active': !votes[key],
+      'os-comment-voted-up': votes[key] == 'upvote'
     });
 
     return (
@@ -84,7 +135,15 @@ class SingleThreadPage extends Component {
                   <span className="path2"> {singleThread.meta.title}</span>
                 </div>
               </div>
-
+              <div>
+                <Pagination
+                  activePage={parseInt(page)}
+                  baseUrl={`/community/${commType}/${singleThread._id}`}
+                  limit={COMMENTS_LIMIT_PER_PAGE}
+                  itemCount={COMMENTS_MAX_COUNT}
+                  itemText="REPLIES"
+                />
+              </div>
               <div className="os-singlethread-body">
                 <div className="os-comment-list">
                   <div className="os-thread">
@@ -146,16 +205,27 @@ class SingleThreadPage extends Component {
                       <i className="fa fa-reply"></i> REPLY
                     </button>
                   </div>
-                  <div className="os-thread-favorite">
-                    <button
-                      className="btn btn-default os-btn-gray"
-                      onClick={this.handleVote.bind(null, singleThread._id, 'upvote')}
-                    >
-                      <i className="fa fa-star-o"></i> FAVORITE
-                    </button>
-                  </div>
+                  {/*<div className="os-thread-favorite">
+                                      <button
+                                        className="btn btn-default os-btn-gray"
+                                        onClick={this.handleVote.bind(null, singleThread._id, 'upvote')}
+                                      >
+                                        <i className="fa fa-star-o"></i> FAVORITE
+                                      </button>
+                                    </div>*/}
                 </div>
               </div>
+
+              <div>
+                <Pagination
+                  activePage={parseInt(page)}
+                  baseUrl={`/community/${commType}/${singleThread._id}`}
+                  limit={COMMENTS_LIMIT_PER_PAGE}
+                  itemCount={COMMENTS_MAX_COUNT}
+                  itemText="REPLIES"
+                />
+              </div>
+
               <div className="os-singlethread-footer">
                 {this.renderReplyForm(singleThread.meta.title, singleThread._id)}
               </div>
@@ -304,13 +374,15 @@ class SingleThreadPage extends Component {
           const downvotesClass = classNames({
             'os-comment-vote-down': true,
             'os-comment-item-votes-active': votes[key],
-            'os-comment-item-votes-non-active': !votes[key]
+            'os-comment-item-votes-non-active': !votes[key],
+            'os-comment-voted-down': votes[key] == 'downvote'
           });
 
           const upvotesClass = classNames({
             'os-comment-vote-up': true,
             'os-comment-item-votes-active': votes[key],
-            'os-comment-item-votes-non-active': !votes[key]
+            'os-comment-item-votes-non-active': !votes[key],
+            'os-comment-voted-up': votes[key] == 'upvote'
           });
 
           return (

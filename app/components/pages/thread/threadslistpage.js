@@ -13,7 +13,7 @@ import { FORUM_STRINGS } from '../../../constants/types';
 import { addThread } from '../../../actions/all';
 import Pagination from '../../pagination'
 
-const THREADS_LIMIT_PER_PAGE = 6;
+const THREADS_LIMIT_PER_PAGE = 12;
 const THREADS_MAX_COUNT = 6000;
 
 class ThreadsListPage extends Component {
@@ -142,6 +142,7 @@ class ThreadsListPage extends Component {
                   baseUrl={`/community/${commType}`}
                   limit={THREADS_LIMIT_PER_PAGE}
                   itemCount={THREADS_MAX_COUNT}
+                  itemText="THREADS"
                 />
               </div>
               <div className="os-threads-header-nav1">

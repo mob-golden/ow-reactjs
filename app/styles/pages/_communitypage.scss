@@ -395,6 +395,15 @@
 .os-comment-item-votes-active {
   cursor: default;
 }
+.os-comment-voted-up{
+  color: $WHITE !important;
+  background-color: $GREEN_1;
+}
+
+.os-comment-voted-down{
+  color: $WHITE !important;
+  background-color: $RED_1;
+}
 
 .os-comment-vote-up {
   display: inline-block;
