@@ -169,6 +169,7 @@
     margin-top: 30px;
     height: 35px;
     border-bottom: 1px solid $GRAY_1;
+
     .os-page-path{
       float: left;
       font-size: 12px;
@@ -184,6 +185,7 @@
       float: right;
       font-size: 14px;
       font-weight: bold;
+
       .sort-item {
         cursor: pointer;
         color: $GRAY_4;
@@ -222,6 +224,7 @@
       }
       .os-thread-meta{
         display: inline-block;
+
         .os-thread-title {
           font-weight: bold;
           font-size: 18px;
@@ -399,7 +402,6 @@
         width: 100%;
         margin-left: 0;
       }
-
       .os-thread-stats{
         text-align: center;
         margin-top: 15px;
@@ -408,10 +410,12 @@
         border: #DDE1E8 solid 1px;
         border-radius: 5px;
         box-shadow: 0px 2px 2px 0 rgba(0, 0, 0, 0.1);
+
         .os-thread-views {
           font-size: 14px;
           color: $GRAY_4;
           margin: 0px 10px;
+
           i{
             margin-right:6px;
           }
@@ -420,6 +424,7 @@
           font-size: 14px;
           color: $GRAY_4;
           margin: 0px 10px;
+
           i{
             margin-right:6px;
           }
@@ -429,6 +434,7 @@
         margin-top: 15px;
         margin-left:-3px;
         margin-right: 3px;
+
         button {
           width: 100%;
           padding: 16px 30px;
