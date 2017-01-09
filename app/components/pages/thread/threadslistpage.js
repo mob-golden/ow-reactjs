@@ -98,7 +98,7 @@ class ThreadsListPage extends Component {
       <div className="os-content container-fluid">
         <div className="row">
           <div className="col-lg-12">
-            <div className="os-threads-header">
+            <div className="os-threads-header os-content-top">
               <p className="os-white os-font-size-36 header-text">{changeCase.upper(FORUM_STRINGS[commType].title)}</p>
               <p className="os-white os-font-size-18 header-text">{FORUM_STRINGS[commType].text}</p>
             </div>
@@ -106,7 +106,7 @@ class ThreadsListPage extends Component {
         </div>
         <div className="row">
           <div className="col-lg-12">
-            <div className="os-threads-list-conainer">
+            <div className="os-threads-list-container os-content-body">
               <div className="os-threads-header-nav1">
                 <div className="os-threads-search-nav">
                   <CommunityTypeAhead
