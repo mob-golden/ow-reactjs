@@ -280,6 +280,7 @@
   }
   .os-singlethread-footer{
     margin-top: 30px;
+
     .os-reply-form{
       padding: 30px 32px 26px 32px;
       background-color: $WHITE;
@@ -287,10 +288,12 @@
       border-radius: 5px;
       box-shadow: 0px 2px 2px 0 rgba(0, 0, 0, 0.1);
       margin: auto;
-      width: 600px;
+      max-width: 600px;
+
       .os-modal-description {
         font-weight: 100;
-        b{
+
+        b {
           font-weight: normal;
         }
       }
@@ -298,8 +301,17 @@
   }
   .os-singlethread-body {
     display: flex;
+
+    @media screen and (max-width: $BP_SM) {
+      display: block;
+    }
+
     .os-comment-list{
       width: 75%;
+
+      @media screen and (max-width: $BP_SM) {
+        width: 100%;
+      }
 
       .os-thread{
         display: flex;
@@ -311,6 +323,10 @@
         border: $GRAY_2 solid 1px;
         border-radius: 5px;
         box-shadow: 0px 2px 2px 0 rgba(0, 0, 0, 0.1);
+
+        @media screen and (max-width: $BP_SM) {
+          margin-bottom: 15px;
+        }
         .os-thread-avatar {
           width: 40px;
           height: 40px;
@@ -378,6 +394,12 @@
     .os-singlethread-actions {
       width: 25%;
       margin-left: 30px;
+
+      @media screen and (max-width: $BP_SM) {
+        width: 100%;
+        margin-left: 0;
+      }
+
       .os-thread-stats{
         text-align: center;
         margin-top: 15px;
