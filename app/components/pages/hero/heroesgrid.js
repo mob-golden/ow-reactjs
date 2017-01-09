@@ -44,7 +44,7 @@ class HeroesGrid extends Component {
                         style={{
                           background: `url(${portrait}) no-repeat center center`,
                           backgroundSize: "cover",
-                          width: "98px",
+                          // width: "98px",
                           height: "168px"
                         }}
                       ></div>
