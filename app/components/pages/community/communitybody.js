@@ -21,10 +21,10 @@ class CommunityBody extends Component {
             </div>
             <div className="row">
               <div className="os-comm-boards">
-                <div className="row">
-                  <div className="os-comm-boards-section">
+                <div className="row os-card-container">
+                  <div className="os-comm-boards-section os-card-col">
                     <Link to={`/community/discussion`}>
-                      <div className="boards-content">
+                      <div className="boards-content os-card-body">
                         <img src="https://s3.amazonaws.com/solomid-resources/overwatch/community/general.png" className="boards-img"/>
                         <div className="boards-text">
                           <p className="boards-header os-font-size-24">GENERAL DISCUSSION</p>
@@ -33,9 +33,9 @@ class CommunityBody extends Component {
                       </div>
                     </Link>
                   </div>
-                  <div className="os-comm-boards-section">
+                  <div className="os-comm-boards-section os-card-col">
                     <Link to={`/community/announcement`}>
-                      <div className="boards-content">
+                      <div className="boards-content os-card-body">
                         <img src="https://s3.amazonaws.com/solomid-resources/overwatch/community/announcements.png" className="boards-img"/>
                         <div className="boards-text">
                           <p className="boards-header os-font-size-24">ANNOUNCEMENTS</p>
@@ -44,9 +44,9 @@ class CommunityBody extends Component {
                       </div>
                     </Link>
                   </div>
-                  <div className="os-comm-boards-section">
+                  <div className="os-comm-boards-section os-card-col">
                     <Link to={`/community/guide`}>
-                      <div className="boards-content">
+                      <div className="boards-content os-card-body">
                         <img src="https://s3.amazonaws.com/solomid-resources/overwatch/community/guides.png" className="boards-img"/>
                         <div className="boards-text">
                           <p className="boards-header os-font-size-24">GUIDES</p>
@@ -55,9 +55,9 @@ class CommunityBody extends Component {
                       </div>
                     </Link>
                   </div>
-                  <div className="os-comm-boards-section">
+                  <div className="os-comm-boards-section os-card-col">
                     <Link to={`/community/bugreport`}>
-                      <div className="boards-content">
+                      <div className="boards-content os-card-body">
                         <img src="https://s3.amazonaws.com/solomid-resources/overwatch/community/bugs.png" className="boards-img"/>
                         <div className="boards-text">
                           <p className="boards-header os-font-size-24">BUG REPORTS</p>
