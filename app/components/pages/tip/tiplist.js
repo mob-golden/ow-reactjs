@@ -83,7 +83,7 @@ class TipList extends Component {
             'os-counter-tip-caret-active': votes[id] === 'upvote',
             'os-counter-tip-vote-alt': true,
             'os-counter-tip-vote-non-active-alt': !votes[id],
-            'os-counter-tip-vote-active-alt': votes[id] === 'downvote'
+            'os-counter-tip-vote-active-alt': votes[id] === 'upvote'
           });
 
 
@@ -160,10 +160,12 @@ class TipList extends Component {
       if (downOrUp === 'downvote') {
         $(selector).text(score - 1)
 
+        $(selector).next().find('i').addClass('os-counter-tip-caret-active');
         $(selector).next().find('i').addClass('os-counter-tip-vote-active-alt');
       } else if (downOrUp === 'upvote') {
         $(selector).text(score + 1)
 
+        $(selector).prev().find('i').addClass('os-counter-tip-caret-active');
         $(selector).prev().find('i').addClass('os-counter-tip-vote-active-alt');
       }
 

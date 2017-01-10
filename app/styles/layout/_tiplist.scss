@@ -81,8 +81,12 @@
     color: darken($VULCAN, 25%);
   }
 }
-.os-counter-tip-caret-active {
-  color: darken($VULCAN, 75%) !important;
+.os-counter-tip-caret-active.fa-caret-up {
+  color: $GREEN_1 !important;
+}
+
+.os-counter-tip-caret-active.fa-caret-down {
+  color: $RED_1 !important;
 }
 
 .os-counter-tip-score-alt {

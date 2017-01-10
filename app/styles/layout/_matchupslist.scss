@@ -27,6 +27,15 @@
   cursor: default;
 }
 
+.os-matchup-voted-up{
+  color: $WHITE !important;
+  background-color: $GREEN_1;
+}
+.os-matchup-voted-down{
+  color: $WHITE !important;
+  background-color: $RED_1;
+}
+
 .os-matchup-vote-up {
   margin-right: 10px;
   width: 45%;

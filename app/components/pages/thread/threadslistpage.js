@@ -20,6 +20,9 @@ class ThreadsListPage extends Component {
 
   constructor (props) {
     super(props);
+    this.state = {
+      sortKey: 'date-desc'
+    };
   }
 
   componentDidMount () {
@@ -40,7 +43,7 @@ class ThreadsListPage extends Component {
     const commType = changeCase.lower(_type);
     dispatch( fetchThreadsIfNeeded(commType, { 
       limit: THREADS_LIMIT_PER_PAGE,
-      sort: 'date-desc',
+      sort: this.state.sortKey,
       page: page || 1
     }));
   }
@@ -75,11 +78,32 @@ class ThreadsListPage extends Component {
     if (commType !== nextCommType || page !== nextPage) {
       dispatch( fetchThreadsIfNeeded(nextCommType, { 
         limit: THREADS_LIMIT_PER_PAGE,
-        sort: 'date-desc',
+        sort: this.state.sortKey,
         page: nextPage
       }));
     }
   }
+
+  handleSort = (sortKey) => {
+    const {
+      dispatch,
+      location: {
+        query: {
+          page = 1
+        }
+      },
+      params: {
+        commType: _type
+      }
+    } = this.props;
+    const commType = changeCase.lower(_type);
+    dispatch( fetchThreadsIfNeeded(commType, { 
+      limit: THREADS_LIMIT_PER_PAGE,
+      sort: sortKey,
+      page: page || 1
+    }));
+    this.setState({sortKey});
+  };
 
   render() {
     const {
@@ -127,8 +151,8 @@ class ThreadsListPage extends Component {
                   <span className="path2">{FORUM_STRINGS[commType].title}</span>
                 </div>
                 <div className="os-threads-sortby">
-                  <span className="sort-item active">Most Recent</span>
-                  <span className="sort-item">Popular</span>
+                  <span className={`sort-item ${this.state.sortKey=='date-desc'?'active':null}`} onClick={this.handleSort.bind(null,'date-desc')}>Most Recent</span>
+                  <span className={`sort-item ${this.state.sortKey=='score-desc'?'active':null}`} onClick={this.handleSort.bind(null,'score-desc')}>Popular</span>
                 </div>
               </div>
 

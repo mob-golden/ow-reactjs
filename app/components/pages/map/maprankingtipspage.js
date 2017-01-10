@@ -123,13 +123,15 @@ class MapRankingTipsPage extends Component {
     const downvotesClass = classNames({
       'os-matchup-vote-down': true,
       'os-matchup-item-votes-active': votes[key],
-      'os-matchup-item-votes-non-active': !votes[key]
+      'os-matchup-item-votes-non-active': !votes[key],
+      'os-matchup-voted-down': votes[key] == 'downvote'
     });
 
     const upvotesClass = classNames({
       'os-matchup-vote-up': true,
       'os-matchup-item-votes-active': votes[key],
-      'os-matchup-item-votes-non-active': !votes[key]
+      'os-matchup-item-votes-non-active': !votes[key],
+      'os-matchup-voted-up': votes[key] == 'upvote'
     });
 
 
@@ -255,6 +257,9 @@ class MapRankingTipsPage extends Component {
       $(selector).parent().removeClass('os-matchup-item-votes-non-active');
       $(otherSelector).parent().removeClass('os-matchup-item-votes-non-active');
 
+      const votedItemClass = downOrUp === 'upvote'? 'up' : 'down';
+      $(selector).parent().addClass(`os-matchup-voted-${votedItemClass}`);
+      
       votes[key] = downOrUp;
       localStorage.setItem('matchupVotes', JSON.stringify(votes));
     }
