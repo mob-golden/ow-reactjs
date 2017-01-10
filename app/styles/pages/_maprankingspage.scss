@@ -5,6 +5,20 @@
   min-height: 120px;
   margin-top: 20px;
 }
+.os-hero-maprankings-info-tip {
+  text-align: center;
+  background-color: #D3D8E2;
+  color: #737E93;
+  height: 94px;
+  width: 960px;
+  margin-bottom: 45px;
+}
+.os-hero-info-tip-text {
+  height: 44px;
+  width: 900px;
+  padding-left: 63px;
+  padding-top: 20px;
+}
 .os-hero-maprankings-col {
   width: 100%;
   float: left;
@@ -76,7 +90,7 @@
   .os-map-info{
     display: inline-block;
     padding: 15px 15px;
-    
+
     .os-map-type{
       font-weight: bold;
       color: $GRAY_3;
@@ -89,6 +103,6 @@
   }
   &:hover{
     text-decoration: none;
-    box-shadow: #3EABF0 0px 0px 4px 2px;    
+    box-shadow: #3EABF0 0px 0px 4px 2px;
   }
 }
