@@ -96,7 +96,7 @@ class SingleHeroPage extends Component {
                     <Typeahead
                       constructLink={(id) => `/hero/${id}/${activePath}`}
                       inputGroupClass="input-group"
-                      placeholder={"Search for a matchup"}
+                      placeholder={"Search for a Hero"}
                     />
                   </div>
                 </div>
