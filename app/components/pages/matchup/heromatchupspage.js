@@ -74,9 +74,9 @@ class HeroMatchupsPage extends Component {
       dispatch(fetchMatchupsIfNeeded(nextHeroKey));
     }
   }
-  
+
   render () {
-    
+
     const {
       children,
       matchups,
@@ -115,10 +115,10 @@ class HeroMatchupsPage extends Component {
           { this.renderModal('positive', heroKey, heroName) }
             <div className="os-card-body os-hero-matchups-body">
               <span className="os-matchups-hero-name">
-                {changeCase.upper(heroName)}  
+                {changeCase.upper(heroName)}
               </span>
               <h5 className="os-matchups-title">COUNTERS</h5>
-              
+
                 <MatchupList
                   heroKey={heroKey}
                   matchups={
@@ -152,7 +152,7 @@ class HeroMatchupsPage extends Component {
                 {changeCase.upper(heroName)} IS
               </span>
               <h5 className="os-matchups-title">COUNTERED BY</h5>
-              
+
                 <MatchupList
                   heroKey={heroKey}
                   matchups={
@@ -183,10 +183,10 @@ class HeroMatchupsPage extends Component {
             { this.renderModal('teamup', heroKey, heroName) }
             <div className="os-card-body os-hero-matchups-body">
               <span className="os-matchups-hero-name">
-                {changeCase.upper(heroName)} CAN
+                {changeCase.upper(heroName)}
               </span>
-              <h5 className="os-matchups-title">TEAM WITH</h5>
-              
+              <h5 className="os-matchups-title">SYNERGIZES WITH</h5>
+
                 <MatchupList
                   heroKey={heroKey}
                   matchups={
@@ -248,7 +248,7 @@ class HeroMatchupsPage extends Component {
       return (
         <div>
           <form>
-            <Modal 
+            <Modal
               id={`modal-add-matchup-${type}`}
             >
               <fieldset className="os-modal-form-group-1">
@@ -293,7 +293,7 @@ class HeroMatchupsPage extends Component {
             } = hero;
 
             return (
-              <Link 
+              <Link
                 onClick={e => {this.addMatchupHero(id, type); return false;}}
                 key={id}
               >
@@ -307,7 +307,7 @@ class HeroMatchupsPage extends Component {
                     src={image}
                   />
                 </div>
-              </Link>   
+              </Link>
             );
           })
         }
