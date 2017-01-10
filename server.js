@@ -9,21 +9,21 @@ var qs = require('querystring');
 var React = require('react');
 var Router = require('react-router');
 var routes = require('./app/containers/Application').routes;
-
+var isDevelopment = process.env.NODE_ENV ==='development';
 var urls = require('./app/constants/urls');
 
 const match = Router.match;
-var fs = require('fs');
-
+const fs = require('fs');
+var apiRoutes = require('./routes');
 var app = express();
 var port = process.env.PORT || 3000;
-var staticPath = path.join(__dirname, '/dist');
+var staticPath = isDevelopment ? path.join(__dirname, '/app') : path.join(__dirname, '/dist');
 var overwatchHost = process.env.OVERWATCH_HOST || "https://overwatch-select-api-prod.herokuapp.com";
 const S_IN_YR = 31536000;
-
 app.use(express.static(staticPath, { maxAge: S_IN_YR }));
 app.use(compression());
 app.use(bodyParser.json());
+app.use(bodyParser.raw());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
@@ -167,7 +167,6 @@ app.post('/signin', function (req, res) {
     email,
     password
   } = req.body;
-
   const data = qs.stringify({
     'grant_type': 'password',
     email,
@@ -231,14 +230,14 @@ app.get('/reset', handleRender);
 app.get('/community', handleRender);
 app.get('/community/:commType', handleRender);
 app.get('/community/:commType/:threadId', handleRender);
-
+apiRoutes(app);
 app.all('*', send404);
 
 function send404 (req, res) {
   res.setHeader('Cache-Control', `max-age=${S_IN_YR}`);
   res.status(404).send('Not found.');
 }
-
+var indexFile = process.env.NODE_ENV === 'development' ? path.join(__dirname, '/app/index.dev.html') : path.join(__dirname, '/dist/index.html');
 function handleRender(req, res) {
   match({ routes, location: req.url }, function(error, redirectLocation, renderProps) {
     if (error) {
@@ -249,9 +248,9 @@ function handleRender(req, res) {
       res.redirect(302, redirectLocation.pathname + redirectLocation.search)
     } else if (renderProps) {
       if (typeof renderProps.routes[1] !== 'undefined' && renderProps.routes[1].status === 404) {
-        res.status(404).sendFile(path.join(__dirname, '/dist/index.html'));
+        res.status(404).sendFile(indexFile);
       } else {
-        res.sendFile(path.join(__dirname, '/dist/index.html'));
+        res.sendFile(indexFile);
       }
   } else {
       console.log("[match]: Not found");

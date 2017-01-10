@@ -55,7 +55,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'overwatch-select',
       filename: 'index.html',
-      template: 'index.html'
+      template: 'index.prod.html'
     })
   ]
 
