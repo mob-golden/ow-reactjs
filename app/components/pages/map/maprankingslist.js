@@ -29,7 +29,7 @@ class MapRankingsList extends Component {
     // }
     if (!localStorage.getItem('matchupVotes')) localStorage.setItem('matchupVotes', JSON.stringify({}));
     const votes =  JSON.parse(localStorage.getItem('matchupVotes'));
-    
+
     return (
       <div className="os-maprankings-list">
       {
@@ -143,7 +143,7 @@ class MapRankingsList extends Component {
 
       const votedItemClass = downOrUp === 'upvote'? 'up' : 'down';
       $(selector).parent().addClass(`os-matchup-voted-${votedItemClass}`);
-      
+
       votes[key] = downOrUp;
       localStorage.setItem('matchupVotes', JSON.stringify(votes));
     }

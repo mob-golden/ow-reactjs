@@ -34,12 +34,9 @@ class MapsGrid extends Component {
             className={colClass}
             key={_map.id}
           >
+          <Link to={`/map/${id}`}>
             <div className="os-map">
-              <Link 
-                className="os-map-tile-link"
-                to={`/map/${id}`}
-              >
-              </Link>
+              <div className="os-map-overlay">VIEW TIPS</div>
               <div className="os-map-profile">
                 <span className="os-map-profile-type">{changeCase.upper(MAPS_HASH[type])}</span>
                 <h5 className="os-map-profile-title">{name}</h5>
@@ -59,6 +56,7 @@ class MapsGrid extends Component {
                 src={image}
               />
             </div>
+            </Link>
           </div>
           );
         })}
