@@ -2,6 +2,8 @@ var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+var contentBase = process.env.NODE_ENV=='development' ?  __dirname+'/app' : __dirname + '/dist';
+console.log(contentBase);
 
 module.exports = {
 
@@ -14,14 +16,14 @@ module.exports = {
   output: {
     filename: 'app.js',
     publicPath : '/',
-    path: __dirname + '/dist'
+    path: __dirname + '/app'
   },
 
   devtool: '#sourcemap',
 
   // For enabling page refreshes in development
   devServer: {
-    contentBase: __dirname + '/dist',
+    contentBase : contentBase
   },
 
   module: {
@@ -40,15 +42,10 @@ module.exports = {
   },
 
   plugins: [
-    new ExtractTextPlugin('style.[contenthash].css', { allChunks: true }),
+    new ExtractTextPlugin('style.css', { allChunks: true }),
     new CopyWebpackPlugin([
       { from: __dirname + '/app/google.js', to: 'app/' }
     ]),
-    new HtmlWebpackPlugin({
-      title: 'overwatch-select',
-      filename: 'index.html',
-      template: 'index.html'
-    })
   ],
   resolve: {
     alias: { 'react/lib/ReactMount': 'react-dom/lib/ReactMount'

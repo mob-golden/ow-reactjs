@@ -35,7 +35,6 @@ export function setUser (token, username, userId) {
 export function signIn (email, password) {
   return dispatch => {
     dispatch(signInRequest());
-
     const data = qs.stringify({
       email,
       password,

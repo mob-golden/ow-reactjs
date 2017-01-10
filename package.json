@@ -5,18 +5,23 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack -p --config webpack.config.prod.js",
-    "dev": "webpack-dev-server --progress --inline --hot --history-api-fallback",
+    "dev": "NODE_ENV=development webpack-dev-server --progress --inline --hot --history-api-fallback",
     "prestart": "npm run build",
-    "start": "node server",
+    "start": "NODE_ENV=production node server",
+    "db": "NODE_ENV=development nodemon --ignore app --ignore dist --exec babel-node server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "private": true,
   "devDependencies": {
+    "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.4",
+    "eslint": "^3.13.1",
+    "eslint-plugin-react": "^6.9.0",
     "react-hot-loader": "^3.0.0-beta.6",
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "babel-cli": "^6.18.0",
     "babel-core": "^6.0.0",
     "babel-loader": "^6.2.10",
     "babel-preset-es2015": "^6.9.0",
@@ -61,6 +66,7 @@
     "sendgrid": "^4.0.2",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
+    "urlencode": "^1.1.0",
     "validator": "^5.5.0",
     "webpack": "^1.13.1",
     "webpack-md5-hash": "0.0.5",

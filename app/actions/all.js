@@ -254,7 +254,7 @@ export function voteMatchup (heroKey, matchupHeroKey, downOrUp, matchupType) {
     const url = `${OW_MATCHUPS_URL}/${heroKey}/${matchupHeroKey}/${downOrUp}`;
     const body = qs.stringify({   type:matchupType });
     return fetch(url, {
-      body,      
+      body,
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/x-www-form-urlencoded'
