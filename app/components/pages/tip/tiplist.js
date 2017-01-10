@@ -19,6 +19,8 @@ import {
   voteTip
 } from '../../../actions/all';
 
+import TipUDControl from './tipudcontrol';
+
 class TipList extends Component {
 
   constructor(props) {
@@ -38,6 +40,9 @@ class TipList extends Component {
     } = this.props;
 
     if (!localStorage.getItem('tipVotes')) localStorage.setItem('tipVotes', JSON.stringify({}));
+
+    const localUsername = localStorage.getItem('username');
+
     const votes =  JSON.parse(localStorage.getItem('tipVotes'));
 
     if (tips.length === 0) {
@@ -137,6 +142,13 @@ class TipList extends Component {
               </div>
               <div className="os-counter-tip-content">
                 {contentElement}
+              </div>
+              <div className="os-counter-tip-ud-control">
+                {
+                  localUsername == authorName?
+                    <TipUDControl/>
+                  :null
+                }
               </div>
             </div>
           );
