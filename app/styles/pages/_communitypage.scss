@@ -105,7 +105,8 @@
 }
 
 .boards-content:hover {
-  background-color: $GRAY_1;
+  border: 1px solid #3EABF0;
+  box-shadow: 0px 0px 10px #3EABF0;
 }
 
 .os-threads-header {
@@ -114,7 +115,7 @@
   padding: 40px;
   background-image: url("https://s3.amazonaws.com/solomid-resources/overwatch/community/community_header.png");
   text-align: left;
-  
+
   .header-text {
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
     margin-bottom: 0px;
@@ -139,7 +140,7 @@
   }
   .os-threads-header-nav1 {
     width: 100%;
-    min-height: 77px; 
+    min-height: 77px;
     border-radius: 5px;
     box-shadow: 0 2px 2px rgba(0,0,0,0.35);
     background-color: $GRAY_4;
@@ -205,7 +206,7 @@
 
   .os-threads-list-body{
     margin-bottom: 30px;
-    
+
     .os-thread{
       display: inline-block;
       width: 100%;
@@ -455,7 +456,7 @@
           padding: 16px 30px;
           border-radius: 5px;
           font-weight: normal;
-        }        
+        }
       }
     }
   }
