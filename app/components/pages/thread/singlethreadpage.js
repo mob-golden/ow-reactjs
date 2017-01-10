@@ -164,7 +164,7 @@ class SingleThreadPage extends Component {
                         >
                           <i className={upvoteClass}></i>
                           &nbsp;
-                          <span className={`jq-matchup-upvote-${key}`}>{singleThread.score.upvotes}</span>
+                          <span className={`jq-comment-upvote-${key}`}>{singleThread.score.upvotes}</span>
                         </div>
                         <div
                           className={downvotesClass}
@@ -172,7 +172,7 @@ class SingleThreadPage extends Component {
                         >
                           <i className={downvoteClass}></i>
                           &nbsp;
-                          <span className={`jq-matchup-downvote-${key}`}>{singleThread.score.downvotes}</span>
+                          <span className={`jq-comment-downvote-${key}`}>{singleThread.score.downvotes}</span>
                         </div>
                         <div className="os-comment-btn-gray">
                           SHARE
@@ -400,7 +400,7 @@ class SingleThreadPage extends Component {
                   >
                     <i className={upvoteClass}></i>
                     &nbsp;
-                    <span className={`jq-matchup-upvote-${key}`}>{upvotes}</span>
+                    <span className={`jq-comment-upvote-${key}`}>{upvotes}</span>
                   </div>
                   <div
                     className={downvotesClass}
@@ -408,7 +408,7 @@ class SingleThreadPage extends Component {
                   >
                     <i className={downvoteClass}></i>
                     &nbsp;
-                    <span className={`jq-matchup-downvote-${key}`}>{downvotes}</span>
+                    <span className={`jq-comment-downvote-${key}`}>{downvotes}</span>
                   </div>
                   <div className="os-comment-btn-gray"
                     onClick={this.doQuote.bind(null, content)}
@@ -448,18 +448,21 @@ class SingleThreadPage extends Component {
     if (!votes[key]) {
       dispatch(voteComment(commentId, downOrUp));
 
-      const selector = `.jq-matchup-${downOrUp}-${key}`;
+      const selector = `.jq-comment-${downOrUp}-${key}`;
       const score = parseInt($(selector).text());
       $(selector).text(score + 1);
 
       const otherDownOrUp = downOrUp === 'downvote' ? 'upvote' : 'downvote';
-      const otherSelector = `.jq-matchup-${otherDownOrUp}-${key}`;
+      const otherSelector = `.jq-comment-${otherDownOrUp}-${key}`;
 
-      $(selector).parent().addClass('os-matchup-item-votes-active');
-      $(otherSelector).parent().addClass('os-matchup-item-votes-active');
-      $(selector).parent().removeClass('os-matchup-item-votes-non-active');
-      $(otherSelector).parent().removeClass('os-matchup-item-votes-non-active');
+      $(selector).parent().addClass('os-comment-item-votes-active');
+      $(otherSelector).parent().addClass('os-comment-item-votes-active');
+      $(selector).parent().removeClass('os-comment-item-votes-non-active');
+      $(otherSelector).parent().removeClass('os-comment-item-votes-non-active');
 
+      const votedItemClass = downOrUp === 'upvote'? 'up' : 'down';
+      $(selector).parent().addClass(`os-comment-voted-${votedItemClass}`);
+      
       votes[key] = downOrUp;
       localStorage.setItem('commentVotes', JSON.stringify(votes));
     }
