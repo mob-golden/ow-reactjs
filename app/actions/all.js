@@ -71,8 +71,6 @@ export function deleteHeroTip ({
 
     return fetch(`${OW_TIPS_URL}/${id}`, {
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded',
         'Authorization': token
       },
       method: 'DELETE'
@@ -91,9 +89,7 @@ export function deleteHeroTip ({
           console.log(`Response returned an error for ${url}: ${error.message}`);
           return Promise.reject(error);
         }
-      })
-      .then(response => response.json())
-      .then(error => console.log(error));
+      });
   };
 }
 
@@ -132,9 +128,7 @@ export function editHeroTip ({
           console.log(`Response returned an error for ${url}: ${error.message}`);
           return Promise.reject(error);
         }
-      })
-      .then(response => response.json())
-      .then(error => console.log(error));
+      });
   };
 }
 
@@ -175,9 +169,7 @@ export function addHeroMatchup ({
 
           return Promise.reject(error);
         }
-      })
-      .then(response => response.json())
-      .then(error => console.log(error));
+      });
   };
 }
 

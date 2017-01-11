@@ -169,7 +169,7 @@ class MapTipsPage extends Component {
                           }
                           matchupType = "map"
                           firstText = {`No Heroes.`}
-                          customLocation = "mapMatchup"
+                          customType = "mapMatchup"
                         />
                         <div className="row center-text">
                           <button

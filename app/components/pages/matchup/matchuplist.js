@@ -17,7 +17,7 @@ class MatchupList extends Component {
       matchups,
       matchupType,
       firstText,
-      customLocation
+      customType
     } = this.props;
 
     if (matchups.length === 0) {
@@ -44,10 +44,11 @@ class MatchupList extends Component {
               downvotes,
               upvotes
             },
-            type,
-            opponent: matchupHeroKey,
+            type
           } = matchup;
 
+          const matchupHeroKey = customType == "mapMatchup" ? matchup.heroId : matchup.opponent;
+          
           const {
             portrait,
             name
@@ -81,7 +82,7 @@ class MatchupList extends Component {
             'os-matchup-voted-up': votes[key] == 'upvote'
           });
 
-          const matchupLink = customLocation == 'mapMatchup' ? 
+          const matchupLink = customType == 'mapMatchup' ? 
                                                     `/hero/${matchupHeroKey}/maprankings` : 
                                                     `/matchups/${heroKey}/${matchupHeroKey}/${matchupType}`;
           return (

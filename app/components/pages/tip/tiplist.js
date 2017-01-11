@@ -248,7 +248,12 @@ class TipList extends Component {
                   token: localToken
                 }));
               }
-              $("#modal-edit-tip").modal('hide');
+
+              this.props.tips.find(x => x._id === input.value).contentRaw = textarea.value;
+
+              let editedTip = this.tipDivs[input.value];
+              editedTip.getElementsByClassName("os-counter-tip-text")[0].innerHTML = textarea.value;
+              $(`#modal-edit-tip-${listId}`).modal('hide');
             }}>
               <fieldset className="os-modal-form-group-1">
                 <h4 className="os-modal-title">EDIT TIP</h4>
