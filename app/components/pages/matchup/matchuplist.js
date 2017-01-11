@@ -86,7 +86,7 @@ class MatchupList extends Component {
             >
               <Link
                 className="media-left"
-                to={`/hero/${matchupHeroKey}/maprankings`}
+                to={`/matchups/${heroKey}/${matchupHeroKey}/${matchupType}`}
               >
                 <div className="os-matchup-thumb">
                   <img
