@@ -18,7 +18,7 @@ var apiRoutes = require('./routes');
 var app = express();
 var port = process.env.PORT || 3000;
 var staticPath = isDevelopment ? path.join(__dirname, '/app') : path.join(__dirname, '/dist');
-var overwatchHost = process.env.OVERWATCH_HOST || "https://overwatch-select-api-prod.herokuapp.com";
+var overwatchHost = process.env.OVERWATCH_HOST || "https://overwatch-select-api-dev.herokuapp.com";
 const S_IN_YR = 31536000;
 app.use(express.static(staticPath, { maxAge: S_IN_YR }));
 app.use(compression());

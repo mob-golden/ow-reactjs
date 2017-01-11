@@ -20,6 +20,7 @@ import {
   fetchThreadsIfNeeded,
   fetchSingleThreadIfNeeded
 } from './community';
+
 export function addHeroTip ({
   heroKey,
   content,
@@ -58,14 +59,82 @@ export function addHeroTip ({
         }
       })
       .then(response => response.json())
-      .then(json => {
-        // console.log(json);
-        if (json.hasOwnProperty('error')) {
-          const error = new Error(json.error);
-          console.log(error.message);
+      .then(error => console.log(error));
+  };
+}
+
+export function deleteHeroTip ({
+  id,
+  token
+}) {
+  return (dispatch, getState) => {
+
+    return fetch(`${OW_TIPS_URL}/${id}`, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': token
+      },
+      method: 'DELETE'
+    })
+      .then(response => {
+        const {
+          status,
+          statusText
+        } = response;
+
+        // TODO: is this necessary for a POST request?
+        if (response.status >= 200 && response.status < 300) {
+          return response;
         } else {
+          const error = new Error(statusText);
+          console.log(`Response returned an error for ${url}: ${error.message}`);
+          return Promise.reject(error);
         }
       })
+      .then(response => response.json())
+      .then(error => console.log(error));
+  };
+}
+
+
+export function editHeroTip ({
+  id,
+  content,
+  token
+}) {
+  return (dispatch, getState) => {
+
+    const body = qs.stringify({
+      content
+    });
+
+    return fetch(`${OW_TIPS_URL}/${id}`, {
+      body,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': token
+      },
+      method: 'POST'
+    })
+      .then(response => {
+        const {
+          status,
+          statusText
+        } = response;
+
+        // TODO: is this necessary for a POST request?
+        if (response.status >= 200 && response.status < 300) {
+          return response;
+        } else {
+          const error = new Error(statusText);
+          console.log(`Response returned an error for ${url}: ${error.message}`);
+          return Promise.reject(error);
+        }
+      })
+      .then(response => response.json())
+      .then(error => console.log(error));
   };
 }
 
@@ -108,14 +177,7 @@ export function addHeroMatchup ({
         }
       })
       .then(response => response.json())
-      .then(json => {
-        // console.log(json);
-        if (json.hasOwnProperty('error')) {
-          const error = new Error(json.error);
-          console.log(error.message);
-        } else {
-        }
-      })
+      .then(error => console.log(error));
   };
 }
 
@@ -160,14 +222,7 @@ export function addHeroMatchupTip ({
         }
       })
       .then(response => response.json())
-      .then(json => {
-        // console.log(json);
-        if (json.hasOwnProperty('error')) {
-          const error = new Error(json.error);
-          console.log(error.message);
-        } else {
-        }
-      })
+      .then(error => console.log(error));
   };
 }
 
@@ -207,14 +262,7 @@ export function addMapTip ({
         }
       })
       .then(response => response.json())
-      .then(json => {
-        // console.log(json);
-        if (json.hasOwnProperty('error')) {
-          const error = new Error(json.error);
-          console.log(error.message);
-        } else {
-        }
-      })
+      .then(error => console.log(error));
   };
 }
 
@@ -240,11 +288,7 @@ export function voteTip (id, downOrUp) {
         }
       })
       .then(response => response.json())
-      .then(json => {
-        return {
-          type: 'NONE'
-        };
-      });
+      .then(error => console.log(error));
   }
 }
 
@@ -277,11 +321,7 @@ export function voteMatchup (heroKey, matchupHeroKey, downOrUp, matchupType) {
         }
       })
       .then(response => response.json())
-      .then(json => {
-        return {
-          type: 'NONE'
-        };
-      });
+      .then(error => console.log(error));
   }
 }
 
@@ -335,14 +375,7 @@ export function addThread ({
         }
       })
       .then(response => response.json())
-      .then(json => {
-        // console.log(json);
-        if (json.hasOwnProperty('error')) {
-          const error = new Error(json.error);
-          console.log(error.message);
-        } else {
-        }
-      })
+      .then(error => console.log(error));
   };
 }
 
@@ -394,14 +427,7 @@ export function addComment ({
         }
       })
       .then(response => response.json())
-      .then(json => {
-        // console.log(json);
-        if (json.hasOwnProperty('error')) {
-          const error = new Error(json.error);
-          console.log(error.message);
-        } else {
-        }
-      })
+      .then(error => console.log(error));
   };
 }
 
@@ -426,10 +452,6 @@ export function voteComment (id, downOrUp) {
         }
       })
       .then(response => response.json())
-      .then(json => {
-        return {
-          type: 'NONE'
-        };
-      });
+      .then(error => console.log(error));
   }
 }
