@@ -30,12 +30,12 @@ class MatchupList extends Component {
 
     if (!localStorage.getItem('matchupVotes')) localStorage.setItem('matchupVotes', JSON.stringify({}));
     const votes =  JSON.parse(localStorage.getItem('matchupVotes'));
-    
+
     return (
       <div className="os-matchups-list">
       {
         matchups.map(matchup => {
-          
+
           const {
             score:{
               total: score,
@@ -50,7 +50,7 @@ class MatchupList extends Component {
             portrait,
             name
           } = heroesHash[matchupHeroKey];
-          
+
           const key = heroKey + matchupHeroKey + type;
 
           const downvoteClass = classNames({
@@ -86,7 +86,7 @@ class MatchupList extends Component {
             >
               <Link
                 className="media-left"
-                to={`/matchups/${heroKey}/${matchupHeroKey}/${matchupType}`}
+                to={`/hero/${matchupHeroKey}/maprankings`}
               >
                 <div className="os-matchup-thumb">
                   <img
