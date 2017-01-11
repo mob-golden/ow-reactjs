@@ -36,13 +36,20 @@
 }
 .os-counter-tip-text-short {
   // Show 3 lines by default
+  cursor: pointer;
   overflow: hidden;
-  height: 42px;
+  max-height: 61px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
 }
 .os-counter-tip-text-short,
 .os-counter-tip-text-long {
+  cursor: pointer;
   margin-bottom: 10px;
 }
+
+
 .os-counter-tip-text-short~
 .os-counter-tip-text-short-helper {
   display: none;
