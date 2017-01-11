@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack -p --config webpack.config.prod.js",
+    "postinstall": "postinstall-build \"npm run build\"",
     "dev": "NODE_ENV=development webpack-dev-server --progress --inline --hot --history-api-fallback",
-    "prestart": "npm run build",
     "start": "NODE_ENV=production node server",
     "db": "NODE_ENV=development nodemon --ignore app --ignore dist --exec babel-node server",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -48,6 +48,7 @@
     "node-sass": "^3.7.0",
     "normalizr": "^2.2.1",
     "postcss-loader": "^0.9.1",
+    "postinstall-build": "^2.1.3",
     "react": "^15.1.0",
     "react-addons-css-transition-group": "^15.4.2",
     "react-addons-transition-group": "^0.14.8",
