@@ -111,7 +111,7 @@ class HeroMatchupsPage extends Component {
     return (
       <div className="os-card-container os-hero-matchups-container">
         <div className="row">
-          <div className="os-card-col os-hero-matchups-col">
+          <div className="os-card-col os-hero-matchups-col os-card-separated-subcards">
           { this.renderModal('positive', heroKey, heroName) }
             <div className="os-card-body os-hero-matchups-body">
               <span className="os-matchups-hero-name">
@@ -145,7 +145,7 @@ class HeroMatchupsPage extends Component {
               </div>
             </div>
           </div>
-          <div className="os-card-col os-hero-matchups-col">
+          <div className="os-card-col os-hero-matchups-col os-card-separated-subcards">
             { this.renderModal('negative', heroKey, heroName) }
             <div className="os-card-body os-hero-matchups-body">
               <span className="os-matchups-hero-name">
@@ -179,7 +179,7 @@ class HeroMatchupsPage extends Component {
               </div>
             </div>
           </div>
-          <div className="os-card-col os-hero-matchups-col">
+          <div className="os-card-col os-hero-matchups-col os-card-separated-subcards">
             { this.renderModal('teamup', heroKey, heroName) }
             <div className="os-card-body os-hero-matchups-body">
               <span className="os-matchups-hero-name">

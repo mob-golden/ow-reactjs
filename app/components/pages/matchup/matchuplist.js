@@ -1,6 +1,7 @@
 import React from 'react';
 import changeCase from 'change-case';
 import classNames from 'classnames';
+import FontAwesome from 'react-fontawesome';
 
 import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
@@ -95,6 +96,11 @@ class MatchupList extends Component {
                     className="os-matchup-thumb-img"
                     src={portrait}
                   />
+                  <div
+                    className="os-matchup-thumb-img-overlay"
+                  >
+                    <FontAwesome name="chevron-right" />
+                  </div>
                 </div>
               </Link>
               <div className="media-body">
