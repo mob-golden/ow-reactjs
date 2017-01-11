@@ -16,7 +16,6 @@ export const RECEIVE_THREADS = 'RECEIVE_THREADS';
 
 // 12 items from newest
 const defaultParams = {
-  limit: 10,
   sort: 'date-desc'
 };
 
@@ -96,9 +95,6 @@ export const RECEIVE_SINGLETHREAD = 'RECEIVE_SINGLETHREAD';
 
 
 export function fetchSingleThreadIfNeeded (threadId, params=defaultParams) {
-  // const params = {
-  //   sort: 'score.total-desc'
-  // };
 
   return (dispatch, getState) => {
     if (shouldFetchSingleThread(getState(),threadId))
@@ -122,8 +118,7 @@ function shouldFetchSingleThread (state) {
 function fetchSingleThread (threadId, params) {
   return dispatch => {
     dispatch(requestSingleThread());
-    if(params.page) params.page--;
-    const url = `${OW_COMMUNITY_URL}/item/${threadId}?sort=${params.sort}&limit=${params.limit}&page=${params.page}-${params.limit}`;
+    const url = `${OW_COMMUNITY_URL}/item/${threadId}?$${qs.stringify(params)}`;
 
     return fetch(url)
       .then(response => {
