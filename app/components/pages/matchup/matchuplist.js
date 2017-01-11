@@ -16,7 +16,8 @@ class MatchupList extends Component {
       heroesHash,
       matchups,
       matchupType,
-      firstText
+      firstText,
+      customLocation
     } = this.props;
 
     if (matchups.length === 0) {
@@ -80,6 +81,9 @@ class MatchupList extends Component {
             'os-matchup-voted-up': votes[key] == 'upvote'
           });
 
+          const matchupLink = customLocation == 'mapMatchup' ? 
+                                                    `/hero/${matchupHeroKey}/maprankings` : 
+                                                    `/matchups/${heroKey}/${matchupHeroKey}/${matchupType}`;
           return (
             <div
               className="os-matchup-item media"
@@ -87,7 +91,7 @@ class MatchupList extends Component {
             >
               <Link
                 className="media-left"
-                to={`/matchups/${heroKey}/${matchupHeroKey}/${matchupType}`}
+                to={matchupLink}
               >
                 <div className="os-matchup-thumb">
                   <img

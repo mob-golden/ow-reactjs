@@ -376,7 +376,7 @@ function fetchMapTips (mapKey, params) {
   return dispatch => {
     dispatch(requestMapTips(mapKey));
 
-    const url = `${OW_MAP_URL}/${mapKey}`;
+    const url = `${OW_MAP_URL}/${mapKey}?${qs.stringify(params)}`;
     return fetch(url)
       .then(response => {
         const {
@@ -453,7 +453,7 @@ function fetchMapMatchups (mapKey, params) {
   return dispatch => {
     dispatch(requestMapMatchups(mapKey));
 
-    const url = `${OW_MATCHUPS_URL}/${mapKey}`;
+    const url = `${OW_MATCHUPS_URL}/${mapKey}?${qs.stringify(params)}`;
     return fetch(url)
       .then(response => {
         const {
