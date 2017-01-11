@@ -69,7 +69,6 @@
     "urlencode": "^1.1.0",
     "validator": "^5.5.0",
     "webpack": "^1.13.1",
-    "webpack-md5-hash": "0.0.5",
     "whatwg-fetch": "^1.0.0"
   }
 }
