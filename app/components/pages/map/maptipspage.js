@@ -128,6 +128,7 @@ class MapTipsPage extends Component {
                           MAP TIPS
                         </h5>
                         <TipList
+                          listId = "maptip"
                           tips={
                             this.state.viewAll?
                             mapTips.data.tips:

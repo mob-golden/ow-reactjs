@@ -125,6 +125,7 @@ class MatchupTips extends Component {
               </h5>
 
               <TipList
+                listId = "for"
                 tips={
                   this.state.leftViewAll?
                   tipsFor:
@@ -160,6 +161,7 @@ class MatchupTips extends Component {
               </h5>
 
               <TipList
+                listId = "against"
                 tips={
                   this.state.rightViewAll?
                   tipsAgainst:

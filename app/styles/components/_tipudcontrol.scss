@@ -1,0 +1,36 @@
+.os-ud-control-button{
+	.one-dot {
+		margin: 2px;
+		width: 6px;
+		height: 6px;
+		border-radius: 3px;
+		background-color: $GRAY_1;
+		border: $GRAY_4 solid 1px;
+		display: inline-block;
+	}
+}
+
+.os-ud-control-button:hover{
+	cursor: pointer;
+}
+
+.popover-content{
+	background-color: $GRAY_1;
+	padding: 4px 6px;
+	a{
+		font-family: "Lato";
+		font-weight: bold;
+		font-size: 12px;
+		color: $BLACK_3;
+		text-decoration: none;
+		margin: 0px 3px;
+	}
+	a:hover{
+		cursor: pointer;
+		color: $BLACK_0;
+	}
+}
+
+.popover{
+	padding: 0px;
+}
