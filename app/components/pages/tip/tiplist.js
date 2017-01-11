@@ -96,15 +96,15 @@ class TipList extends Component {
           });
 
 
-          let tipTextLongHelper = null;
-          if (content.length > 800) 
-            tipTextLongHelper = <div className="os-counter-tip-footer clearfix os-counter-tip-text-long-helper">Click tip to expand</div>;
+          // let tipTextLongHelper = null;
+          // if (content.length > 800) 
+          //   tipTextLongHelper = <div className="os-counter-tip-footer clearfix os-counter-tip-text-long-helper">Click tip to expand</div>;
 
-          let tipTextShortHelper = null;
-          if (content.length > 800) 
-            tipTextShortHelper = <div className="os-counter-tip-footer clearfix os-counter-tip-text-short-helper">Click tip again to shrink</div>;
+          // let tipTextShortHelper = null;
+          // if (content.length > 800) 
+          //   tipTextShortHelper = <div className="os-counter-tip-footer clearfix os-counter-tip-text-short-helper">Click tip again to shrink</div>;
 
-          let osTipOnClick = (content.length > 800) ? (e) => this.toggleTipShowMore(e) : () => {};
+          let osTipOnClick = (e) => this.toggleTipShowMore(e);
           const contentElement = (
             <div>
               <p
@@ -115,8 +115,8 @@ class TipList extends Component {
                 }}
               >
               </p>
-              {tipTextLongHelper}
-              {tipTextShortHelper}
+              {/*tipTextLongHelper*/}
+              {/*tipTextShortHelper*/}
               <div className="os-counter-tip-footer clearfix">
                 <span className="os-counter-tip-metadata">by <span className="os-counter-tip-author">{name}</span></span>
               </div>

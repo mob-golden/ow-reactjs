@@ -40,7 +40,7 @@ class Footer extends Component {
         </div>
         <div className="col-lg-12 os-footer-row os-gray">
           <p><small>
-            Copyright © 2009-2016 SoloMid.
+            Copyright © 2009-2017 SoloMid.
               <span className="hidden-sm-down">&nbsp;&nbsp;</span>
               <br className="hidden-md-up" />
             All Rights Reserved.

@@ -38,7 +38,7 @@ class HeroFooter extends Component {
                       src={image}
                     />
                   </div>
-                </Link>   
+                </Link>
               );
             })
           }
