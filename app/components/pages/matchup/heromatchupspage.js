@@ -233,9 +233,6 @@ class HeroMatchupsPage extends Component {
       dispatch,
       token
     } = this.props;
-    this._tipsBox = {
-      type: {}
-    };
     if(token){
       const title = `NEW MATCHUP FOR ${changeCase.upper(heroName)}`;
       let description = '';

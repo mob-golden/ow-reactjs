@@ -44,3 +44,12 @@
 .os-matchup-tip-container{
   padding: 16px 16px;
 }
+
+.os-mini-search-btn {
+  cursor: pointer;
+  display: inline-block;
+  padding: 1px 14px;
+  border: $GRAY_1 solid 2px;
+  border-radius: 3px;
+  color: $GRAY_1;
+}

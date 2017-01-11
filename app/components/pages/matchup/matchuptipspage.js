@@ -9,6 +9,7 @@ import { Link } from 'react-router';
 import Loader from '../../loader';
 import Typeahead from '../../typeahead';
 import HeroFooter from '../hero/herofooter';
+import Modal from '../../modal';
 
 import { adDimensions } from '../../../constants/ads';
 
@@ -57,12 +58,10 @@ class MatchupTipsPage extends Component {
               <div className="os-matchup-top">
                 <div className="col-lg-4 col-xs-4">
                   <div className="os-hero-left-search mobile-hidden">
-                    <Typeahead
-                      constructLink={(id) => `/hero/${id.toLowerCase()}`}
-                      inputGroupClass="input-group"
-                      placeholder={"Search for a matchup"}
-                      miniTag="left"
-                    />
+                    {this.renderHeroesModal(matchupType,matchupHeroKey,true)}
+                    <div className="os-mini-search-btn" data-toggle="modal" data-target="#modal-choose-hero-left">
+                      <i className="fa fa-search" aria-hidden="true"></i>
+                    </div>
                   </div>
                   <div className="os-hero-left-profile">
                     <div className="os-profile-mask">
@@ -107,12 +106,10 @@ class MatchupTipsPage extends Component {
                     </div>
                   </div>
                   <div className="os-hero-right-search mobile-hidden">
-                    <Typeahead
-                      constructLink={(id) => `/hero/${id.toLowerCase()}`}
-                      inputGroupClass="input-group"
-                      placeholder={"Search for a matchup"}
-                      miniTag="left"
-                    />
+                    {this.renderHeroesModal(matchupType,heroKey, false)}
+                    <div className="os-mini-search-btn"  data-toggle="modal" data-target="#modal-choose-hero-right">
+                      <i className="fa fa-search" aria-hidden="true"></i>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -145,6 +142,84 @@ class MatchupTipsPage extends Component {
                 heroes={heroesArray}
               /> : <Loader /> }
         </div>
+      </div>
+    );
+  }
+
+  renderHeroesModal = (matchupType, otherHeroKey, isLeft) => {
+    $("#modal-choose-hero-left").modal('hide');
+    $("#modal-choose-hero-right").modal('hide');
+    return (
+      <div>
+        <form>
+          <Modal
+            id={isLeft ? `modal-choose-hero-left`:`modal-choose-hero-right`}
+          >
+            <fieldset className="os-modal-form-group-1">
+              <h4 className="os-modal-title">CHOOSE A HERO</h4>
+              <span className="os-modal-description">Choose a Hero</span>
+            </fieldset>
+            <fieldset className="os-modal-form-group-2">
+              { isLeft ?
+                <Typeahead
+                  constructLink={(id) => `/matchups/${id}/${otherHeroKey}/${matchupType}`}
+                  inputGroupClass="input-group"
+                  placeholder={"Search for a Hero"}
+                />:
+                <Typeahead
+                  constructLink={(id) => `/matchups/${otherHeroKey}/${id}/${matchupType}`}
+                  inputGroupClass="input-group"
+                  placeholder={"Search for a Hero"}
+                />
+              }
+            </fieldset>
+            <fieldset className="os-modal-form-group-2">
+              <div>
+                { this.renderHeroesList(matchupType, otherHeroKey, isLeft) }
+              </div>
+            </fieldset>
+          </Modal>
+        </form>
+      </div>
+    );
+  };
+
+  renderHeroesList = (matchupType, otherHeroKey, isLeft) => {
+    const {
+      isFetchingHeroes,
+      heroesArray
+    } = this.props;
+
+    if(isFetchingHeroes || !heroesArray) return;
+
+    return (
+      <div>
+        {
+          heroesArray.map(hero => {
+            const {
+              id,
+              icon: image
+            } = hero;
+
+            return (
+              <Link
+                to= {isLeft ? `/matchups/${id}/${otherHeroKey}/${matchupType}`: `/matchups/${otherHeroKey}/${id}/${matchupType}`}
+                key={id}
+              >
+                <div
+                  className="os-hero-footer-thumb"
+                >
+                  <img
+                    width="75"
+                    height="75"
+                    className="os-hero-footer-thumb-img"
+                    src={image}
+                  />
+                </div>
+              </Link>
+            );
+          })
+        }
       </div>
     );
   }

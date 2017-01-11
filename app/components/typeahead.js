@@ -23,8 +23,7 @@ import {
 
 class Typeahead extends Component {
   static defaultProps = {
-    ref: 'input',
-    miniTag: 'none'
+    ref: 'input'
   };
 
   constructor (props) {
@@ -46,48 +45,38 @@ class Typeahead extends Component {
     const {
       inputGroupClass,
       placeholder,
-      ref,
-      miniTag
+      ref
     } = this.props;
-    if(miniTag !== "none"){
-      return(
-        <div className="os-mini-typeahead">
-          <div className="os-mini-search-btn">
-            <i className="fa fa-search" aria-hidden="true"></i>
-          </div>
+
+    return (
+      <div
+        className="os-typeahead"
+        onBlur={this.handleBlur}
+        onFocus={this.handleFocus}
+      >
+        <div className={inputGroupClass}>
+          <input
+            className="form-control os-search-input"
+            onChange={this.handleChange}
+            onKeyDown={this.handleInputKeyDown}
+            placeholder={placeholder}
+            ref={this.props.ref}
+            type="text"
+            value={this.state.query}
+          />
+          {this.renderSuggestions()}
+          <span className="input-group-btn">
+            <button
+              className="btn btn-warning os-search-btn"
+              type="button"
+            >
+              <small>SEARCH</small>
+            </button>
+          </span>
         </div>
-      );
-    }
-    else{
-      return (
-        <div
-          className="os-typeahead"
-          onBlur={this.handleBlur}
-          onFocus={this.handleFocus}
-        >
-          <div className={inputGroupClass}>
-            <input
-              className="form-control os-search-input"
-              onChange={this.handleChange}
-              onKeyDown={this.handleInputKeyDown}
-              placeholder={placeholder}
-              ref={this.props.ref}
-              type="text"
-              value={this.state.query}
-            />
-            {this.renderSuggestions()}
-            <span className="input-group-btn">
-              <button
-                className="btn btn-warning os-search-btn"
-                type="button"
-              >
-                <small>SEARCH</small>
-              </button>
-            </span>
-          </div>
-        </div>
-      );
-    }
+      </div>
+    );
+    
   }
 
   renderSuggestions = () => {
