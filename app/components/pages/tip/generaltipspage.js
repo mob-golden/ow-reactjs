@@ -95,6 +95,7 @@ class GeneralTipsPage extends Component {
               </span>
               <h5 className="os-hero-tip-title">STRATEGY & TIPS</h5>
               <TipList
+                listId = "for"
                 tips={
                   this.state.leftViewAll?
                   tips.for.data.tips:
@@ -126,6 +127,7 @@ class GeneralTipsPage extends Component {
               </span>
               <h5 className="os-hero-tip-title">COUNTER TIPS</h5>
               <TipList
+                listId = "against"
                 tips={
                   this.state.rightViewAll?
                   tips.against.data.tips:

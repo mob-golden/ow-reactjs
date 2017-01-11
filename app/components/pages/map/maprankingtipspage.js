@@ -180,6 +180,7 @@ class MapRankingTipsPage extends Component {
                 { changeCase.upper(mapName) }
               </h5>
               <TipList
+                listId = "maprankingtip"
                 tips={matchupTips.for.data.tips}
                 firstText={`Share a tip on how to play ${heroName} on ${mapName}.`}
               />

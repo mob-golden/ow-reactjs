@@ -339,6 +339,26 @@ class Header extends Component {
           <li>
             <Link className="os-mobile-link" to="/community">Community</Link>
           </li>
+          <li>
+            <a
+              className="os-white os-font-size-12"
+              data-toggle="modal"
+              data-target={`#${signInId}`}
+              href="javascript:;"
+            >
+              LOG IN
+            </a>
+          </li>
+          <li>
+            <a
+              className="os-white os-font-size-12"
+              data-toggle="modal"
+              data-target={`#${signUpId}`}
+              href="javascript:;"
+            >
+              SIGN UP
+            </a>
+          </li>
         </ul>
       );
     }

@@ -1,6 +1,7 @@
 import React from 'react';
 import changeCase from 'change-case';
 import classNames from 'classnames';
+import Modal from '../../modal';
 
 import {
   Component,
@@ -15,15 +16,19 @@ import {
   Link
 } from 'react-router';
 
-import {
-  voteTip
-} from '../../../actions/all';
+import { voteTip } from '../../../actions/all';
+import { deleteHeroTip, editHeroTip } from '../../../actions/all';
+
+import TipUDControl from './tipudcontrol';
 
 class TipList extends Component {
 
   constructor(props) {
     super(props);
-
+    this.handleDelete = this.handleDelete.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
+    this.renderEditModal = this.renderEditModal.bind(this);
+    this.tipDivs = [];
     this.toggleTipShowMore = this.toggleTipShowMore.bind(this);
   }
 
@@ -38,6 +43,9 @@ class TipList extends Component {
     } = this.props;
 
     if (!localStorage.getItem('tipVotes')) localStorage.setItem('tipVotes', JSON.stringify({}));
+
+    const localUsername = localStorage.getItem('username');
+
     const votes =  JSON.parse(localStorage.getItem('tipVotes'));
 
     if (tips.length === 0) {
@@ -50,6 +58,7 @@ class TipList extends Component {
 
     return (
       <div className="os-counter-tips-list">
+        {this.renderEditModal()}
         {tips.map(tip => {
           const {
             _id: id,
@@ -117,6 +126,7 @@ class TipList extends Component {
           return (
             <div
               className="os-counter-tip"
+              ref={ div => { this.tipDivs[id] = div }} 
               key={id}
             >
               <div className="os-counter-tip-score-alt">
@@ -138,11 +148,47 @@ class TipList extends Component {
               <div className="os-counter-tip-content">
                 {contentElement}
               </div>
+              <div className="os-counter-tip-ud-control">
+                {
+                  localUsername == authorName || localUsername == 'admin' ?
+                    <TipUDControl
+                      id = {id}
+                      editable = {localUsername == authorName}
+                      deleteHandle = {this.handleDelete}
+                      editHandle = {this.handleEdit}
+                    />
+                  :null
+                }
+              </div>
             </div>
           );
         })}
       </div>
     );
+  }
+
+  handleEdit = (id)=>{
+    const {
+      tips,
+      listId
+    } = this.props;
+    this._tipInput.value = id;
+    this._tipEditBox.value = tips.find(x => x._id === id).contentRaw;
+    $(`#modal-edit-tip-${listId}`).modal('show');
+  }
+
+  handleDelete = (id) => {
+    const {
+      dispatch
+    } = this.props;
+
+    const localToken = localStorage.getItem('token');
+
+    dispatch(deleteHeroTip({
+      id,
+      token: localToken
+    }));
+    this.tipDivs[id].style.display = 'none';
   }
 
   handleVote = (id, downOrUp) => {
@@ -174,6 +220,57 @@ class TipList extends Component {
     
       votes[id] = downOrUp;
       localStorage.setItem('tipVotes', JSON.stringify(votes));
+    }
+  };
+
+
+  renderEditModal = () => {
+    const {
+      dispatch,
+      listId
+    } = this.props;
+
+    const localToken = localStorage.getItem('token');
+    if(localToken){
+      return (
+        <div>
+          <Modal 
+            id={`modal-edit-tip-${listId}`}
+          >
+            <form onSubmit={e => {
+              e.preventDefault();
+              const textarea = this._tipEditBox;
+              const input = this._tipInput;
+              if (textarea && textarea.value && input && input.value) {
+                dispatch(editHeroTip({
+                  id: input.value,
+                  content: textarea.value,
+                  token: localToken
+                }));
+              }
+              $("#modal-edit-tip").modal('hide');
+            }}>
+              <fieldset className="os-modal-form-group-1">
+                <h4 className="os-modal-title">EDIT TIP</h4>
+              </fieldset>
+              <fieldset className="os-modal-form-group-2">
+                <input type="hidden" ref={c => this._tipInput = c} />
+                <textarea
+                  className="form-control os-textarea"
+                  ref={c => this._tipEditBox = c}
+                  rows={9}
+                />
+              </fieldset>
+              <fieldset className="os-modal-form-group-2">
+                <button
+                  className="btn btn-primary os-btn-blue"
+                  type="submit"
+                >SAVE</button>
+              </fieldset>
+            </form>
+          </Modal>
+        </div>
+      );
     }
   };
 }
