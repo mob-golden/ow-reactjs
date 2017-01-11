@@ -182,12 +182,15 @@ export function addHeroMatchup ({
 }
 
 
+// direction => true : Add a tip for left hero (DEFAULT)
+// direction => false : Add a tip for right hero
 export function addHeroMatchupTip ({
   heroKey,
   matchupKey,
   content,
   tipType,
-  token
+  token,
+  direction = true
 }) {
   return (dispatch, getState) => {
     const body = qs.stringify({
@@ -212,7 +215,10 @@ export function addHeroMatchupTip ({
 
         // TODO: is this necessary for a POST request?
         if (response.status >= 200 && response.status < 300) {
-          dispatch(fetchMatchupTipsIfNeeded(heroKey, matchupKey, tipType));
+          if(direction)
+            dispatch(fetchMatchupTipsIfNeeded(heroKey, matchupKey, tipType));
+          else
+            dispatch(fetchMatchupTipsIfNeeded(matchupKey, heroKey, tipType));
           return response;
         } else {
           const error = new Error(statusText);

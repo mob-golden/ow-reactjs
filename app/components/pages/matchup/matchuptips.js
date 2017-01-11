@@ -225,12 +225,11 @@ class MatchupTips extends Component {
                   matchupKey: matchupHeroKey,
                   content: textarea.value,
                   tipType: matchupType,
-                  token
+                  token,
+                  direction: type == 'for'
                 }));
-                // dispatch(fetchTipsIfNeeded(heroKey));
               }
               $(`#modal-add-matchup-tip-${type}`).modal('hide');
-              // location.reload();
             }}>
             <Modal 
               id={`modal-add-matchup-tip-${type}`}
