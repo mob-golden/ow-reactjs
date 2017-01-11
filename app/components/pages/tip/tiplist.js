@@ -150,10 +150,10 @@ class TipList extends Component {
               </div>
               <div className="os-counter-tip-ud-control">
                 {
-                  localUsername == authorName || localUsername == 'admin' ?
+                  localUsername == authorName || localUsername == 'Admin' ?
                     <TipUDControl
                       id = {id}
-                      editable = {localUsername == authorName}
+                      editable = {localUsername != 'Admin' || localUsername==authorName}
                       deleteHandle = {this.handleDelete}
                       editHandle = {this.handleEdit}
                     />
