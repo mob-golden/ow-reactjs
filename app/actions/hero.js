@@ -35,7 +35,7 @@ function fetchHeroes (url) {
   return dispatch => {
     dispatch(requestHeroes());
 
-    return fetch(url)
+    return fetch(url, {credentials : 'include',})
       .then(response => {
         const {
           status,

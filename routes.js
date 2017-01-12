@@ -7,6 +7,8 @@ export const OW_HERO_URL = `${OW_API_ROOT}/hero`;
 export const OW_MAP_URL = `${OW_API_ROOT}/map`;
 export const OW_TIPS_URL = `${OW_API_ROOT}/tips`;
 export const OW_MATCHUPS_URL = `${OW_API_ROOT}/matchups`;
+const debug = require('debug')('app:log');
+
 import request from 'request';
 var qs = require('qs');
 //================= SOLOMID DISCUSSION API ==============================//
@@ -57,12 +59,18 @@ module.exports =  function(app){
     // });
     //
     function handleProxy(url,req,res){
-      console.log(req.url);
       var headers = {};
       var r = null;
-      console.log(url);
+      if(typeof req.session.user_id !== 'undefined' && typeof req.session.token !== 'undefined'){
+        debug(`session exists`);
+        debug(req.session);
+        headers['authorization'] = req.session.token;
+      }else{
+        debug(`session does not exist`);
+        debug(req.session)
+      }
       try{
-      ['accept','content-type','authorization'].forEach(function(key){
+      ['accept','content-type'].forEach(function(key){
         if(req.headers[key]){
           headers[key] = req.headers[key];
         }
