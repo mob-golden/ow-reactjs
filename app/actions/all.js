@@ -37,9 +37,9 @@ export function addHeroTip ({
       body,
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': token
+        'Content-Type': 'application/x-www-form-urlencoded'
       },
+      credentials : 'include',
       method: 'PUT'
     })
       .then(response => {
@@ -70,9 +70,7 @@ export function deleteHeroTip ({
   return (dispatch, getState) => {
 
     return fetch(`${OW_TIPS_URL}/${id}`, {
-      headers: {
-        'Authorization': token
-      },
+      credentials : 'include',
       method: 'DELETE'
     })
       .then(response => {
@@ -109,9 +107,9 @@ export function editHeroTip ({
       body,
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': token
+        'Content-Type': 'application/x-www-form-urlencoded'
       },
+      credentials : 'include',
       method: 'POST'
     })
       .then(response => {
@@ -148,9 +146,9 @@ export function addHeroMatchup ({
       body,
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': token
+        'Content-Type': 'application/x-www-form-urlencoded'
       },
+      credentials : 'include',
       method: 'PUT'
     })
       .then(response => {
@@ -194,9 +192,9 @@ export function addHeroMatchupTip ({
       body,
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': token
+        'Content-Type': 'application/x-www-form-urlencoded'
       },
+      credentials : 'include',
       method: 'PUT'
     })
       .then(response => {
@@ -238,9 +236,9 @@ export function addMapTip ({
       body,
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': token
+        'Content-Type': 'application/x-www-form-urlencoded'
       },
+      credentials : 'include',
       method: 'PUT'
     })
       .then(response => {
@@ -268,7 +266,8 @@ export function addMapTip ({
 export function voteTip (id, downOrUp) {
   return dispatch => {
     return fetch(`${OW_TIPS_URL}/${id}/${downOrUp}`, {
-      method: 'PUT'
+      method: 'PUT',
+      credentials : 'include',
     })
       .then(response => {
         const {
@@ -292,7 +291,7 @@ export function voteTip (id, downOrUp) {
 
 export function voteMatchup (heroKey, matchupHeroKey, downOrUp, matchupType) {
   return dispatch => {
-    
+
     const url = `${OW_MATCHUPS_URL}/${heroKey}/${matchupHeroKey}/${downOrUp}`;
     const body = qs.stringify({   type:matchupType });
     return fetch(url, {
@@ -301,6 +300,7 @@ export function voteMatchup (heroKey, matchupHeroKey, downOrUp, matchupType) {
         'Accept': 'application/json',
         'Content-Type': 'application/x-www-form-urlencoded'
       },
+      credentials : 'include',
       method: 'PUT'
     })
       .then(response => {
@@ -350,9 +350,9 @@ export function addThread ({
     return fetch(`${OW_COMMUNITY_URL}/item`, {
       body,
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': token
+        'Content-Type': 'application/json'
       },
+      credentials : 'include',
       method: 'POST'
     })
       .then(response => {
@@ -402,9 +402,9 @@ export function addComment ({
     return fetch(`${OW_COMMUNITY_URL}/item`, {
       body,
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': token
+        'Content-Type': 'application/json'
       },
+      credentials : 'include',
       method: 'POST'
     })
       .then(response => {
@@ -432,7 +432,8 @@ export function addComment ({
 export function voteComment (id, downOrUp) {
   return dispatch => {
     return fetch(`${OW_COMMUNITY_URL}/${downOrUp}/${id}`, {
-      method: 'PUT'
+      method: 'PUT',
+      credentials : 'include'
     })
       .then(response => {
         const {

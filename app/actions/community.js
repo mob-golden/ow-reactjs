@@ -51,7 +51,7 @@ function fetchThreads (commType, params) {
       url += `?sort=${params.sort}&limit=${params.limit}&page=${params.page}-${params.limit}`;
     }
 
-    return fetch(url)
+    return fetch(url, {credentials : 'include'})
       .then(response => {
         const {
           status,
@@ -120,7 +120,7 @@ function fetchSingleThread (threadId, params) {
     dispatch(requestSingleThread());
     const url = `${OW_COMMUNITY_URL}/item/${threadId}?$${qs.stringify(params)}`;
 
-    return fetch(url)
+    return fetch(url, {credentials : 'include'})
       .then(response => {
         const {
           status,

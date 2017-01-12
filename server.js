@@ -1,6 +1,7 @@
 require('babel-register');
 var path = require('path');
 var express = require('express');
+var session = require('express-session');
 var bodyParser = require('body-parser');
 var sendgrid = require('sendgrid');
 var compression = require('compression');
@@ -11,7 +12,7 @@ var Router = require('react-router');
 var routes = require('./app/containers/Application').routes;
 var isDevelopment = process.env.NODE_ENV ==='development';
 var urls = require('./app/constants/urls');
-
+var debug = require('debug')('app:log');
 const match = Router.match;
 const fs = require('fs');
 var apiRoutes = require('./routes');
@@ -21,6 +22,13 @@ var staticPath = isDevelopment ? path.join(__dirname, '/app') : path.join(__dirn
 var overwatchHost = process.env.OVERWATCH_HOST || "https://overwatch-select-api-prod.herokuapp.com";
 const S_IN_YR = 31536000;
 app.use(express.static(staticPath, { maxAge: S_IN_YR }));
+app.use(session({
+  secret: 'keyboard cat',
+  resave: true,
+  rolling : true,
+  saveUninitialized: true,
+  cookie: { httpOnly : false }
+}));
 app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.raw());
@@ -68,7 +76,6 @@ app.post('/forgot', function (req, res) {
           token,
           user_id
         } = json;
-
         const helper = sendgrid.mail;
         const from = new helper.Email('no-reply@overwatchselect.net');
         const to = new helper.Email(email);
@@ -107,7 +114,7 @@ app.post('/forgot', function (req, res) {
           });
           // TODO: do not rely on catch here
           // .catch(error => {
-          //   console.log(error);
+          //   debug(error);
           // });
 
     })
@@ -158,7 +165,7 @@ app.post('/reset', function (req, res) {
         res.status(500).send();
       }
 
-      res.json(json)
+      res.json(json);
     })
 });
 
@@ -179,6 +186,14 @@ app.post('/signin', function (req, res) {
   })
     .then(response => response.json())
     .then(json => {
+      const { user : {id} ,access_token : token} = json;
+      debug(json);
+      debug(id);
+
+      req.session.user_id = id;
+      req.session.token = token;
+      debug(req.session);
+      debug(`session id set to ${req.session.id}`);
       res.json(json);
     })
     .catch(error => {
@@ -206,6 +221,11 @@ app.post('/signup', function (req, res) {
   })
     .then(response => response.json())
     .then(json => {
+      debug(json);
+      const { user : {id} ,access_token : token} = json;
+      debug(`id,token ${id} ${token}`);
+      req.session.user_id = id;
+      req.session.token = token;
       res.json(json);
     })
     .catch(error => {
@@ -230,6 +250,8 @@ app.get('/reset', handleRender);
 app.get('/community', handleRender);
 app.get('/community/:commType', handleRender);
 app.get('/community/:commType/:threadId', handleRender);
+
+
 apiRoutes(app);
 app.all('*', send404);
 
@@ -239,12 +261,13 @@ function send404 (req, res) {
 }
 var indexFile = process.env.NODE_ENV === 'development' ? path.join(__dirname, '/app/index.dev.html') : path.join(__dirname, '/dist/index.html');
 function handleRender(req, res) {
+  debug(`req.session.id is ${req.session.id}`)
   match({ routes, location: req.url }, function(error, redirectLocation, renderProps) {
     if (error) {
-      console.log("[match]: error", error);
+      debug("[match]: error", error);
       res.status(500).send(error.message)
     } else if (redirectLocation) {
-      console.log("[match]: redirectLocation", redirectLocation);
+      debug("[match]: redirectLocation", redirectLocation);
       res.redirect(302, redirectLocation.pathname + redirectLocation.search)
     } else if (renderProps) {
       if (typeof renderProps.routes[1] !== 'undefined' && renderProps.routes[1].status === 404) {
@@ -253,7 +276,7 @@ function handleRender(req, res) {
         res.sendFile(indexFile);
       }
   } else {
-      console.log("[match]: Not found");
+      debug("[match]: Not found");
       res.status(404).send('Not found');
     }
   });
@@ -270,5 +293,5 @@ function constructHeaders (data) {
 }
 
 app.listen(port, function() {
-  	console.log('listening')
+  	debug('listening')
 });

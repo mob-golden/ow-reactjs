@@ -35,7 +35,7 @@ function fetchMaps (url) {
   return dispatch => {
     dispatch(requestMaps());
 
-    return fetch(url)
+    return fetch(url, {credentials : 'include'})
       .then(response => {
         const {
           status,

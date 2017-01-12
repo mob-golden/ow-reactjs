@@ -23,6 +23,17 @@ const SIGN_UP_URL = '/signup';
 const FORGOT_PASSWORD_URL = '/forgot';
 const RESET_PASSWORD_URL = '/reset';
 
+function deleteAllCookies() {
+  var cookies = document.cookie.split(";");
+
+  for (var i = 0; i < cookies.length; i++) {
+    var cookie = cookies[i];
+    var eqPos = cookie.indexOf("=");
+    var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+    document.cookie = name + "=;expires=Thu, 01 Jan 00:00:00 GMT";
+  }
+}
+
 export function setUser (token, username, userId) {
   return {
     type: SET_USER,
@@ -46,6 +57,7 @@ export function signIn (email, password) {
         'Accept': 'application/json',
         'Content-Type': 'application/x-www-form-urlencoded'
       },
+      credentials : 'include',
       method: 'POST'
     })
       .then(response => {
@@ -118,6 +130,7 @@ export function signOut () {
   localStorage.removeItem('username');
   localStorage.removeItem('userId');
 
+  deleteAllCookies();
   return {
     type: SIGN_OUT
   };
@@ -139,6 +152,7 @@ export function signUp (email, password, username) {
         'Accept': 'application/json',
         'Content-Type': 'application/x-www-form-urlencoded'
       },
+      credentials : 'include',
       method: 'POST'
     })
       .then(response => {
@@ -226,7 +240,8 @@ export function requestPasswordChange (email) {
         'Accept': 'application/json',
         'Content-Type': 'application/x-www-form-urlencoded'
       },
-      method: 'POST'
+      method: 'POST',
+      credentials : 'include'
     })
       .then(response => {
         console.log('then');
@@ -293,7 +308,8 @@ export function resetPassword (token, userId, password) {
         'Accept': 'application/json',
         'Content-Type': 'application/x-www-form-urlencoded'
       },
-      method: 'POST'
+      method: 'POST',
+      credentials : 'include'
     })
       .then(response => {
         const {
