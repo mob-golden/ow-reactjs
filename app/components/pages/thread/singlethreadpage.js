@@ -9,14 +9,19 @@ import { Link } from 'react-router';
 import Modal from '../../modal';
 import Loader from '../../loader';
 import CommunityTypeAhead from '../../communitytypeahead';
+import EditDeleteButton from '../../editdeletebutton';
 import { FORUM_STRINGS } from '../../../constants/types';
-import { addComment, voteComment } from '../../../actions/all';
+import { addComment, voteComment, deleteCommunityComment, editCommunityComment } from '../../../actions/all';
 import { fetchSingleThreadIfNeeded } from '../../../actions/community';
 
 class SingleThreadPage extends Component {
 
   constructor (props) {
     super(props);
+    this.handleDelete = this.handleDelete.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
+    this.renderEditModal = this.renderEditModal.bind(this);
+    this.commentDivs = [];
   }
 
   componentDidMount () {
@@ -166,18 +171,20 @@ class SingleThreadPage extends Component {
                     </button>
                   </div>
                   {/*<div className="os-thread-favorite">
-                                      <button
-                                        className="btn btn-default os-btn-gray"
-                                        onClick={this.handleVote.bind(null, singleThread._id, 'upvote')}
-                                      >
-                                        <i className="fa fa-star-o"></i> FAVORITE
-                                      </button>
-                                    </div>*/}
+                      <button
+                        className="btn btn-default os-btn-gray"
+                        onClick={this.handleVote.bind(null, singleThread._id, 'upvote')}
+                      >
+                        <i className="fa fa-star-o"></i> FAVORITE
+                      </button>
+                    </div>*/}
                 </div>
               </div>
 
 
               <div className="os-singlethread-footer">
+
+                {this.renderEditModal()}
                 {this.renderReplyForm(singleThread.meta.title, singleThread._id)}
               </div>
             </div>
@@ -284,6 +291,8 @@ class SingleThreadPage extends Component {
     if(isFetchingSingleThread || !singleThread || !singleThread.children){
       return;
     }
+
+    const localUsername = localStorage.getItem('username');
     return(
       <div>
       {
@@ -337,7 +346,10 @@ class SingleThreadPage extends Component {
           });
 
           return (
-            <div className="os-comment" key={_id}>
+            <div className="os-comment"
+              key={_id} 
+              ref={ div => { this.commentDivs[_id] = div }} 
+            >
               <img className="os-comment-avatar" width="40" height="40" src="https://s3.amazonaws.com/solomid-resources/overwatch/icons/Group+15.png"/>
 
               <div className="os-comment-meta">
@@ -374,12 +386,103 @@ class SingleThreadPage extends Component {
                   </div>
                 </div>
               </div>
+              <div className="os-comment-ed-control">
+              {
+                localUsername == authorName || localUsername == 'Admin' ?
+                  <EditDeleteButton
+                    id = {_id}
+                    editable = {localUsername != 'Admin' || localUsername==authorName}
+                    deleteHandle = {this.handleDelete}
+                    editHandle = {this.handleEdit}
+                  />
+                :null
+              }
+              </div>
             </div>
           );
         })
       }
       </div>
     );
+  };
+
+  handleEdit = (id)=>{
+    const {
+      singleThread: {
+        children: comments
+      }
+    } = this.props;
+    this._commentInput.value = id;
+    this._commentEditBox.value = comments.find(x => x._id === id).content;
+    $(`#modal-edit-comment`).modal('show');
+  }
+
+  handleDelete = (id) => {
+    const {
+      dispatch
+    } = this.props;
+
+    const localToken = localStorage.getItem('token');
+
+    dispatch(deleteCommunityComment({
+      id,
+      token: localToken
+    }));
+    this.commentDivs[id].style.display = 'none';
+  }
+
+  renderEditModal = () => {
+    const {
+      dispatch
+    } = this.props;
+
+    const localToken = localStorage.getItem('token');
+    if(localToken){
+      return (
+        <div>
+          <Modal 
+            id={`modal-edit-comment`}
+          >
+            <form onSubmit={e => {
+              e.preventDefault();
+              const textarea = this._commentEditBox;
+              const input = this._commentInput;
+              if (textarea && textarea.value && input && input.value) {
+                dispatch(editCommunityComment({
+                  id: input.value,
+                  content: textarea.value,
+                  token: localToken
+                }));
+              }
+
+              this.props.singleThread.children.find(x => x._id === input.value).content = textarea.value;
+
+              let editedComment = this.commentDivs[input.value];
+              editedComment.getElementsByClassName("os-comment-content")[0].innerHTML = textarea.value;
+              $(`#modal-edit-comment`).modal('hide');
+            }}>
+              <fieldset className="os-modal-form-group-1">
+                <h4 className="os-modal-title">EDIT COMMENT</h4>
+              </fieldset>
+              <fieldset className="os-modal-form-group-2">
+                <input type="hidden" ref={c => this._commentInput = c} />
+                <textarea
+                  className="form-control os-textarea"
+                  ref={c => this._commentEditBox = c}
+                  rows={9}
+                />
+              </fieldset>
+              <fieldset className="os-modal-form-group-2">
+                <button
+                  className="btn btn-primary os-btn-blue"
+                  type="submit"
+                >SAVE</button>
+              </fieldset>
+            </form>
+          </Modal>
+        </div>
+      );
+    }
   };
 
   doQuote = (content) => {

@@ -19,7 +19,7 @@ import {
 import { voteTip } from '../../../actions/all';
 import { deleteHeroTip, editHeroTip } from '../../../actions/all';
 
-import TipUDControl from './tipudcontrol';
+import EditDeleteButton from '../../editdeletebutton';
 
 class TipList extends Component {
 
@@ -148,10 +148,10 @@ class TipList extends Component {
               <div className="os-counter-tip-content">
                 {contentElement}
               </div>
-              <div className="os-counter-tip-ud-control">
+              <div className="os-counter-tip-ed-control">
                 {
                   localUsername == authorName || localUsername == 'Admin' ?
-                    <TipUDControl
+                    <EditDeleteButton
                       id = {id}
                       editable = {localUsername != 'Admin' || localUsername==authorName}
                       deleteHandle = {this.handleDelete}

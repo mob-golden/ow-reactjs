@@ -118,7 +118,7 @@ function shouldFetchSingleThread (state) {
 function fetchSingleThread (threadId, params) {
   return dispatch => {
     dispatch(requestSingleThread());
-    const url = `${OW_COMMUNITY_URL}/item/${threadId}?$${qs.stringify(params)}`;
+    const url = `${OW_COMMUNITY_URL}/item/${threadId}?${qs.stringify(params)}`;
 
     return fetch(url)
       .then(response => {

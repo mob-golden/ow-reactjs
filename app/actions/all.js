@@ -324,7 +324,7 @@ export function voteMatchup (heroKey, matchupHeroKey, downOrUp, matchupType) {
 }
 
 
-//=================================Community POST/PUT api ==============================
+//=================================Community POST/PUT/DELETE api ==============================
 
 export function addThread ({
   type,
@@ -452,4 +452,73 @@ export function voteComment (id, downOrUp) {
       .then(response => response.json())
       .then(error => console.log(error));
   }
+}
+
+export function deleteCommunityComment ({
+  id,
+  token
+}) {
+  return (dispatch, getState) => {
+
+    return fetch(`${OW_COMMUNITY_URL}/item/${id}`, {
+      headers: {
+        'Authorization': token
+      },
+      method: 'DELETE'
+    })
+      .then(response => {
+        const {
+          status,
+          statusText
+        } = response;
+
+        // TODO: is this necessary for a POST request?
+        if (response.status >= 200 && response.status < 300) {
+          return response;
+        } else {
+          const error = new Error(statusText);
+          console.log(`Response returned an error for ${url}: ${error.message}`);
+          return Promise.reject(error);
+        }
+      });
+  };
+}
+
+
+export function editCommunityComment ({
+  id,
+  content,
+  token
+}) {
+  return (dispatch, getState) => {
+
+    const body = qs.stringify({
+      content
+    });
+
+    return fetch(`${OW_COMMUNITY_URL}/item/${id}`, {
+      body,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': token
+      },
+      method: 'PUT'
+    })
+      .then(response => {
+        const {
+          status,
+          statusText
+        } = response;
+
+        // TODO: is this necessary for a POST request?
+        if (response.status >= 200 && response.status < 300) {
+          return response;
+        } else {
+          const error = new Error(statusText);
+          console.log(`Response returned an error for ${url}: ${error.message}`);
+          return Promise.reject(error);
+        }
+      });
+  };
 }

@@ -366,6 +366,7 @@
       }
 
       .os-comment{
+        position: relative;
         display: flex;
         width: 100%;
         margin-top: 15px;
@@ -394,6 +395,12 @@
             font-size: 14px;
             color: $GRAY_4;
           }
+        }
+
+        .os-comment-ed-control{
+          position: absolute;
+          bottom: 12px;
+          right: 24px;
         }
       }
     }

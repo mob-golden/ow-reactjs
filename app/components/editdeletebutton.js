@@ -10,7 +10,7 @@ import {
   connect
 } from 'react-redux';
 
-class TipUDControl extends Component {
+class EditDeleteButton extends Component {
   constructor(props) {
     super(props);
 
@@ -52,4 +52,4 @@ class TipUDControl extends Component {
   }
 }
 
-export default connect()(TipUDControl);
+export default connect()(EditDeleteButton);
