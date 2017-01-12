@@ -21,13 +21,18 @@ var port = process.env.PORT || 3000;
 var staticPath = isDevelopment ? path.join(__dirname, '/app') : path.join(__dirname, '/dist');
 var overwatchHost = process.env.OVERWATCH_HOST || "https://overwatch-select-api-prod.herokuapp.com";
 const S_IN_YR = 31536000;
+const COOKIE_MAX_AGE = 60*60*1000;
 app.use(express.static(staticPath, { maxAge: S_IN_YR }));
 app.use(session({
   secret: 'keyboard cat',
   resave: true,
   rolling : true,
-  saveUninitialized: true,
-  cookie: { httpOnly : false }
+  saveUninitialized: false,
+  cookie: { 
+    httpOnly : false, 
+    maxAge: COOKIE_MAX_AGE,
+    secure: false
+  }
 }));
 app.use(compression());
 app.use(bodyParser.json());
