@@ -10,7 +10,8 @@ import {
   setUser,
   signIn,
   signOut,
-  signUp
+  signUp,
+  checkSession
 } from '../actions/auth';
 
 const MAX_LENGTH = 20;
@@ -60,7 +61,7 @@ class Header extends Component {
       username,
       userId
     } = this.props;
-
+    dispatch(checkSession());
     if (!token && !username && !userId) {
       const localToken = localStorage.getItem('token');
       const localUsername = localStorage.getItem('username');

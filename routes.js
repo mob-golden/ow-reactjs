@@ -17,47 +17,6 @@ var qs = require('qs');
 export const OW_COMMUNITY_URL = `http://discussion-gamma.herokuapp.com`;
 
 module.exports =  function(app){
-    // app.get('/api/heroes',(req,res,next)=>{
-    //   const url = `${OW_HEROES_URL}?${req.query}`;
-    //   return fetch(url)
-    //     .then(response => response.json())
-    //     .then(json => res.json(json))
-    //     .catch (error => {
-    //       console.log(`Request failed for ${url}: ${error.message}`);
-    //     });
-    // });
-    //
-    // app.get('/api/maps',(req,res,next)=>{
-    //   const url = `${OW_MAPS_URL}?${req.query}`;
-    //   return fetch(url)
-    //     .then(response => response.json())
-    //     .then(json => res.json(json))
-    //     .catch (error => {
-    //       console.log(`Request failed for ${url}: ${error.message}`);
-    //     });
-    // });
-    //
-    // app.get('/api/hero/:hero',(req,res,next)=>{
-    //   console.log(req.params);
-    //   const url = `${OW_HERO_URL}/${req.params.hero}?${req.query}`;
-    //   return fetch(url)
-    //     .then(response => response.json())
-    //     .then(json => res.json(json))
-    //     .catch (error => {
-    //       console.log(`Request failed for ${url}: ${error.message}`);
-    //     });
-    // });
-    // app.get('/api/map/:mapKey',(req,res,next)=>{
-    //   console.log(req.params);
-    //   const url = `${OW_MAP_URL}/${req.params.mapKey}?${req.query}`;
-    //   return fetch(url)
-    //     .then(response => response.json())
-    //     .then(json => res.json(json))
-    //     .catch (error => {
-    //       console.log(`Request failed for ${url}: ${error.message}`);
-    //     });
-    // });
-    //
     function handleProxy(url,req,res){
       var headers = {};
       var r = null;
@@ -70,30 +29,29 @@ module.exports =  function(app){
         debug(req.session)
       }
       try{
-      ['accept','content-type'].forEach(function(key){
-        if(req.headers[key]){
-          headers[key] = req.headers[key];
-        }
-      });
+        ['accept','content-type'].forEach(function(key){
+          if(req.headers[key]){
+            headers[key] = req.headers[key];
+          }
+        });
         console.log(req.method);
         console.log(req.body);
         if(req.method === 'POST') {
-           if(headers['content-type'] && headers['content-type'].includes('x-www-form-urlencoded')){
-                r = request.post({uri: url, headers: headers, form: qs.stringify(req.body)});
-           }else{
-             r = request.post({uri: url, headers: headers, json: req.body});
-           }
-           req.pipe(r,{end:false}).pipe(res);
+          if(headers['content-type'] && headers['content-type'].includes('x-www-form-urlencoded')){
+            r = request.post({uri: url, headers: headers, form: qs.stringify(req.body)});
+          }else{
+            r = request.post({uri: url, headers: headers, json: req.body});
+          }
+          req.pipe(r,{end:false}).pipe(res);
 
         } else if(req.method==='PUT') {
           if(headers['content-type'] && headers['content-type'].includes('x-www-form-urlencoded')){
-               console.log(req.body);
-               console.log('must send put formdata');
-               console.log(qs.stringify(req.body));
-               r = request.put({uri: url, headers: headers, form: qs.stringify(req.body)});
+            console.log(req.body);
+            console.log('must send put formdata');
+            console.log(qs.stringify(req.body));
+            r = request.put({uri: url, headers: headers, form: qs.stringify(req.body)});
           }else{
             r = request.put({uri: url, headers: headers, json: req.body});
-
           }
           req.pipe(r,{end:false}).pipe(res);
 
