@@ -338,9 +338,6 @@ class Header extends Component {
             <Link className="os-mobile-link" to="/maps">Maps</Link>
           </li>
           <li>
-            <Link className="os-mobile-link" to="/community">Community</Link>
-          </li>
-          <li>
             <a
               className="os-white os-font-size-12"
               data-toggle="modal"
@@ -371,9 +368,6 @@ class Header extends Component {
         </li>
         <li>
           <Link className="os-mobile-link" to="/maps">Maps</Link>
-        </li>
-        <li>
-          <Link className="os-mobile-link" to="/community">Community</Link>
         </li>
         <li>
           <a
@@ -430,15 +424,6 @@ class Header extends Component {
             </li>
 
             <li className="nav-item os-nav-item">
-              <Link
-                className="os-white os-font-size-12"
-                to="/community"
-              >
-                COMMUNITY
-              </Link>
-            </li>
-
-            <li className="nav-item os-nav-item">
               <a
                 className="os-white os-font-size-12"
                 href="javascript:;"
@@ -476,15 +461,6 @@ class Header extends Component {
               to="/maps"
             >
               MAPS
-            </Link>
-          </li>
-
-          <li className="nav-item os-nav-item">
-            <Link
-              className="os-white os-font-size-12"
-              to="/community"
-            >
-              COMMUNITY
             </Link>
           </li>
 
