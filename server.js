@@ -21,12 +21,11 @@ var port = process.env.PORT || 3000;
 var staticPath = isDevelopment ? path.join(__dirname, '/app') : path.join(__dirname, '/dist');
 var overwatchHost = process.env.OVERWATCH_HOST || "https://overwatch-select-api-prod.herokuapp.com";
 const S_IN_YR = 31536000;
-const COOKIE_MAX_AGE = 60*60*1000; // 1 hour
+
 app.use(express.static(staticPath, { maxAge: S_IN_YR }));
 app.use(session({
   secret: 'keyboard cat',
-  resave: true,
-  rolling : true,
+  resave: false,
   saveUninitialized: false,
   cookie: {
     httpOnly : false,
@@ -191,12 +190,13 @@ app.post('/signin', function (req, res) {
   })
     .then(response => response.json())
     .then(json => {
-      const { user : {id} ,access_token : token} = json;
+      const { user : {id, username } ,access_token : token} = json;
       debug(json);
       debug(id);
 
       req.session.user_id = id;
       req.session.token = token;
+      req.session.username = username;
       debug(req.session);
       debug(`session id set to ${req.session.id}`);
       res.json(json);
@@ -236,6 +236,31 @@ app.post('/signup', function (req, res) {
     .catch(error => {
       res.json(error);
     });
+});
+
+app.get('/checkSession', function(req, res) {
+  debug("Session Checking");
+  debug(req.session);
+  if(typeof req.session.user_id !== 'undefined' && typeof req.session.token !== 'undefined'){
+    res.json({
+      isLoggedIn: true,
+      token: req.session.token
+    });
+  }
+  else{
+    res.json({
+      isLoggedIn: false
+    });
+  }
+});
+
+app.post('/signout', function(req, res) {
+  debug("Sign out- session destroy");
+  if(typeof req.session.user_id !== 'undefined' && typeof req.session.token !== 'undefined'){
+    req.session.destroy();
+    debug("Session destoryed");
+  }
+  return res.json('signed out');
 });
 
 app.get('/', handleRender);

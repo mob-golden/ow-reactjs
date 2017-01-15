@@ -15,11 +15,13 @@ export const REQUEST_PASSWORD_CHANGE_FAILURE = 'REQUEST_PASSWORD_CHANGE_FAILURE'
 export const RESET_PASSWORD_REQUEST = 'RESET_PASSWORD_REQUEST';
 export const RESET_PASSWORD_SUCCESS = 'RESET_PASSWORD_SUCCESS';
 export const RESET_PASSWORD_FAILURE = 'RESET_PASSWORD_FAILURE';
+export const CHECK_SESSION_FAILURE = 'CHECK_SESSION_FAILURE';
+
 
 const SIGN_IN_URL = '/signin';
 const SIGN_UP_URL = '/signup';
-
-// TODO; DRY
+const SIGN_OUT_URL = '/signout'; 
+const CHECK_SESSION_URL = '/checkSession';
 const FORGOT_PASSWORD_URL = '/forgot';
 const RESET_PASSWORD_URL = '/reset';
 
@@ -131,6 +133,14 @@ export function signOut () {
   localStorage.removeItem('userId');
 
   deleteAllCookies();
+  fetch(SIGN_OUT_URL,{
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    credentials : 'include',
+    method: 'POST'
+  });
   return {
     type: SIGN_OUT
   };
@@ -333,5 +343,61 @@ export function resetPassword (token, userId, password) {
         return dispatch(resetPasswordSuccess(json.error));
       })
   };
-
 }
+
+// =========================== CHECK SESSION ===============================
+
+export function checkSession () {
+  return dispatch => {
+    return fetch(CHECK_SESSION_URL,{
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      credentials : 'include',
+      method: 'GET'
+    })
+      .then(response => {
+        const {
+          status,
+          statusText
+        } = response;
+
+        if (response.status >= 200 && response.status < 300) {
+          return response;
+        } else {
+          const error = new Error(statusText);
+          console.log(`Response returned an error for ${url}: ${error.message}`);
+
+          dispatch(checkSessionFailure(error));
+
+          return Promise.reject(error);
+        }
+      })
+      .then(response => response.json())
+      .then(json => {
+        if (json.hasOwnProperty('error')) {
+          const error = new Error(json.error);
+          dispatch(checkSessionFailure(error));
+        } else {
+          const {
+            isLoggedIn
+          } = json;
+          if(!isLoggedIn){
+            localStorage.removeItem('token');
+            localStorage.removeItem('username');
+            localStorage.removeItem('userId');
+            deleteAllCookies();
+            dispatch(checkSessionFailure());
+          }
+        }
+      })
+  };
+}
+
+function checkSessionFailure (error) {
+  return {
+    type: CHECK_SESSION_FAILURE
+  };
+}
+
