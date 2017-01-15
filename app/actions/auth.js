@@ -133,6 +133,7 @@ export function signOut () {
   localStorage.removeItem('token');
   localStorage.removeItem('username');
   localStorage.removeItem('userId');
+  localStorage.removeItem('userIsAdmin');
 
   deleteAllCookies();
   fetch(SIGN_OUT_URL,{
