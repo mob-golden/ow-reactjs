@@ -45,6 +45,7 @@ class TipList extends Component {
     if (!localStorage.getItem('tipVotes')) localStorage.setItem('tipVotes', JSON.stringify({}));
 
     const localUsername = localStorage.getItem('username');
+    const localUserIsAdmin = localStorage.getItem('userIsAdmin');
 
     const votes =  JSON.parse(localStorage.getItem('tipVotes'));
 
@@ -150,10 +151,10 @@ class TipList extends Component {
               </div>
               <div className="os-counter-tip-ed-control">
                 {
-                  localUsername == authorName || localUsername == 'Admin' ?
+                  localUsername == authorName || localUserIsAdmin == "true" ?
                     <EditDeleteButton
                       id = {id}
-                      editable = {localUsername != 'Admin' || localUsername==authorName}
+                      editable = {localUserIsAdmin != "true" || localUsername==authorName}
                       deleteHandle = {this.handleDelete}
                       editHandle = {this.handleEdit}
                     />

@@ -95,10 +95,10 @@ export function signIn (email, password) {
             }
           } = json;
 
-          localStorage.setItem('groups', groups );
           localStorage.setItem('token', token);
           localStorage.setItem('username', username);
           localStorage.setItem('userId', userId);
+          localStorage.setItem('userIsAdmin', groups.indexOf('tsmAdmins') > -1 );
 
           // TODO: return?
           dispatch(signInSuccess({token, username}));
