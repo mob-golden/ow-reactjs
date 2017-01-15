@@ -115,7 +115,7 @@ class MatchupTips extends Component {
       <div className="os-card-container os-matchup-tip-container">
         <div className="row">
           <div className="os-card-col os-matchup-tip-col">
-            { this.renderModal('for', heroKey, matchupHeroKey, heroName, ) }
+            { this.renderModal('for', heroKey, matchupHeroKey, heroName, matchupName ) }
             <div className="os-card-body os-matchup-tip-body">
               <span className="os-matchup-tip-name">
                 TIPS VS. {changeCase.upper(matchupName)} 
@@ -125,18 +125,18 @@ class MatchupTips extends Component {
               </h5>
 
               <TipList
+                listId = "for"
                 tips={
                   this.state.leftViewAll?
                   tipsFor:
                   take(tipsFor, 5)
                 }
-                firstText={`Share a tip on how to play ${heroName}.`}
+                firstText={ `Share a tip on how to play ${heroName} against ${matchupName}.`}
               />
               <div className="os-tip-button-group">
                 <button
                   className="btn btn-primary os-btn-blue"
-                  data-toggle="modal"
-                  data-target={`#modal-add-matchup-tip-for`}
+                  onClick={this.handleAddMatchupTip.bind(null,'for')}
                 >
                   ADD A TIP
                 </button>
@@ -151,7 +151,7 @@ class MatchupTips extends Component {
           </div>
 
           <div className="os-card-col os-matchup-tip-col">
-            { this.renderModal('against', matchupHeroKey, heroKey, matchupName) }
+            { this.renderModal('against', matchupHeroKey, heroKey, matchupName, heroName) }
             <div className="os-card-body os-matchup-tip-body">
               <span className="os-matchup-tip-name">
                 TIPS VS. {changeCase.upper(heroName)} 
@@ -161,18 +161,18 @@ class MatchupTips extends Component {
               </h5>
 
               <TipList
+                listId = "against"
                 tips={
                   this.state.rightViewAll?
                   tipsAgainst:
                   take(tipsAgainst, 5)
                 }
-                firstText={`Share a tip on how to play against ${heroName}.`}
+                firstText={ `Share a tip on how to play ${matchupName} against ${heroName}.`}
               />
               <div className="os-tip-button-group">
                 <button
                   className="btn btn-primary os-btn-blue"
-                  data-toggle="modal"
-                  data-target={`#modal-add-matchup-tip-against`}
+                  onClick={this.handleAddMatchupTip.bind(null,'against')}
                 >
                   ADD A TIP
                 </button>
@@ -190,7 +190,17 @@ class MatchupTips extends Component {
     );
   }
 
-  renderModal = (type, heroKey, matchupHeroKey, heroName) => {
+  handleAddMatchupTip = (type)=>{
+    const localToken = localStorage.getItem('token');
+    if(!localToken){
+      $('#sign-in').modal('show');
+    }
+    else{
+      $(`#modal-add-matchup-tip-${type}`).modal('show');
+    }
+  }
+
+  renderModal = (type, heroKey, matchupHeroKey, heroName, matchupName) => {
     const {
       dispatch,
       params:{
@@ -215,26 +225,23 @@ class MatchupTips extends Component {
                   matchupKey: matchupHeroKey,
                   content: textarea.value,
                   tipType: matchupType,
-                  token
+                  token,
+                  direction: type == 'for'
                 }));
-                // dispatch(fetchTipsIfNeeded(heroKey));
               }
               $(`#modal-add-matchup-tip-${type}`).modal('hide');
-              // location.reload();
             }}>
             <Modal 
               id={`modal-add-matchup-tip-${type}`}
             >
               <fieldset className="os-modal-form-group-1">
-                <h4 className="os-modal-title">{`NEW TIP ${changeCase.upper(type)} ${changeCase.upper(heroName)}`}</h4>
-                <span className="os-modal-description">{`Add a tip ${type} ${heroName}`}</span>
+                <h4 className="os-modal-title">{`NEW TIP AGAINST ${changeCase.upper(matchupName)}`}</h4>
+                <span className="os-modal-description">{`Add a tip as ${heroName}`}</span>
               </fieldset>
               <fieldset className="os-modal-form-group-2">
                 <textarea
                   className="form-control os-textarea"
-                  placeholder={type == "for" ? 
-                                `Share strategies and tips on how to play ${heroName}.`:
-                                `Share counter tips on how to play ${heroName}.`}
+                  placeholder={ `Share tips on how to play ${heroName} against ${matchupName}.`}
                   ref={c => this._tipsBox[type] = c}
                   rows={9}
                 >

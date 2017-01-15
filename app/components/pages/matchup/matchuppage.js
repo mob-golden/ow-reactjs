@@ -33,14 +33,14 @@ class MatchupPage extends Component {
         matchupHeroKey: _matchupHeroKey
       },
     } = this.props;
-    
+
     const heroKey = changeCase.lower(_heroKey);
     const matchupHeroKey = changeCase.lower(_matchupHeroKey);
 
     if (isFetchingHeroes && !heroesHash) {
       return <Loader />;
     }
-    
+
     return (
       <div className="os-body">
         <div className="os-content container">
@@ -55,7 +55,7 @@ class MatchupPage extends Component {
                 <div className="col-lg-4">
                   <div className="os-hero-left-search">
                     <Typeahead
-                      constructLink={(id) => `/heroes/${id.toLowerCase()}`}
+                      constructLink={(id) => `/hero/${id.toLowerCase()}`}
                       inputGroupClass="input-group"
                       placeholder={"Search for a matchup"}
                       miniTag="left"
@@ -63,7 +63,7 @@ class MatchupPage extends Component {
                   </div>
                   <div className="os-hero-left-profile">
                     <div className="os-profile-mask">
-                      <Link to={`/heroes/${heroKey}`}>
+                      <Link to={`/hero/${heroKey}`}>
                         <img
                           width="72"
                           height="124"
@@ -71,14 +71,14 @@ class MatchupPage extends Component {
                           src= {heroesHash[heroKey].portrait}
                         />
                         <div className="os-hero-profile-type">
-                          <img width="16" height="17" src={`/images/${heroesHash[heroKey].type}.png`}/>
+                          <img width="16" height="17" src={`https://s3.amazonaws.com/solomid-resources/overwatch/icons/${heroesHash[heroKey].type}.png`}/>
                         </div>
                         <h5 className="os-hero-profile-name">{changeCase.upper(heroesHash[heroKey].name)}</h5>
                       </Link>
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="col-lg-4">
                   <Link to={`/matchups/${matchupHeroKey}/${heroKey}`}>
                     <div className="os-matchup-vs-img">
@@ -89,7 +89,7 @@ class MatchupPage extends Component {
                 <div className="col-lg-4">
                   <div className="os-hero-right-profile">
                     <div className="os-profile-mask">
-                      <Link to={`/heroes/${matchupHeroKey}`}>
+                      <Link to={`/hero/${matchupHeroKey}`}>
                         <img
                           width="72"
                           height="124"
@@ -97,7 +97,7 @@ class MatchupPage extends Component {
                           src= {heroesHash[matchupHeroKey].portrait}
                         />
                         <div className="os-hero-profile-type">
-                          <img width="16" height="17" src={`/images/${heroesHash[matchupHeroKey].type}.png`}/>
+                          <img width="16" height="17" src={`https://s3.amazonaws.com/solomid-resources/overwatch/icons/${heroesHash[matchupHeroKey].type}.png`}/>
                         </div>
                         <h5 className="os-hero-profile-name">{changeCase.upper(heroesHash[matchupHeroKey].name)}</h5>
                       </Link>
@@ -105,7 +105,7 @@ class MatchupPage extends Component {
                   </div>
                   <div className="os-hero-right-search">
                     <Typeahead
-                      constructLink={(id) => `/heroes/${id.toLowerCase()}`}
+                      constructLink={(id) => `/hero/${id.toLowerCase()}`}
                       inputGroupClass="input-group"
                       placeholder={"Search for a matchup"}
                       miniTag="left"
@@ -119,7 +119,7 @@ class MatchupPage extends Component {
               <div className="os-content-body os-matchup-body">
                 <div className="row">
                   <div className="col-lg-12">
-                    <Link to={`/heroes/${heroKey}/matchups`}>
+                    <Link to={`/hero/${heroKey}/matchups`}>
                       <i className="fa fa-long-arrow-left" aria-hidden="true"/> back to Hero Matchups
                     </Link>
                   </div>

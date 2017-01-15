@@ -12,7 +12,7 @@ import TipList from '../tip/tiplist';
 import MatchupList from '../matchup/matchuplist';
 import Loader from '../../loader';
 
-import { 
+import {
   fetchMapTipsIfNeeded,
   fetchMapMatchupsIfNeeded
 } from '../../../actions/api';
@@ -89,7 +89,7 @@ class MapTipsPage extends Component {
           dimensions={adDimensions.BEFORE_RECT}
           path={'/22280732/ChampionSelect_728x90_HP_BTF1'}
         />
-        
+
         <div className="os-map-tip row">
           <div className="col-lg-12">
             <div className="os-content-top os-map-tip-header">
@@ -98,7 +98,7 @@ class MapTipsPage extends Component {
               </div>
               <div className="os-map-tip-header-title">
                 <span className="os-white os-font-size-20">
-                  { changeCase.upper(MAPS_HASH[mapType]) } 
+                  { changeCase.upper(MAPS_HASH[mapType]) }
                 </span>
                 <h5 className="os-white os-font-size-32">
                   { mapName }
@@ -122,12 +122,13 @@ class MapTipsPage extends Component {
                       { this.renderModal(mapKey, mapName) }
                       <div className="os-card-body">
                         <span className="os-map-tip-name">
-                          {changeCase.upper(mapName)} 
+                          {changeCase.upper(mapName)}
                         </span>
                         <h5 className="os-map-tip-title">
                           MAP TIPS
                         </h5>
-                        <TipList 
+                        <TipList
+                          listId = "maptip"
                           tips={
                             this.state.viewAll?
                             mapTips.data.tips:
@@ -138,8 +139,7 @@ class MapTipsPage extends Component {
                         <div className="os-tip-button-group">
                           <button
                             className="btn btn-primary os-btn-blue"
-                            data-toggle="modal"
-                            data-target={`#modal-add-map-tip`}
+                            onClick={this.handleAddMapTip.bind(null, 'against')}
                           >
                             ADD A TIP
                           </button>
@@ -169,6 +169,7 @@ class MapTipsPage extends Component {
                           }
                           matchupType = "map"
                           firstText = {`No Heroes.`}
+                          customType = "mapMatchup"
                         />
                         <div className="row center-text">
                           <button
@@ -186,7 +187,7 @@ class MapTipsPage extends Component {
             </div>
           </div>
         </div>
-      
+
         <Ad
           className="os-ad os-ad-bottom"
           dimensions={adDimensions.AFTER_SQUARE}
@@ -194,6 +195,16 @@ class MapTipsPage extends Component {
         />
       </div>
     );
+  }
+
+  handleAddMapTip = (type) =>{
+    const localToken = localStorage.getItem('token');
+    if(!localToken){
+      $('#sign-in').modal('show');
+    }
+    else{
+      $(`#modal-add-map-tip`).modal('show');
+    }
   }
 
   renderModal = (mapKey, mapName) => {
@@ -216,7 +227,7 @@ class MapTipsPage extends Component {
               }
               $(`#modal-add-map-tip`).modal('hide');
             }}>
-            <Modal 
+            <Modal
               id={`modal-add-map-tip`}
             >
               <fieldset className="os-modal-form-group-1">

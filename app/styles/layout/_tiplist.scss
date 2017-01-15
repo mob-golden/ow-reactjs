@@ -1,4 +1,3 @@
-@import '../base/constants';
 
 .os-counter-tips-list {
   margin-bottom: 0px;
@@ -9,6 +8,7 @@
   padding-top: 12px;
   padding-bottom: 8px;
   margin-left: -8px;
+  position: relative;
 
   &:not(:last-child) {
     border-bottom: 1px solid darken($BLACK_HAZE, 5%);
@@ -26,13 +26,37 @@
 }
 
 .os-counter-tip-text {
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   font-size: 14px;
   overflow-wrap: break-word;
   word-break: break-all;
 
   // for Webkit
   word-break: break-word;
+}
+.os-counter-tip-text-short {
+  // Show 3 lines by default
+  cursor: pointer;
+  overflow: hidden;
+  max-height: 61px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
+}
+.os-counter-tip-text-short,
+.os-counter-tip-text-long {
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+
+.os-counter-tip-text-short~
+.os-counter-tip-text-short-helper {
+  display: none;
+}
+.os-counter-tip-text-long~
+.os-counter-tip-text-long-helper {
+  display: none;
 }
 .os-counter-tip-footer {
   margin-bottom: 8px;
@@ -64,8 +88,12 @@
     color: darken($VULCAN, 25%);
   }
 }
-.os-counter-tip-caret-active {
-  color: darken($VULCAN, 75%) !important;
+.os-counter-tip-caret-active.fa-caret-up {
+  color: $GREEN_1 !important;
+}
+
+.os-counter-tip-caret-active.fa-caret-down {
+  color: $RED_1 !important;
 }
 
 .os-counter-tip-score-alt {
@@ -115,4 +143,10 @@
 .os-tip-button-group{
   margin-bottom: 20px;
   text-align: center;
+}
+
+.os-counter-tip-ed-control{
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
 }

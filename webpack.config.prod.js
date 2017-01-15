@@ -3,7 +3,6 @@ var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
-var package = require('./package');
 
 module.exports = {
 
@@ -56,7 +55,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'overwatch-select',
       filename: 'index.html',
-      template: 'index.html'
+      template: 'index.prod.html'
     })
   ]
 

@@ -58,7 +58,7 @@ function fetchMatchupTips(heroKey, matchupHeroKey, params) {
 
       const fullUrl = `${root}?${qs.stringify(params)}`;
 
-      return fetch(fullUrl)
+      return fetch(fullUrl, {credentials : 'include',})
         .then(response => {
           const {
             status,
@@ -178,7 +178,7 @@ function fetchMatchups (heroKey, params) {
       const root = `${OW_MATCHUPS_URL}/${heroKey}${typeUrlSegment}`;
       const fullUrl = `${root}&${qs.stringify(params)}`;
 
-      return fetch(fullUrl)
+      return fetch(fullUrl, {credentials : 'include',})
         .then(response => {
           const {
             status,
@@ -281,7 +281,7 @@ function fetchTips (heroKey, params) {
       const root = `${OW_HERO_URL}/${heroKey}${typeUrlSegment}`;
       const fullUrl = `${root}&${qs.stringify(params)}`;
 
-      return fetch(fullUrl)
+      return fetch(fullUrl, {credentials : 'include',})
         .then(response => {
           const {
             status,
@@ -376,8 +376,8 @@ function fetchMapTips (mapKey, params) {
   return dispatch => {
     dispatch(requestMapTips(mapKey));
 
-    const url = `${OW_MAP_URL}/${mapKey}`;
-    return fetch(url)
+    const url = `${OW_MAP_URL}/${mapKey}?${qs.stringify(params)}`;
+    return fetch(url, {credentials : 'include',})
       .then(response => {
         const {
           status,
@@ -453,8 +453,8 @@ function fetchMapMatchups (mapKey, params) {
   return dispatch => {
     dispatch(requestMapMatchups(mapKey));
 
-    const url = `${OW_MATCHUPS_URL}/${mapKey}`;
-    return fetch(url)
+    const url = `${OW_MATCHUPS_URL}/${mapKey}?${qs.stringify(params)}`;
+    return fetch(url, {credentials : 'include',})
       .then(response => {
         const {
           status,
@@ -492,4 +492,3 @@ function receiveMapMatchups (mapMatchup, mapKey,) {
     mapMatchup
   };
 }
-

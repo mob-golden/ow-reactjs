@@ -1,5 +1,3 @@
-@import '../base/constants';
-
 /* This module contains all the styles for the cards system */
 
 .os-card-container {
@@ -28,4 +26,79 @@
   border: $GRAY_2 solid 1px;
   border-radius: 5px;
   box-shadow: 0px 2px 2px 0 rgba($BLACK_0, 0.1);
+}
+
+.os-card-separated-subcards {
+
+  .os-card-body {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 10px;
+
+    .os-matchups-list {
+      padding-top: 0;
+    }
+    .os-matchups-list>div {
+      margin-top: 8px;
+      background-color: $WHITE;
+      border: $GRAY_2 solid 1px;
+      border-radius: 5px;
+      box-shadow: 0px 2px 2px 0 rgba($BLACK_0, 0.1);
+      padding: 12px 16px;
+    }
+    .os-matchups-list .os-matchups-thumb-img-overlay {
+      display: none;
+    }
+    .os-matchups-list .os-matchup-item {
+      .os-matchup-thumb {
+        position: relative;
+      }
+    }
+    .os-matchups-list .os-matchup-item:hover {
+      box-shadow: 0px 0px 4px 2px rgba($BLUE_1, 0.7);
+      cursor: pointer;
+
+      .os-matchup-thumb-img-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba($BLUE_1, 0.8);
+        color: $WHITE;
+
+        .fa {
+          position: relative;
+          top: 14px;
+          left: 20px;
+        }
+      }
+    }
+  }
+
+}
+.os-card {
+  &--pagenotfound {
+    min-height: 340px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+    border: solid 1px #dde1e8;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @media screen and (min-width: $BP_MD) {
+      height: 350px;
+    }
+  }
+  &--pagenotfound-left {
+    @media screen and (min-width: $BP_MD) {
+      width: 50%;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
 }

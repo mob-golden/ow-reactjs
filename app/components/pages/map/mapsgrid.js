@@ -3,7 +3,7 @@ import changeCase from 'change-case';
 import { Component } from 'react';
 import { Link } from 'react-router';
 
-import {  MAPS_HASH } from '../../../constants/types';
+import {  MAPS_HASH, MAP_TYPES } from '../../../constants/types';
 
 class MapsGrid extends Component {
   static defaultProps = {
@@ -28,25 +28,21 @@ class MapsGrid extends Component {
             type
           } = _map;
 
-          if(filter !== 0 && filter!== type) return null;
+          if(filter !== '' && filter !== MAP_TYPES[type].name) return null;
           return (
           <div
             className={colClass}
             key={_map.id}
           >
+          <Link to={`/map/${id}`}>
             <div className="os-map">
-              <Link 
-                className="os-map-tile-link"
-                to={`/maps/${id}`}
-              >
-              </Link>
               <div className="os-map-profile">
                 <span className="os-map-profile-type">{changeCase.upper(MAPS_HASH[type])}</span>
                 <h5 className="os-map-profile-title">{name}</h5>
                 <div className="os-map-btn">
                   <Link
                     className="btn btn-primary os-btn-blue"
-                    to={`/maps/${id}`}
+                    to={`/map/${id}`}
                   >
                   VIEW MAP TIPS
                   </Link>
@@ -59,6 +55,7 @@ class MapsGrid extends Component {
                 src={image}
               />
             </div>
+            </Link>
           </div>
           );
         })}

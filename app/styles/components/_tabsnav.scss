@@ -1,5 +1,3 @@
-@import '../base/constants';
-
 .os-tabs-nav {
   padding-left: 0px;
   margin-bottom: 32px;
@@ -18,32 +16,40 @@
       color: $WHITE;
     }
     .os-tab-item-OFFENSE{
-      width:16px;
-      height: 16px;
+      width:20px;
+      height: 18px;
+      background-size: cover;
       background-image: url("https://s3.amazonaws.com/solomid-resources/overwatch/icons/1.png");
       float:left;
+      margin-top: -1px;
     }
     .os-tab-item-DEFENSE{
-      width:16px;
-      height: 16px;
+      width:20px;
+      height: 18px;
+      background-size: cover;
       background-image: url("https://s3.amazonaws.com/solomid-resources/overwatch/icons/2.png");
       float:left;
+      margin-top: -1px;
     }
     .os-tab-item-TANK{
-      width:16px;
-      height: 16px;
+      width:20px;
+      height: 18px;
+      background-size: cover;
       background-image: url("https://s3.amazonaws.com/solomid-resources/overwatch/icons/3.png");
       float:left;
+      margin-top: -1px;
 
       @media screen and (min-width: $BP_LG) {
         margin-left: 12px;
       }
     }
     .os-tab-item-SUPPORT{
-      width:16px;
-      height: 16px;
+      width:20px;
+      height: 18px;
+      background-size: cover;
       background-image: url("https://s3.amazonaws.com/solomid-resources/overwatch/icons/4.png");
       float:left;
+      margin-top: -1px;
     }
   }
   .os-tabnav-item:first-child {
@@ -71,6 +77,10 @@
   .os-nav-link {
     display: block;
     padding: 16px 30px;
+
+    @media screen and (max-width: $BP_LG) {
+      padding: 16px 16px;
+    }
   }
 
   .os-nav-link:hover {

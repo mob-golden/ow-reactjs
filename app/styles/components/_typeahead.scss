@@ -1,5 +1,3 @@
-@import '../base/_constants';
-
 $suggestionPadding: 8px;
 $suggestionSize: 16px;
 
@@ -76,16 +74,7 @@ $suggestionSize: 16px;
     color: $BLACK_3;
   }
 }
-.os-mini-typeahead{
-  .os-mini-search-btn {
-    cursor: pointer;
-    display: inline-block;
-    padding: 1px 14px;
-    border: $GRAY_1 solid 2px;
-    border-radius: 3px;
-    color: $GRAY_1;
-  }
-}
+
 // Do not remove outline for modals
 .modal-dialog .os-search-input {
   border: 1px solid $BLACK_4;

@@ -5,6 +5,7 @@ import {
   REQUEST_HEROES,
   RECEIVE_HEROES
 } from '../actions/hero';
+
 const initialState = {
   isFetching: false,
   data: null

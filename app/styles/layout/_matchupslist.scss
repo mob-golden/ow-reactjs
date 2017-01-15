@@ -1,4 +1,3 @@
-@import '../base/constants';
 
 .os-matchup-thumb {
   margin-top: 4px;
@@ -25,6 +24,15 @@
 
 .os-matchup-item-votes-active {
   cursor: default;
+}
+
+.os-matchup-voted-up{
+  color: $WHITE !important;
+  background-color: $GREEN_1;
+}
+.os-matchup-voted-down{
+  color: $WHITE !important;
+  background-color: $RED_1;
 }
 
 .os-matchup-vote-up {

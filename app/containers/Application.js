@@ -15,6 +15,10 @@ import MapRankingTipsPage from '../components/pages/map/maprankingtipspage';
 import MatchupTipsPage from '../components/pages/matchup/matchuptipspage';
 import MatchupTips from '../components/pages/matchup/matchuptips';
 import MapTipsPage from '../components/pages/map/maptipspage';
+import CommunityPage from '../components/pages/community/communitypage';
+import ThreadsListPage from '../components/pages/thread/threadslistpage';
+import SingleThreadPage from '../components/pages/thread/singlethreadpage';
+import PageNotFound from '../components/pages/notfound/PageNotFound';
 
 export const routes = (
   <Route path="/" component={Root} >
@@ -22,12 +26,14 @@ export const routes = (
     <Route path="/forgot" component={ForgotPassword} />
     <Route path="/reset" component={ResetPassword} />
     <Route path="/heroes" component={HomePage} />
+    <Route path="/heroes/:heroType" component={HomePage} />
 
-    <Route path="/heroes/:heroKey" component={SingleHeroPage}>
+
+    <Route path="/hero/:heroKey" component={SingleHeroPage}>
       <IndexRoute component={GeneralTipsPage} />
-      <Route path="/heroes/:heroKey/generaltips" component={GeneralTipsPage}/>
-      <Route path="/heroes/:heroKey/matchups" component={HeroMatchupsPage}/>
-      <Route path="/heroes/:heroKey/maprankings" component={MapRankingsPage}/>
+      <Route path="/hero/:heroKey/generaltips" component={GeneralTipsPage}/>
+      <Route path="/hero/:heroKey/matchups" component={HeroMatchupsPage}/>
+      <Route path="/hero/:heroKey/maprankings" component={MapRankingsPage}/>
       <Route path="/maprankingtips/:heroKey/:mapKey" component={MapRankingTipsPage}/>
     </Route>
 
@@ -36,15 +42,28 @@ export const routes = (
     </Route>
 
     <Route path="/maps" component={MapsPage} />
-    <Route path="/maps/:mapKey" component={MapTipsPage} />
+    <Route path="/maps/:mapType" component={MapsPage} />
+    <Route path="/map/:mapKey" component={MapTipsPage} />
+
+    <Route path="/community" component={CommunityPage} />
+    <Route path="/community/:commType" component={ThreadsListPage} />
+    <Route path="/community/:commType/:threadId" component={SingleThreadPage} />
+    <Route status={404} path="*" component={PageNotFound} />
   </Route>
 );
 
 export default class Application extends React.Component {
+
+  handlePageView() {
+    if (window !== undefined) {
+      window.scrollTo(0, 0);
+    }
+  }
+
   render () {
     return (
       <Provider store={ this.props.store }>
-        <Router history={ this.props.history }>
+        <Router history={ this.props.history } onUpdate={() => this.handlePageView()}>
           {routes}
         </Router>
       </Provider>

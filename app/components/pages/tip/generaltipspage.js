@@ -95,6 +95,7 @@ class GeneralTipsPage extends Component {
               </span>
               <h5 className="os-hero-tip-title">STRATEGY & TIPS</h5>
               <TipList
+                listId = "for"
                 tips={
                   this.state.leftViewAll?
                   tips.for.data.tips:
@@ -105,8 +106,7 @@ class GeneralTipsPage extends Component {
               <div className="os-tip-button-group">
                 <button
                   className="btn btn-primary os-btn-blue"
-                  data-toggle="modal"
-                  data-target={`#modal-add-tip-for`}
+                  onClick={this.handleAddTip.bind(null,'for')}
                 >
                   ADD A TIP
                 </button>
@@ -127,6 +127,7 @@ class GeneralTipsPage extends Component {
               </span>
               <h5 className="os-hero-tip-title">COUNTER TIPS</h5>
               <TipList
+                listId = "against"
                 tips={
                   this.state.rightViewAll?
                   tips.against.data.tips:
@@ -137,8 +138,7 @@ class GeneralTipsPage extends Component {
               <div className="os-tip-button-group">
                 <button
                   className="btn btn-primary os-btn-blue"
-                  data-toggle="modal"
-                  data-target={`#modal-add-tip-against`}
+                  onClick={this.handleAddTip.bind(null,'against')}
                 >
                   ADD A TIP
                 </button>
@@ -154,6 +154,16 @@ class GeneralTipsPage extends Component {
         </div>
       </div>
     );
+  }
+
+  handleAddTip = (type)=>{
+    const localToken = localStorage.getItem('token');
+    if(!localToken){
+      $('#sign-in').modal('show');
+    }
+    else{
+      $(`#modal-add-tip-${type}`).modal('show');
+    }
   }
 
   renderModal = (type, heroKey, heroName) => {

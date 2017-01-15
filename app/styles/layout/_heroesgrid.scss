@@ -1,5 +1,3 @@
-@import '../base/constants';
-
 .os-heroes-grid {
   margin-bottom: 16px;
 
@@ -48,8 +46,8 @@
   border-radius: 5px;
   background-color: $GRAY_4;
   margin-bottom: 16px;
-  -webkit-transition: all 0.2s ease; // For Safari 
-  -moz--webkit-transition: all 0.2s ease; // For Safari 
+  -webkit-transition: all 0.2s ease; // For Safari
+  -moz--webkit-transition: all 0.2s ease; // For Safari
   transition: all 0.2s ease;
 }
 
@@ -63,8 +61,8 @@
   border-radius: 5px;
   background-position: center;
   background-size: 120%;
-  -webkit-transition: all 0.2s ease; // For Safari 
-  -moz--webkit-transition: all 0.2s ease; // For Safari 
+  -webkit-transition: all 0.2s ease; // For Safari
+  -moz--webkit-transition: all 0.2s ease; // For Safari
   transition: all 0.2s ease;
 }
 

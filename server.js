@@ -1,6 +1,7 @@
 require('babel-register');
 var path = require('path');
 var express = require('express');
+var session = require('express-session');
 var bodyParser = require('body-parser');
 var sendgrid = require('sendgrid');
 var compression = require('compression');
@@ -9,21 +10,30 @@ var qs = require('querystring');
 var React = require('react');
 var Router = require('react-router');
 var routes = require('./app/containers/Application').routes;
-
+var isDevelopment = process.env.NODE_ENV ==='development';
 var urls = require('./app/constants/urls');
-
+var debug = require('debug')('app:log');
 const match = Router.match;
-var fs = require('fs');
-
+const fs = require('fs');
+var apiRoutes = require('./routes');
 var app = express();
 var port = process.env.PORT || 3000;
-var staticPath = path.join(__dirname, '/dist');
+var staticPath = isDevelopment ? path.join(__dirname, '/app') : path.join(__dirname, '/dist');
+var overwatchHost = process.env.OVERWATCH_HOST || "https://overwatch-select-api-prod.herokuapp.com";
 const S_IN_YR = 31536000;
-var permaNews = {};
 
 app.use(express.static(staticPath, { maxAge: S_IN_YR }));
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    httpOnly : false
+  }
+}));
 app.use(compression());
 app.use(bodyParser.json());
+app.use(bodyParser.raw());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
@@ -68,7 +78,6 @@ app.post('/forgot', function (req, res) {
           token,
           user_id
         } = json;
-
         const helper = sendgrid.mail;
         const from = new helper.Email('no-reply@overwatchselect.net');
         const to = new helper.Email(email);
@@ -93,7 +102,7 @@ app.post('/forgot', function (req, res) {
 
         const content = new helper.Content('text/html', body);
         const mail = new helper.Mail(from, subject, to, content);
-        const sg = sendgrid(process.env.SENDGRID_KEY);
+        const sg = sendgrid(process.env.SENDGRID_API_KEY);
 
         const sgReq = sg.emptyRequest({
           method: 'POST',
@@ -107,7 +116,7 @@ app.post('/forgot', function (req, res) {
           });
           // TODO: do not rely on catch here
           // .catch(error => {
-          //   console.log(error);
+          //   debug(error);
           // });
 
     })
@@ -158,7 +167,7 @@ app.post('/reset', function (req, res) {
         res.status(500).send();
       }
 
-      res.json(json)
+      res.json(json);
     })
 });
 
@@ -167,7 +176,6 @@ app.post('/signin', function (req, res) {
     email,
     password
   } = req.body;
-
   const data = qs.stringify({
     'grant_type': 'password',
     email,
@@ -180,6 +188,15 @@ app.post('/signin', function (req, res) {
   })
     .then(response => response.json())
     .then(json => {
+      const { user : {id, username } ,access_token : token} = json;
+      debug(json);
+      debug(id);
+
+      req.session.user_id = id;
+      req.session.token = token;
+      req.session.username = username;
+      debug(req.session);
+      debug(`session id set to ${req.session.id}`);
       res.json(json);
     })
     .catch(error => {
@@ -207,6 +224,11 @@ app.post('/signup', function (req, res) {
   })
     .then(response => response.json())
     .then(json => {
+      debug(json);
+      const { user : {id} ,access_token : token} = json;
+      debug(`id,token ${id} ${token}`);
+      req.session.user_id = id;
+      req.session.token = token;
       res.json(json);
     })
     .catch(error => {
@@ -214,43 +236,76 @@ app.post('/signup', function (req, res) {
     });
 });
 
+app.get('/checkSession', function(req, res) {
+  debug("Session Checking");
+  debug(req.session);
+  if(typeof req.session.user_id !== 'undefined' && typeof req.session.token !== 'undefined'){
+    res.json({
+      isLoggedIn: true,
+      token: req.session.token
+    });
+  }
+  else{
+    res.json({
+      isLoggedIn: false
+    });
+  }
+});
+
+app.post('/signout', function(req, res) {
+  debug("Sign out- session destroy");
+  if(typeof req.session.user_id !== 'undefined' && typeof req.session.token !== 'undefined'){
+    req.session.destroy();
+    debug("Session destoryed");
+  }
+  return res.json('signed out');
+});
+
 app.get('/', handleRender);
 app.get('/heroes', handleRender);
-app.get('/heroes/:heroKey', handleRender);
-app.get('/heroes/:heroKey/generaltips', handleRender);
-app.get('/heroes/:heroKey/matchups', handleRender);
-app.get('/heroes/:heroKey/maprankings', handleRender);
+app.get('/heroes/:heroType', handleRender);
+app.get('/hero/:heroKey', handleRender);
+app.get('/hero/:heroKey/generaltips', handleRender);
+app.get('/hero/:heroKey/matchups', handleRender);
+app.get('/hero/:heroKey/maprankings', handleRender);
 app.get('/maprankingtips/:heroKey/:mapKey', handleRender);
 app.get('/matchups/:heroKey/:matchupHeroKey/:matchupType', handleRender);
 app.get('/maps', handleRender);
-app.get('/maps/:mapKey', handleRender);
+app.get('/maps/:mapType', handleRender);
+app.get('/map/:mapKey', handleRender);
 app.get('/forgot', handleRender);
 app.get('/reset', handleRender);
+app.get('/community', handleRender);
+app.get('/community/:commType', handleRender);
+app.get('/community/:commType/:threadId', handleRender);
 
+
+apiRoutes(app);
 app.all('*', send404);
+var indexFile = process.env.NODE_ENV === 'development' ? path.join(__dirname, '/app/index.dev.html') : path.join(__dirname, '/dist/index.html');
 
 function send404 (req, res) {
   res.setHeader('Cache-Control', `max-age=${S_IN_YR}`);
-  res.status(404).send('Not found.');
+  res.status(404).sendFile(indexFile);
 }
-
 function handleRender(req, res) {
+  debug(`req.session.id is ${req.session.id}`)
   match({ routes, location: req.url }, function(error, redirectLocation, renderProps) {
     if (error) {
-      console.log("[match]: error", error);
+      debug("[match]: error", error);
       res.status(500).send(error.message)
     } else if (redirectLocation) {
-      console.log("[match]: redirectLocation", redirectLocation);
+      debug("[match]: redirectLocation", redirectLocation);
       res.redirect(302, redirectLocation.pathname + redirectLocation.search)
     } else if (renderProps) {
       if (typeof renderProps.routes[1] !== 'undefined' && renderProps.routes[1].status === 404) {
-        res.status(404).sendFile(path.join(__dirname, '/dist/index.html'));
+        res.status(404).sendFile(indexFile);
       } else {
-        res.sendFile(path.join(__dirname, '/dist/index.html'));
+        res.sendFile(indexFile);
       }
   } else {
-      console.log("[match]: Not found");
-      res.status(404).send('Not found');
+      debug("[match]: Not found");
+      res.status(404).sendFile(indexFile);
     }
   });
 }
@@ -266,5 +321,5 @@ function constructHeaders (data) {
 }
 
 app.listen(port, function() {
-  	console.log('listening')
+  	debug('listening')
 });

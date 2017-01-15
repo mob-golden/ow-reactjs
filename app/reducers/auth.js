@@ -12,7 +12,8 @@ import {
   REQUEST_PASSWORD_CHANGE_SUCCESS,
   RESET_PASSWORD_REQUEST,
   RESET_PASSWORD_FAILURE,
-  RESET_PASSWORD_SUCCESS
+  RESET_PASSWORD_SUCCESS,
+  CHECK_SESSION_FAILURE
 } from '../actions/auth';
 
 let token = null;
@@ -70,6 +71,13 @@ function auth (state = initialState, action) {
         isPendingSignIn: false,
         errorSignIn: action.error
       };
+    case CHECK_SESSION_FAILURE:
+      return{
+        ...state,
+        token: null,
+        username: null,
+        userId: null
+      }
     case SIGN_OUT:
       return {
         // empty

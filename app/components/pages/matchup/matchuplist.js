@@ -1,6 +1,7 @@
 import React from 'react';
 import changeCase from 'change-case';
 import classNames from 'classnames';
+import FontAwesome from 'react-fontawesome';
 
 import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
@@ -15,7 +16,8 @@ class MatchupList extends Component {
       heroesHash,
       matchups,
       matchupType,
-      firstText
+      firstText,
+      customType
     } = this.props;
 
     if (matchups.length === 0) {
@@ -30,27 +32,28 @@ class MatchupList extends Component {
 
     if (!localStorage.getItem('matchupVotes')) localStorage.setItem('matchupVotes', JSON.stringify({}));
     const votes =  JSON.parse(localStorage.getItem('matchupVotes'));
-    
+
     return (
       <div className="os-matchups-list">
       {
         matchups.map(matchup => {
-          
+
           const {
             score:{
               total: score,
               downvotes,
               upvotes
             },
-            type,
-            opponent: matchupHeroKey,
+            type
           } = matchup;
 
+          const matchupHeroKey = customType == "mapMatchup" ? matchup.heroId : matchup.opponent;
+          
           const {
             portrait,
             name
           } = heroesHash[matchupHeroKey];
-          
+
           const key = heroKey + matchupHeroKey + type;
 
           const downvoteClass = classNames({
@@ -67,16 +70,21 @@ class MatchupList extends Component {
             'col-xs-6': true,
             'os-matchup-vote-down': true,
             'os-matchup-item-votes-active': votes[key],
-            'os-matchup-item-votes-non-active': !votes[key]
+            'os-matchup-item-votes-non-active': !votes[key],
+            'os-matchup-voted-down': votes[key] == 'downvote'
           });
 
           const upvotesClass = classNames({
             'col-xs-6': true,
             'os-matchup-vote-up': true,
             'os-matchup-item-votes-active': votes[key],
-            'os-matchup-item-votes-non-active': !votes[key]
+            'os-matchup-item-votes-non-active': !votes[key],
+            'os-matchup-voted-up': votes[key] == 'upvote'
           });
 
+          const matchupLink = customType == 'mapMatchup' ? 
+                                                    `/hero/${matchupHeroKey}/maprankings` : 
+                                                    `/matchups/${heroKey}/${matchupHeroKey}/${matchupType}`;
           return (
             <div
               className="os-matchup-item media"
@@ -84,7 +92,7 @@ class MatchupList extends Component {
             >
               <Link
                 className="media-left"
-                to={`/matchups/${heroKey}/${matchupHeroKey}/${matchupType}`}
+                to={matchupLink}
               >
                 <div className="os-matchup-thumb">
                   <img
@@ -93,7 +101,11 @@ class MatchupList extends Component {
                     className="os-matchup-thumb-img"
                     src={portrait}
                   />
-                {/*"https://s3.amazonaws.com/solomid-resources/overwatch/heroes/ana/hero-select-portrait.png"*/}
+                  <div
+                    className="os-matchup-thumb-img-overlay"
+                  >
+                    <FontAwesome name="chevron-right" />
+                  </div>
                 </div>
               </Link>
               <div className="media-body">
@@ -145,6 +157,9 @@ class MatchupList extends Component {
       $(otherSelector).parent().addClass('os-matchup-item-votes-active');
       $(selector).parent().removeClass('os-matchup-item-votes-non-active');
       $(otherSelector).parent().removeClass('os-matchup-item-votes-non-active');
+
+      const votedItemClass = downOrUp === 'upvote'? 'up' : 'down';
+      $(selector).parent().addClass(`os-matchup-voted-${votedItemClass}`);
 
       votes[key] = downOrUp;
       localStorage.setItem('matchupVotes', JSON.stringify(votes));

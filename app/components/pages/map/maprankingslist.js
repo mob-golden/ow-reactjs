@@ -29,7 +29,7 @@ class MapRankingsList extends Component {
     // }
     if (!localStorage.getItem('matchupVotes')) localStorage.setItem('matchupVotes', JSON.stringify({}));
     const votes =  JSON.parse(localStorage.getItem('matchupVotes'));
-    
+
     return (
       <div className="os-maprankings-list">
       {
@@ -64,13 +64,15 @@ class MapRankingsList extends Component {
           const downvotesClass = classNames({
             'os-matchup-vote-down': true,
             'os-matchup-item-votes-active': votes[key],
-            'os-matchup-item-votes-non-active': !votes[key]
+            'os-matchup-item-votes-non-active': !votes[key],
+            'os-matchup-voted-down': votes[key] == 'downvote'
           });
 
           const upvotesClass = classNames({
             'os-matchup-vote-up': true,
             'os-matchup-item-votes-active': votes[key],
-            'os-matchup-item-votes-non-active': !votes[key]
+            'os-matchup-item-votes-non-active': !votes[key],
+            'os-matchup-voted-up': votes[key] == 'upvote'
           });
 
           return (
@@ -78,7 +80,9 @@ class MapRankingsList extends Component {
               className="col-lg-4"
               key={mapKey}
             >
+            <Link to={`/maprankingtips/${heroKey}/${mapKey}`}>
               <div className="os-map">
+                <div className="os-map-overlay">VIEW TIPS</div>
                 <div className="os-map-profile">
                   <span className="os-map-profile-type">{changeCase.upper(MAPS_HASH[mapType])}</span>
                   <h5 className="os-map-profile-title">{name}</h5>
@@ -110,6 +114,7 @@ class MapRankingsList extends Component {
                   />
                 </Link>
               </div>
+            </Link>
             </div>
           );
         })}
@@ -138,6 +143,9 @@ class MapRankingsList extends Component {
       $(otherSelector).parent().addClass('os-matchup-item-votes-active');
       $(selector).parent().removeClass('os-matchup-item-votes-non-active');
       $(otherSelector).parent().removeClass('os-matchup-item-votes-non-active');
+
+      const votedItemClass = downOrUp === 'upvote'? 'up' : 'down';
+      $(selector).parent().addClass(`os-matchup-voted-${votedItemClass}`);
 
       votes[key] = downOrUp;
       localStorage.setItem('matchupVotes', JSON.stringify(votes));

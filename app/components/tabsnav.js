@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import changeCase from 'change-case';
 
 import {
   Link
@@ -7,31 +8,29 @@ import {
 
 const TabsNav = props => {
   const {
-    activeTabId,
-    handleClick,
-    tabs
+    tabs,
+    activeType
   } = props;
 
   return (
     <ul className="os-tabs-nav">
       {tabs.map(tab => {
         const {
-          id: tabId,
           label,
-          location
+          link,
+          name
         } = tab;
 
         const navItemClass = classNames({
           'os-tabnav-item': true,
-          'active': tabId === activeTabId
+          'active': name === activeType
         });
 
         const renderLink = () => {
           return (
             <a
               className="os-nav-link os-font-size-12"
-              href="javascript:;"
-              onClick={handleClick.bind(null, tabId)}
+              href={link}
             >
               <div className={`os-tab-item-${label} os-tab-icon`}></div>
               <div className="os-tab-text">
@@ -44,7 +43,7 @@ const TabsNav = props => {
         return (
           <li
             className={navItemClass}
-            key={tabId}
+            key={name}
           >
             {renderLink()}
           </li>

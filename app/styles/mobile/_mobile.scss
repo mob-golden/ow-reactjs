@@ -139,6 +139,46 @@
       }
     }
   }
+  .os-comm-search {
+    margin-bottom: 10px;
+  }
+  .os-comm-boards {
+    margin-left: -8px;
+    margin-right: -8px;
+  }
+  .os-comm-boards-section {
+    padding: 0 8px;
+
+    width: 50%;
+    // margin-bottom: 20px;
+    border-radius: 5px !important;
+
+    .boards-content {
+      display: block;
+      border-radius: 5px;
+      box-shadow: 0 2px 2px 0 rgba(0,0,0,.1);
+      border-radius: 5px;
+      text-align: center;
+      border: 1px solid $GRAY_2;
+      margin-bottom: 20px;
+
+      img {
+        margin: 10px 20px;
+        height: 50px;
+      }
+    }
+    .boards-header,
+    .boards-description {
+      display: block !important;
+      height: auto !important;
+      text-align: left;
+    }
+    a {
+      display: block;
+      width: 100%;
+      border-radius: 5px;
+    }
+  }
 }
 @media screen and (max-width: $BP_SM) {
 
@@ -147,15 +187,7 @@
     border: none;
     box-shadow: none;
   }
+    .os-comm-boards-section {
+      width: 100%;
 }
-// Tablet styles for tabs 
-@media screen and (max-width: $BP_LG) {
-  .os-tabs-nav { 
-    // Prevent overflowing of icons
-    .os-nav-link {
-      padding: 16px 20px;
-      display: block;
-      font-size: 12px;
-    }
-  }
 }

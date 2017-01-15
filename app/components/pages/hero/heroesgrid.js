@@ -29,14 +29,14 @@ class HeroesGrid extends Component {
               type
             } = hero;
 
-          if(filter !== 0 && filter!== type) return null;
+          if(filter !== '' && filter !== HERO_TYPES[type].name) return null;
           return (
             <div
               className={colClass}
               key={hero.id}
             >
               <div className="os-thumb-container">
-                <Link to={`/heroes/${id}`}>
+                <Link to={`/hero/${id}`}>
                   <div className="os-thumb-photo">
                     <div className="os-thumbnail-wrapper">
                       <div
@@ -44,7 +44,7 @@ class HeroesGrid extends Component {
                         style={{
                           background: `url(${portrait}) no-repeat center center`,
                           backgroundSize: "cover",
-                          width: "98px",
+                          // width: "98px",
                           height: "168px"
                         }}
                       ></div>

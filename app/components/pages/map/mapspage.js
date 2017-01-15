@@ -20,10 +20,6 @@ class MapsPage extends Component {
 
   constructor (props) {
     super(props);
-
-    this.state = {
-      activeTabId: 0
-    };
   }
 
   componentWillMount () {
@@ -40,13 +36,14 @@ class MapsPage extends Component {
 
   render () {
     const {
-      activeTabId
-    } = this.state;
-
-    const {
       mapsArray,
-      isFetchingMaps
+      isFetchingMaps,
+      params:{
+        mapType: _mapType
+      }
     } = this.props;
+
+    const mapType = _mapType?changeCase.lower(_mapType):'';
 
     return (
       <div className="container os-content">
@@ -69,19 +66,19 @@ class MapsPage extends Component {
             <div className="os-content-body os-maps-body">
               <div>
                 <TabsNav
-                  activeTabId={activeTabId}
-                  handleClick={activeTabId => this.setState({activeTabId})}
+                  activeType={mapType}
                   tabs={MAP_TYPES.map(type => {
                     return {
-                      id: type.key,
-                      label: changeCase.upper(type.title)
+                      label: changeCase.upper(type.title),
+                      link: type.link,
+                      name: type.name
                     };
                   })}
                 />
               </div>
               { !isFetchingMaps && mapsArray ? 
                 <MapsGrid
-                  filter={activeTabId}
+                  filter={mapType}
                   maps={mapsArray}
                 /> : <Loader /> } 
             </div>

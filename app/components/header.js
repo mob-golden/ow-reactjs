@@ -10,7 +10,8 @@ import {
   setUser,
   signIn,
   signOut,
-  signUp
+  signUp,
+  checkSession
 } from '../actions/auth';
 
 const MAX_LENGTH = 20;
@@ -60,7 +61,7 @@ class Header extends Component {
       username,
       userId
     } = this.props;
-
+    dispatch(checkSession());
     if (!token && !username && !userId) {
       const localToken = localStorage.getItem('token');
       const localUsername = localStorage.getItem('username');
@@ -93,7 +94,7 @@ class Header extends Component {
       dropdownOpen: false
     };
   }
-  
+
   toggleDropdown () {
     $('.navbar').toggleClass('nav-open');
     this.setState({
@@ -111,14 +112,14 @@ class Header extends Component {
       username
     } = this.props;
     let nav_auth_content;
-    
+
     return (
       <header className="os-header navbar-fixed row">
         {this.renderModals()}
         <nav className="os-nav navbar navbar-full navbar-light navbar-fixed-top">
           <div className="container">
             <div className="row">
-              <div className="col-lg-7 col-md-6 col-xs-12">
+              <div className="col-xl-7 col-lg-6 col-xs-12">
                 <Link
                   className="navbar-brand os-white os-nav-title"
                   to="/"
@@ -128,7 +129,7 @@ class Header extends Component {
                   </h4>
                 </Link>
               </div>
-              <div className="col-lg-5 col-md-6 col-xs-12">
+              <div className="col-xl-5 col-lg-6 col-xs-12">
                 <div className="row os-nav-menu">
                   {this.renderLinks()}
                 </div>
@@ -221,7 +222,7 @@ class Header extends Component {
               ><small>Forgot password?</small></Link>
             </fieldset>
             <fieldset className="os-modal-form-group-4">
-              <small>Don't have an account? Register 
+              <small>Don't have an account? Register
                 <Link
                   className="os-modal-here-link"
                   onClick={e => {
@@ -239,7 +240,7 @@ class Header extends Component {
           <Modal
             id={signUpId}
             text="Sign up for a SoloMid account"
-          > 
+          >
             <fieldset className="os-modal-form-group-1">
               <h4 className="os-modal-title">SIGN UP</h4>
               <span className="os-modal-description">Sign up for a SoloMid account.</span>
@@ -336,6 +337,29 @@ class Header extends Component {
           <li>
             <Link className="os-mobile-link" to="/maps">Maps</Link>
           </li>
+          <li>
+            <Link className="os-mobile-link" to="/community">Community</Link>
+          </li>
+          <li>
+            <a
+              className="os-white os-font-size-12"
+              data-toggle="modal"
+              data-target={`#${signInId}`}
+              href="javascript:;"
+            >
+              LOG IN
+            </a>
+          </li>
+          <li>
+            <a
+              className="os-white os-font-size-12"
+              data-toggle="modal"
+              data-target={`#${signUpId}`}
+              href="javascript:;"
+            >
+              SIGN UP
+            </a>
+          </li>
         </ul>
       );
     }
@@ -347,6 +371,9 @@ class Header extends Component {
         </li>
         <li>
           <Link className="os-mobile-link" to="/maps">Maps</Link>
+        </li>
+        <li>
+          <Link className="os-mobile-link" to="/community">Community</Link>
         </li>
         <li>
           <a
@@ -403,6 +430,15 @@ class Header extends Component {
             </li>
 
             <li className="nav-item os-nav-item">
+              <Link
+                className="os-white os-font-size-12"
+                to="/community"
+              >
+                COMMUNITY
+              </Link>
+            </li>
+
+            <li className="nav-item os-nav-item">
               <a
                 className="os-white os-font-size-12"
                 href="javascript:;"
@@ -416,7 +452,7 @@ class Header extends Component {
                 onClick={this.signOut}
               >Log out</a>
             </li>
-            
+
           </ul>
         </div>
       );
@@ -440,6 +476,15 @@ class Header extends Component {
               to="/maps"
             >
               MAPS
+            </Link>
+          </li>
+
+          <li className="nav-item os-nav-item">
+            <Link
+              className="os-white os-font-size-12"
+              to="/community"
+            >
+              COMMUNITY
             </Link>
           </li>
 

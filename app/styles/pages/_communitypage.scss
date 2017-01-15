@@ -1,0 +1,526 @@
+.os-comm-header {
+  margin: 0px 40px;
+  padding: 75px 75px 75px 75px;
+  background-image: url("https://s3.amazonaws.com/solomid-resources/overwatch/community/hero_bg.png");
+  text-align: left;
+  background-size: cover;
+}
+.os-comm-welcome {
+  width: 330px;
+  height: 35px;
+  margin: 0;
+  padding-bottom: 7px;
+}
+.os-comm-big {
+  font-weight: bold;
+  line-height: 54px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+
+  @media screen and (max-width: $BP_MD) {
+    margin-bottom: 0;
+    margin-top: 20px;
+  }
+}
+.btn-comm {
+  width: 183px;
+  height: 47px;
+  margin-top: 30px;
+}
+//SEARCH
+.os-comm-body {
+  margin: 0px 40px;
+  padding: 20px 25px;
+  background: $WHITE_1;
+}
+.os-comm-search {
+  padding: 50px 200px;
+  // height: 211px;
+  border-radius: 5px;
+  background-color: $GRAY_4;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+  margin: 0px 10px;
+
+  @media screen and (max-width: $BP_MD) {
+    padding: 50px;
+    margin: 0 5px;
+  }
+  @media screen and (max-width: $BP_SM) {
+    padding: 25px;
+  }
+}
+.os-comm-search-text {
+  font-weight: bold;
+  color: $WHITE;
+  text-align: center;
+}
+//BOARDS
+.os-comm-boards {
+  padding: 12px 15px;
+}
+.os-comm-boards-section {
+  width: 50%;
+  display: inline-block;
+  min-height: 127px;
+  object-fit: contain;
+  padding: 10px;
+  vertical-align: top;
+
+  a {
+    text-decoration: none;
+  }
+}
+.boards-content {
+  border-radius: 5px;
+  background-color: $WHITE;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+  border: solid 1px $GRAY_2;
+  display: flex;
+  padding: 20px;
+
+  .boards-img {
+    height: 40px;
+    margin: 30px 30px 47px 30px;
+  }
+  .boards-text {
+    height: auto;
+    width: auto;
+    padding-top: 22px;
+
+    .boards-header {
+      margin: 0;
+      color: $GRAY_4;
+      height: 24px;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+    .boards-description {
+      padding-top: 10px;
+      padding-left: 2px;
+      margin-bottom: 0px;
+      color: $GRAY_3;
+    }
+  }
+}
+
+.boards-content:hover {
+  border: 1px solid #3EABF0;
+  box-shadow: 0px 0px 10px #3EABF0;
+}
+
+.os-threads-header {
+  max-height: 200px;
+  margin: 0px 160px;
+  padding: 40px;
+  background-image: url("https://s3.amazonaws.com/solomid-resources/overwatch/community/community_header.png");
+  text-align: left;
+
+  .header-text {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+    margin-bottom: 0px;
+  }
+  @media screen and (min-width: $BP_LG) {
+    padding: 65px 160px;
+  }
+}
+
+.os-threads-list-container {
+  margin: 0px 160px;
+  padding: 30px;
+  background-color: $WHITE_1;
+  min-height: 800px;
+
+  @media screen and (min-width: $BP_LG) {
+    padding: 30px 160px;
+    margin: 0 160px;
+  }
+  @media screen and (max-width: $BP_SM) {
+    padding: 15px !important;
+  }
+  .os-threads-header-nav1 {
+    width: 100%;
+    min-height: 77px;
+    border-radius: 5px;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.35);
+    background-color: $GRAY_4;
+    padding: 15px;
+
+    .os-threads-search-nav{
+      float: left;
+      width: 35%;
+      min-width: 325px;
+
+      @media screen and (max-width: $BP_SM) {
+        width: 100%;
+        margin-bottom: 20px;
+        display: block;
+        min-width: none;
+        float: none;
+      }
+    }
+    .os-threads-new {
+      float:right;
+
+      @media screen and (max-width: $BP_SM) {
+        float: none;
+      }
+    }
+  }
+  .os-threads-header-nav2 {
+    margin-top: 30px;
+    height: 35px;
+    border-bottom: 1px solid $GRAY_1;
+
+    .os-page-path{
+      float: left;
+      font-size: 12px;
+      font-weight: bold;
+      .path1 {
+        color: $GRAY_4;
+      }
+      .path2 {
+        color: $BLUE_1;
+      }
+    }
+    .os-threads-sortby{
+      float: right;
+      font-size: 14px;
+      font-weight: bold;
+
+      .sort-item {
+        cursor: pointer;
+        color: $GRAY_4;
+        margin:0px 15px;
+        padding-bottom: 10px;
+      }
+      .sort-item:hover{
+        color: $BLUE_1;
+      }
+      .sort-item.active {
+        color: $BLUE_1;
+        border-bottom: 4px solid $BLUE_1;
+      }
+    }
+  }
+
+  .os-threads-list-body{
+    margin-bottom: 30px;
+
+    .os-thread{
+      display: inline-block;
+      width: 100%;
+      margin-top: 15px;
+      padding: 30px 32px 26px 32px;
+      background-color: $WHITE;
+      border: $GRAY_2 solid 1px;
+      border-radius: 5px;
+      box-shadow: 0px 2px 2px 0 rgba(0, 0, 0, 0.1);
+
+      .os-thread-avatar {
+        width: 40px;
+        height: 40px;
+        float: left;
+        margin-right: 10px;
+        border-radius: 50%;
+      }
+      .os-thread-meta{
+        display: inline-block;
+
+        .os-thread-title {
+          font-weight: bold;
+          font-size: 18px;
+          color: $BLACK_2;
+          margin-bottom: 4px;
+        }
+        .os-thread-time {
+          font-size: 12px;
+          color: $GRAY_3;
+        }
+        .os-thread-author{
+          color: $GRAY_3;
+          font-size: 12px;
+          font-weight: bold;
+        }
+      }
+
+      .os-thread-stats{
+        float: right;
+        margin-top: 10px;
+        span{
+          font-size: 14px;
+          color: $GRAY_4;
+          margin-right: 30px;
+          i{
+            margin-right:6px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.os-singlethread-list-container{
+  margin: 0px 160px;
+  padding: 30px 160px;
+  background-color: $WHITE_1;
+  min-height: 800px;
+
+  @media screen and (max-width: $BP_LG) {
+    padding: 30px;
+  }
+  .os-singlethread-header{
+    margin-top: 30px;
+    height: 35px;
+    border-bottom: 1px solid $GRAY_1;
+
+    .os-page-path{
+      float: left;
+      font-size: 12px;
+      font-weight: bold;
+
+      .path1 {
+        color: $GRAY_4;
+      }
+      .path2 {
+        color: $BLUE_1;
+      }
+    }
+  }
+  .os-singlethread-footer{
+    margin-top: 30px;
+
+    .os-reply-form{
+      padding: 30px 32px 26px 32px;
+      background-color: $WHITE;
+      border: $GRAY_2 solid 1px;
+      border-radius: 5px;
+      box-shadow: 0px 2px 2px 0 rgba(0, 0, 0, 0.1);
+      margin: auto;
+      max-width: 600px;
+
+      .os-modal-description {
+        font-weight: 100;
+
+        b {
+          font-weight: normal;
+        }
+      }
+    }
+  }
+  .os-singlethread-body {
+    display: flex;
+
+    @media screen and (max-width: $BP_SM) {
+      display: block;
+    }
+
+    .os-comment-list{
+      width: 75%;
+
+      @media screen and (max-width: $BP_SM) {
+        width: 100%;
+      }
+      .os-thread{
+        display: flex;
+        width: 100%;
+        margin-top: 15px;
+        margin-bottom: 30px;
+        padding: 30px 32px 26px 32px;
+        background-color: $WHITE;
+        border: $GRAY_2 solid 1px;
+        border-radius: 5px;
+        box-shadow: 0px 2px 2px 0 rgba(0, 0, 0, 0.1);
+
+        @media screen and (max-width: $BP_SM) {
+          margin-bottom: 15px;
+        }
+        .os-thread-avatar {
+          width: 40px;
+          height: 40px;
+          float: left;
+          margin-right: 10px;
+          border-radius: 50%;
+        }
+        .os-thread-meta{
+          display: inline-block;
+          .os-thread-title {
+            font-weight: bold;
+            font-size: 18px;
+            color: $BLACK_2;
+            margin-bottom: 4px;
+          }
+          .os-thread-time {
+            font-size: 12px;
+            color: $GRAY_3;
+          }
+          .os-thread-author{
+            color: $GRAY_3;
+            font-size: 12px;
+            font-weight: bold;
+          }
+          .os-thread-content{
+            margin-top: 22px;
+            font-size: 14px;
+            color: $GRAY_4;
+          }
+        }
+      }
+
+      .os-comment{
+        position: relative;
+        display: flex;
+        width: 100%;
+        margin-top: 15px;
+        padding: 30px 32px 26px 32px;
+        background-color: $WHITE;
+        border: $GRAY_2 solid 1px;
+        border-radius: 5px;
+        box-shadow: 0px 2px 2px 0 rgba(0, 0, 0, 0.1);
+
+        .os-comment-avatar {
+          margin-right: 10px;
+        }
+        .os-comment-meta{
+          display: inline-block;
+          .os-comment-time {
+            font-size: 12px;
+            color: $GRAY_3;
+          }
+          .os-comment-author{
+            color: $GRAY_4;
+            font-size: 12px;
+            font-weight: bold;
+          }
+          .os-comment-content{
+            margin-top: 22px;
+            font-size: 14px;
+            color: $GRAY_4;
+          }
+        }
+
+        .os-comment-ed-control{
+          position: absolute;
+          bottom: 12px;
+          right: 24px;
+        }
+      }
+    }
+    .os-singlethread-actions {
+      width: 25%;
+      margin-left: 30px;
+
+      @media screen and (max-width: $BP_SM) {
+        width: 100%;
+        margin-left: 0;
+      }
+      .os-thread-stats{
+        text-align: center;
+        margin-top: 15px;
+        padding: 15px 15px;
+        background-color: #FFFFFF;
+        border: #DDE1E8 solid 1px;
+        border-radius: 5px;
+        box-shadow: 0px 2px 2px 0 rgba(0, 0, 0, 0.1);
+
+        .os-thread-views {
+          font-size: 14px;
+          color: $GRAY_4;
+          margin: 0px 10px;
+
+          i{
+            margin-right:6px;
+          }
+        }
+        .os-thread-attenders {
+          font-size: 14px;
+          color: $GRAY_4;
+          margin: 0px 10px;
+
+          i{
+            margin-right:6px;
+          }
+        }
+      }
+      .os-thread-reply{
+        margin-top: 15px;
+        margin-left:-3px;
+        margin-right: 3px;
+
+        button {
+          width: 100%;
+          padding: 16px 30px;
+          border-radius: 5px;
+          font-weight: normal;
+        }
+      }
+      .os-thread-favorite{
+        margin-top: 15px;
+        margin-left:-3px;
+        margin-right: 3px;
+        button {
+          width: 100%;
+          padding: 16px 30px;
+          border-radius: 5px;
+          font-weight: normal;
+        }
+      }
+    }
+  }
+}
+
+.os-comment-item-votes-non-active {
+  cursor: pointer;
+}
+.os-comment-item-votes-active {
+  cursor: default;
+}
+.os-comment-voted-up{
+  color: $WHITE !important;
+  background-color: $GREEN_1;
+}
+.os-comment-voted-down{
+  color: $WHITE !important;
+  background-color: $RED_1;
+}
+.os-comment-vote-up {
+  display: inline-block;
+  margin-right: 10px;
+  text-align: center;
+  color: $GREEN_1;
+  border: $GREEN_1 solid 1px;
+  border-radius: 3px;
+  font-size: 10px;
+  padding: 6px 10px;
+}
+.os-comment-vote-up:hover {
+  color: $WHITE;
+  background-color: $GREEN_1;
+}
+.os-comment-vote-down {
+  display: inline-block;
+  margin-right: 10px;
+  text-align: center;
+  color: $RED_1;
+  border: $RED_1 solid 1px;
+  border-radius: 3px;
+  font-size: 10px;
+  padding: 6px 10px;
+}
+.os-comment-vote-down:hover {
+  color: $WHITE;
+  background: $RED_1;
+}
+.os-comment-btn-gray{
+  display: inline-block;
+  margin-right: 10px;
+  text-align: center;
+  color: $GRAY_3;
+  border: $GRAY_3 solid 1px;
+  border-radius: 3px;
+  font-size: 10px;
+  padding: 6px 10px;
+}
+.os-comment-btn-gray:hover{
+  cursor: pointer;
+  color: $WHITE;
+  background: $GRAY_3;
+}

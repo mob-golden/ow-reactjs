@@ -35,3 +35,5 @@ node_modules
 # Random system files
 .DS_Store
 *.sw*
+
+yarn.lock

@@ -74,9 +74,9 @@ class HeroMatchupsPage extends Component {
       dispatch(fetchMatchupsIfNeeded(nextHeroKey));
     }
   }
-  
+
   render () {
-    
+
     const {
       children,
       matchups,
@@ -111,14 +111,14 @@ class HeroMatchupsPage extends Component {
     return (
       <div className="os-card-container os-hero-matchups-container">
         <div className="row">
-          <div className="os-card-col os-hero-matchups-col">
+          <div className="os-card-col os-hero-matchups-col os-card-separated-subcards">
           { this.renderModal('positive', heroKey, heroName) }
             <div className="os-card-body os-hero-matchups-body">
               <span className="os-matchups-hero-name">
-                {changeCase.upper(heroName)}  
+                {changeCase.upper(heroName)}
               </span>
               <h5 className="os-matchups-title">COUNTERS</h5>
-              
+
                 <MatchupList
                   heroKey={heroKey}
                   matchups={
@@ -132,8 +132,7 @@ class HeroMatchupsPage extends Component {
               <div className="row center-text">
                 <button
                   className="btn btn-primary os-btn-blue"
-                  data-toggle="modal"
-                  data-target={`#modal-add-matchup-positive`}
+                  onClick={this.handleAddMatchup.bind(null,'positive')}
                 >
                   ADD A MATCHUP
                 </button>
@@ -146,14 +145,14 @@ class HeroMatchupsPage extends Component {
               </div>
             </div>
           </div>
-          <div className="os-card-col os-hero-matchups-col">
+          <div className="os-card-col os-hero-matchups-col os-card-separated-subcards">
             { this.renderModal('negative', heroKey, heroName) }
             <div className="os-card-body os-hero-matchups-body">
               <span className="os-matchups-hero-name">
                 {changeCase.upper(heroName)} IS
               </span>
               <h5 className="os-matchups-title">COUNTERED BY</h5>
-              
+
                 <MatchupList
                   heroKey={heroKey}
                   matchups={
@@ -167,8 +166,7 @@ class HeroMatchupsPage extends Component {
               <div className="row center-text">
                 <button
                   className="btn btn-primary os-btn-blue"
-                  data-toggle="modal"
-                  data-target={`#modal-add-matchup-negative`}
+                  onClick={this.handleAddMatchup.bind(null,'negative')}
                 >
                   ADD A MATCHUP
                 </button>
@@ -181,14 +179,14 @@ class HeroMatchupsPage extends Component {
               </div>
             </div>
           </div>
-          <div className="os-card-col os-hero-matchups-col">
+          <div className="os-card-col os-hero-matchups-col os-card-separated-subcards">
             { this.renderModal('teamup', heroKey, heroName) }
             <div className="os-card-body os-hero-matchups-body">
               <span className="os-matchups-hero-name">
-                {changeCase.upper(heroName)} CAN
+                {changeCase.upper(heroName)}
               </span>
-              <h5 className="os-matchups-title">TEAM WITH</h5>
-              
+              <h5 className="os-matchups-title">SYNERGIZES WITH</h5>
+
                 <MatchupList
                   heroKey={heroKey}
                   matchups={
@@ -202,8 +200,7 @@ class HeroMatchupsPage extends Component {
               <div className="row center-text">
                 <button
                   className="btn btn-primary os-btn-blue"
-                  data-toggle="modal"
-                  data-target={`#modal-add-matchup-teamup`}
+                  onClick={this.handleAddMatchup.bind(null,'teamup')}
                 >
                   ADD A MATCHUP
                 </button>
@@ -221,14 +218,21 @@ class HeroMatchupsPage extends Component {
     );
   };
 
+  handleAddMatchup = (type)=>{
+    const localToken = localStorage.getItem('token');
+    if(!localToken){
+      $('#sign-in').modal('show');
+    }
+    else{
+      $(`#modal-add-matchup-${type}`).modal('show');
+    }
+  }
+
   renderModal = (type, heroKey, heroName) => {
     const {
       dispatch,
       token
     } = this.props;
-    this._tipsBox = {
-      type: {}
-    };
     if(token){
       const title = `NEW MATCHUP FOR ${changeCase.upper(heroName)}`;
       let description = '';
@@ -241,7 +245,7 @@ class HeroMatchupsPage extends Component {
       return (
         <div>
           <form>
-            <Modal 
+            <Modal
               id={`modal-add-matchup-${type}`}
             >
               <fieldset className="os-modal-form-group-1">
@@ -286,7 +290,7 @@ class HeroMatchupsPage extends Component {
             } = hero;
 
             return (
-              <Link 
+              <Link
                 onClick={e => {this.addMatchupHero(id, type); return false;}}
                 key={id}
               >
@@ -300,7 +304,7 @@ class HeroMatchupsPage extends Component {
                     src={image}
                   />
                 </div>
-              </Link>   
+              </Link>
             );
           })
         }

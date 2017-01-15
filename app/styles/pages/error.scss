@@ -1,0 +1,24 @@
+.os-error {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &--content {
+  }
+  &--half-right {
+    @media screen and (min-width: $BP_MD) {
+      width: 49%;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+  &--bastion {
+    max-width: 100%;
+
+    @media screen and (max-width: $BP_MD) {
+      display: none;
+    }
+
+  }
+}
