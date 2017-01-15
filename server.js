@@ -28,9 +28,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    httpOnly : false,
-    maxAge: COOKIE_MAX_AGE,
-    secure: false
+    httpOnly : false
   }
 }));
 app.use(compression());
