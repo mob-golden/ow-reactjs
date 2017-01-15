@@ -6,9 +6,9 @@
   "scripts": {
     "build": "webpack -p --config webpack.config.prod.js",
     "postinstall": "postinstall-build \"npm run build\"",
-    "dev": "NODE_ENV=development AUTH_ID=discussAPI AUTH_SECRET=TSMwantsyou! webpack-dev-server --progress --inline --hot --history-api-fallback",
+    "dev": "webpack-dev-server --progress --inline --hot --history-api-fallback",
     "start": "NODE_ENV=production node server",
-    "db": "NODE_ENV=development DEBUG=app:log AUTH_ID=discussAPI AUTH_SECRET=TSMwantsyou! nodemon --ignore app --ignore dist --exec babel-node server",
+    "db": "nodemon --ignore app --ignore dist --exec babel-node server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "private": true,
