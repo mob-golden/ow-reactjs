@@ -28,15 +28,15 @@ const TabsNav = props => {
 
         const renderLink = () => {
           return (
-            <a
+            <Link
               className="os-nav-link os-font-size-12"
-              href={link}
+              to={link}
             >
               <div className={`os-tab-item-${label} os-tab-icon`}></div>
               <div className="os-tab-text">
                 {label}
               </div>
-            </a>
+            </Link>
           );
         };
 
