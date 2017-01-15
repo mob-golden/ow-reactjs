@@ -76,4 +76,29 @@
       }
     }
   }
+
+}
+.os-card {
+  &--pagenotfound {
+    min-height: 340px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+    border: solid 1px #dde1e8;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @media screen and (min-width: $BP_MD) {
+      height: 350px;
+    }
+  }
+  &--pagenotfound-left {
+    @media screen and (min-width: $BP_MD) {
+      width: 50%;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
 }
