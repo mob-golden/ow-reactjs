@@ -67,9 +67,9 @@ module.exports =  function(app){
       }
     }
     app.use('/api', function(req, res) {
-        var url =  OW_API_ROOT + req.url;
-        handleProxy(url,req,res);
-      });
+      var url =  OW_API_ROOT + req.url;
+      handleProxy(url,req,res);
+    });
     app.use('/communityapi',function(req,res){
       var url =  OW_COMMUNITY_URL + req.url;
       handleProxy(url,req,res);

@@ -80,12 +80,15 @@ class MapRankingsList extends Component {
               className="col-lg-4"
               key={mapKey}
             >
-            <Link to={`/maprankingtips/${heroKey}/${mapKey}`}>
               <div className="os-map">
-                <div className="os-map-overlay">VIEW TIPS</div>
+                <Link to={`/maprankingtips/${heroKey}/${mapKey}`} className="os-map-overlay">
+                  VIEW TIPS
+                </Link>
                 <div className="os-map-profile">
-                  <span className="os-map-profile-type">{changeCase.upper(MAPS_HASH[mapType])}</span>
-                  <h5 className="os-map-profile-title">{name}</h5>
+                  <Link to={`/maprankingtips/${heroKey}/${mapKey}`}>
+                    <span className="os-map-profile-type">{changeCase.upper(MAPS_HASH[mapType])}</span>
+                    <h5 className="os-map-profile-title">{name}</h5>
+                  </Link>
                   <div className="os-map-vote-group">
                     <span
                       className={upvotesClass}
@@ -105,16 +108,13 @@ class MapRankingsList extends Component {
                     </span>
                   </div>
                 </div>
-                <Link to={`/maprankingtips/${heroKey}/${mapKey}`}>
-                  <img
-                    width="100%"
-                    height="212"
-                    className="os-map-image"
-                    src={image}
-                  />
-                </Link>
+                <img
+                  width="100%"
+                  height="212"
+                  className="os-map-image"
+                  src={image}
+                />
               </div>
-            </Link>
             </div>
           );
         })}

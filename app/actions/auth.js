@@ -87,6 +87,7 @@ export function signIn (email, password) {
         } else {
           const {
             access_token: token,
+            groups,
             user: {
               // email,
               id: userId,
@@ -94,6 +95,7 @@ export function signIn (email, password) {
             }
           } = json;
 
+          localStorage.setItem('groups', groups );
           localStorage.setItem('token', token);
           localStorage.setItem('username', username);
           localStorage.setItem('userId', userId);

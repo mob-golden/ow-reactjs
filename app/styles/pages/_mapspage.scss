@@ -15,6 +15,7 @@
   margin:0px -8px;
 }
 .os-map {
+  cursor: pointer;
   box-shadow: rgba(0,0,0,0.1) 0px 2px 2px 0px;
   position: relative;
   margin: 0px -8px 20px -8px;
@@ -71,8 +72,13 @@
   height: 58px;
 }
 
+.os-map:hover a{
+  text-decoration: none;
+}
+
 .os-map-overlay {
   color: white;
+  text-decoration: none;
   background-color: #3EABF0;
   position: absolute;
   height: 150px;
@@ -87,6 +93,8 @@
 }
 
 .os-map:hover .os-map-overlay {
+  color: white;
+  text-decoration: none;
   display: block;
 }
 
