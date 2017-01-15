@@ -18,6 +18,7 @@ import MapTipsPage from '../components/pages/map/maptipspage';
 import CommunityPage from '../components/pages/community/communitypage';
 import ThreadsListPage from '../components/pages/thread/threadslistpage';
 import SingleThreadPage from '../components/pages/thread/singlethreadpage';
+import PageNotFound from '../components/pages/notfound/PageNotFound';
 
 export const routes = (
   <Route path="/" component={Root} >
@@ -47,6 +48,7 @@ export const routes = (
     <Route path="/community" component={CommunityPage} />
     <Route path="/community/:commType" component={ThreadsListPage} />
     <Route path="/community/:commType/:threadId" component={SingleThreadPage} />
+    <Route status={404} path="*" component={PageNotFound} />
   </Route>
 );
 

@@ -28,8 +28,8 @@ app.use(session({
   resave: true,
   rolling : true,
   saveUninitialized: false,
-  cookie: { 
-    httpOnly : false, 
+  cookie: {
+    httpOnly : false,
     maxAge: COOKIE_MAX_AGE,
     secure: false
   }
@@ -259,12 +259,12 @@ app.get('/community/:commType/:threadId', handleRender);
 
 apiRoutes(app);
 app.all('*', send404);
+var indexFile = process.env.NODE_ENV === 'development' ? path.join(__dirname, '/app/index.dev.html') : path.join(__dirname, '/dist/index.html');
 
 function send404 (req, res) {
   res.setHeader('Cache-Control', `max-age=${S_IN_YR}`);
-  res.status(404).send('Not found.');
+  res.status(404).sendFile(indexFile);
 }
-var indexFile = process.env.NODE_ENV === 'development' ? path.join(__dirname, '/app/index.dev.html') : path.join(__dirname, '/dist/index.html');
 function handleRender(req, res) {
   debug(`req.session.id is ${req.session.id}`)
   match({ routes, location: req.url }, function(error, redirectLocation, renderProps) {
@@ -282,7 +282,7 @@ function handleRender(req, res) {
       }
   } else {
       debug("[match]: Not found");
-      res.status(404).send('Not found');
+      res.status(404).sendFile(indexFile);
     }
   });
 }
