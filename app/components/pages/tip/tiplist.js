@@ -97,14 +97,6 @@ class TipList extends Component {
           });
 
 
-          // let tipTextLongHelper = null;
-          // if (content.length > 800) 
-          //   tipTextLongHelper = <div className="os-counter-tip-footer clearfix os-counter-tip-text-long-helper">Click tip to expand</div>;
-
-          // let tipTextShortHelper = null;
-          // if (content.length > 800) 
-          //   tipTextShortHelper = <div className="os-counter-tip-footer clearfix os-counter-tip-text-short-helper">Click tip again to shrink</div>;
-
           let osTipOnClick = (e) => this.toggleTipShowMore(e);
           const contentElement = (
             <div>
@@ -116,8 +108,6 @@ class TipList extends Component {
                 }}
               >
               </p>
-              {/*tipTextLongHelper*/}
-              {/*tipTextShortHelper*/}
               <div className="os-counter-tip-footer clearfix">
                 <span className="os-counter-tip-metadata">by <span className="os-counter-tip-author">{name}</span></span>
               </div>
@@ -137,7 +127,6 @@ class TipList extends Component {
                     onClick={this.handleVote.bind(null, id, 'upvote')}
                   ></i>
                 </div>
-                {/* <span className={`jq-counter-tip-${id} hidden-xs-up`}></span> */}
                 <p className={`os-counter-tip-total-alt jq-counter-tip-${id}`}>{scoreTotal}</p>
                 <div className="os-counter-tip-vote-alt os-counter-tip-downvote-alt">
                   <i
@@ -220,10 +209,28 @@ class TipList extends Component {
       $(selector).next().find('i').removeClass('os-counter-tip-vote-non-active-alt');
     
       votes[id] = downOrUp;
+
       localStorage.setItem('tipVotes', JSON.stringify(votes));
+
+      this.sortTipListIfNeeded(id, downOrUp);
     }
   };
 
+  sortTipListIfNeeded = (id, downOrUp) => {
+    var index = this.props.tips.findIndex(x => x._id === id);
+
+    if(downOrUp == "upvote" && index > 0){
+      this.props.tips[index].score.total++;
+    }
+    if(downOrUp == "downvote" && index < tips.length-1){
+      this.props.tips[index].score.total--;
+    }
+
+    this.props.tips.sort((a,b) => {
+      return b.score.total - a.score.total;
+    });
+    this.forceUpdate();
+  }
 
   renderEditModal = () => {
     const {
