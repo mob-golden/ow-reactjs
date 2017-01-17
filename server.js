@@ -2,8 +2,11 @@ require('babel-register');
 var path = require('path');
 var express = require('express');
 var session = require('express-session');
+var RedisStore = require('connect-redis')(session);
+var redis = require('redis');
 var bodyParser = require('body-parser');
 var sendgrid = require('sendgrid');
+var FastlyPurge = require('fastly-purge');
 var compression = require('compression');
 var fetch = require('isomorphic-fetch');
 var qs = require('querystring');
@@ -19,11 +22,18 @@ var apiRoutes = require('./routes');
 var app = express();
 var port = process.env.PORT || 3000;
 var staticPath = isDevelopment ? path.join(__dirname, '/app') : path.join(__dirname, '/dist');
+var overwatchHost = process.env.OVERWATCH_HOST || "https://overwatch-select-api-prod.herokuapp.com";
+//TODO var fastlyPurge = new FastlyPurge(`${process.env.FASTLY_API_KEY}`);
 const S_IN_YR = 31536000;
 
 app.use(express.static(staticPath, { maxAge: S_IN_YR }));
 app.use(session({
-  secret: 'keyboard cat',
+    store: new RedisStore({
+    host: `${process.env.REDIS_HOST}`,
+    port: `${process.env.REDIS_PORT}`,
+    pass: `${process.env.REDIS_PASS}`
+  }),
+  secret: 'tsm#tsm#1wha',
   resave: false,
   saveUninitialized: false,
   cookie: {
@@ -45,6 +55,22 @@ function redirectWww(req, res, next) {
   }
   next();
 }
+
+/*app.get('/updatecache', function (req, res) {
+  console.log('success');
+  const FastlyURL = `http://overwatchelite.net/tips` // 5 min
+  console.log(FastlyURL);
+  fastlyPurge.url(FastlyURL, (err, result) => {
+    if (err) {
+      // handle err
+      console.log('ERR', err);
+    } else {
+      console.log('success2');
+      console.log(result);
+    }
+  })
+
+});*/
 
 app.post('/forgot', function (req, res) {
   const {
@@ -260,23 +286,23 @@ app.post('/signout', function(req, res) {
   return res.json('signed out');
 });
 
-app.get('/', handleRender);
-app.get('/heroes', handleRender);
-app.get('/heroes/:heroType', handleRender);
-app.get('/hero/:heroKey', handleRender);
-app.get('/hero/:heroKey/generaltips', handleRender);
-app.get('/hero/:heroKey/matchups', handleRender);
-app.get('/hero/:heroKey/maprankings', handleRender);
-app.get('/maprankingtips/:heroKey/:mapKey', handleRender);
-app.get('/matchups/:heroKey/:matchupHeroKey/:matchupType', handleRender);
-app.get('/maps', handleRender);
-app.get('/maps/:mapType', handleRender);
-app.get('/map/:mapKey', handleRender);
-app.get('/forgot', handleRender);
-app.get('/reset', handleRender);
-app.get('/community', handleRender);
-app.get('/community/:commType', handleRender);
-app.get('/community/:commType/:threadId', handleRender);
+app.get('/', getHandleRender(true, 31536000));
+app.get('/heroes', getHandleRender(true, 31536000));
+app.get('/heroes/:heroType', getHandleRender(true, 31536000));
+app.get('/hero/:heroKey', getHandleRender(true, 120000));
+app.get('/hero/:heroKey/generaltips', getHandleRender(true, 120000));
+app.get('/hero/:heroKey/matchups', getHandleRender(true, 120000));
+app.get('/hero/:heroKey/maprankings', getHandleRender(true, 120000));
+app.get('/maprankingtips/:heroKey/:mapKey', getHandleRender(true, 120000));
+app.get('/matchups/:heroKey/:matchupHeroKey/:matchupType', getHandleRender(true, 120000));
+app.get('/maps', getHandleRender(true, 31536000));
+app.get('/maps/:mapType', getHandleRender(true, 31536000));
+app.get('/map/:mapKey', getHandleRender(true, 120000));
+app.get('/forgot', getHandleRender(true, 31536000));
+app.get('/reset', getHandleRender(true, 31536000));
+app.get('/community', getHandleRender(true, 31536000));
+app.get('/community/:commType', getHandleRender(true, 120000));
+app.get('/community/:commType/:threadId', getHandleRender(true, 120000));
 
 
 apiRoutes(app);
@@ -287,26 +313,33 @@ function send404 (req, res) {
   res.setHeader('Cache-Control', `max-age=${S_IN_YR}`);
   res.status(404).sendFile(indexFile);
 }
-function handleRender(req, res) {
-  debug(`req.session.id is ${req.session.id}`)
-  match({ routes, location: req.url }, function(error, redirectLocation, renderProps) {
-    if (error) {
-      debug("[match]: error", error);
-      res.status(500).send(error.message)
-    } else if (redirectLocation) {
-      debug("[match]: redirectLocation", redirectLocation);
-      res.redirect(302, redirectLocation.pathname + redirectLocation.search)
-    } else if (renderProps) {
-      if (typeof renderProps.routes[1] !== 'undefined' && renderProps.routes[1].status === 404) {
-        res.status(404).sendFile(indexFile);
+
+function getHandleRender(cache, duration) {
+  return function handleRender(req, res) {
+      debug(`req.session.id is ${req.session.id}`)
+      match({ routes, location: req.url }, function(error, redirectLocation, renderProps) {
+        if (error) {
+          debug("[match]: error", error);
+          res.status(500).send(error.message)
+        } else if (redirectLocation) {
+          debug("[match]: redirectLocation", redirectLocation);
+          res.redirect(302, redirectLocation.pathname + redirectLocation.search)
+        } else if (renderProps) {
+          if (typeof renderProps.routes[1] !== 'undefined' && renderProps.routes[1].status === 404) {
+            res.setHeader('Cache-Control', `max-age=${S_IN_YR}`);
+            res.status(404).sendFile(indexFile);
+          } else {
+            if(cache)
+              res.setHeader('Cache-Control', `max-age=${duration}`);
+            res.sendFile(indexFile);
+          }
       } else {
-        res.sendFile(indexFile);
-      }
-  } else {
-      debug("[match]: Not found");
-      res.status(404).sendFile(indexFile);
-    }
-  });
+          debug("[match]: Not found");
+          res.setHeader('Cache-Control', `max-age=${S_IN_YR}`);
+          res.status(404).sendFile(indexFile);
+        }
+    });
+  }
 }
 
 function constructHeaders (data) {

@@ -1,24 +1,12 @@
 import React from 'react';
-
 import Header from '../components/header';
 import Footer from '../components/footer';
+import { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { fetchHeroesIfNeeded } from '../actions/hero';
+import { fetchMapsIfNeeded } from '../actions/map';
 
-import {
-  Component,
-  PropTypes
-} from 'react';
-
-import {
-  connect
-} from 'react-redux';
-
-import {
-  fetchHeroesIfNeeded
-} from '../actions/hero';
-import {
-  fetchMapsIfNeeded
-} from '../actions/map';
-
+//TODO import { updateCache } from '../actions/cache';
 
 class Root extends Component {
   static propTypes = {
@@ -32,6 +20,7 @@ class Root extends Component {
 
     dispatch(fetchHeroesIfNeeded());
     dispatch(fetchMapsIfNeeded());
+//TODO    dispatch(updateCache());
   }
 
   render () {
