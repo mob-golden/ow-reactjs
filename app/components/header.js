@@ -337,26 +337,21 @@ class Header extends Component {
           <li>
             <Link className="os-mobile-link" to="/maps">Maps</Link>
           </li>
-          <li>
+          <li className="os-mobile-link">
             <a
               className="os-white os-font-size-12"
-              data-toggle="modal"
-              data-target={`#${signInId}`}
               href="javascript:;"
-            >
-              LOG IN
-            </a>
+            >{username}</a>
           </li>
-          <li>
+
+          <li className="os-mobile-link">
             <a
               className="os-white os-font-size-12"
-              data-toggle="modal"
-              data-target={`#${signUpId}`}
               href="javascript:;"
-            >
-              SIGN UP
-            </a>
+              onClick={this.signOut}
+            >Log out</a>
           </li>
+
         </ul>
       );
     }
@@ -371,7 +366,7 @@ class Header extends Component {
         </li>
         <li>
           <a
-            className="os-white os-font-size-12"
+            className="os-mobile-link"
             data-toggle="modal"
             data-target={`#${signInId}`}
             href="javascript:;"
@@ -381,7 +376,7 @@ class Header extends Component {
         </li>
         <li>
           <a
-            className="os-white os-font-size-12"
+            className="os-mobile-link"
             data-toggle="modal"
             data-target={`#${signUpId}`}
             href="javascript:;"

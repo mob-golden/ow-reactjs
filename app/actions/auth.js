@@ -87,6 +87,7 @@ export function signIn (email, password) {
         } else {
           const {
             access_token: token,
+            groups,
             user: {
               // email,
               id: userId,
@@ -97,6 +98,7 @@ export function signIn (email, password) {
           localStorage.setItem('token', token);
           localStorage.setItem('username', username);
           localStorage.setItem('userId', userId);
+          localStorage.setItem('userIsAdmin', groups.indexOf('tsmAdmins') > -1 );
 
           // TODO: return?
           dispatch(signInSuccess({token, username}));
@@ -131,6 +133,7 @@ export function signOut () {
   localStorage.removeItem('token');
   localStorage.removeItem('username');
   localStorage.removeItem('userId');
+  localStorage.removeItem('userIsAdmin');
 
   deleteAllCookies();
   fetch(SIGN_OUT_URL,{

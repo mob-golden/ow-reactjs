@@ -1,12 +1,12 @@
 //================= OVERWATCH BACKEND API ===============================//
 export const OW_API_ROOT = `https://overwatch-select-api-prod.herokuapp.com`;
-export const OW_HEROES_URL = `${OW_API_ROOT}/heroes`;
-export const OW_MAPS_URL = `${OW_API_ROOT}/maps`;
-export const OW_COUNTER_TIPS_URL = `${OW_API_ROOT}/countertips`;
-export const OW_HERO_URL = `${OW_API_ROOT}/hero`;
-export const OW_MAP_URL = `${OW_API_ROOT}/map`;
-export const OW_TIPS_URL = `${OW_API_ROOT}/tips`;
-export const OW_MATCHUPS_URL = `${OW_API_ROOT}/matchups`;
+export const OW_HEROES_URL = `${OW_API_ROOT}/heroes`; // 30 days
+export const OW_MAPS_URL = `${OW_API_ROOT}/maps`; // 30 days
+export const OW_COUNTER_TIPS_URL = `${OW_API_ROOT}/countertips`; // 5 min
+export const OW_HERO_URL = `${OW_API_ROOT}/hero`; // 30 days
+export const OW_MAP_URL = `${OW_API_ROOT}/map`; // 30 days
+export const OW_TIPS_URL = `${OW_API_ROOT}/tips`; // 5 min
+export const OW_MATCHUPS_URL = `${OW_API_ROOT}/matchups`; // 5 min
 const debug = require('debug')('app:log');
 
 import request from 'request';
@@ -67,9 +67,9 @@ module.exports =  function(app){
       }
     }
     app.use('/api', function(req, res) {
-        var url =  OW_API_ROOT + req.url;
-        handleProxy(url,req,res);
-      });
+      var url =  OW_API_ROOT + req.url;
+      handleProxy(url,req,res);
+    });
     app.use('/communityapi',function(req,res){
       var url =  OW_COMMUNITY_URL + req.url;
       handleProxy(url,req,res);

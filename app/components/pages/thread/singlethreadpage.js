@@ -293,6 +293,8 @@ class SingleThreadPage extends Component {
     }
 
     const localUsername = localStorage.getItem('username');
+    const localUserIsAdmin = localStorage.getItem('userIsAdmin');
+
     return(
       <div>
       {
@@ -388,10 +390,10 @@ class SingleThreadPage extends Component {
               </div>
               <div className="os-comment-ed-control">
               {
-                localUsername == authorName || localUsername == 'Admin' ?
+                localUsername == authorName || localUserIsAdmin == "true" ?
                   <EditDeleteButton
                     id = {_id}
-                    editable = {localUsername != 'Admin' || localUsername==authorName}
+                    editable = {localUserIsAdmin != "true" || localUsername==authorName}
                     deleteHandle = {this.handleDelete}
                     editHandle = {this.handleEdit}
                   />
