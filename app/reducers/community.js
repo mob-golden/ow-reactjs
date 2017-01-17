@@ -4,11 +4,11 @@ import {
 
 import {
   REQUEST_THREADS,
-  REQUEST_THREADS_SUCCESS,
-  REQUEST_THREADS_FAILURE,
   RECEIVE_THREADS,
   REQUEST_SINGLETHREAD,
-  RECEIVE_SINGLETHREAD
+  RECEIVE_SINGLETHREAD,
+  REQUEST_ALL_THREADS,
+  RECEIVE_ALL_THREADS,
 } from '../actions/community';
 
 import {
@@ -18,8 +18,7 @@ import {
 
 const initialThreadsState = {
   isFetching: false,
-  threads: null,
-  threadsForSearch: null
+  threads: null
 };
 
 function threads (state = initialThreadsState, action) {
@@ -30,24 +29,40 @@ function threads (state = initialThreadsState, action) {
         isFetching: true
       };
     case RECEIVE_THREADS:
-      if(action.commType == 'all'){
-        return {
-          ...state,
-          isFetching:false,
-          threadsForSearch: action.threads
-        };
-      }
-      else {
-        return {
-          ...state,
-          isFetching: false,
-          threads: action.threads
-        };
-      }
+      return {
+        ...state,
+        isFetching: false,
+        threads: action.threads
+      };
     default:
       return state;
   }
 }
+
+
+const initialAllThreadsState = {
+  isFetching: false,
+  allThreads: null
+};
+
+function allThreads (state = initialAllThreadsState, action) {
+  switch (action.type) {
+    case REQUEST_ALL_THREADS:
+      return {
+        ...state,
+        isFetching: true
+      };
+    case RECEIVE_ALL_THREADS:
+      return {
+        ...state,
+        isFetching: false,
+        allThreads: action.threads
+      };
+    default:
+      return state;
+  }
+}
+
 
 const initialSingleThreadState = {
   isFetching: false,
@@ -75,6 +90,7 @@ function singleThread (state = initialSingleThreadState, action) {
 
 const community = combineReducers({
   threads,
+  allThreads,
   singleThread
 });
 

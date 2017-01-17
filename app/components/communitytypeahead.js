@@ -2,7 +2,7 @@ import Fuse from 'fuse.js';
 import React from 'react';
 import classNames from 'classnames';
 import { values } from 'lodash';
-import { fetchThreadsIfNeeded } from '../actions/community';
+import { fetchAllThreadsIfNeeded } from '../actions/community';
 
 import {
   Component,
@@ -31,7 +31,7 @@ class CommunityTypeahead extends Component {
     const {
       dispatch
     } = this.props;
-    dispatch( fetchThreadsIfNeeded('all'));
+    dispatch( fetchAllThreadsIfNeeded());
   }
 
   constructor (props) {
@@ -233,8 +233,8 @@ class CommunityTypeahead extends Component {
 function mapStateToProps (state) {
   const {
     community: {
-      threads: {
-        threadsForSearch: threadsArray,
+      allThreads: {
+        allThreads: threadsArray,
         isFetching: isFetchingThreads
       }
     }
