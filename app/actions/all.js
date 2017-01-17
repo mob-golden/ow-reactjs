@@ -363,7 +363,7 @@ export function addThread ({
 
         // TODO: is this necessary for a POST request?
         if (response.status >= 200 && response.status < 300) {
-          dispatch(fetchThreadsIfNeeded());
+          dispatch(fetchThreadsIfNeeded(type));
           return response;
         } else {
           const error = new Error(statusText);
