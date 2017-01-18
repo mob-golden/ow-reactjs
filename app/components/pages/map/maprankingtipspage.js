@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 
 import TipList from '../tip/tiplist';
 import Loader from '../../loader';
+import PageNotFound from '../notfound/PageNotFound';
 import { addHeroMatchupTip } from '../../../actions/all';
 import { fetchMatchupTipsIfNeeded } from '../../../actions/api';
 import { voteMatchup } from '../../../actions/all';
@@ -103,6 +104,12 @@ class MapRankingTipsPage extends Component {
     const heroKey = changeCase.lower(_heroKey);
     const heroName = heroesHash[heroKey].name;
     const mapKey = changeCase.lower(_mapKey);
+
+    if(!mapsHash[mapKey]){
+      window.location.href="/404";
+      return;
+    }
+    
     const mapName = mapsHash[mapKey].name;
     const mapType = changeCase.upper(mapsHash[mapKey].type);
     const key = heroKey + mapKey;

@@ -10,6 +10,7 @@ import Loader from '../../loader';
 import Typeahead from '../../typeahead';
 import HeroFooter from './herofooter';
 import { adDimensions } from '../../../constants/ads';
+import PageNotFound from '../notfound/PageNotFound';
 
 class SingleHeroPage extends Component {
 
@@ -41,7 +42,7 @@ class SingleHeroPage extends Component {
     }
 
     let activePath = _activePath.split('/').pop();
-    let _generaltips,_heromatchups,_maprankings, _maprankingtips = false;
+    let _generaltips, _heromatchups, _maprankings, _maprankingtips = false;
 
     if(activePath == "matchups" ) _heromatchups = 'active';
     else if(activePath == "maprankings" ) _maprankings = 'active';
@@ -55,6 +56,11 @@ class SingleHeroPage extends Component {
     }
 
     const heroKey = changeCase.lower(_heroKey);
+
+    if(!heroesHash[heroKey]){
+      return (<PageNotFound/>);
+    }
+    
     const {
       id,
       name,

@@ -10,7 +10,9 @@ import Loader from '../../loader';
 import Typeahead from '../../typeahead';
 import HeroFooter from '../hero/herofooter';
 import Modal from '../../modal';
+import PageNotFound from '../notfound/PageNotFound';
 
+import { MATCHUP_TYPES } from '../../../constants/types';
 import { adDimensions } from '../../../constants/ads';
 
 class MatchupTipsPage extends Component {
@@ -41,10 +43,15 @@ class MatchupTipsPage extends Component {
     const matchupHeroKey = changeCase.lower(_matchupHeroKey);
     const matchupType = changeCase.lower(_matchupType);
 
+
     if (isFetchingHeroes && !heroesHash) {
       return <Loader />;
     }
 
+    if(!heroesHash[heroKey] || !heroesHash[matchupHeroKey] || !MATCHUP_TYPES.find(x => x==matchupType)){
+      return (<PageNotFound/>);
+    }
+    
     return (
       <div className="os-body">
         <div className="os-content container">

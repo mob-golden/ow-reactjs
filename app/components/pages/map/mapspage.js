@@ -4,6 +4,7 @@ import changeCase from 'change-case';
 import Loader from '../../loader';
 import TabsNav from '../../tabsnav';
 import MapsGrid from './mapsgrid';
+import PageNotFound from '../notfound/PageNotFound';
 
 import { fetchMapsIfNeeded } from '../../../actions/map';
 
@@ -45,6 +46,9 @@ class MapsPage extends Component {
 
     const mapType = _mapType?changeCase.lower(_mapType):'';
 
+    if(!MAP_TYPES.find(x => x.name == mapType)){
+      return (<PageNotFound/>);
+    }
     return (
       <div className="container os-content">
         <Ad

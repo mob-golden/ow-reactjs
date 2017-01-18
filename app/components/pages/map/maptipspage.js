@@ -66,6 +66,7 @@ class MapTipsPage extends Component {
       return (<Loader/>);
     }
 
+
     const viewAllClassName = classNames({
       'btn btn-secondary os-btn-white':true,
       'hidden': mapTips.data.tips.length < 9

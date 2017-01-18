@@ -9,6 +9,7 @@ import Loader from '../../loader';
 import Typeahead from '../../typeahead';
 import HeroesGrid from './heroesgrid';
 import TabsNav from '../../tabsnav';
+import PageNotFound from '../notfound/PageNotFound';
 
 import { HERO_TYPES } from '../../../constants/types';
 import { adDimensions } from '../../../constants/ads';
@@ -38,6 +39,9 @@ class HomePage extends Component {
     } = this.props;
       
     const heroType = _heroType?changeCase.lower(_heroType):'';
+    if(!HERO_TYPES.find(x => x.name == heroType)){
+      return (<PageNotFound/>);
+    }
     return (
       <div className="os-content container">
         <Ad

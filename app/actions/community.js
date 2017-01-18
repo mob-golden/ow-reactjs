@@ -194,6 +194,10 @@ function fetchSingleThread (threadId, params) {
         if (response.status >= 200 && response.status < 300) {
           return response;
         } else {
+          if(status == 404){
+            window.location.href = "/404";
+            return;
+          }
           const error = new Error(statusText);
           console.log(`Response returned an error for ${url}: ${error.message}`);
 
