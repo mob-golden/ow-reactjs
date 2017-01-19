@@ -1,4 +1,5 @@
 import React from 'react';
+import { RouteTransition } from 'react-router-transition';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import { Component, PropTypes } from 'react';
@@ -31,7 +32,15 @@ class Root extends Component {
     return (
       <div className="os-container container-fluid">
         <Header />
-          {children}
+           <RouteTransition
+            pathname={this.props.location.pathname}
+            atEnter={{ opacity: 0 }}
+            atLeave={{ opacity: 0 }}
+            atActive={{ opacity: 1 }}
+            runOnMount={true}
+          >
+            {children}
+          </RouteTransition>
         <Footer />
       </div>
     );
