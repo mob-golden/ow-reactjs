@@ -32,15 +32,9 @@ class Root extends Component {
     return (
       <div className="os-container container-fluid">
         <Header />
-           <RouteTransition
-            pathname={this.props.location.pathname}
-            atEnter={{ opacity: 0 }}
-            atLeave={{ opacity: 0 }}
-            atActive={{ opacity: 1 }}
-            runOnMount={true}
-          >
-            {children}
-          </RouteTransition>
+          <div className="os-transition">
+            {children}  
+          </div>
         <Footer />
       </div>
     );

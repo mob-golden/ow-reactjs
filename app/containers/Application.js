@@ -25,7 +25,7 @@ export const routes = (
     <IndexRoute component={HomePage} />
     <Route path="/forgot" component={ForgotPassword} />
     <Route path="/reset" component={ResetPassword} />
-    <Route path="/heroes" component={HomePage} />
+    <Route path="/heroes" component={HomePage} onChange={handleChangePage}/>
     <Route path="/heroes/:heroType" component={HomePage} />
 
 
@@ -52,18 +52,22 @@ export const routes = (
   </Route>
 );
 
+function handleChangePage(nextState, replaceState){
+  $('.os-transition').fadeOut(500);
+}
+
+function handlePageView() {
+  $('.os-transition').css('display', 'none');
+  $('.os-transition').fadeIn(500);
+}
+
 export default class Application extends React.Component {
 
-  handlePageView() {
-    if (window !== undefined) {
-      window.scrollTo(0, 0);
-    }
-  }
 
   render () {
     return (
       <Provider store={ this.props.store }>
-        <Router history={ this.props.history } onUpdate={() => this.handlePageView()}>
+        <Router history={ this.props.history } onUpdate={() => handlePageView()}>
           {routes}
         </Router>
       </Provider>
