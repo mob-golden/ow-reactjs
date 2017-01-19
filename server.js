@@ -334,5 +334,5 @@ function constructHeaders (data) {
 }
 
 app.listen(port, function() {
-  	debug('listening')
+    console.info(`🌎  Listening on port ${port} in ${process.env.NODE_ENV} mode on Node ${process.version}.`);
 });
