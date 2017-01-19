@@ -51,13 +51,14 @@ export const routes = (
     <Route status={404} path="*" component={PageNotFound} />
   </Route>
 );
+
 var stateChanged = "page";
 function handleChangePage(prevState, nextState, replaceState, callback){
-  if('heroType' in nextState.params 
+  if(('heroType' in nextState.params 
       || 'mapType' in nextState.params 
       || nextState.location.pathname.includes('generaltips')
       || nextState.location.pathname.includes('matchups')
-      || nextState.location.pathname.includes('maprankings'))
+      || nextState.location.pathname.includes('maprankings')) && $('.os-tab-transition').length != 0)
   {
     stateChanged = "tab";
     $('.os-tab-transition').fadeOut(500, function(){
