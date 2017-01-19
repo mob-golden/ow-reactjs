@@ -1,10 +1,12 @@
 require('babel-register');
+require('dotenv').config();
 var path = require('path');
 var express = require('express');
 var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
 var redis = require('redis');
 var bodyParser = require('body-parser');
+var forceDomain = require('forcedomain');
 var sendgrid = require('sendgrid');
 var FastlyPurge = require('fastly-purge');
 var compression = require('compression');
@@ -23,9 +25,7 @@ var app = express();
 var port = process.env.PORT || 3000;
 var staticPath = isDevelopment ? path.join(__dirname, '/app') : path.join(__dirname, '/dist');
 var overwatchHost = process.env.OVERWATCH_HOST || "https://overwatch-select-api-prod.herokuapp.com";
-//TODO var fastlyPurge = new FastlyPurge(`${process.env.FASTLY_API_KEY}`);
 const S_IN_YR = 31536000;
-
 app.use(express.static(staticPath, { maxAge: S_IN_YR }));
 app.use(session({
     store: new RedisStore({
@@ -48,29 +48,9 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.set('trust proxy', true);
-app.use(redirectWww);
-function redirectWww(req, res, next) {
-  if (!req.headers.host.slice(0, 4) === 'www.') {
-    return res.redirect(301, req.protocol + '://www.' + req.headers.host + req.originalUrl);
-  }
-  next();
-}
-
-/*app.get('/updatecache', function (req, res) {
-  console.log('success');
-  const FastlyURL = `http://overwatchelite.net/tips` // 5 min
-  console.log(FastlyURL);
-  fastlyPurge.url(FastlyURL, (err, result) => {
-    if (err) {
-      // handle err
-      console.log('ERR', err);
-    } else {
-      console.log('success2');
-      console.log(result);
-    }
-  })
-
-});*/
+app.use(forceDomain({
+  hostname: process.env.FORCE_DOMAIN || 'www.overwatchelite.net'
+}));
 
 app.post('/forgot', function (req, res) {
   const {
@@ -262,6 +242,7 @@ app.post('/signup', function (req, res) {
 });
 
 app.get('/checkSession', function(req, res) {
+  res.setHeader('Cache-Control', `max-age=0`)
   debug("Session Checking");
   debug(req.session);
   if(typeof req.session.user_id !== 'undefined' && typeof req.session.token !== 'undefined'){
