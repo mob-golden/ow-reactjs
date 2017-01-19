@@ -138,7 +138,7 @@ class SingleHeroPage extends Component {
                   </div> : null
                 }
 
-                <div className="row">
+                <div className="row os-tab-transition">
                   {children}
                 </div>
               </div>

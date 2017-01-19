@@ -84,7 +84,7 @@ class MatchupList extends Component {
 
           const matchupLink = customType == 'mapMatchup' ? 
                                                     `/hero/${matchupHeroKey}/maprankings` : 
-                                                    `/matchups/${heroKey}/${matchupHeroKey}/${matchupType}`;
+                                                    `/matchuptips/${heroKey}/${matchupHeroKey}/${matchupType}`;
           return (
             <div
               className="os-matchup-item media"

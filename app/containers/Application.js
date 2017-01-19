@@ -37,7 +37,7 @@ export const routes = (
       <Route path="/maprankingtips/:heroKey/:mapKey" component={MapRankingTipsPage}/>
     </Route>
 
-    <Route path="/matchups/:heroKey/:matchupHeroKey/:matchupType" component={MatchupTipsPage}>
+    <Route path="/matchuptips/:heroKey/:matchupHeroKey/:matchupType" component={MatchupTipsPage}>
       <IndexRoute component={MatchupTips} />
     </Route>
 
@@ -51,25 +51,43 @@ export const routes = (
     <Route status={404} path="*" component={PageNotFound} />
   </Route>
 );
-
+var stateChanged = "page";
 function handleChangePage(prevState, nextState, replaceState, callback){
-  $('.os-transition').fadeOut(500, function(){
-    callback();
-  });
+  if('heroType' in nextState.params 
+      || 'mapType' in nextState.params 
+      || nextState.location.pathname.includes('generaltips')
+      || nextState.location.pathname.includes('matchups')
+      || nextState.location.pathname.includes('maprankings'))
+  {
+    stateChanged = "tab";
+    $('.os-tab-transition').fadeOut(500, function(){
+      callback();
+    });
+  }
+  else{
+    stateChanged = "page";
+    $('.os-transition').fadeOut(500, function(){
+      callback();
+    }); 
+  }
 }
 
-function handlePageView() {
-  $('.os-transition').css('display', 'none');
-  $('.os-transition').fadeIn(500);
+function handlePageView(e) {
+  if(stateChanged == "tab"){
+    $('.os-tab-transition').css('display', 'none');
+    $('.os-tab-transition').fadeIn(500);
+  }
+  else{
+    $('.os-transition').css('display', 'none');
+    $('.os-transition').fadeIn(500);  
+  }
 }
 
 export default class Application extends React.Component {
-
-
   render () {
     return (
       <Provider store={ this.props.store }>
-        <Router history={ this.props.history } onUpdate={() => handlePageView()}>
+        <Router history={ this.props.history } onUpdate={handlePageView}>
           {routes}
         </Router>
       </Provider>

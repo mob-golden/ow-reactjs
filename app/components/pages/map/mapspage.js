@@ -80,11 +80,13 @@ class MapsPage extends Component {
                   })}
                 />
               </div>
-              { !isFetchingMaps && mapsArray ? 
-                <MapsGrid
-                  filter={mapType}
-                  maps={mapsArray}
-                /> : <Loader /> } 
+              <div className="os-tab-transition">
+                { !isFetchingMaps && mapsArray ? 
+                  <MapsGrid
+                    filter={mapType}
+                    maps={mapsArray}
+                  /> : <Loader /> } 
+              </div>
             </div>
           </div>
           

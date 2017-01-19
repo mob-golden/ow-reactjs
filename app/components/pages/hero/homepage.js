@@ -38,7 +38,7 @@ class HomePage extends Component {
       }
     } = this.props;
       
-    const heroType = _heroType?changeCase.lower(_heroType):'';
+    const heroType = _heroType?changeCase.lower(_heroType):'all';
     if(!HERO_TYPES.find(x => x.name == heroType)){
       return (<PageNotFound/>);
     }
@@ -77,11 +77,13 @@ class HomePage extends Component {
                   })}
                 />
               </div>
+              <div className="os-tab-transition">
               {!isFetchingHeroes && heroes ?
                 <HeroesGrid
                   filter={heroType}
                   heroes={heroes}
                 /> : <Loader /> } 
+              </div>
             </div>
           </div>
         </div>

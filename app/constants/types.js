@@ -14,8 +14,8 @@ export const HERO_TYPES = [
   {
     'key':0,
     'title':'all heroes',
-    'link': '/heroes',
-    'name': ''
+    'link': '/heroes/all',
+    'name': 'all'
   },
   {
     'key':1,

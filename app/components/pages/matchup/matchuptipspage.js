@@ -89,7 +89,7 @@ class MatchupTipsPage extends Component {
                 </div>
 
                 <div className="col-lg-4 col-xs-4">
-                  <Link to={`/matchups/${matchupHeroKey}/${heroKey}/${matchupType}`}>
+                  <Link to={`/matchuptips/${matchupHeroKey}/${heroKey}/${matchupType}`}>
                     <div className="os-matchup-vs-img">
                     </div>
                   </Link>
@@ -169,12 +169,12 @@ class MatchupTipsPage extends Component {
             <fieldset className="os-modal-form-group-2">
               { isLeft ?
                 <Typeahead
-                  constructLink={(id) => `/matchups/${id}/${otherHeroKey}/${matchupType}`}
+                  constructLink={(id) => `/matchuptips/${id}/${otherHeroKey}/${matchupType}`}
                   inputGroupClass="input-group"
                   placeholder={"Search for a Hero"}
                 />:
                 <Typeahead
-                  constructLink={(id) => `/matchups/${otherHeroKey}/${id}/${matchupType}`}
+                  constructLink={(id) => `/matchuptips/${otherHeroKey}/${id}/${matchupType}`}
                   inputGroupClass="input-group"
                   placeholder={"Search for a Hero"}
                 />
@@ -210,7 +210,7 @@ class MatchupTipsPage extends Component {
 
             return (
               <Link
-                to= {isLeft ? `/matchups/${id}/${otherHeroKey}/${matchupType}`: `/matchups/${otherHeroKey}/${id}/${matchupType}`}
+                to= {isLeft ? `/matchuptips/${id}/${otherHeroKey}/${matchupType}`: `/matchuptips/${otherHeroKey}/${id}/${matchupType}`}
                 key={id}
               >
                 <div
