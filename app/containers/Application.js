@@ -21,11 +21,11 @@ import SingleThreadPage from '../components/pages/thread/singlethreadpage';
 import PageNotFound from '../components/pages/notfound/PageNotFound';
 
 export const routes = (
-  <Route path="/" component={Root} >
+  <Route path="/" component={Root} onChange={handleChangePage}>
     <IndexRoute component={HomePage} />
     <Route path="/forgot" component={ForgotPassword} />
     <Route path="/reset" component={ResetPassword} />
-    <Route path="/heroes" component={HomePage} onChange={handleChangePage}/>
+    <Route path="/heroes" component={HomePage} />
     <Route path="/heroes/:heroType" component={HomePage} />
 
 
@@ -52,8 +52,10 @@ export const routes = (
   </Route>
 );
 
-function handleChangePage(nextState, replaceState){
-  $('.os-transition').fadeOut(500);
+function handleChangePage(prevState, nextState, replaceState, callback){
+  $('.os-transition').fadeOut(500, function(){
+    callback();
+  });
 }
 
 function handlePageView() {
