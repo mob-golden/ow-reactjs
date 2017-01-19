@@ -37,3 +37,5 @@ node_modules
 *.sw*
 .env
 yarn.lock
+
+.idea
