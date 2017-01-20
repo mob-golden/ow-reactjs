@@ -330,6 +330,18 @@ class HeroMatchupsPage extends Component {
         type,
         token
       }));
+      
+      const tmp_data = {
+        opponent: id,
+        score:{
+          upvotes: 1,
+          downvotes: 0,
+          total: 1,
+        },
+        type
+      };
+      this.props.matchups[type].data.matchups.push(tmp_data);
+      this.forceUpdate();
     }
   }
 }

@@ -1,10 +1,12 @@
 require('babel-register');
+require('dotenv').config();
 var path = require('path');
 var express = require('express');
 var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
 var redis = require('redis');
 var bodyParser = require('body-parser');
+var forceDomain = require('forcedomain');
 var sendgrid = require('sendgrid');
 var FastlyPurge = require('fastly-purge');
 var compression = require('compression');
@@ -23,9 +25,7 @@ var app = express();
 var port = process.env.PORT || 3000;
 var staticPath = isDevelopment ? path.join(__dirname, '/app') : path.join(__dirname, '/dist');
 var overwatchHost = process.env.OVERWATCH_HOST || "https://overwatch-select-api-prod.herokuapp.com";
-//TODO var fastlyPurge = new FastlyPurge(`${process.env.FASTLY_API_KEY}`);
 const S_IN_YR = 31536000;
-
 app.use(express.static(staticPath, { maxAge: S_IN_YR }));
 app.use(session({
     store: new RedisStore({
@@ -48,29 +48,9 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.set('trust proxy', true);
-app.use(redirectWww);
-function redirectWww(req, res, next) {
-  if (!req.headers.host.slice(0, 4) === 'www.') {
-    return res.redirect(301, req.protocol + '://www.' + req.headers.host + req.originalUrl);
-  }
-  next();
-}
-
-/*app.get('/updatecache', function (req, res) {
-  console.log('success');
-  const FastlyURL = `http://overwatchelite.net/tips` // 5 min
-  console.log(FastlyURL);
-  fastlyPurge.url(FastlyURL, (err, result) => {
-    if (err) {
-      // handle err
-      console.log('ERR', err);
-    } else {
-      console.log('success2');
-      console.log(result);
-    }
-  })
-
-});*/
+app.use(forceDomain({
+  hostname: process.env.FORCE_DOMAIN || 'www.overwatchelite.net'
+}));
 
 app.post('/forgot', function (req, res) {
   const {
@@ -262,6 +242,7 @@ app.post('/signup', function (req, res) {
 });
 
 app.get('/checkSession', function(req, res) {
+  res.setHeader('Cache-Control', `max-age=0`)
   debug("Session Checking");
   debug(req.session);
   if(typeof req.session.user_id !== 'undefined' && typeof req.session.token !== 'undefined'){
@@ -286,23 +267,23 @@ app.post('/signout', function(req, res) {
   return res.json('signed out');
 });
 
-app.get('/', getHandleRender(true, 31536000));
-app.get('/heroes', getHandleRender(true, 31536000));
-app.get('/heroes/:heroType', getHandleRender(true, 31536000));
-app.get('/hero/:heroKey', getHandleRender(true, 120000));
-app.get('/hero/:heroKey/generaltips', getHandleRender(true, 120000));
-app.get('/hero/:heroKey/matchups', getHandleRender(true, 120000));
-app.get('/hero/:heroKey/maprankings', getHandleRender(true, 120000));
-app.get('/maprankingtips/:heroKey/:mapKey', getHandleRender(true, 120000));
-app.get('/matchups/:heroKey/:matchupHeroKey/:matchupType', getHandleRender(true, 120000));
-app.get('/maps', getHandleRender(true, 31536000));
-app.get('/maps/:mapType', getHandleRender(true, 31536000));
-app.get('/map/:mapKey', getHandleRender(true, 120000));
-app.get('/forgot', getHandleRender(true, 31536000));
-app.get('/reset', getHandleRender(true, 31536000));
-app.get('/community', getHandleRender(true, 31536000));
-app.get('/community/:commType', getHandleRender(true, 120000));
-app.get('/community/:commType/:threadId', getHandleRender(true, 120000));
+app.get('/', setCacheTime(31536000), getHandleRender());
+app.get('/heroes', setCacheTime(31536000), getHandleRender());
+app.get('/heroes/:heroType', setCacheTime(31536000), getHandleRender());
+app.get('/hero/:heroKey', setCacheTime(31536000), getHandleRender());
+app.get('/hero/:heroKey/generaltips', setCacheTime(31536000), getHandleRender());
+app.get('/hero/:heroKey/matchups', setCacheTime(31536000), getHandleRender());
+app.get('/hero/:heroKey/maprankings', setCacheTime(31536000), getHandleRender());
+app.get('/maprankingtips/:heroKey/:mapKey', setCacheTime(31536000), getHandleRender());
+app.get('/matchups/:heroKey/:matchupHeroKey/:matchupType', setCacheTime(31536000), getHandleRender());
+app.get('/maps', setCacheTime(31536000), getHandleRender());
+app.get('/maps/:mapType', setCacheTime(31536000), getHandleRender());
+app.get('/map/:mapKey', setCacheTime(31536000), getHandleRender());
+app.get('/forgot', setCacheTime(31536000), getHandleRender());
+app.get('/reset', setCacheTime(31536000), getHandleRender());
+app.get('/community', setCacheTime(31536000), getHandleRender());
+app.get('/community/:commType', setCacheTime(31536000), getHandleRender());
+app.get('/community/:commType/:threadId', setCacheTime(31536000), getHandleRender());
 
 
 apiRoutes(app);
@@ -314,9 +295,17 @@ function send404 (req, res) {
   res.status(404).sendFile(indexFile);
 }
 
-function getHandleRender(cache, duration) {
+function setCacheTime(time) {
+    return (req, res, next) => {
+        res.setHeader('Cache-Control', `max-age=${time}`);
+        return next();
+    }
+
+}
+
+function getHandleRender() {
   return function handleRender(req, res) {
-      debug(`req.session.id is ${req.session.id}`)
+      debug(`req.session.id is ${req.session.id}`);
       match({ routes, location: req.url }, function(error, redirectLocation, renderProps) {
         if (error) {
           debug("[match]: error", error);
@@ -326,16 +315,12 @@ function getHandleRender(cache, duration) {
           res.redirect(302, redirectLocation.pathname + redirectLocation.search)
         } else if (renderProps) {
           if (typeof renderProps.routes[1] !== 'undefined' && renderProps.routes[1].status === 404) {
-            res.setHeader('Cache-Control', `max-age=${S_IN_YR}`);
             res.status(404).sendFile(indexFile);
           } else {
-            if(cache)
-              res.setHeader('Cache-Control', `max-age=${duration}`);
             res.sendFile(indexFile);
           }
       } else {
           debug("[match]: Not found");
-          res.setHeader('Cache-Control', `max-age=${S_IN_YR}`);
           res.status(404).sendFile(indexFile);
         }
     });
@@ -353,5 +338,5 @@ function constructHeaders (data) {
 }
 
 app.listen(port, function() {
-  	debug('listening')
+    console.info(`🌎  Listening on port ${port} in ${process.env.NODE_ENV} mode on Node ${process.version}.`);
 });

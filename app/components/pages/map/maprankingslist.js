@@ -17,7 +17,6 @@ class MapRankingsList extends Component {
       matchups,
     } = this.props;
 
-    const mapRankings = matchups.data.matchups;
     // if (mapRankings.length === 0) {
     //   return (
     //     <div className="os-maprankings-list">
@@ -33,7 +32,7 @@ class MapRankingsList extends Component {
     return (
       <div className="os-maprankings-list">
       {
-        mapRankings.map(matchup => {
+        matchups.map(matchup => {
           const {
             score:{
               score,
