@@ -28,7 +28,7 @@ class MapsGrid extends Component {
             type
           } = _map;
 
-          if(filter !== '' && filter !== MAP_TYPES[type].name) return null;
+          if(filter !== 'all' && filter !== MAP_TYPES[type].name) return null;
           return (
           <div
             className={colClass}

@@ -44,7 +44,7 @@ class MapsPage extends Component {
       }
     } = this.props;
 
-    const mapType = _mapType?changeCase.lower(_mapType):'';
+    const mapType = _mapType?changeCase.lower(_mapType):'all';
 
     if(!MAP_TYPES.find(x => x.name == mapType)){
       return (<PageNotFound/>);

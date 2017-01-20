@@ -53,6 +53,7 @@ export const routes = (
 );
 
 var stateChanged = "page";
+var scrollTop = 0;
 function handleChangePage(prevState, nextState, replaceState, callback){
   if(('heroType' in nextState.params 
       || 'mapType' in nextState.params 
@@ -61,6 +62,7 @@ function handleChangePage(prevState, nextState, replaceState, callback){
       || nextState.location.pathname.includes('maprankings')) && $('.os-tab-transition').length != 0)
   {
     stateChanged = "tab";
+    scrollTop = $(window).scrollTop();
     $('.os-tab-transition').fadeOut(500, function(){
       callback();
     });
@@ -75,8 +77,10 @@ function handleChangePage(prevState, nextState, replaceState, callback){
 
 function handlePageView(e) {
   if(stateChanged == "tab"){
-    $('.os-tab-transition').css('display', 'none');
-    $('.os-tab-transition').fadeIn(500);
+    $('.os-tab-transition').css('display', 'block');
+    $('.os-tab-transition').css('opacity', '0');
+    $(window).scrollTop(scrollTop);  
+    $('.os-tab-transition').animate({ opacity: 1 }, 500);
   }
   else{
     $('.os-transition').css('display', 'none');

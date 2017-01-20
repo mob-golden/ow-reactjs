@@ -51,8 +51,8 @@ export const MAP_TYPES = [
   {
     'key':0,
     'title':'all maps',
-    'link': '/maps',
-    'name': ''
+    'link': '/maps/all',
+    'name': 'all'
   },
   {
     'key': 1,
