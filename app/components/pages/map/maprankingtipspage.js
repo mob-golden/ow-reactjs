@@ -3,6 +3,7 @@ import changeCase from 'change-case';
 import classNames from 'classnames';
 import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { take } from 'lodash';
 
 import TipList from '../tip/tiplist';
 import Loader from '../../loader';
@@ -106,6 +107,7 @@ class MapRankingTipsPage extends Component {
     const mapName = mapsHash[mapKey].name;
     const mapType = changeCase.upper(mapsHash[mapKey].type);
     const key = heroKey + mapKey;
+    const tipLength = matchupTips.for.data.tips.length;
 
     if (!localStorage.getItem('matchupVotes')) localStorage.setItem('matchupVotes', JSON.stringify({}));
     const votes =  JSON.parse(localStorage.getItem('matchupVotes'));
@@ -181,7 +183,7 @@ class MapRankingTipsPage extends Component {
               </h5>
               <TipList
                 listId = "maprankingtip"
-                tips={matchupTips.for.data.tips}
+                tips={take(matchupTips.for.data.tips, tipLength)}
                 firstText={`Share a tip on how to play ${heroName} on ${mapName}.`}
               />
             </div>
@@ -211,6 +213,22 @@ class MapRankingTipsPage extends Component {
                       tipType: "map",
                       token
                     }));
+
+                    const tmp_data = {
+                      _id:'9999999999'+textarea.value,
+                      authorName: localStorage.getItem('username'),
+                      contentRaw: textarea.value,
+                      created_at: "2000-01-01T00:00:00.938Z",
+                      score: {
+                        upvotes: 1,
+                        downvotes: 0,
+                        hotScore: 1,
+                        total: 1,
+                      },
+                      type: "map"
+                    };
+                    this.props.matchupTips.for.data.tips.push(tmp_data);
+                    this.forceUpdate();
                   }
                 }}>
                   <fieldset className="form-group">

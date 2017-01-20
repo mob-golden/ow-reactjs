@@ -159,7 +159,7 @@ export function addHeroMatchup ({
 
         // TODO: is this necessary for a POST request?
         if (response.status >= 200 && response.status < 300) {
-          dispatch(fetchMatchupsIfNeeded(heroKey));
+          // dispatch(fetchMatchupsIfNeeded(heroKey)); // Don't need this because of cache
           return response;
         } else {
           const error = new Error(statusText);
@@ -205,10 +205,10 @@ export function addHeroMatchupTip ({
 
         // TODO: is this necessary for a POST request?
         if (response.status >= 200 && response.status < 300) {
-          if(direction)
-            dispatch(fetchMatchupTipsIfNeeded(heroKey, matchupKey, tipType));
-          else
-            dispatch(fetchMatchupTipsIfNeeded(matchupKey, heroKey, tipType));
+          // if(direction)
+          //   dispatch(fetchMatchupTipsIfNeeded(heroKey, matchupKey, tipType));
+          // else
+          //   dispatch(fetchMatchupTipsIfNeeded(matchupKey, heroKey, tipType));
           return response;
         } else {
           const error = new Error(statusText);
@@ -249,7 +249,7 @@ export function addMapTip ({
 
         // TODO: is this necessary for a POST request?
         if (response.status >= 200 && response.status < 300) {
-          dispatch(fetchMapTipsIfNeeded(mapKey));
+          // dispatch(fetchMapTipsIfNeeded(mapKey)); 
           return response;
         } else {
           const error = new Error(statusText);

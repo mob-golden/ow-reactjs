@@ -228,7 +228,23 @@ class MatchupTips extends Component {
                   token,
                   direction: type == 'for'
                 }));
+                const tmp_data = {
+                  _id:'9999999999'+textarea.value,
+                  authorName: localStorage.getItem('username'),
+                  contentRaw: textarea.value,
+                  created_at: "2000-01-01T00:00:00.938Z",
+                  score: {
+                    upvotes: 1,
+                    downvotes: 0,
+                    hotScore: 1,
+                    total: 1,
+                  },
+                  type: type
+                };
+                this.props.matchupTips[type].data.tips.push(tmp_data);
+                this.forceUpdate();
               }
+
               $(`#modal-add-matchup-tip-${type}`).modal('hide');
             }}>
             <Modal 
