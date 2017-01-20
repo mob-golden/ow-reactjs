@@ -267,23 +267,23 @@ app.post('/signout', function(req, res) {
   return res.json('signed out');
 });
 
-app.get('/', getHandleRender(true, 31536000));
-app.get('/heroes', getHandleRender(true, 31536000));
-app.get('/heroes/:heroType', getHandleRender(true, 31536000));
-app.get('/hero/:heroKey', getHandleRender(true, 120000));
-app.get('/hero/:heroKey/generaltips', getHandleRender(true, 120000));
-app.get('/hero/:heroKey/matchups', getHandleRender(true, 120000));
-app.get('/hero/:heroKey/maprankings', getHandleRender(true, 120000));
-app.get('/maprankingtips/:heroKey/:mapKey', getHandleRender(true, 120000));
-app.get('/matchups/:heroKey/:matchupHeroKey/:matchupType', getHandleRender(true, 120000));
-app.get('/maps', getHandleRender(true, 31536000));
-app.get('/maps/:mapType', getHandleRender(true, 31536000));
-app.get('/map/:mapKey', getHandleRender(true, 120000));
-app.get('/forgot', getHandleRender(true, 31536000));
-app.get('/reset', getHandleRender(true, 31536000));
-app.get('/community', getHandleRender(true, 31536000));
-app.get('/community/:commType', getHandleRender(true, 120000));
-app.get('/community/:commType/:threadId', getHandleRender(true, 120000));
+app.get('/', setCacheTime(31536000), getHandleRender());
+app.get('/heroes', setCacheTime(31536000), getHandleRender());
+app.get('/heroes/:heroType', setCacheTime(31536000), getHandleRender());
+app.get('/hero/:heroKey', setCacheTime(31536000), getHandleRender());
+app.get('/hero/:heroKey/generaltips', setCacheTime(31536000), getHandleRender());
+app.get('/hero/:heroKey/matchups', setCacheTime(31536000), getHandleRender());
+app.get('/hero/:heroKey/maprankings', setCacheTime(31536000), getHandleRender());
+app.get('/maprankingtips/:heroKey/:mapKey', setCacheTime(31536000), getHandleRender());
+app.get('/matchups/:heroKey/:matchupHeroKey/:matchupType', setCacheTime(31536000), getHandleRender());
+app.get('/maps', setCacheTime(31536000), getHandleRender());
+app.get('/maps/:mapType', setCacheTime(31536000), getHandleRender());
+app.get('/map/:mapKey', setCacheTime(31536000), getHandleRender());
+app.get('/forgot', setCacheTime(31536000), getHandleRender());
+app.get('/reset', setCacheTime(31536000), getHandleRender());
+app.get('/community', setCacheTime(31536000), getHandleRender());
+app.get('/community/:commType', setCacheTime(31536000), getHandleRender());
+app.get('/community/:commType/:threadId', setCacheTime(31536000), getHandleRender());
 
 
 apiRoutes(app);
@@ -295,9 +295,17 @@ function send404 (req, res) {
   res.status(404).sendFile(indexFile);
 }
 
-function getHandleRender(cache, duration) {
+function setCacheTime(time) {
+    return (req, res, next) => {
+        res.setHeader('Cache-Control', `max-age=${time}`);
+        return next();
+    }
+
+}
+
+function getHandleRender() {
   return function handleRender(req, res) {
-      debug(`req.session.id is ${req.session.id}`)
+      debug(`req.session.id is ${req.session.id}`);
       match({ routes, location: req.url }, function(error, redirectLocation, renderProps) {
         if (error) {
           debug("[match]: error", error);
@@ -307,16 +315,12 @@ function getHandleRender(cache, duration) {
           res.redirect(302, redirectLocation.pathname + redirectLocation.search)
         } else if (renderProps) {
           if (typeof renderProps.routes[1] !== 'undefined' && renderProps.routes[1].status === 404) {
-            res.setHeader('Cache-Control', `max-age=${S_IN_YR}`);
             res.status(404).sendFile(indexFile);
           } else {
-            if(cache)
-              res.setHeader('Cache-Control', `max-age=${duration}`);
             res.sendFile(indexFile);
           }
       } else {
           debug("[match]: Not found");
-          res.setHeader('Cache-Control', `max-age=${S_IN_YR}`);
           res.status(404).sendFile(indexFile);
         }
     });
