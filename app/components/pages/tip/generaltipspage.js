@@ -174,6 +174,8 @@ class GeneralTipsPage extends Component {
     this._tipsBox = {
       type: {}
     };
+
+
     if(token){
       return (
         <div>
@@ -181,14 +183,29 @@ class GeneralTipsPage extends Component {
               e.preventDefault();
               const textarea = this._tipsBox[type];
               if (textarea && textarea.value) {
-
                 dispatch(addHeroTip({
                   heroKey: heroKey,
                   content: textarea.value,
                   tipType: type,
                   token
                 }));
+                const tmp_data = {
+                  _id:'9999999999',
+                  authorName: localStorage.getItem('username'),
+                  contentRaw: textarea.value,
+                  created_at: "2000-01-01T00:00:00.938Z",
+                  score: {
+                    upvotes: 1,
+                    downvotes: 0,
+                    hotScore: 1,
+                    total: 1,
+                  },
+                  type: type
+                };
+                this.props.tips[type].data.tips.push(tmp_data);
+                this.forceUpdate();
               }
+
               $(`#modal-add-tip-${type}`).modal('hide');
             }}>
             <Modal 
