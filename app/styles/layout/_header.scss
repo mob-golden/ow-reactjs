@@ -4,10 +4,11 @@
     padding: 0;
     background-color: $BLACK_1;
     text-transform: uppercase;
+    box-shadow: 0px 1px 5px rgba(0,0,0,0.5);
   }
   .os-nav-links {
     // Default (10) - 1/2 rem (8) (moved to <a>)
-    padding-left: 2px; 
+    padding-left: 2px;
     float: right;
   }
   .os-nav-item {

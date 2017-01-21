@@ -9,7 +9,7 @@ class Footer extends Component {
     return (
       <div className="os-footer row">
         <div className="col-lg-12 os-footer-row os-footer-logo-row">
-          <img src="https://s3.amazonaws.com/solomid-resources/overwatch/icons/solomid-logo.png"/>
+          <img style={{width: "123px"}}src="https://s3.amazonaws.com/solomid-resources/overwatch/icons/solomid-logo.png"/>
         </div>
         <div className="col-lg-12 os-footer-row">
           <div className="os-footer-block">
