@@ -67,7 +67,7 @@ class Typeahead extends Component {
           {this.renderSuggestions()}
           <span className="input-group-btn">
             <button
-              className="btn btn-warning os-search-btn"
+              className="btn btn-light-orange os-search-btn"
               type="button"
             >
               <small>SEARCH</small>
@@ -76,7 +76,7 @@ class Typeahead extends Component {
         </div>
       </div>
     );
-    
+
   }
 
   renderSuggestions = () => {

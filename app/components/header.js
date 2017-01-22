@@ -124,9 +124,7 @@ class Header extends Component {
                   className="navbar-brand os-white os-nav-title"
                   to="/"
                 >
-                  <h4>
-                    OVERWATCH
-                  </h4>
+                  <img style={{width: "200px"}} src="https://s3.amazonaws.com/solomid-resources/overwatch/icons/overwatchelite-logo.png" />
                 </Link>
               </div>
               <div className="col-xl-5 col-lg-6 col-xs-12">

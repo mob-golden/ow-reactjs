@@ -1,12 +1,17 @@
 $suggestionPadding: 8px;
 $suggestionSize: 16px;
 
+.btn-light-orange {
+  background-color: #FFB50D;
+  color: #fff;
+}
+
 .os-search-wrapper {
   padding: 0;
 }
 .os-typeahead {
   .list-group {
-    
+
     position: absolute;
     top: 50px;
     z-index: 999;
@@ -41,7 +46,7 @@ $suggestionSize: 16px;
     // pixel adjustment
     position: relative;
     top: -1px;
-  
+
     // vertically center
     height: $suggestionSize * 2;
     margin-bottom: 0;
@@ -63,7 +68,7 @@ $suggestionSize: 16px;
     color: $BLACK_3;
   }
 
-  // Firefox 19+ 
+  // Firefox 19+
   .os-search-input::-moz-placeholder {
     font-size: 14px;
     color: $BLACK_3;

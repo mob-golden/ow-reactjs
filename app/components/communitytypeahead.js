@@ -75,7 +75,7 @@ class CommunityTypeahead extends Component {
           {this.renderSuggestions()}
           <span className="input-group-btn">
             <button
-              className="btn btn-warning os-search-btn"
+              className="btn btn-light-orange os-search-btn"
               type="button"
             >
               <small>SEARCH</small>
@@ -84,7 +84,7 @@ class CommunityTypeahead extends Component {
         </div>
       </div>
     );
-    
+
   }
 
   renderSuggestions = () => {
