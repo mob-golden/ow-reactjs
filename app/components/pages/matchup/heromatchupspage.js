@@ -140,7 +140,7 @@ class HeroMatchupsPage extends Component {
                   className={positiveViewAllClassName}
                   onClick={() => this.handlePositiveViewAll()}
                 >
-                  { this.state.positiveViewAll?`VIEW LESS`:`VIEW ALL`}
+                  { this.state.positiveViewAll?`VIEW LESS`:`VIEW MORE`}
                 </button>
               </div>
             </div>
@@ -174,7 +174,7 @@ class HeroMatchupsPage extends Component {
                   className={negativeViewAllClassName}
                   onClick={() => this.handleNegativeViewAll()}
                 >
-                  { this.state.negativeViewAll?`VIEW LESS`:`VIEW ALL`}
+                  { this.state.negativeViewAll?`VIEW LESS`:`VIEW MORE`}
                 </button>
               </div>
             </div>
@@ -208,7 +208,7 @@ class HeroMatchupsPage extends Component {
                   className={teamupViewAllClassName}
                   onClick={() => this.handleTeamupViewAll()}
                 >
-                  { this.state.teamupViewAll?`VIEW LESS`:`VIEW ALL`}
+                  { this.state.teamupViewAll?`VIEW LESS`:`VIEW MORE`}
                 </button>
               </div>
             </div>

@@ -148,7 +148,7 @@ class MapTipsPage extends Component {
                             className={viewAllClassName}
                             onClick={() => this.setState({viewAll: !this.state.viewAll })}
                           >
-                          { this.state.viewAll?`VIEW LESS`:`VIEW ALL`}
+                          { this.state.viewAll?`VIEW LESS`:`VIEW MORE`}
                           </button>
                         </div>
                       </div>
@@ -177,7 +177,7 @@ class MapTipsPage extends Component {
                             className={matchupViewAllClassName}
                             onClick={() => this.handleMatchupViewAll()}
                           >
-                            { this.state.matchupViewAll?`VIEW LESS`:`VIEW ALL`}
+                            { this.state.matchupViewAll?`VIEW LESS`:`VIEW MORE`}
                           </button>
                         </div>
                       </div>

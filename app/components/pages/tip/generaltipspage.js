@@ -114,7 +114,7 @@ class GeneralTipsPage extends Component {
                   className={leftViewAllClassName}
                   onClick={() => this.setState({leftViewAll: !this.state.leftViewAll })}
                 >
-                { this.state.leftViewAll?`VIEW LESS`:`VIEW ALL`}
+                { this.state.leftViewAll?`VIEW LESS`:`VIEW MORE`}
                 </button>
               </div>
             </div>
@@ -146,7 +146,7 @@ class GeneralTipsPage extends Component {
                   className={rightViewAllClassName}
                   onClick={() => this.setState({rightViewAll: !this.state.rightViewAll })}
                 >
-                { this.state.rightViewAll?`VIEW LESS`:`VIEW ALL`}
+                { this.state.rightViewAll?`VIEW LESS`:`VIEW MORE`}
                 </button>
               </div>
             </div>
