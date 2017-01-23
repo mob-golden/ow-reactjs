@@ -65,11 +65,12 @@ export function addHeroTip ({
 
 export function deleteHeroTip ({
   id,
-  token
+  token,
+  masterKey
 }) {
   return (dispatch, getState) => {
 
-    return fetch(`${OW_TIPS_URL}/${id}`, {
+    return fetch(`${OW_TIPS_URL}/${masterKey}/${id}`, {
       credentials : 'include',
       method: 'DELETE'
     })
@@ -95,7 +96,8 @@ export function deleteHeroTip ({
 export function editHeroTip ({
   id,
   content,
-  token
+  token,
+  masterKey
 }) {
   return (dispatch, getState) => {
 
@@ -103,7 +105,7 @@ export function editHeroTip ({
       content
     });
 
-    return fetch(`${OW_TIPS_URL}/${id}`, {
+    return fetch(`${OW_TIPS_URL}/${masterKey}/${id}`, {
       body,
       headers: {
         'Accept': 'application/json',
@@ -263,9 +265,9 @@ export function addMapTip ({
 }
 
 
-export function voteTip (id, downOrUp) {
+export function voteTip (id, downOrUp, masterKey) {
   return dispatch => {
-    return fetch(`${OW_TIPS_URL}/${id}/${downOrUp}`, {
+    return fetch(`${OW_TIPS_URL}/${masterKey}/${id}/${downOrUp}`, {
       method: 'PUT',
       credentials : 'include',
     })
