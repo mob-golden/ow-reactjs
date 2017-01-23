@@ -84,6 +84,7 @@ class GeneralTipsPage extends Component {
       'btn btn-secondary os-btn-white':true,
       'hidden': tips.against.data.tips.length < 6
     });
+
     return (
       <div className="os-card-container os-hero-tip-container">
         <div className="row">
@@ -95,7 +96,8 @@ class GeneralTipsPage extends Component {
               </span>
               <h5 className="os-hero-tip-title">STRATEGY & TIPS</h5>
               <TipList
-                listId = "for"
+                masterKey={heroKey}
+                listId="for"
                 tips={
                   this.state.leftViewAll?
                   tips.for.data.tips:
@@ -127,6 +129,7 @@ class GeneralTipsPage extends Component {
               </span>
               <h5 className="os-hero-tip-title">COUNTER TIPS</h5>
               <TipList
+                masterKey={heroKey}
                 listId = "against"
                 tips={
                   this.state.rightViewAll?

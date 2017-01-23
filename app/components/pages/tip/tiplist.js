@@ -169,21 +169,24 @@ class TipList extends Component {
 
   handleDelete = (id) => {
     const {
-      dispatch
+      dispatch,
+      masterKey
     } = this.props;
 
     const localToken = localStorage.getItem('token');
 
     dispatch(deleteHeroTip({
       id,
-      token: localToken
+      token: localToken,
+      masterKey
     }));
     this.tipDivs[id].style.display = 'none';
   }
 
   handleVote = (id, downOrUp) => {
     const {
-      dispatch
+      dispatch,
+      masterKey
     } = this.props;
 
     const votes = JSON.parse(localStorage.getItem('tipVotes'));
@@ -235,6 +238,7 @@ class TipList extends Component {
   renderEditModal = () => {
     const {
       dispatch,
+      masterKey,
       listId
     } = this.props;
 
@@ -253,7 +257,8 @@ class TipList extends Component {
                 dispatch(editHeroTip({
                   id: input.value,
                   content: textarea.value,
-                  token: localToken
+                  token: localToken,
+                  masterKey
                 }));
               }
 

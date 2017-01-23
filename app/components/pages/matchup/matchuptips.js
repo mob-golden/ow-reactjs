@@ -125,6 +125,7 @@ class MatchupTips extends Component {
               </h5>
 
               <TipList
+                masterKey={heroKey}
                 listId = "for"
                 tips={
                   this.state.leftViewAll?
@@ -161,6 +162,7 @@ class MatchupTips extends Component {
               </h5>
 
               <TipList
+                masterKey={matchupHeroKey}
                 listId = "against"
                 tips={
                   this.state.rightViewAll?
