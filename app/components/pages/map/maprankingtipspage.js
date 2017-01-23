@@ -4,6 +4,8 @@ import classNames from 'classnames';
 import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { take } from 'lodash';
+import moment from 'moment';
+
 
 import TipList from '../tip/tiplist';
 import Loader from '../../loader';
@@ -129,18 +131,22 @@ class MapRankingTipsPage extends Component {
       'fa-thumbs-o-up': true
     });
 
+    let votedType = votes[key];
+    if(votedType){
+      votedType = votedType.split(' ')[0];
+    }
     const downvotesClass = classNames({
       'os-matchup-vote-down': true,
-      'os-matchup-item-votes-active': votes[key],
-      'os-matchup-item-votes-non-active': !votes[key],
-      'os-matchup-voted-down': votes[key] == 'downvote'
+      'os-matchup-item-votes-active': votedType,
+      'os-matchup-item-votes-non-active': !votedType,
+      'os-matchup-voted-down': votedType == 'downvote'
     });
 
     const upvotesClass = classNames({
       'os-matchup-vote-up': true,
-      'os-matchup-item-votes-active': votes[key],
-      'os-matchup-item-votes-non-active': !votes[key],
-      'os-matchup-voted-up': votes[key] == 'upvote'
+      'os-matchup-item-votes-active': votedType,
+      'os-matchup-item-votes-non-active': !votedType,
+      'os-matchup-voted-up': votedType == 'upvote'
     });
 
 
@@ -287,7 +293,7 @@ class MapRankingTipsPage extends Component {
       const votedItemClass = downOrUp === 'upvote'? 'up' : 'down';
       $(selector).parent().addClass(`os-matchup-voted-${votedItemClass}`);
       
-      votes[key] = downOrUp;
+      votes[key] = downOrUp + ' '+ moment().valueOf();
       localStorage.setItem('matchupVotes', JSON.stringify(votes));
     }
   };

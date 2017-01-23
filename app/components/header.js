@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from './modal';
+import moment from 'moment';
 
 import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
@@ -80,6 +81,7 @@ class Header extends Component {
   constructor (props) {
     super(props);
 
+    this.updateLocalStorage();
     const {
       token,
       username
@@ -93,6 +95,33 @@ class Header extends Component {
       passwordMessage: null,
       dropdownOpen: false
     };
+  }
+
+  updateLocalStorage(){
+    let tipVotes = JSON.parse(localStorage.getItem('tipVotes'));
+    let matchupVotes = JSON.parse(localStorage.getItem('matchupVotes'));
+    const current = moment();
+
+    for (var key in tipVotes) {
+      if (tipVotes.hasOwnProperty(key)) {
+        const votedDate = moment(parseInt(tipVotes[key].split(' ')[1]));
+        if(current.diff(votedDate, 'hours') > 23){
+          delete tipVotes[key];
+        }
+      }
+    }
+
+    for (var key in matchupVotes) {
+      if (matchupVotes.hasOwnProperty(key)) {
+        const votedDate = moment(parseInt(matchupVotes[key].split(' ')[1]));
+        if(current.diff(votedDate, 'hours') > 23){
+          delete matchupVotes[key];
+        }
+      }
+    }
+
+    localStorage.setItem('matchupVotes', JSON.stringify(matchupVotes));
+    localStorage.setItem('tipVotes', JSON.stringify(tipVotes));
   }
 
   toggleDropdown () {

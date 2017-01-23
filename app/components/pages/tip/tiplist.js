@@ -1,6 +1,7 @@
 import React from 'react';
 import changeCase from 'change-case';
 import classNames from 'classnames';
+import moment from 'moment';
 import Modal from '../../modal';
 
 import {
@@ -76,24 +77,28 @@ class TipList extends Component {
 
           const name = authorName ? authorName : 'anonymous';
 
+          let votedType = votes[id];
+          if(votedType){
+            votedType = votedType.split(' ')[0];
+          }
           const downvoteClass = classNames({
             'fa fa-fw fa-caret-down': true,
             'os-counter-tip-caret': true,
-            'os-counter-tip-caret-non-active': !votes[id],
-            'os-counter-tip-caret-active': votes[id] === 'downvote',
+            'os-counter-tip-caret-non-active': !votedType,
+            'os-counter-tip-caret-active': votedType === 'downvote',
             'os-counter-tip-vote-alt': true,
-            'os-counter-tip-vote-non-active-alt': !votes[id],
-            'os-counter-tip-vote-active-alt': votes[id] === 'downvote'
+            'os-counter-tip-vote-non-active-alt': !votedType,
+            'os-counter-tip-vote-active-alt': votedType === 'downvote'
           });
 
           const upvoteClass = classNames({
             'fa fa-fw fa-caret-up': true,
             'os-counter-tip-caret': true,
-            'os-counter-tip-caret-non-active': !votes[id],
-            'os-counter-tip-caret-active': votes[id] === 'upvote',
+            'os-counter-tip-caret-non-active': !votedType,
+            'os-counter-tip-caret-active': votedType === 'upvote',
             'os-counter-tip-vote-alt': true,
-            'os-counter-tip-vote-non-active-alt': !votes[id],
-            'os-counter-tip-vote-active-alt': votes[id] === 'upvote'
+            'os-counter-tip-vote-non-active-alt': !votedType,
+            'os-counter-tip-vote-active-alt': votedType === 'upvote'
           });
 
 
@@ -211,7 +216,7 @@ class TipList extends Component {
       $(selector).prev().find('i').removeClass('os-counter-tip-vote-non-active-alt');
       $(selector).next().find('i').removeClass('os-counter-tip-vote-non-active-alt');
     
-      votes[id] = downOrUp;
+      votes[id] = downOrUp + ' '+ moment().valueOf();
 
       localStorage.setItem('tipVotes', JSON.stringify(votes));
 
