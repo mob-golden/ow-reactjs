@@ -47,6 +47,9 @@
   cursor: pointer;
   margin-bottom: 20px;
 }
+.os-tip-text-no-after{
+  cursor: default !important;
+}
 
 .os-tip-text-no-after::after{
   content: none !important;
