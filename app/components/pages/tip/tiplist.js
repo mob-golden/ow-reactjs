@@ -33,6 +33,9 @@ class TipList extends Component {
     this.toggleTipShowMore = this.toggleTipShowMore.bind(this);
   }
 
+  componentDidUpdate(){
+    updatePTags();
+  }
   componentDidMount (){
     updatePTags();
   }
@@ -300,10 +303,6 @@ class TipList extends Component {
 }
 
 export default connect()(TipList);
-
-$( window ).resize(function() {
-  updatePTags();
-});
 
 function updatePTags(){
   $( ".os-counter-tip-text").each(function(index, pTag){
