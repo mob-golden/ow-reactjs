@@ -28,11 +28,26 @@
 
 .os-matchup-voted-up{
   color: $WHITE !important;
-  background-color: $GREEN_1;
+  background-color: $GREEN_1 !important;
 }
 .os-matchup-voted-down{
   color: $WHITE !important;
-  background-color: $RED_1;
+  background-color: $RED_1 !important;
+}
+
+.os-map-vote-up {
+  margin-right: 10px;
+  width: 45%;
+  text-align: center;
+  color: $GREEN_1;
+  background-color: #fff;
+  border-radius: 3px;
+  font-size: 12px;
+  padding: 7px 24px;
+}
+.os-map-vote-up:hover {
+  color: $WHITE;
+  background-color: $GREEN_1;
 }
 
 .os-matchup-vote-up {
@@ -49,6 +64,21 @@
   color: $WHITE;
   background-color: $GREEN_1;
 }
+
+.os-map-vote-down {
+  width: 45%;
+  text-align: center;
+  color: $RED_1;
+  background-color: #fff;
+  border-radius: 3px;
+  font-size: 12px;
+  padding: 7px 24px;
+}
+.os-map-vote-down:hover {
+  color: $WHITE;
+  background: $RED_1;
+}
+
 .os-matchup-vote-down {
   width: 45%;
   text-align: center;

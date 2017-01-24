@@ -83,7 +83,7 @@ class MapRankingTipsPage extends Component {
 
   render () {
     const {
-      
+
       heroesHash,
       isFetchingHeroes,
       mapsHash,
@@ -112,7 +112,7 @@ class MapRankingTipsPage extends Component {
       window.location.href="/404";
       return;
     }
-    
+
     const mapName = mapsHash[mapKey].name;
     const mapType = changeCase.upper(mapsHash[mapKey].type);
     const key = heroKey + mapKey;
@@ -136,14 +136,14 @@ class MapRankingTipsPage extends Component {
       votedType = votedType.split(' ')[0];
     }
     const downvotesClass = classNames({
-      'os-matchup-vote-down': true,
+      'os-map-vote-down': true,
       'os-matchup-item-votes-active': votedType,
       'os-matchup-item-votes-non-active': !votedType,
       'os-matchup-voted-down': votedType == 'downvote'
     });
 
     const upvotesClass = classNames({
-      'os-matchup-vote-up': true,
+      'os-map-vote-up': true,
       'os-matchup-item-votes-active': votedType,
       'os-matchup-item-votes-non-active': !votedType,
       'os-matchup-voted-up': votedType == 'upvote'
@@ -159,7 +159,7 @@ class MapRankingTipsPage extends Component {
             </div>
             <div className="os-map-ranking-info">
               <span className="os-map-header-typename">
-                { MAPS_HASH[mapType] } 
+                { MAPS_HASH[mapType] }
               </span>
               <h5 className="os-white os-font-size-24">
                 { mapName }
@@ -189,7 +189,7 @@ class MapRankingTipsPage extends Component {
           <div className="os-hero-viewall-tip-col">
             <div className="os-card-body os-hero-tip-body">
               <span className="os-hero-tip-name">
-                TIPS FOR {changeCase.upper(heroName)} 
+                TIPS FOR {changeCase.upper(heroName)}
               </span>
               <h5 className="os-hero-tip-title">
                 { changeCase.upper(mapName) }
@@ -206,7 +206,7 @@ class MapRankingTipsPage extends Component {
             <div className="os-hero-addtip-tip-col">
               <div className="os-hero-addtip-body">
                 <h5 className="os-hero-tip-title">ADD A TIP</h5>
-                <form 
+                <form
                 onSubmit={e => {
                   e.preventDefault()
 
@@ -254,7 +254,7 @@ class MapRankingTipsPage extends Component {
                     >
                     </textarea>
                   </fieldset>
-                  
+
                   <button
                     className="btn btn-primary os-btn-blue"
                     type="submit"
@@ -284,7 +284,7 @@ class MapRankingTipsPage extends Component {
 
       const otherDownOrUp = downOrUp === 'downvote' ? 'upvote' : 'downvote';
       const otherSelector = `.jq-matchup-${otherDownOrUp}-${key}`;
-      
+
       $(selector).parent().addClass('os-matchup-item-votes-active');
       $(otherSelector).parent().addClass('os-matchup-item-votes-active');
       $(selector).parent().removeClass('os-matchup-item-votes-non-active');
@@ -292,7 +292,7 @@ class MapRankingTipsPage extends Component {
 
       const votedItemClass = downOrUp === 'upvote'? 'up' : 'down';
       $(selector).parent().addClass(`os-matchup-voted-${votedItemClass}`);
-      
+
       votes[key] = downOrUp + ' '+ moment().valueOf();
       localStorage.setItem('matchupVotes', JSON.stringify(votes));
     }
@@ -332,7 +332,7 @@ function mapStateToProps (state) {
     username,
     userId,
     heroesHash,
-    isFetchingHeroes, 
+    isFetchingHeroes,
     mapsHash,
     isFetchingMaps,
     matchupTips: matchupTipsData,
