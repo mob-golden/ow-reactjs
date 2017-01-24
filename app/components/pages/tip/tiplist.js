@@ -33,6 +33,10 @@ class TipList extends Component {
     this.toggleTipShowMore = this.toggleTipShowMore.bind(this);
   }
 
+  componentDidMount (){
+    updatePTags();
+  }
+
   toggleTipShowMore (e) {
     $(e.target).toggleClass("os-counter-tip-text-short").toggleClass("os-counter-tip-text-long");
   }
@@ -102,16 +106,13 @@ class TipList extends Component {
           });
 
 
-          let osTipOnClick = (e) => this.toggleTipShowMore(e);
           const contentElement = (
             <div>
               <p
                 className="os-counter-tip-text os-counter-tip-text-short"
-                onClick={osTipOnClick}
-                dangerouslySetInnerHTML={{
-                  __html: content
-                }}
+                onClick={(e) => this.toggleTipShowMore(e)}
               >
+                {content}
               </p>
               <div className="os-counter-tip-footer clearfix">
                 <span className="os-counter-tip-metadata">by <span className="os-counter-tip-author">{name}</span></span>
@@ -299,3 +300,16 @@ class TipList extends Component {
 }
 
 export default connect()(TipList);
+
+$( window ).resize(function() {
+  updatePTags();
+});
+
+function updatePTags(){
+  $( ".os-counter-tip-text").each(function(index, pTag){
+    var pHeight = parseInt($(pTag).css('height'), 10);
+    if(pHeight < 64){
+      $(pTag).addClass("os-tip-text-no-after");
+    }
+  });
+}

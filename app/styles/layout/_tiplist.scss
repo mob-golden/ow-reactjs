@@ -34,30 +34,41 @@
   // for Webkit
   word-break: break-word;
 }
+
+
 .os-counter-tip-text-short {
   // Show 3 lines by default
   cursor: pointer;
   overflow: hidden;
-  max-height: 61px;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;  
+  max-height: 64px;
 }
 .os-counter-tip-text-short,
 .os-counter-tip-text-long {
   cursor: pointer;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.os-tip-text-no-after::after{
+  content: none !important;
+}
+
+.os-counter-tip-text-short::after{
+  position: absolute;
+  bottom: 30px;
+  left: 46%;
+  color: $BLUE_1;
+  content: "Load more";
+}
+
+.os-counter-tip-text-long::after{
+  position: absolute;
+  bottom: 30px;
+  left: 46%;
+  color: $BLUE_1;
+  content: "Collapse";
 }
 
 
-.os-counter-tip-text-short~
-.os-counter-tip-text-short-helper {
-  display: none;
-}
-.os-counter-tip-text-long~
-.os-counter-tip-text-long-helper {
-  display: none;
-}
 .os-counter-tip-footer {
   margin-bottom: 8px;
   font-size: 12px;

@@ -100,28 +100,32 @@ class Header extends Component {
   updateLocalStorage(){
     let tipVotes = JSON.parse(localStorage.getItem('tipVotes'));
     let matchupVotes = JSON.parse(localStorage.getItem('matchupVotes'));
+
     const current = moment();
 
-    for (var key in tipVotes) {
-      if (tipVotes.hasOwnProperty(key)) {
-        const votedDate = moment(parseInt(tipVotes[key].split(' ')[1]));
-        if(current.diff(votedDate, 'hours') > 23){
-          delete tipVotes[key];
+    if(tipVotes){
+      for (var key in tipVotes) {
+        if (tipVotes.hasOwnProperty(key)) {
+          const votedDate = moment(parseInt(tipVotes[key].split(' ')[1]));
+          if(current.diff(votedDate, 'hours') > 23){
+            delete tipVotes[key];
+          }
         }
       }
+      localStorage.setItem('tipVotes', JSON.stringify(tipVotes));
     }
 
-    for (var key in matchupVotes) {
-      if (matchupVotes.hasOwnProperty(key)) {
-        const votedDate = moment(parseInt(matchupVotes[key].split(' ')[1]));
-        if(current.diff(votedDate, 'hours') > 23){
-          delete matchupVotes[key];
+    if(matchupVotes){
+      for (var key in matchupVotes) {
+        if (matchupVotes.hasOwnProperty(key)) {
+          const votedDate = moment(parseInt(matchupVotes[key].split(' ')[1]));
+          if(current.diff(votedDate, 'hours') > 23){
+            delete matchupVotes[key];
+          }
         }
       }
+      localStorage.setItem('matchupVotes', JSON.stringify(matchupVotes));
     }
-
-    localStorage.setItem('matchupVotes', JSON.stringify(matchupVotes));
-    localStorage.setItem('tipVotes', JSON.stringify(tipVotes));
   }
 
   toggleDropdown () {
