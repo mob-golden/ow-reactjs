@@ -307,6 +307,7 @@ $( window ).resize(function() {
 
 function updatePTags(){
   $( ".os-counter-tip-text").each(function(index, pTag){
+    $(pTag).removeClass("os-tip-text-no-after");
     var pHeight = parseInt($(pTag).css('height'), 10);
     if(pHeight < 64){
       $(pTag).addClass("os-tip-text-no-after");
