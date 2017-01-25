@@ -45,16 +45,6 @@ class HomePage extends Component {
     return (
       <div className="os-content container">
         <Ad
-          className="os-ad-outline"
-          dimensions={adDimensions.LEFT_SIDEBAR}
-          path={'/22280732/OverwatchElite_336x768_ROS_Skin_Left'}
-        />
-        <Ad
-          className="os-ad os-ad-side-right os-ad-outline"
-          dimensions={adDimensions.RIGHT_SIDEBAR}
-          path={'/22280732/OverwatchElite_336x769_ROS_Skin_Right'}
-        />
-        <Ad
           className="os-ad os-ad-top"
           dimensions={adDimensions.BEFORE_RECT}
           path={'/22280732/OverwatchElite_728x90_HP_BTF1'}
