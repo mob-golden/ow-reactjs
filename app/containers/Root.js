@@ -1,6 +1,6 @@
 import React from 'react';
 import Ad from 'react-google-publisher-tag';
-import { adDimensions } from '../../../constants/ads';
+import { adDimensions } from '../constants/ads';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import { Component, PropTypes } from 'react';
