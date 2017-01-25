@@ -37,7 +37,7 @@ class HomePage extends Component {
         heroType: _heroType
       }
     } = this.props;
-      
+
     const heroType = _heroType?changeCase.lower(_heroType):'all';
     if(!HERO_TYPES.find(x => x.name == heroType)){
       return (<PageNotFound/>);
@@ -45,9 +45,19 @@ class HomePage extends Component {
     return (
       <div className="os-content container">
         <Ad
+          className="os-ad-outline"
+          dimensions={adDimensions.LEFT_SIDEBAR}
+          path={'/22280732/OverwatchElite_336x768_ROS_Skin_Left'}
+        />
+        <Ad
+          className="os-ad os-ad-side-right os-ad-outline"
+          dimensions={adDimensions.RIGHT_SIDEBAR}
+          path={'/22280732/OverwatchElite_336x769_ROS_Skin_Right'}
+        />
+        <Ad
           className="os-ad os-ad-top"
           dimensions={adDimensions.BEFORE_RECT}
-          path={'/22280732/ChampionSelect_728x90_HP_BTF1'}
+          path={'/22280732/OverwatchElite_728x90_HP_BTF1'}
         />
         <div className="os-heroes row">
           <div className="col-lg-12">
@@ -82,7 +92,7 @@ class HomePage extends Component {
                 <HeroesGrid
                   filter={heroType}
                   heroes={heroes}
-                /> : <Loader /> } 
+                /> : <Loader /> }
               </div>
             </div>
           </div>
@@ -90,7 +100,7 @@ class HomePage extends Component {
         <Ad
           className="os-ad os-ad-bottom"
           dimensions={adDimensions.AFTER_SQUARE}
-          path={'/22280732/ChampionSelect_728x90_HP_BTF1'}
+          path={'/22280732/OverwatchElite_728x90_HP_ATF1'}
         />
       </div>
     );
@@ -106,7 +116,7 @@ function mapStateToProps (state) {
       }
     }
   } = state;
-  
+
   return {
     heroes: heroesArray,
     isFetchingHeroes

@@ -11,8 +11,21 @@ googletag.cmd = googletag.cmd || [];
   node.parentNode.insertBefore(gads, node);
 })();
 
-
 googletag.cmd.push(function() {
+  var mapping336x768rosskinleft = googletag.sizeMapping().addSize([975, 0], [[336, 768]]).build();
+  var mapping336x769rosskinright = googletag.sizeMapping().addSize([975, 0], [[336, 769]]).build();
+  var mapping728x90ATF1 = googletag.sizeMapping().addSize([1184, 0], [[970, 90], [970, 250], [728, 280], [728, 90]]).addSize([728, 0], [[728, 280], [728, 90], [320, 100], [320, 50]]).addSize([300, 0], [[320, 50], [320, 100]]).build();
+  var mapping728x90BTF1 = googletag.sizeMapping().addSize([728, 0], [[728, 280], [728, 90]]).addSize([728, 0], [[728, 280], [728, 90], [320, 100], [320, 50], [300, 250]]).addSize([300, 0], [[320, 50], [320, 100], [300, 250]]).build();
+    googletag.defineSlot('/22280732/OverwatchElite_336x768_ROS_Skin_Left', [336, 768], 'div-gpt-ad-1485308530799-0').defineSizeMapping(mapping336x768rosskinleft).addService(googletag.pubads());
+    googletag.defineSlot('/22280732/OverwatchElite_336x769_ROS_Skin_Right', [336, 769], 'div-gpt-ad-1485308530799-1').defineSizeMapping(mapping336x769rosskinright).addService(googletag.pubads());
+    googletag.defineSlot('/23616703/Liquipedia_728x90_Dota2_ATF1', [728, 90], 'div-gpt-ad-1480696908450-2').defineSizeMapping(mapping728x90ATF1).addService(googletag.pubads());
+    googletag.defineSlot('/23616703/Liquipedia_728x90_Dota2_BTF1', [728, 90], 'div-gpt-ad-1480696908450-3').defineSizeMapping(mapping728x90BTF1).addService(googletag.pubads());
+  googletag.pubads().enableSingleRequest();
+  googletag.pubads().collapseEmptyDivs();
+  googletag.enableServices();
+});
+
+/*googletag.cmd.push(function() {
   googletag.defineSlot('/22280732/ChampionSelect_300x250_HP_ATF1', [[336, 280], [300, 250], [300, 600], [300, 1050]], 'div-gpt-ad-1468534690919-4').addService(googletag.pubads());
   googletag.defineSlot('/22280732/ChampionSelect_300x250_HP_BTF1', [[336, 280], [310, 400], [300, 250], [300, 600], [300, 1050]], 'div-gpt-ad-1468534690919-5').addService(googletag.pubads());
   googletag.defineSlot('/22280732/ChampionSelect_336x768_ROS_Skin_Left', [336, 768], 'div-gpt-ad-1468534690919-8').addService(googletag.pubads());
@@ -22,43 +35,7 @@ googletag.cmd.push(function() {
   googletag.pubads().enableSingleRequest();
   googletag.pubads().collapseEmptyDivs();
   googletag.enableServices();
-});
-
-googletag.cmd.push(function() {
-  googletag.defineSlot('/22280732/ChampionSelect_300x250_Champions_ATF1', [[300, 1050], [300, 250], [336, 280], [300, 600]], 'div-gpt-ad-1470816122486-0').addService(googletag.pubads());
-  googletag.defineSlot('/22280732/ChampionSelect_300x250_Champions_BTF1', [[300, 1050], [300, 250], [336, 280], [300, 600], [310, 400]], 'div-gpt-ad-1470816122486-1').addService(googletag.pubads());
-  googletag.defineSlot('/22280732/ChampionSelect_336x768_ROS_Skin_Left', [336, 768], 'div-gpt-ad-1470816122486-6').addService(googletag.pubads());
-  googletag.defineSlot('/22280732/ChampionSelect_336x768_ROS_Skin_Right', [336, 769], 'div-gpt-ad-1470816122486-7').addService(googletag.pubads());
-  googletag.defineSlot('/22280732/ChampionSelect_728x90_Champions_ATF1', [[320, 50], [320, 100], [728, 90], [970, 90], [970, 250]], 'div-gpt-ad-1470816122486-8').addService(googletag.pubads());
-  googletag.defineSlot('/22280732/ChampionSelect_728x90_Champions_BTF1', [[320, 50], [320, 100], [728, 90]], 'div-gpt-ad-1470816122486-9').addService(googletag.pubads());
-  googletag.pubads().enableSingleRequest();
-  googletag.pubads().collapseEmptyDivs();
-  googletag.enableServices();
-});
-
-googletag.cmd.push(function() {
-  googletag.defineSlot('/22280732/ChampionSelect_300x250_Matchups_ATF1', [[300, 1050], [300, 250], [336, 280], [300, 600], [310, 400]], 'div-gpt-ad-1470816122486-2').addService(googletag.pubads());
-  googletag.defineSlot('/22280732/ChampionSelect_300x250_Matchups_BTF1', [[300, 1050], [300, 250], [336, 280], [300, 600], [310, 400]], 'div-gpt-ad-1470816122486-3').addService(googletag.pubads());
-  googletag.defineSlot('/22280732/ChampionSelect_336x768_ROS_Skin_Left', [336, 768], 'div-gpt-ad-1470816122486-6').addService(googletag.pubads());
-  googletag.defineSlot('/22280732/ChampionSelect_336x768_ROS_Skin_Right', [336, 769], 'div-gpt-ad-1470816122486-7').addService(googletag.pubads());
-  googletag.defineSlot('/22280732/ChampionSelect_728x90_Matchups_ATF1', [[320, 50], [320, 100], [728, 90], [970, 90], [970, 250]], 'div-gpt-ad-1470816122486-10').addService(googletag.pubads());
-  googletag.defineSlot('/22280732/ChampionSelect_728x90_Matchups_BTF1', [[320, 50], [320, 100], [728, 90]], 'div-gpt-ad-1470816122486-11').addService(googletag.pubads());
-  googletag.pubads().enableSingleRequest();
-  googletag.pubads().collapseEmptyDivs();
-  googletag.enableServices();
-});
-
-googletag.cmd.push(function() {
-  googletag.defineSlot('/22280732/ChampionSelect_300x250_Other_ATF1', [[300, 1050], [300, 250], [336, 280], [300, 600]], 'div-gpt-ad-1470816122486-4').addService(googletag.pubads());
-  googletag.defineSlot('/22280732/ChampionSelect_300x250_Other_BTF1', [[300, 1050], [300, 250], [336, 280], [300, 600], [310, 400]], 'div-gpt-ad-1470816122486-5').addService(googletag.pubads());
-  googletag.defineSlot('/22280732/ChampionSelect_336x768_ROS_Skin_Left', [336, 768], 'div-gpt-ad-1470816122486-6').addService(googletag.pubads());
-  googletag.defineSlot('/22280732/ChampionSelect_336x768_ROS_Skin_Right', [336, 769], 'div-gpt-ad-1470816122486-7').addService(googletag.pubads());
-  googletag.defineSlot('/22280732/ChampionSelect_728x90_Other_ATF1', [[320, 50], [320, 100], [728, 90], [970, 90], [970, 250]], 'div-gpt-ad-1470816122486-12').addService(googletag.pubads());
-  googletag.defineSlot('/22280732/ChampionSelect_728x90_Other_BTF1', [[320, 50], [320, 100], [728, 90]], 'div-gpt-ad-1470816122486-13').addService(googletag.pubads());
-  googletag.pubads().enableSingleRequest();
-  googletag.pubads().collapseEmptyDivs();
-  googletag.enableServices();
-});
+});*/
 
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
