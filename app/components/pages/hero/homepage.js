@@ -14,23 +14,37 @@ import PageNotFound from '../notfound/PageNotFound';
 import { HERO_TYPES } from '../../../constants/types';
 import { adDimensions } from '../../../constants/ads';
 
+import { prepareAds } from '../../../utils/index';
+
 class HomePage extends Component {
+  static defaultProps = {
+    ads: [
+      'div-gpt-ad-1485373546813-0',
+      'div-gpt-ad-1485373546813-1'
+    ]
+  };
 
   constructor (props) {
     super(props);
+  }
+
+  componentDidMount() {
+    const { ads } = this.props;
+    prepareAds(ads);
   }
 
   componentWillMount () {
     const {
       dispatch
     } = this.props;
-
+    $('.os-ad-side').remove();
   };
   componentWillUnmount () {
 
   }
   render () {
     const {
+      ads,
       heroes,
       isFetchingHeroes,
       params:{
@@ -44,7 +58,7 @@ class HomePage extends Component {
     }
     return (
       <div className="os-content container">
-        <Ad
+          <Ad
           className="os-ad os-ad-top"
           dimensions={adDimensions.BEFORE_RECT}
           path={'/22280732/OverwatchElite_728x90_HP_BTF1'}

@@ -16,13 +16,13 @@ googletag.cmd.push(function() {
   var mapping336x769rosskinright = googletag.sizeMapping().addSize([975, 0], [[336, 769]]).build();
   var mapping728x90ATF1 = googletag.sizeMapping().addSize([1184, 0], [[970, 90], [970, 250], [728, 280], [728, 90]]).addSize([728, 0], [[728, 280], [728, 90], [320, 100], [320, 50]]).addSize([300, 0], [[320, 50], [320, 100]]).build();
   var mapping728x90BTF1 = googletag.sizeMapping().addSize([728, 0], [[728, 280], [728, 90]]).addSize([728, 0], [[728, 280], [728, 90], [320, 100], [320, 50], [300, 250]]).addSize([300, 0], [[320, 50], [320, 100], [300, 250]]).build();
-    googletag.defineSlot('/22280732/OverwatchElite_336x768_ROS_Skin_Left', [336, 768], 'div-gpt-ad-1485308530799-0').defineSizeMapping(mapping336x768rosskinleft).addService(googletag.pubads());
-    googletag.defineSlot('/22280732/OverwatchElite_336x769_ROS_Skin_Right', [336, 769], 'div-gpt-ad-1485308530799-1').defineSizeMapping(mapping336x769rosskinright).addService(googletag.pubads());
-    googletag.defineSlot('/23616703/Liquipedia_728x90_Dota2_ATF1', [728, 90], 'div-gpt-ad-1480696908450-2').defineSizeMapping(mapping728x90ATF1).addService(googletag.pubads());
-    googletag.defineSlot('/23616703/Liquipedia_728x90_Dota2_BTF1', [728, 90], 'div-gpt-ad-1480696908450-3').defineSizeMapping(mapping728x90BTF1).addService(googletag.pubads());
-  googletag.pubads().enableSingleRequest();
-  googletag.pubads().collapseEmptyDivs();
-  googletag.enableServices();
+     googletag.defineSlot('/22280732/OverwatchElite_336x768_ROS_Skin_Left', [336, 768], 'div-gpt-ad-1485373546813-0').defineSizeMapping(mapping336x768rosskinleft).addService(googletag.pubads());
+     googletag.defineSlot('/22280732/OverwatchElite_336x769_ROS_Skin_Right', [336, 769], 'div-gpt-ad-1485373546813-1').defineSizeMapping(mapping336x769rosskinright).addService(googletag.pubads());
+     googletag.defineSlot('/22280732/OverwatchElite_728x90_HP_ATF1', [728, 90], 'div-gpt-ad-1485373546813-2').defineSizeMapping(mapping728x90ATF1).addService(googletag.pubads());
+     googletag.defineSlot('/22280732/OverwatchElite_728x90_HP_BTF1', [728, 90], 'div-gpt-ad-1485373546813-3').defineSizeMapping(mapping728x90BTF1).addService(googletag.pubads());
+     googletag.pubads().enableSingleRequest();
+     googletag.pubads().collapseEmptyDivs();
+     googletag.enableServices();
 });
 
 /*googletag.cmd.push(function() {
