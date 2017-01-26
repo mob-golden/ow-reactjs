@@ -1,11 +1,12 @@
 import React from 'react';
 import Modal from './modal';
 import moment from 'moment';
+import classNames from 'classnames';
 
 import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { Link } from 'react-router';
+import { browserHistory, Router, Route, Link } from 'react-router';
 
 import {
   setUser,
@@ -430,16 +431,33 @@ class Header extends Component {
       signInId,
       signUpId,
       token,
-      username
+      username,
     } = this.props;
+
+    const currentPath = window.location.pathname.split('/')[1];
+    const isActiveHeroes = currentPath == 'heroes' || currentPath == 'hero' || currentPath == 'matchuptips';
+    const isActiveMaps = currentPath == 'maps' || currentPath == 'map';
+    const isActiveCommunity = currentPath == 'community';
+
+    const headerItemClass = classNames({
+      "os-white": true,
+      "os-font-size-12": true,
+    })
+
+    const activeHeaderItemClass = classNames({
+      "os-white": true,
+      "os-font-size-12": true,
+      "os-header-item-active": true,
+    });
 
     if (token && username) {
       return (
         <div>
           <ul className={`${classes}`}>
-            <li className="nav-item os-nav-item">
+            <li className={"nav-item os-nav-item"}>
               <Link
-                className="os-white os-font-size-12"
+                onClick={e=>this.setState({})}
+                className={isActiveHeroes? activeHeaderItemClass : headerItemClass}
                 to="/heroes"
               >
                 HEROES
@@ -448,7 +466,8 @@ class Header extends Component {
 
             <li className="nav-item os-nav-item">
               <Link
-                className="os-white os-font-size-12"
+                onClick={e=>this.setState({})}
+                className={isActiveMaps? activeHeaderItemClass : headerItemClass}
                 to="/maps"
               >
                 MAPS
@@ -457,7 +476,8 @@ class Header extends Component {
 
             <li className="nav-item os-nav-item">
               <Link
-                className="os-white os-font-size-12"
+                onClick={e=>this.setState({})}
+                className={isActiveCommunity? activeHeaderItemClass : headerItemClass}
                 to="/community"
               >
                 COMMUNITY
@@ -466,7 +486,7 @@ class Header extends Component {
 
             <li className="nav-item os-nav-item">
               <a
-                className="os-white os-font-size-12"
+                className={activeHeaderItemClass}
                 href="javascript:;"
               >{username}</a>
             </li>
@@ -489,7 +509,8 @@ class Header extends Component {
         <ul className={`${classes}`}>
           <li className="nav-item os-nav-item">
             <Link
-              className="os-white os-font-size-12"
+              onClick={e=>this.setState({})}
+              className={isActiveHeroes ? activeHeaderItemClass : headerItemClass}
               to="/heroes"
             >
               HEROES
@@ -498,7 +519,8 @@ class Header extends Component {
 
           <li className="nav-item os-nav-item">
             <Link
-              className="os-white os-font-size-12"
+              onClick={e=>this.setState({})}
+              className={isActiveMaps ? activeHeaderItemClass : headerItemClass}
               to="/maps"
             >
               MAPS
@@ -507,7 +529,8 @@ class Header extends Component {
 
           <li className="nav-item os-nav-item">
             <Link
-              className="os-white os-font-size-12"
+              onClick={e=>this.setState({})}
+              className={isActiveCommunity ? activeHeaderItemClass : headerItemClass}
               to="/community"
             >
               COMMUNITY

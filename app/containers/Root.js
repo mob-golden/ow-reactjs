@@ -40,9 +40,4 @@ class Root extends Component {
   }
 }
 
-function mapStateToProps (state) {
-  return {
-  };
-}
-
-export default connect(mapStateToProps)(Root);
+export default connect()(Root);
