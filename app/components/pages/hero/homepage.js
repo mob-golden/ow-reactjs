@@ -59,7 +59,7 @@ class HomePage extends Component {
     return (
       <div className="os-content container">
         <Ad
-          className="os-ad os-ad-bottom"
+          className="os-ad os-ad-top"
           dimensions={adDimensions.AFTER_SQUARE}
           path={'/22280732/OverwatchElite_728x90_HP_ATF1'}
         />
@@ -102,7 +102,7 @@ class HomePage extends Component {
           </div>
         </div>
         <Ad
-        className="os-ad os-ad-top"
+        className="os-ad os-ad-bottom"
         dimensions={adDimensions.BEFORE_RECT}
         path={'/22280732/OverwatchElite_728x90_HP_BTF1'}
       />
