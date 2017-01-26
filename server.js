@@ -26,6 +26,7 @@ var port = process.env.PORT || 3000;
 var staticPath = isDevelopment ? path.join(__dirname, '/app') : path.join(__dirname, '/dist');
 var overwatchHost = process.env.OVERWATCH_HOST || "https://overwatch-select-api-prod.herokuapp.com";
 const S_IN_YR = 31536000;
+app.use(notrailing);
 app.use(express.static(staticPath, { maxAge: S_IN_YR }));
 app.use(session({
     store: new RedisStore({
@@ -49,7 +50,7 @@ app.use(bodyParser.urlencoded({
 
 app.set('trust proxy', true);
 app.use(forceDomain({
-  hostname: process.env.FORCE_DOMAIN || 'www.overwatchelite.net'
+  hostname: process.env.FORCE_DOMAIN || 'overwatchelite.net'
 }));
 
 app.post('/forgot', function (req, res) {
