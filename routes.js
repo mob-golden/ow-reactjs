@@ -117,7 +117,11 @@ module.exports = function (app) {
                 } else {
                     r = request.put({uri: url, headers: headers, json: req.body});
                 }
-                queue.create('putReq', {url: computePurgeKeys(originalUrl)}).save();
+                if (originalUrl.split('/')[1] === "tips") {
+                  queue.create('instantPutReq', {url: computePurgeKeys(originalUrl)}).save();
+                } else {
+                  queue.create('putReq', {url: computePurgeKeys(originalUrl)}).save();
+                }
                 req.pipe(r, {end: false}).pipe(res);
 
             } else {
@@ -168,11 +172,6 @@ module.exports = function (app) {
     });
 
     function computePurgeKeys(url) {
-        if(url.indexOf("tips") > -1) {
-            return "herosandmaps"
-        }
-        else {
-            return surrogates[url.split("/")[2]].join(" ")
-        }
+        return surrogates[url.split("/")[2]].join(" ")
     }
 };

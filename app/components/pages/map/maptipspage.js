@@ -85,11 +85,11 @@ class MapTipsPage extends Component {
 
     return (
       <div className="container os-content">
-        <Ad
+        {/*<Ad
           className="os-ad os-ad-top"
           dimensions={adDimensions.BEFORE_RECT}
           path={'/22280732/ChampionSelect_728x90_HP_BTF1'}
-        />
+        />*/}
 
         <div className="os-map-tip row">
           <div className="col-lg-12">
@@ -190,11 +190,11 @@ class MapTipsPage extends Component {
           </div>
         </div>
 
-        <Ad
+        {/*<Ad
           className="os-ad os-ad-bottom"
           dimensions={adDimensions.AFTER_SQUARE}
           path={'/22280732/ChampionSelect_300x250_HP_ATF1'}
-        />
+        />*/}
       </div>
     );
   }

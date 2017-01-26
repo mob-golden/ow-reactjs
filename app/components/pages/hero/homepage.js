@@ -14,30 +14,44 @@ import PageNotFound from '../notfound/PageNotFound';
 import { HERO_TYPES } from '../../../constants/types';
 import { adDimensions } from '../../../constants/ads';
 
+import { prepareAds } from '../../../utils/index';
+
 class HomePage extends Component {
+  static defaultProps = {
+    ads: [
+      'div-gpt-ad-1485373546813-0',
+      'div-gpt-ad-1485373546813-1'
+    ]
+  };
 
   constructor (props) {
     super(props);
+  }
+
+  componentDidMount() {
+    const { ads } = this.props;
+    prepareAds(ads);
   }
 
   componentWillMount () {
     const {
       dispatch
     } = this.props;
-
+    $('.os-ad-side').remove();
   };
   componentWillUnmount () {
 
   }
   render () {
     const {
+      ads,
       heroes,
       isFetchingHeroes,
       params:{
         heroType: _heroType
       }
     } = this.props;
-      
+
     const heroType = _heroType?changeCase.lower(_heroType):'all';
     if(!HERO_TYPES.find(x => x.name == heroType)){
       return (<PageNotFound/>);
@@ -46,8 +60,8 @@ class HomePage extends Component {
       <div className="os-content container">
         <Ad
           className="os-ad os-ad-top"
-          dimensions={adDimensions.BEFORE_RECT}
-          path={'/22280732/ChampionSelect_728x90_HP_BTF1'}
+          dimensions={adDimensions.AFTER_SQUARE}
+          path={'/22280732/OverwatchElite_728x90_HP_ATF1'}
         />
         <div className="os-heroes row">
           <div className="col-lg-12">
@@ -82,16 +96,16 @@ class HomePage extends Component {
                 <HeroesGrid
                   filter={heroType}
                   heroes={heroes}
-                /> : <Loader /> } 
+                /> : <Loader /> }
               </div>
             </div>
           </div>
         </div>
         <Ad
-          className="os-ad os-ad-bottom"
-          dimensions={adDimensions.AFTER_SQUARE}
-          path={'/22280732/ChampionSelect_728x90_HP_BTF1'}
-        />
+        className="os-ad os-ad-bottom"
+        dimensions={adDimensions.BEFORE_RECT}
+        path={'/22280732/OverwatchElite_728x90_HP_BTF1'}
+      />
       </div>
     );
   }
@@ -106,7 +120,7 @@ function mapStateToProps (state) {
       }
     }
   } = state;
-  
+
   return {
     heroes: heroesArray,
     isFetchingHeroes

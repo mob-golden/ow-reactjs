@@ -60,7 +60,7 @@ class SingleHeroPage extends Component {
     if(!heroesHash[heroKey]){
       return (<PageNotFound/>);
     }
-    
+
     const {
       id,
       name,
@@ -71,11 +71,11 @@ class SingleHeroPage extends Component {
     return (
       <div className="os-body">
         <div className="os-content container">
-          <Ad
+          {/*<Ad
             className="os-ad os-ad-top"
             dimensions={adDimensions.BEFORE_RECT}
             path={'/22280732/ChampionSelect_728x90_HP_BTF1'}
-          />
+          />*/}
           <div className="os-hero row">
             <div className="col-lg-12">
               <div className="os-content-top os-hero-top">
@@ -144,11 +144,11 @@ class SingleHeroPage extends Component {
               </div>
             </div>
           </div>
-          <Ad
+          {/*<Ad
             className="os-ad os-ad-bottom"
             dimensions={adDimensions.AFTER_SQUARE}
             path={'/22280732/ChampionSelect_728x90_HP_BTF1'}
-          />
+          />*/}
         </div>
         <div className="os-hero-footer row">
           {!isFetchingHeroes && heroesArray ?

@@ -18,6 +18,13 @@ var putKeys = {};
 var allHeroCount = 0;
 var allMapCount = 0;
 
+queue.process('instantPutReq', function(job, done) {
+  var keys = job.data.url.split(" ");
+  fastlyPurge.key(FASTLY_SERVICE_ID, keys[0], function (err, result) {
+    console.log("purged: " + keys[0]);
+  })
+})
+
 queue.process('putReq', function (job, done) {
     console.log("processing put job");
     console.log(job.data);

@@ -51,15 +51,15 @@ class MatchupTipsPage extends Component {
     if(!heroesHash[heroKey] || !heroesHash[matchupHeroKey] || !MATCHUP_TYPES.find(x => x==matchupType)){
       return (<PageNotFound/>);
     }
-    
+
     return (
       <div className="os-body">
         <div className="os-content container">
-          <Ad
+          {/*<Ad
             className="os-ad os-ad-top"
             dimensions={adDimensions.BEFORE_RECT}
             path={'/22280732/ChampionSelect_728x90_HP_BTF1'}
-          />
+          />*/}
           <div className="os-matchup row">
             <div className="col-lg-12">
               <div className="os-matchup-top">
@@ -137,11 +137,11 @@ class MatchupTipsPage extends Component {
               </div>
             </div>
           </div>
-          <Ad
+          {/*<Ad
             className="os-ad os-ad-bottom"
             dimensions={adDimensions.AFTER_SQUARE}
             path={'/22280732/ChampionSelect_728x90_HP_BTF1'}
-          />
+          />*/}
         </div>
         <div className="os-hero-footer">
           {!isFetchingHeroes && heroesArray ?
