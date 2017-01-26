@@ -1,7 +1,6 @@
 require('babel-register');
 require('dotenv').config();
 var path = require('path');
-var cors = require('cors');
 var express = require('express');
 var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
@@ -27,7 +26,6 @@ var port = process.env.PORT || 3000;
 var staticPath = isDevelopment ? path.join(__dirname, '/app') : path.join(__dirname, '/dist');
 var overwatchHost = process.env.OVERWATCH_HOST || "https://overwatch-select-api-prod.herokuapp.com";
 const S_IN_YR = 31536000;
-app.use(cors());
 app.use(express.static(staticPath, { maxAge: S_IN_YR }));
 app.use(session({
     store: new RedisStore({
