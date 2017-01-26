@@ -4,6 +4,7 @@ import changeCase from 'change-case';
 import Loader from '../../loader';
 import TabsNav from '../../tabsnav';
 import MapsGrid from './mapsgrid';
+import PageNotFound from '../notfound/PageNotFound';
 
 import { fetchMapsIfNeeded } from '../../../actions/map';
 
@@ -43,15 +44,18 @@ class MapsPage extends Component {
       }
     } = this.props;
 
-    const mapType = _mapType?changeCase.lower(_mapType):'';
+    const mapType = _mapType?changeCase.lower(_mapType):'all';
 
+    if(!MAP_TYPES.find(x => x.name == mapType)){
+      return (<PageNotFound/>);
+    }
     return (
       <div className="container os-content">
-        <Ad
+        {/*<Ad
           className="os-ad os-ad-top"
           dimensions={adDimensions.BEFORE_RECT}
           path={'/22280732/ChampionSelect_728x90_HP_BTF1'}
-        />
+        />*/}
         <div className="os-maps row">
           <div className="col-lg-12">
             <div className="os-content-top os-maps-top">
@@ -76,20 +80,22 @@ class MapsPage extends Component {
                   })}
                 />
               </div>
-              { !isFetchingMaps && mapsArray ? 
-                <MapsGrid
-                  filter={mapType}
-                  maps={mapsArray}
-                /> : <Loader /> } 
+              <div className="os-tab-transition">
+                { !isFetchingMaps && mapsArray ?
+                  <MapsGrid
+                    filter={mapType}
+                    maps={mapsArray}
+                  /> : <Loader /> }
+              </div>
             </div>
           </div>
-          
+
         </div>
-        <Ad
+        {/*<Ad
           className="os-ad os-ad-bottom"
           dimensions={adDimensions.AFTER_SQUARE}
           path={'/22280732/ChampionSelect_300x250_HP_ATF1'}
-        />
+        />*/}
       </div>
     );
   }

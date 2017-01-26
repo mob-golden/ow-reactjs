@@ -1,6 +1,8 @@
 import React from 'react';
 import {Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
+
 
 class pageNotFound extends Component {
   render() {
@@ -13,7 +15,12 @@ class pageNotFound extends Component {
                 <div className="os-card--pagenotfound-left os-error--half">
                   <h2 className="os-card--pagenotfound-header">Sorry, the page you're looking for doesn't exist</h2>
                   <p className="os-card--pagenotfound-text">Please head back to our home page</p>
-                  <button className="btn btn-primary os-btn-blue">Go Home</button>
+                  <Link 
+                    className="btn btn-primary os-btn-blue"
+                    to="/"
+                  >
+                    Go Home
+                  </Link>
                 </div>
                 <img 
                   className="os-error--half-right os-error--bastion"

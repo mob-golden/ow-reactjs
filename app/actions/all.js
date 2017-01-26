@@ -50,7 +50,7 @@ export function addHeroTip ({
 
         // TODO: is this necessary for a POST request?
         if (response.status >= 200 && response.status < 300) {
-          dispatch(fetchTipsIfNeeded(heroKey));
+          // dispatch(fetchTipsIfNeeded(heroKey));
           return response;
         } else {
           const error = new Error(statusText);
@@ -65,11 +65,12 @@ export function addHeroTip ({
 
 export function deleteHeroTip ({
   id,
-  token
+  token,
+  masterKey
 }) {
   return (dispatch, getState) => {
 
-    return fetch(`${OW_TIPS_URL}/${id}`, {
+    return fetch(`${OW_TIPS_URL}/${masterKey}/${id}`, {
       credentials : 'include',
       method: 'DELETE'
     })
@@ -95,7 +96,8 @@ export function deleteHeroTip ({
 export function editHeroTip ({
   id,
   content,
-  token
+  token,
+  masterKey
 }) {
   return (dispatch, getState) => {
 
@@ -103,7 +105,7 @@ export function editHeroTip ({
       content
     });
 
-    return fetch(`${OW_TIPS_URL}/${id}`, {
+    return fetch(`${OW_TIPS_URL}/${masterKey}/${id}`, {
       body,
       headers: {
         'Accept': 'application/json',
@@ -159,7 +161,7 @@ export function addHeroMatchup ({
 
         // TODO: is this necessary for a POST request?
         if (response.status >= 200 && response.status < 300) {
-          dispatch(fetchMatchupsIfNeeded(heroKey));
+          // dispatch(fetchMatchupsIfNeeded(heroKey)); // Don't need this because of cache
           return response;
         } else {
           const error = new Error(statusText);
@@ -205,10 +207,10 @@ export function addHeroMatchupTip ({
 
         // TODO: is this necessary for a POST request?
         if (response.status >= 200 && response.status < 300) {
-          if(direction)
-            dispatch(fetchMatchupTipsIfNeeded(heroKey, matchupKey, tipType));
-          else
-            dispatch(fetchMatchupTipsIfNeeded(matchupKey, heroKey, tipType));
+          // if(direction)
+          //   dispatch(fetchMatchupTipsIfNeeded(heroKey, matchupKey, tipType));
+          // else
+          //   dispatch(fetchMatchupTipsIfNeeded(matchupKey, heroKey, tipType));
           return response;
         } else {
           const error = new Error(statusText);
@@ -249,7 +251,7 @@ export function addMapTip ({
 
         // TODO: is this necessary for a POST request?
         if (response.status >= 200 && response.status < 300) {
-          dispatch(fetchMapTipsIfNeeded(mapKey));
+          // dispatch(fetchMapTipsIfNeeded(mapKey)); 
           return response;
         } else {
           const error = new Error(statusText);
@@ -263,9 +265,9 @@ export function addMapTip ({
 }
 
 
-export function voteTip (id, downOrUp) {
+export function voteTip (id, downOrUp, masterKey) {
   return dispatch => {
-    return fetch(`${OW_TIPS_URL}/${id}/${downOrUp}`, {
+    return fetch(`${OW_TIPS_URL}/${masterKey}/${id}/${downOrUp}`, {
       method: 'PUT',
       credentials : 'include',
     })
@@ -363,7 +365,7 @@ export function addThread ({
 
         // TODO: is this necessary for a POST request?
         if (response.status >= 200 && response.status < 300) {
-          dispatch(fetchThreadsIfNeeded());
+          dispatch(fetchThreadsIfNeeded(type));
           return response;
         } else {
           const error = new Error(statusText);

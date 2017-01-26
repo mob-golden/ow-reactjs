@@ -1,6 +1,7 @@
 import React from 'react';
 import changeCase from 'change-case';
 import classNames from 'classnames';
+import moment from 'moment';
 
 import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
@@ -17,7 +18,6 @@ class MapRankingsList extends Component {
       matchups,
     } = this.props;
 
-    const mapRankings = matchups.data.matchups;
     // if (mapRankings.length === 0) {
     //   return (
     //     <div className="os-maprankings-list">
@@ -33,7 +33,7 @@ class MapRankingsList extends Component {
     return (
       <div className="os-maprankings-list">
       {
-        mapRankings.map(matchup => {
+        matchups.map(matchup => {
           const {
             score:{
               score,
@@ -61,18 +61,22 @@ class MapRankingsList extends Component {
             'fa-thumbs-o-up': true
           });
 
+          let votedType = votes[key];
+          if(votedType){
+            votedType = votedType.split(' ')[0];
+          }
           const downvotesClass = classNames({
             'os-matchup-vote-down': true,
-            'os-matchup-item-votes-active': votes[key],
-            'os-matchup-item-votes-non-active': !votes[key],
-            'os-matchup-voted-down': votes[key] == 'downvote'
+            'os-matchup-item-votes-active': votedType,
+            'os-matchup-item-votes-non-active': !votedType,
+            'os-matchup-voted-down': votedType == 'downvote'
           });
 
           const upvotesClass = classNames({
             'os-matchup-vote-up': true,
-            'os-matchup-item-votes-active': votes[key],
-            'os-matchup-item-votes-non-active': !votes[key],
-            'os-matchup-voted-up': votes[key] == 'upvote'
+            'os-matchup-item-votes-active': votedType,
+            'os-matchup-item-votes-non-active': !votedType,
+            'os-matchup-voted-up': votedType == 'upvote'
           });
 
           return (
@@ -147,7 +151,7 @@ class MapRankingsList extends Component {
       const votedItemClass = downOrUp === 'upvote'? 'up' : 'down';
       $(selector).parent().addClass(`os-matchup-voted-${votedItemClass}`);
 
-      votes[key] = downOrUp;
+      votes[key] = downOrUp + ' '+ moment().valueOf();
       localStorage.setItem('matchupVotes', JSON.stringify(votes));
     }
   };

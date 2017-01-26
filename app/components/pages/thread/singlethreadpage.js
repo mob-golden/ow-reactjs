@@ -8,6 +8,7 @@ import { Link } from 'react-router';
 
 import Modal from '../../modal';
 import Loader from '../../loader';
+import PageNotFound from '../notfound/PageNotFound';
 import CommunityTypeAhead from '../../communitytypeahead';
 import EditDeleteButton from '../../editdeletebutton';
 import { FORUM_STRINGS } from '../../../constants/types';
@@ -69,6 +70,10 @@ class SingleThreadPage extends Component {
     if(isFetchingSingleThread || !singleThread)
       return(<Loader/>);
 
+    if(!FORUM_STRINGS[commType]) {
+      return (<PageNotFound/>);
+    }
+    
     if (!localStorage.getItem('commentVotes')) localStorage.setItem('commentVotes', JSON.stringify({}));
     const votes =  JSON.parse(localStorage.getItem('commentVotes'));
     const key = singleThread._id;

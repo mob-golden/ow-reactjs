@@ -21,7 +21,7 @@ import SingleThreadPage from '../components/pages/thread/singlethreadpage';
 import PageNotFound from '../components/pages/notfound/PageNotFound';
 
 export const routes = (
-  <Route path="/" component={Root} >
+  <Route path="/" component={Root} onChange={handleChangePage}>
     <IndexRoute component={HomePage} />
     <Route path="/forgot" component={ForgotPassword} />
     <Route path="/reset" component={ResetPassword} />
@@ -37,7 +37,7 @@ export const routes = (
       <Route path="/maprankingtips/:heroKey/:mapKey" component={MapRankingTipsPage}/>
     </Route>
 
-    <Route path="/matchups/:heroKey/:matchupHeroKey/:matchupType" component={MatchupTipsPage}>
+    <Route path="/matchuptips/:heroKey/:matchupHeroKey/:matchupType" component={MatchupTipsPage}>
       <IndexRoute component={MatchupTips} />
     </Route>
 
@@ -52,18 +52,47 @@ export const routes = (
   </Route>
 );
 
-export default class Application extends React.Component {
-
-  handlePageView() {
-    if (window !== undefined) {
-      window.scrollTo(0, 0);
-    }
+var stateChanged = "page";
+var scrollTop = 0;
+function handleChangePage(prevState, nextState, replaceState, callback){
+  if(('heroType' in nextState.params 
+      || 'mapType' in nextState.params 
+      || nextState.location.pathname.includes('generaltips')
+      || nextState.location.pathname.includes('matchups')
+      || nextState.location.pathname.includes('maprankings')) && $('.os-tab-transition').length != 0)
+  {
+    stateChanged = "tab";
+    scrollTop = $(window).scrollTop();
+    $('.os-tab-transition').fadeOut(500, function(){
+      callback();
+    });
   }
+  else{
+    stateChanged = "page";
+    $('.os-transition').fadeOut(500, function(){
+      callback();
+    }); 
+  }
+}
 
+function handlePageView(e) {
+  if(stateChanged == "tab"){
+    $('.os-tab-transition').css('display', 'block');
+    $('.os-tab-transition').css('opacity', '0');
+    $(window).scrollTop(scrollTop);  
+    $('.os-tab-transition').animate({ opacity: 1 }, 500);
+  }
+  else{
+    $('.os-transition').css('display', 'none');
+    $('.os-transition').fadeIn(500);  
+  }
+}
+
+export default class Application extends React.Component {
   render () {
     return (
       <Provider store={ this.props.store }>
-        <Router history={ this.props.history } onUpdate={() => this.handlePageView()}>
+        <Router history={ this.props.history } onUpdate={handlePageView}>
           {routes}
         </Router>
       </Provider>

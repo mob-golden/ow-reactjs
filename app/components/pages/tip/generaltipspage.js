@@ -84,6 +84,7 @@ class GeneralTipsPage extends Component {
       'btn btn-secondary os-btn-white':true,
       'hidden': tips.against.data.tips.length < 6
     });
+
     return (
       <div className="os-card-container os-hero-tip-container">
         <div className="row">
@@ -95,7 +96,8 @@ class GeneralTipsPage extends Component {
               </span>
               <h5 className="os-hero-tip-title">STRATEGY & TIPS</h5>
               <TipList
-                listId = "for"
+                masterKey={heroKey}
+                listId="for"
                 tips={
                   this.state.leftViewAll?
                   tips.for.data.tips:
@@ -114,7 +116,7 @@ class GeneralTipsPage extends Component {
                   className={leftViewAllClassName}
                   onClick={() => this.setState({leftViewAll: !this.state.leftViewAll })}
                 >
-                { this.state.leftViewAll?`VIEW LESS`:`VIEW ALL`}
+                { this.state.leftViewAll?`VIEW LESS`:`VIEW MORE`}
                 </button>
               </div>
             </div>
@@ -127,6 +129,7 @@ class GeneralTipsPage extends Component {
               </span>
               <h5 className="os-hero-tip-title">COUNTER TIPS</h5>
               <TipList
+                masterKey={heroKey}
                 listId = "against"
                 tips={
                   this.state.rightViewAll?
@@ -146,7 +149,7 @@ class GeneralTipsPage extends Component {
                   className={rightViewAllClassName}
                   onClick={() => this.setState({rightViewAll: !this.state.rightViewAll })}
                 >
-                { this.state.rightViewAll?`VIEW LESS`:`VIEW ALL`}
+                { this.state.rightViewAll?`VIEW LESS`:`VIEW MORE`}
                 </button>
               </div>
             </div>
@@ -174,6 +177,8 @@ class GeneralTipsPage extends Component {
     this._tipsBox = {
       type: {}
     };
+
+
     if(token){
       return (
         <div>
@@ -181,14 +186,29 @@ class GeneralTipsPage extends Component {
               e.preventDefault();
               const textarea = this._tipsBox[type];
               if (textarea && textarea.value) {
-
                 dispatch(addHeroTip({
                   heroKey: heroKey,
                   content: textarea.value,
                   tipType: type,
                   token
                 }));
+                const tmp_data = {
+                  _id:'9999999999'+textarea.value,
+                  authorName: localStorage.getItem('username'),
+                  contentRaw: textarea.value,
+                  created_at: "2000-01-01T00:00:00.938Z",
+                  score: {
+                    upvotes: 1,
+                    downvotes: 0,
+                    hotScore: 1,
+                    total: 1,
+                  },
+                  type: type
+                };
+                this.props.tips[type].data.tips.push(tmp_data);
+                this.forceUpdate();
               }
+
               $(`#modal-add-tip-${type}`).modal('hide');
             }}>
             <Modal 

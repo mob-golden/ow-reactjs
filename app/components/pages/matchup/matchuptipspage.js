@@ -10,7 +10,9 @@ import Loader from '../../loader';
 import Typeahead from '../../typeahead';
 import HeroFooter from '../hero/herofooter';
 import Modal from '../../modal';
+import PageNotFound from '../notfound/PageNotFound';
 
+import { MATCHUP_TYPES } from '../../../constants/types';
 import { adDimensions } from '../../../constants/ads';
 
 class MatchupTipsPage extends Component {
@@ -41,18 +43,23 @@ class MatchupTipsPage extends Component {
     const matchupHeroKey = changeCase.lower(_matchupHeroKey);
     const matchupType = changeCase.lower(_matchupType);
 
+
     if (isFetchingHeroes && !heroesHash) {
       return <Loader />;
+    }
+
+    if(!heroesHash[heroKey] || !heroesHash[matchupHeroKey] || !MATCHUP_TYPES.find(x => x==matchupType)){
+      return (<PageNotFound/>);
     }
 
     return (
       <div className="os-body">
         <div className="os-content container">
-          <Ad
+          {/*<Ad
             className="os-ad os-ad-top"
             dimensions={adDimensions.BEFORE_RECT}
             path={'/22280732/ChampionSelect_728x90_HP_BTF1'}
-          />
+          />*/}
           <div className="os-matchup row">
             <div className="col-lg-12">
               <div className="os-matchup-top">
@@ -82,7 +89,7 @@ class MatchupTipsPage extends Component {
                 </div>
 
                 <div className="col-lg-4 col-xs-4">
-                  <Link to={`/matchups/${matchupHeroKey}/${heroKey}/${matchupType}`}>
+                  <Link to={`/matchuptips/${matchupHeroKey}/${heroKey}/${matchupType}`}>
                     <div className="os-matchup-vs-img">
                     </div>
                   </Link>
@@ -130,11 +137,11 @@ class MatchupTipsPage extends Component {
               </div>
             </div>
           </div>
-          <Ad
+          {/*<Ad
             className="os-ad os-ad-bottom"
             dimensions={adDimensions.AFTER_SQUARE}
             path={'/22280732/ChampionSelect_728x90_HP_BTF1'}
-          />
+          />*/}
         </div>
         <div className="os-hero-footer">
           {!isFetchingHeroes && heroesArray ?
@@ -162,12 +169,12 @@ class MatchupTipsPage extends Component {
             <fieldset className="os-modal-form-group-2">
               { isLeft ?
                 <Typeahead
-                  constructLink={(id) => `/matchups/${id}/${otherHeroKey}/${matchupType}`}
+                  constructLink={(id) => `/matchuptips/${id}/${otherHeroKey}/${matchupType}`}
                   inputGroupClass="input-group"
                   placeholder={"Search for a Hero"}
                 />:
                 <Typeahead
-                  constructLink={(id) => `/matchups/${otherHeroKey}/${id}/${matchupType}`}
+                  constructLink={(id) => `/matchuptips/${otherHeroKey}/${id}/${matchupType}`}
                   inputGroupClass="input-group"
                   placeholder={"Search for a Hero"}
                 />
@@ -203,7 +210,7 @@ class MatchupTipsPage extends Component {
 
             return (
               <Link
-                to= {isLeft ? `/matchups/${id}/${otherHeroKey}/${matchupType}`: `/matchups/${otherHeroKey}/${id}/${matchupType}`}
+                to= {isLeft ? `/matchuptips/${id}/${otherHeroKey}/${matchupType}`: `/matchuptips/${otherHeroKey}/${id}/${matchupType}`}
                 key={id}
               >
                 <div

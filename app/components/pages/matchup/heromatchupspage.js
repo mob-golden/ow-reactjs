@@ -140,7 +140,7 @@ class HeroMatchupsPage extends Component {
                   className={positiveViewAllClassName}
                   onClick={() => this.handlePositiveViewAll()}
                 >
-                  { this.state.positiveViewAll?`VIEW LESS`:`VIEW ALL`}
+                  { this.state.positiveViewAll?`VIEW LESS`:`VIEW MORE`}
                 </button>
               </div>
             </div>
@@ -174,7 +174,7 @@ class HeroMatchupsPage extends Component {
                   className={negativeViewAllClassName}
                   onClick={() => this.handleNegativeViewAll()}
                 >
-                  { this.state.negativeViewAll?`VIEW LESS`:`VIEW ALL`}
+                  { this.state.negativeViewAll?`VIEW LESS`:`VIEW MORE`}
                 </button>
               </div>
             </div>
@@ -208,7 +208,7 @@ class HeroMatchupsPage extends Component {
                   className={teamupViewAllClassName}
                   onClick={() => this.handleTeamupViewAll()}
                 >
-                  { this.state.teamupViewAll?`VIEW LESS`:`VIEW ALL`}
+                  { this.state.teamupViewAll?`VIEW LESS`:`VIEW MORE`}
                 </button>
               </div>
             </div>
@@ -330,6 +330,18 @@ class HeroMatchupsPage extends Component {
         type,
         token
       }));
+      
+      const tmp_data = {
+        opponent: id,
+        score:{
+          upvotes: 1,
+          downvotes: 0,
+          total: 1,
+        },
+        type
+      };
+      this.props.matchups[type].data.matchups.push(tmp_data);
+      this.forceUpdate();
     }
   }
 }

@@ -66,6 +66,7 @@ class MapTipsPage extends Component {
       return (<Loader/>);
     }
 
+
     const viewAllClassName = classNames({
       'btn btn-secondary os-btn-white':true,
       'hidden': mapTips.data.tips.length < 9
@@ -84,11 +85,11 @@ class MapTipsPage extends Component {
 
     return (
       <div className="container os-content">
-        <Ad
+        {/*<Ad
           className="os-ad os-ad-top"
           dimensions={adDimensions.BEFORE_RECT}
           path={'/22280732/ChampionSelect_728x90_HP_BTF1'}
-        />
+        />*/}
 
         <div className="os-map-tip row">
           <div className="col-lg-12">
@@ -128,7 +129,8 @@ class MapTipsPage extends Component {
                           MAP TIPS
                         </h5>
                         <TipList
-                          listId = "maptip"
+                          masterKey={mapKey}
+                          listId="maptip"
                           tips={
                             this.state.viewAll?
                             mapTips.data.tips:
@@ -147,7 +149,7 @@ class MapTipsPage extends Component {
                             className={viewAllClassName}
                             onClick={() => this.setState({viewAll: !this.state.viewAll })}
                           >
-                          { this.state.viewAll?`VIEW LESS`:`VIEW ALL`}
+                          { this.state.viewAll?`VIEW LESS`:`VIEW MORE`}
                           </button>
                         </div>
                       </div>
@@ -172,7 +174,7 @@ class MapTipsPage extends Component {
                             className={matchupViewAllClassName}
                             onClick={() => this.handleMatchupViewAll()}
                           >
-                            { this.state.matchupViewAll?`VIEW LESS`:`VIEW ALL`}
+                            { this.state.matchupViewAll?`VIEW LESS`:`VIEW MORE`}
                           </button>
                         </div>
                       </div>
@@ -184,11 +186,11 @@ class MapTipsPage extends Component {
           </div>
         </div>
 
-        <Ad
+        {/*<Ad
           className="os-ad os-ad-bottom"
           dimensions={adDimensions.AFTER_SQUARE}
           path={'/22280732/ChampionSelect_300x250_HP_ATF1'}
-        />
+        />*/}
       </div>
     );
   }
@@ -220,6 +222,21 @@ class MapTipsPage extends Component {
                   content: textarea.value,
                   token
                 }));
+                const tmp_data = {
+                  _id:'9999999999',
+                  authorName: localStorage.getItem('username'),
+                  contentRaw: textarea.value,
+                  created_at: "2000-01-01T00:00:00.938Z",
+                  score: {
+                    upvotes: 1,
+                    downvotes: 0,
+                    hotScore: 1,
+                    total: 1,
+                  },
+                  type: "map"
+                };
+                this.props.mapTips.data.tips.push(tmp_data);
+                this.forceUpdate();
               }
               $(`#modal-add-map-tip`).modal('hide');
             }}>

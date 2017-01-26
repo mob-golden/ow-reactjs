@@ -1,6 +1,7 @@
 import React from 'react';
 import changeCase from 'change-case';
 import classNames from 'classnames';
+import moment from 'moment';
 import Modal from '../../modal';
 
 import {
@@ -30,6 +31,13 @@ class TipList extends Component {
     this.renderEditModal = this.renderEditModal.bind(this);
     this.tipDivs = [];
     this.toggleTipShowMore = this.toggleTipShowMore.bind(this);
+  }
+
+  componentDidUpdate(){
+    updatePTags();
+  }
+  componentDidMount (){
+    updatePTags();
   }
 
   toggleTipShowMore (e) {
@@ -76,37 +84,38 @@ class TipList extends Component {
 
           const name = authorName ? authorName : 'anonymous';
 
+          let votedType = votes[id];
+          if(votedType){
+            votedType = votedType.split(' ')[0];
+          }
           const downvoteClass = classNames({
             'fa fa-fw fa-caret-down': true,
             'os-counter-tip-caret': true,
-            'os-counter-tip-caret-non-active': !votes[id],
-            'os-counter-tip-caret-active': votes[id] === 'downvote',
+            'os-counter-tip-caret-non-active': !votedType,
+            'os-counter-tip-caret-active': votedType === 'downvote',
             'os-counter-tip-vote-alt': true,
-            'os-counter-tip-vote-non-active-alt': !votes[id],
-            'os-counter-tip-vote-active-alt': votes[id] === 'downvote'
+            'os-counter-tip-vote-non-active-alt': !votedType,
+            'os-counter-tip-vote-active-alt': votedType === 'downvote'
           });
 
           const upvoteClass = classNames({
             'fa fa-fw fa-caret-up': true,
             'os-counter-tip-caret': true,
-            'os-counter-tip-caret-non-active': !votes[id],
-            'os-counter-tip-caret-active': votes[id] === 'upvote',
+            'os-counter-tip-caret-non-active': !votedType,
+            'os-counter-tip-caret-active': votedType === 'upvote',
             'os-counter-tip-vote-alt': true,
-            'os-counter-tip-vote-non-active-alt': !votes[id],
-            'os-counter-tip-vote-active-alt': votes[id] === 'upvote'
+            'os-counter-tip-vote-non-active-alt': !votedType,
+            'os-counter-tip-vote-active-alt': votedType === 'upvote'
           });
 
 
-          let osTipOnClick = (e) => this.toggleTipShowMore(e);
           const contentElement = (
             <div>
               <p
                 className="os-counter-tip-text os-counter-tip-text-short"
-                onClick={osTipOnClick}
-                dangerouslySetInnerHTML={{
-                  __html: content
-                }}
+                onClick={(e) => this.toggleTipShowMore(e)}
               >
+                {content}
               </p>
               <div className="os-counter-tip-footer clearfix">
                 <span className="os-counter-tip-metadata">by <span className="os-counter-tip-author">{name}</span></span>
@@ -169,21 +178,24 @@ class TipList extends Component {
 
   handleDelete = (id) => {
     const {
-      dispatch
+      dispatch,
+      masterKey
     } = this.props;
 
     const localToken = localStorage.getItem('token');
 
     dispatch(deleteHeroTip({
       id,
-      token: localToken
+      token: localToken,
+      masterKey
     }));
     this.tipDivs[id].style.display = 'none';
   }
 
   handleVote = (id, downOrUp) => {
     const {
-      dispatch
+      dispatch,
+      masterKey
     } = this.props;
 
     const votes = JSON.parse(localStorage.getItem('tipVotes'));
@@ -208,7 +220,7 @@ class TipList extends Component {
       $(selector).prev().find('i').removeClass('os-counter-tip-vote-non-active-alt');
       $(selector).next().find('i').removeClass('os-counter-tip-vote-non-active-alt');
     
-      votes[id] = downOrUp;
+      votes[id] = downOrUp + ' '+ moment().valueOf();
 
       localStorage.setItem('tipVotes', JSON.stringify(votes));
 
@@ -235,6 +247,7 @@ class TipList extends Component {
   renderEditModal = () => {
     const {
       dispatch,
+      masterKey,
       listId
     } = this.props;
 
@@ -253,7 +266,8 @@ class TipList extends Component {
                 dispatch(editHeroTip({
                   id: input.value,
                   content: textarea.value,
-                  token: localToken
+                  token: localToken,
+                  masterKey
                 }));
               }
 
@@ -289,3 +303,13 @@ class TipList extends Component {
 }
 
 export default connect()(TipList);
+
+function updatePTags(){
+  $( ".os-counter-tip-text").each(function(index, pTag){
+    $(pTag).removeClass("os-tip-text-no-after");
+    var pHeight = parseInt($(pTag).css('height'), 10);
+    if(pHeight < 64){
+      $(pTag).addClass("os-tip-text-no-after");
+    }
+  });
+}

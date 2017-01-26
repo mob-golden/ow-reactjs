@@ -29,7 +29,7 @@ class HeroesGrid extends Component {
               type
             } = hero;
 
-          if(filter !== '' && filter !== HERO_TYPES[type].name) return null;
+          if(filter !== 'all' && filter !== HERO_TYPES[type].name) return null;
           return (
             <div
               className={colClass}

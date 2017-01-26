@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from './modal';
+import moment from 'moment';
 
 import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
@@ -80,6 +81,7 @@ class Header extends Component {
   constructor (props) {
     super(props);
 
+    this.updateLocalStorage();
     const {
       token,
       username
@@ -93,6 +95,37 @@ class Header extends Component {
       passwordMessage: null,
       dropdownOpen: false
     };
+  }
+
+  updateLocalStorage(){
+    let tipVotes = JSON.parse(localStorage.getItem('tipVotes'));
+    let matchupVotes = JSON.parse(localStorage.getItem('matchupVotes'));
+
+    const current = moment();
+
+    if(tipVotes){
+      for (var key in tipVotes) {
+        if (tipVotes.hasOwnProperty(key)) {
+          const votedDate = moment(parseInt(tipVotes[key].split(' ')[1]));
+          if(current.diff(votedDate, 'hours') > 23){
+            delete tipVotes[key];
+          }
+        }
+      }
+      localStorage.setItem('tipVotes', JSON.stringify(tipVotes));
+    }
+
+    if(matchupVotes){
+      for (var key in matchupVotes) {
+        if (matchupVotes.hasOwnProperty(key)) {
+          const votedDate = moment(parseInt(matchupVotes[key].split(' ')[1]));
+          if(current.diff(votedDate, 'hours') > 23){
+            delete matchupVotes[key];
+          }
+        }
+      }
+      localStorage.setItem('matchupVotes', JSON.stringify(matchupVotes));
+    }
   }
 
   toggleDropdown () {
@@ -124,9 +157,7 @@ class Header extends Component {
                   className="navbar-brand os-white os-nav-title"
                   to="/"
                 >
-                  <h4>
-                    OVERWATCH
-                  </h4>
+                  <img style={{width: "200px"}} src="https://s3.amazonaws.com/solomid-resources/overwatch/icons/overwatchelite-logo.png" />
                 </Link>
               </div>
               <div className="col-xl-5 col-lg-6 col-xs-12">

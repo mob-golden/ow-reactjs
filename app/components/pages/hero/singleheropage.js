@@ -10,6 +10,7 @@ import Loader from '../../loader';
 import Typeahead from '../../typeahead';
 import HeroFooter from './herofooter';
 import { adDimensions } from '../../../constants/ads';
+import PageNotFound from '../notfound/PageNotFound';
 
 class SingleHeroPage extends Component {
 
@@ -41,7 +42,7 @@ class SingleHeroPage extends Component {
     }
 
     let activePath = _activePath.split('/').pop();
-    let _generaltips,_heromatchups,_maprankings, _maprankingtips = false;
+    let _generaltips, _heromatchups, _maprankings, _maprankingtips = false;
 
     if(activePath == "matchups" ) _heromatchups = 'active';
     else if(activePath == "maprankings" ) _maprankings = 'active';
@@ -55,6 +56,11 @@ class SingleHeroPage extends Component {
     }
 
     const heroKey = changeCase.lower(_heroKey);
+
+    if(!heroesHash[heroKey]){
+      return (<PageNotFound/>);
+    }
+
     const {
       id,
       name,
@@ -65,11 +71,11 @@ class SingleHeroPage extends Component {
     return (
       <div className="os-body">
         <div className="os-content container">
-          <Ad
+          {/*<Ad
             className="os-ad os-ad-top"
             dimensions={adDimensions.BEFORE_RECT}
             path={'/22280732/ChampionSelect_728x90_HP_BTF1'}
-          />
+          />*/}
           <div className="os-hero row">
             <div className="col-lg-12">
               <div className="os-content-top os-hero-top">
@@ -132,17 +138,17 @@ class SingleHeroPage extends Component {
                   </div> : null
                 }
 
-                <div className="row">
+                <div className="row os-tab-transition">
                   {children}
                 </div>
               </div>
             </div>
           </div>
-          <Ad
+          {/*<Ad
             className="os-ad os-ad-bottom"
             dimensions={adDimensions.AFTER_SQUARE}
             path={'/22280732/ChampionSelect_728x90_HP_BTF1'}
-          />
+          />*/}
         </div>
         <div className="os-hero-footer row">
           {!isFetchingHeroes && heroesArray ?

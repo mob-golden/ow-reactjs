@@ -387,6 +387,10 @@ function fetchMapTips (mapKey, params) {
         if (status >= 200 && status < 300) {
           return response;
         } else {
+          if(status == 404){
+            window.location.href = "/404";
+            return;
+          }
           const error = new Error(statusText);
           console.log(`Response returned an error for ${url}: ${error.message}`);
 

@@ -68,7 +68,7 @@ function fetchThreads (commType, params) {
         }
       })
       .then(response => response.json())
-      .then(threads => dispatch(receiveThreads(commType,threads)));
+      .then(threads => dispatch(receiveThreads(threads)));
   };
 }
 
@@ -78,10 +78,74 @@ function requestThreads () {
   };
 }
 
-function receiveThreads (commType, threads) {
+function receiveThreads (threads) {
   return {
     type: RECEIVE_THREADS,
-    commType,
+    threads
+  };
+}
+
+//====================================================================================
+
+
+export const REQUEST_ALL_THREADS = 'REQUEST_ALL_THREADS';
+export const RECEIVE_ALL_THREADS = 'RECEIVE_ALL_THREADS';
+
+export function fetchAllThreadsIfNeeded (params=defaultParams) {
+  return (dispatch, getState) => {
+    if (shouldFetchAllThreads(getState()))
+      return dispatch(fetchAllThreads(params));
+  };
+}
+
+function shouldFetchAllThreads (state) {
+  const {
+    community: {
+      allThreads
+    }
+  } = state;
+
+  if (allThreads.isFetching)
+    return false;
+
+  return true;
+}
+
+function fetchAllThreads ( params) {
+  return dispatch => {
+    dispatch(requestAllThreads());
+    let url = `${OW_COMMUNITY_URL}/class/overwatchselect`;
+    
+    return fetch(url, {credentials : 'include'})
+      .then(response => {
+        const {
+          status,
+          statusText
+        } = response;
+
+        if (response.status >= 200 && response.status < 300) {
+          return response;
+        } else {
+          const error = new Error(statusText);
+          console.log(`Response returned an error for ${url}: ${error.message}`);
+
+          return Promise.reject(error);
+        }
+      })
+      .then(response => response.json())
+      .then(threads => dispatch(receiveAllThreads(threads)));
+  };
+}
+
+function requestAllThreads () {
+  return {
+    type: REQUEST_ALL_THREADS
+  };
+}
+
+function receiveAllThreads (threads) {
+  return {
+    type: RECEIVE_ALL_THREADS,
     threads
   };
 }
@@ -130,6 +194,10 @@ function fetchSingleThread (threadId, params) {
         if (response.status >= 200 && response.status < 300) {
           return response;
         } else {
+          if(status == 404){
+            window.location.href = "/404";
+            return;
+          }
           const error = new Error(statusText);
           console.log(`Response returned an error for ${url}: ${error.message}`);
 

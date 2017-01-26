@@ -125,6 +125,7 @@ class MatchupTips extends Component {
               </h5>
 
               <TipList
+                masterKey={heroKey}
                 listId = "for"
                 tips={
                   this.state.leftViewAll?
@@ -144,7 +145,7 @@ class MatchupTips extends Component {
                   className={leftViewAllClassName}
                   onClick={() => this.setState({leftViewAll: !this.state.leftViewAll })}
                 >
-                { this.state.leftViewAll?`VIEW LESS`:`VIEW ALL`}
+                { this.state.leftViewAll?`VIEW LESS`:`VIEW MORE`}
                 </button>
               </div>
             </div>
@@ -161,6 +162,7 @@ class MatchupTips extends Component {
               </h5>
 
               <TipList
+                masterKey={matchupHeroKey}
                 listId = "against"
                 tips={
                   this.state.rightViewAll?
@@ -180,7 +182,7 @@ class MatchupTips extends Component {
                   className={rightViewAllClassName}
                   onClick={() => this.setState({rightViewAll: !this.state.rightViewAll })}
                 >
-                { this.state.rightViewAll?`VIEW LESS`:`VIEW ALL`}
+                { this.state.rightViewAll?`VIEW LESS`:`VIEW MORE`}
                 </button>
               </div>
             </div>
@@ -228,7 +230,23 @@ class MatchupTips extends Component {
                   token,
                   direction: type == 'for'
                 }));
+                const tmp_data = {
+                  _id:'9999999999'+textarea.value,
+                  authorName: localStorage.getItem('username'),
+                  contentRaw: textarea.value,
+                  created_at: "2000-01-01T00:00:00.938Z",
+                  score: {
+                    upvotes: 1,
+                    downvotes: 0,
+                    hotScore: 1,
+                    total: 1,
+                  },
+                  type: type
+                };
+                this.props.matchupTips[type].data.tips.push(tmp_data);
+                this.forceUpdate();
               }
+
               $(`#modal-add-matchup-tip-${type}`).modal('hide');
             }}>
             <Modal 

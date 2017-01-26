@@ -7,6 +7,7 @@ import { Link } from 'react-router';
 
 import Modal from '../../modal';
 import Loader from '../../loader';
+import PageNotFound from '../notfound/PageNotFound';
 import { fetchThreadsIfNeeded } from '../../../actions/community';
 import CommunityTypeAhead from '../../communitytypeahead';
 import { FORUM_STRINGS } from '../../../constants/types';
@@ -117,7 +118,9 @@ class ThreadsListPage extends Component {
         commType
       }
     } = this.props;
-    if(!FORUM_STRINGS[commType]) return(null);
+    if(!FORUM_STRINGS[commType]) {
+      return (<PageNotFound/>);
+    }
     return (
       <div className="os-content container-fluid">
         <div className="row">
