@@ -59,9 +59,9 @@ class HomePage extends Component {
     return (
       <div className="os-content container">
         <Ad
-          className="os-ad os-ad-top"
-          dimensions={adDimensions.AFTER_SQUARE}
-          path={'/22280732/OverwatchElite_728x90_HP_ATF1'}
+        className="os-ad os-ad-bottom"
+        dimensions={adDimensions.BEFORE_RECT}
+        path={'/22280732/OverwatchElite_728x90_HP_BTF1'}
         />
         <div className="os-heroes row">
           <div className="col-lg-12">
@@ -102,10 +102,10 @@ class HomePage extends Component {
           </div>
         </div>
         <Ad
-        className="os-ad os-ad-bottom"
-        dimensions={adDimensions.BEFORE_RECT}
-        path={'/22280732/OverwatchElite_728x90_HP_BTF1'}
-      />
+          className="os-ad os-ad-top"
+          dimensions={adDimensions.AFTER_SQUARE}
+          path={'/22280732/OverwatchElite_728x90_HP_ATF1'}
+        />
       </div>
     );
   }

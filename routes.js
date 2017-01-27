@@ -9,7 +9,7 @@ export const OW_MAP_URL = `${OW_API_ROOT}/map`;
 export const OW_TIPS_URL = `${OW_API_ROOT}/tips`;
 export const OW_MATCHUPS_URL = `${OW_API_ROOT}/matchups`;
 //================ OVERWATCH WEBSITE LINKS ===========================//
-export const OW_PRE_PROTOCOL_WEB_ROOT = process.env.FORCE_DOMAIN || `www.overwatchelite.net`;
+export const OW_PRE_PROTOCOL_WEB_ROOT = `www.overwatchelite.net`;
 export const OW_WEB_ROOT = `http://${OW_PRE_PROTOCOL_WEB_ROOT}`;
 export const OW_WEB_HEROES_URL = `${OW_WEB_ROOT}/heroes`; //year
 export const OW_WEB_MAPS_URL = `${OW_WEB_ROOT}/maps`; //year

@@ -6,7 +6,6 @@ var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
 var redis = require('redis');
 var bodyParser = require('body-parser');
-var forceDomain = require('forcedomain');
 var sendgrid = require('sendgrid');
 var FastlyPurge = require('fastly-purge');
 var compression = require('compression');
@@ -48,9 +47,6 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.set('trust proxy', true);
-app.use(forceDomain({
-  hostname: process.env.FORCE_DOMAIN || 'www.overwatchelite.net'
-}));
 
 app.post('/forgot', function (req, res) {
   const {
