@@ -25,7 +25,9 @@
       height: 71px;
       line-height: 71px;
       padding: 0 18px;
-
+      -webkit-transition: background-color 0.2s ease; // For Safari
+      -moz--webkit-transition: background-color 0.2s ease; // For Safari
+      transition: background-color 0.2s ease;
       &:hover,
       &:focus {
         text-decoration: none;

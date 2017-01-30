@@ -28,11 +28,11 @@ class MapsPage extends Component {
       dispatch
     } = this.props;
 
-    dispatch(fetchMapsIfNeeded());
+    // dispatch(fetchMapsIfNeeded());
   };
 
   componentWillUnmount () {
-    $('.os-ad-side').remove();
+    // $('.os-ad-side').remove();
   }
 
   render () {

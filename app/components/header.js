@@ -31,6 +31,25 @@ class Header extends Component {
     signUpId: 'sign-up'
   };
 
+  constructor (props) {
+    super(props);
+
+    this.updateLocalStorage();
+    const {
+      token,
+      username
+    } = props;
+
+    this.state = {
+      email: '',
+      password: '',
+      username: '',
+      confirmPassword: '',
+      passwordMessage: null,
+      dropdownOpen: false
+    };
+  }
+
   componentDidUpdate (prevProps) {
     const {
       token,
@@ -77,25 +96,6 @@ class Header extends Component {
       if (this.state.dropdownOpen) this.toggleDropdown();
       $(window).scrollTop(0);
     })
-  }
-
-  constructor (props) {
-    super(props);
-
-    this.updateLocalStorage();
-    const {
-      token,
-      username
-    } = props;
-
-    this.state = {
-      email: '',
-      password: '',
-      username: '',
-      confirmPassword: '',
-      passwordMessage: null,
-      dropdownOpen: false
-    };
   }
 
   updateLocalStorage(){
@@ -145,7 +145,6 @@ class Header extends Component {
       token,
       username
     } = this.props;
-    let nav_auth_content;
 
     return (
       <header className="os-header navbar-fixed row">
@@ -435,7 +434,7 @@ class Header extends Component {
     } = this.props;
 
     const currentPath = window.location.pathname.split('/')[1];
-    const isActiveHeroes = currentPath == 'heroes' || currentPath == 'hero' || currentPath == 'matchuptips';
+    const isActiveHeroes = currentPath == 'heroes' || currentPath == 'hero' || currentPath == 'matchuptips' || currentPath == '';
     const isActiveMaps = currentPath == 'maps' || currentPath == 'map';
     const isActiveCommunity = currentPath == 'community';
 
@@ -456,7 +455,6 @@ class Header extends Component {
           <ul className={`${classes}`}>
             <li className={"nav-item os-nav-item"}>
               <Link
-                onClick={e=>this.setState({})}
                 className={isActiveHeroes? activeHeaderItemClass : headerItemClass}
                 to="/heroes"
               >
@@ -466,7 +464,6 @@ class Header extends Component {
 
             <li className="nav-item os-nav-item">
               <Link
-                onClick={e=>this.setState({})}
                 className={isActiveMaps? activeHeaderItemClass : headerItemClass}
                 to="/maps"
               >
@@ -476,7 +473,6 @@ class Header extends Component {
 
             <li className="nav-item os-nav-item">
               <Link
-                onClick={e=>this.setState({})}
                 className={isActiveCommunity? activeHeaderItemClass : headerItemClass}
                 to="/community"
               >
@@ -509,7 +505,6 @@ class Header extends Component {
         <ul className={`${classes}`}>
           <li className="nav-item os-nav-item">
             <Link
-              onClick={e=>this.setState({})}
               className={isActiveHeroes ? activeHeaderItemClass : headerItemClass}
               to="/heroes"
             >
@@ -519,7 +514,6 @@ class Header extends Component {
 
           <li className="nav-item os-nav-item">
             <Link
-              onClick={e=>this.setState({})}
               className={isActiveMaps ? activeHeaderItemClass : headerItemClass}
               to="/maps"
             >
@@ -529,7 +523,6 @@ class Header extends Component {
 
           <li className="nav-item os-nav-item">
             <Link
-              onClick={e=>this.setState({})}
               className={isActiveCommunity ? activeHeaderItemClass : headerItemClass}
               to="/community"
             >

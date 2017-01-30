@@ -42,12 +42,17 @@ class Root extends Component {
   render () {
     const {
       ads,
+      location: {
+        pathname
+      },
       children
     } = this.props;
 
     return (
       <div className="os-container container-fluid">
-        <Header />
+        <Header
+          currentPath={pathname}
+        />
           <div className="os-ad os-ad-side os-ad-side-left" id={ads[0]}></div>
           <div className="os-ad os-ad-side os-ad-side-right" id={ads[1]}></div>
           <div className="os-transition">
