@@ -64,7 +64,6 @@ class HomePage extends Component {
           <GPT
             adUnitPath="/22280732/OverwatchElite_728x90_HP_ATF1"
             slotSize={[[970, 250], [970, 90], [728, 280], [728, 90]]}
-            targeting={{test: "responsive"}}
           />
         </div>
         <div className="os-heroes row">
@@ -108,7 +107,6 @@ class HomePage extends Component {
         <GPT
           adUnitPath="/22280732/OverwatchElite_728x90_HP_BTF1"
           slotSize={[[728, 280], [728, 90], [300, 250]]}
-          targeting={{test: "responsive"}}
         />
       </div>
     );
