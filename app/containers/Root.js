@@ -41,19 +41,15 @@ class Root extends Component {
     return (
       <div className="os-container container-fluid">
         <Header currentPath={pathname} />
-          <div className="right-ad" style={{position: "absolute", left: "0", z-index: "10"}}>
-            <GPT
-              adUnitPath="/22280732/OverwatchElite_336x768_ROS_Skin_Left"
-              slotSize={[336, 768]}
-              style={{position: "absolute"}}
-            />
-          </div>
-          <div className="right-ad" style={{position: "absolute", right: "0", z-index: "10"}}>
-            <GPT
-              adUnitPath="/22280732/OverwatchElite_336x768_ROS_Skin_Right"
-              slotSize={[336, 769]}
-            />
-          </div>
+          <GPT
+            adUnitPath="/22280732/OverwatchElite_336x768_ROS_Skin_Left"
+            slotSize={[336, 768]}
+            style={{position: "absolute"}}
+          />
+          <GPT
+            adUnitPath="/22280732/OverwatchElite_336x768_ROS_Skin_Right"
+            slotSize={[336, 769]}
+          />
           <div className="os-transition">
             {children}
           </div>
