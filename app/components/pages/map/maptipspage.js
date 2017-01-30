@@ -157,10 +157,6 @@ class MapTipsPage extends Component {
                     <div className="os-card-col os-map-stats-col col-lg-4">
                       <div className="os-card-body">
                         <span className="os-map-tip-name"> TOP HEROES </span>
-                        <h5 className="os-map-tip-title"> BASED ON STATS </h5>
-                      </div>
-                      <div className="os-card-body">
-                        <span className="os-map-tip-name"> TOP HEROES </span>
                         <h5 className="os-map-tip-title"> VOTED BY PLAYERS </h5>
                         <MatchupList
                           heroKey={mapKey}

@@ -368,9 +368,6 @@ class Header extends Component {
           <li>
             <Link className="os-mobile-link" to="/maps">Maps</Link>
           </li>
-          <li>
-            <Link className="os-mobile-link" to="/community">Community</Link>
-          </li>
           <li className="os-mobile-link">
             <a
               className="os-white os-font-size-12"
@@ -397,9 +394,6 @@ class Header extends Component {
         </li>
         <li>
           <Link className="os-mobile-link" to="/maps">Maps</Link>
-        </li>
-        <li>
-          <Link className="os-mobile-link" to="/community">Community</Link>
         </li>
         <li>
           <a
