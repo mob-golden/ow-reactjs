@@ -368,13 +368,15 @@ class Header extends Component {
           <li>
             <Link className="os-mobile-link" to="/maps">Maps</Link>
           </li>
+          <li>
+            <Link className="os-mobile-link" to="/community">Community</Link>
+          </li>
           <li className="os-mobile-link">
             <a
               className="os-white os-font-size-12"
               href="javascript:;"
             >{username}</a>
           </li>
-
           <li className="os-mobile-link">
             <a
               className="os-white os-font-size-12"
@@ -382,7 +384,6 @@ class Header extends Component {
               onClick={this.signOut}
             >Log out</a>
           </li>
-
         </ul>
       );
     }
@@ -394,6 +395,9 @@ class Header extends Component {
         </li>
         <li>
           <Link className="os-mobile-link" to="/maps">Maps</Link>
+        </li>
+        <li>
+          <Link className="os-mobile-link" to="/community">Community</Link>
         </li>
         <li>
           <a
