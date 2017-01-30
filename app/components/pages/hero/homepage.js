@@ -60,11 +60,13 @@ class HomePage extends Component {
     }
     return (
       <div className="os-content container">
-        <GPT
-          adUnitPath="/22280732/OverwatchElite_728x90_HP_BTF1"
-          slotSize={[728, 90]}
-          targeting={{test: "responsive"}}
-        />
+        <div className="os-ad-top">
+          <GPT
+            adUnitPath="/22280732/OverwatchElite_728x90_HP_ATF1"
+            slotSize={[[970, 250], [970, 90], [728, 280], [728, 90]]}
+            targeting={{test: "responsive"}}
+          />
+        </div>
         <div className="os-heroes row">
           <div className="col-lg-12">
             <div className="os-content-top os-heroes-top">
@@ -104,8 +106,8 @@ class HomePage extends Component {
           </div>
         </div>
         <GPT
-          adUnitPath="/22280732/OverwatchElite_728x90_HP_ATF1"
-          slotSize={[728, 90]}
+          adUnitPath="/22280732/OverwatchElite_728x90_HP_BTF1"
+          slotSize={[[728, 280], [728, 90], [300, 250]]}
           targeting={{test: "responsive"}}
         />
       </div>
