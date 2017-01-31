@@ -4,8 +4,12 @@
 }
 
 .os-ad-top{
-  margin-top: -8px;
-  margin-bottom: 16px;
+  padding: 0px 60px;
+/*  margin-top: -8px;*/
+/*  margin-bottom: 16px;*/
+}
+.os-ad-bottom{
+  padding: 0px 60px;
 }
 
 .os-ad-middle{
@@ -30,4 +34,12 @@
 
 .os-ad-side-right{
   right: 0;
+}
+
+.os-gpt-container{
+  background-color : black;
+  position: absolute;
+  margin-top: 100px;
+  margin-left: calc((98.5% - 1600px)/2);
+  /*display: block;*/
 }

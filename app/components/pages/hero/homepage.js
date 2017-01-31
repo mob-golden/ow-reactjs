@@ -12,27 +12,13 @@ import TabsNav from '../../tabsnav';
 import PageNotFound from '../notfound/PageNotFound';
 
 import { HERO_TYPES } from '../../../constants/types';
-import { adDimensions } from '../../../constants/ads';
-
-import { prepareAds } from '../../../utils/index';
 
 GPT.enableSingleRequest();
 
 class HomePage extends Component {
-  static defaultProps = {
-    ads: [
-      'div-gpt-ad-1485373546813-0',
-      'div-gpt-ad-1485373546813-1'
-    ]
-  };
 
   constructor (props) {
     super(props);
-  }
-
-  componentDidMount() {
-    const { ads } = this.props;
-    prepareAds(ads);
   }
 
   componentWillMount () {
@@ -104,10 +90,12 @@ class HomePage extends Component {
             </div>
           </div>
         </div>
-        <GPT
-          adUnitPath="/22280732/OverwatchElite_728x90_HP_BTF1"
-          slotSize={[[728, 280], [728, 90], [300, 250]]}
-        />
+        <div className="os-ad-bottom">
+          <GPT
+            adUnitPath="/22280732/OverwatchElite_728x90_HP_BTF1"
+            slotSize={[[728, 280], [728, 90], [300, 250]]}
+          />
+        </div>
       </div>
     );
   }
