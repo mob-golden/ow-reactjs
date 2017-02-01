@@ -480,7 +480,7 @@ class Header extends Component {
 
             <li className="nav-item os-nav-item">
               <a
-                className={activeHeaderItemClass}
+                className={headerItemClass}
                 href="javascript:;"
               >{username}</a>
             </li>

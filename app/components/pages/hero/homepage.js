@@ -46,12 +46,6 @@ class HomePage extends Component {
     }
     return (
       <div className="os-content container">
-        <div className="os-ad-top">
-          <GPT
-            adUnitPath="/22280732/OverwatchElite_728x90_HP_ATF1"
-            slotSize={[[970, 250], [970, 90], [728, 280], [728, 90]]}
-          />
-        </div>
         <div className="os-gpt-container">
           <GPT
             adUnitPath="/22280732/OverwatchElite_336x768_ROS_Skin_Left"
@@ -61,6 +55,12 @@ class HomePage extends Component {
           <GPT
             adUnitPath="/22280732/OverwatchElite_336x768_ROS_Skin_Right"
             slotSize={[336, 769]}
+          />
+        </div>
+        <div className="os-ad-top">
+          <GPT
+            adUnitPath="/22280732/OverwatchElite_728x90_HP_ATF1"
+            slotSize={[[970, 250], [970, 90], [728, 280], [728, 90]]}
           />
         </div>
         <div className="os-heroes row">
