@@ -36,10 +36,15 @@
   right: 0;
 }
 
-.os-gpt-container{
-  background-color : black;
+.os-gpt-container iframe{
+  /*background-color : black;*/
   position: absolute;
-  margin-top: 100px;
-  margin-left: calc((98.5% - 1600px)/2);
+  /*margin-top: 70px;*/
+  top: 0;
+  left: -1000px;
+  right: -1000px;
+  height: 100%;
+  margin: 70px auto;
+  /*margin-left: calc((98% - 1600px)/2);*/
   /*display: block;*/
 }

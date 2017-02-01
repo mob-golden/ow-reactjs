@@ -52,6 +52,17 @@ class HomePage extends Component {
             slotSize={[[970, 250], [970, 90], [728, 280], [728, 90]]}
           />
         </div>
+        <div className="os-gpt-container">
+          <GPT
+            adUnitPath="/22280732/OverwatchElite_336x768_ROS_Skin_Left"
+            slotSize={[336, 768]}
+            style={{}}
+          />
+          <GPT
+            adUnitPath="/22280732/OverwatchElite_336x768_ROS_Skin_Right"
+            slotSize={[336, 769]}
+          />
+        </div>
         <div className="os-heroes row">
           <div className="col-lg-12">
             <div className="os-content-top os-heroes-top">

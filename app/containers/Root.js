@@ -1,6 +1,4 @@
 import React from 'react';
-import {Bling as GPT} from "react-gpt";
-import { adDimensions } from '../constants/ads';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import { Component, PropTypes } from 'react';
@@ -9,9 +7,6 @@ import { fetchHeroesIfNeeded } from '../actions/hero';
 import { fetchMapsIfNeeded } from '../actions/map';
 
 //TODO import { updateCache } from '../actions/cache';
-import { prepareAds } from '../utils/index';
-
-GPT.enableSingleRequest();
 
 class Root extends Component {
 
@@ -41,17 +36,6 @@ class Root extends Component {
     return (
       <div className="os-container container-fluid">
         <Header currentPath={pathname} />
-          <div className="os-gpt-container">
-            <GPT
-              adUnitPath="/22280732/OverwatchElite_336x768_ROS_Skin_Left"
-              slotSize={[336, 768]}
-              style={{}}
-            />
-            <GPT
-              adUnitPath="/22280732/OverwatchElite_336x768_ROS_Skin_Right"
-              slotSize={[336, 769]}
-            />
-          </div>
           <div className="os-transition">
             {children}
           </div>
