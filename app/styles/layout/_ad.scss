@@ -39,7 +39,8 @@
 
 .os-gpt-container iframe{
   /*background-color : black;*/
-  position: absolute;
+  z-index: -1;
+  position: fixed;
   /*margin-top: 70px;*/
   top: 0;
   left: -1000px;
