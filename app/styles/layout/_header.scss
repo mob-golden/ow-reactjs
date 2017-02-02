@@ -34,9 +34,6 @@
       &:focus {
         text-decoration: none;
       }
-      &:hover {
-        background-color: $BLUE_1;
-      }
       &:focus {
         -webkit-appearance: none;
         -moz-appearance: none;
@@ -45,20 +42,42 @@
       }
     }
   }
+  .os-nav-item.os-nav-item-active {
+    a {
+      background: $BLUE_1;
+    }
+  }
 
   #nav-item-back {
-    width: 83px;
     height: 70px;
     background-color: $BLUE_1;
     transition: .2s ease-in-out;
     -webkit-transition: .2s ease-in-out; // For Safari
     -moz--webkit-transition: .2s ease-in-out; // For Safari
   }
+
+  .os-nav-item:nth-of-type(1).os-nav-item-active ~ #nav-item-back {  
+    margin-left: 0px;
+    width: 82px;
+  }
   .os-nav-item:nth-of-type(2).os-nav-item-active ~ #nav-item-back {  
     margin-left: 82px;
     width: 70px;
   }
   .os-nav-item:nth-of-type(3).os-nav-item-active ~ #nav-item-back {  
+    margin-left: 151px;
+    width: 112px;
+  }
+
+  .os-nav-item:nth-of-type(1):hover ~ #nav-item-back {  
+    margin-left: 0px;
+    width: 82px;
+  }
+  .os-nav-item:nth-of-type(2):hover ~ #nav-item-back {  
+    margin-left: 82px;
+    width: 70px;
+  }
+  .os-nav-item:nth-of-type(3):hover ~ #nav-item-back {  
     margin-left: 151px;
     width: 112px;
   }
