@@ -42,6 +42,7 @@
       }
     }
   }
+
   #nav-item-back {
     height: 70px;
     background-color: $BLUE_1;
@@ -74,6 +75,14 @@
   .os-nav-item:nth-of-type(3):hover ~ #nav-item-back {  
     margin-left: 151px;
     width: 112px;
+  }
+  .os-nav-item:nth-of-type(4):hover ~ #nav-item-back {  
+    margin-left: 265px;
+    width: 74px;
+  }
+  .os-nav-item:nth-of-type(5):hover ~ #nav-item-back {  
+    margin-left: 341px;
+    width: 80px;
   }
 
   .os-nav-menu {
