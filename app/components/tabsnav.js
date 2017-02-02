@@ -49,6 +49,7 @@ const TabsNav = props => {
           </li>
         );
       })}
+      <div id="os-tabnav-active-back"/>
     </ul>
   );
 };

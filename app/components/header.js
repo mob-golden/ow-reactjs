@@ -436,42 +436,42 @@ class Header extends Component {
     const isActiveMaps = currentPath == 'maps' || currentPath == 'map';
     const isActiveCommunity = currentPath == 'community';
 
-    const headerItemClass = classNames({
-      "os-white": true,
-      "os-font-size-12": true,
+    const navItemClass = classNames({
+      "nav-item": true,
+      "os-nav-item": true,
     })
 
-    const activeHeaderItemClass = classNames({
-      "os-white": true,
-      "os-font-size-12": true,
-      "os-header-item-active": true,
+    const activeNavItemClass = classNames({
+      "nav-item": true,
+      "os-nav-item": true,
+      "os-nav-item-active": true,
     });
 
     if (token && username) {
       return (
         <div>
           <ul className={`${classes}`}>
-            <li className={"nav-item os-nav-item"}>
+            <li className={isActiveHeroes ? activeNavItemClass : navItemClass}>
               <Link
-                className={isActiveHeroes? activeHeaderItemClass : headerItemClass}
+                className="os-white os-font-size-12"
                 to="/heroes"
               >
                 HEROES
               </Link>
             </li>
 
-            <li className="nav-item os-nav-item">
+            <li className={isActiveMaps ? activeNavItemClass : navItemClass}>
               <Link
-                className={isActiveMaps? activeHeaderItemClass : headerItemClass}
+                className="os-white os-font-size-12"
                 to="/maps"
               >
                 MAPS
               </Link>
             </li>
 
-            <li className="nav-item os-nav-item">
+            <li className={isActiveCommunity ? activeNavItemClass : navItemClass}>
               <Link
-                className={isActiveCommunity? activeHeaderItemClass : headerItemClass}
+                className="os-white os-font-size-12"
                 to="/community"
               >
                 COMMUNITY
@@ -480,7 +480,7 @@ class Header extends Component {
 
             <li className="nav-item os-nav-item">
               <a
-                className={headerItemClass}
+                className="os-white os-font-size-12"
                 href="javascript:;"
               >{username}</a>
             </li>
@@ -493,6 +493,7 @@ class Header extends Component {
               >Log out</a>
             </li>
 
+            <div id="nav-item-back"/>
           </ul>
         </div>
       );
@@ -501,27 +502,27 @@ class Header extends Component {
     return (
       <div>
         <ul className={`${classes}`}>
-          <li className="nav-item os-nav-item">
+          <li className={isActiveHeroes ? activeNavItemClass : navItemClass}>
             <Link
-              className={isActiveHeroes ? activeHeaderItemClass : headerItemClass}
+              className="os-white os-font-size-12"
               to="/heroes"
             >
               HEROES
             </Link>
           </li>
 
-          <li className="nav-item os-nav-item">
+          <li className={isActiveMaps ? activeNavItemClass : navItemClass}>
             <Link
-              className={isActiveMaps ? activeHeaderItemClass : headerItemClass}
+              className="os-white os-font-size-12"
               to="/maps"
             >
               MAPS
             </Link>
           </li>
 
-          <li className="nav-item os-nav-item">
+          <li className={isActiveCommunity ? activeNavItemClass : navItemClass}>
             <Link
-              className={isActiveCommunity ? activeHeaderItemClass : headerItemClass}
+              className="os-white os-font-size-12"
               to="/community"
             >
               COMMUNITY
@@ -549,6 +550,8 @@ class Header extends Component {
               SIGN UP
             </a>
           </li>
+          
+          <div id="nav-item-back"/>
         </ul>
 
       </div>
