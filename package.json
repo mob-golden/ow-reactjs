@@ -7,6 +7,7 @@
     "build": "webpack -p --config webpack.config.prod.js",
     "postinstall": "postinstall-build \"npm run build\"",
     "start": "NODE_ENV=production node server",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "db": "NODE_ENV=development DEBUG=app:log nodemon --ignore app --ignore dist --exec babel-node server",
     "dev": "NODE_ENV=development webpack-dev-server --progress --inline --hot --history-api-fallback"
   },
