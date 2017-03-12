@@ -201,7 +201,7 @@ class TipList extends Component {
     const votes = JSON.parse(localStorage.getItem('tipVotes'));
 
     if (!votes[id]) {
-      dispatch(voteTip(id, downOrUp));
+      dispatch(voteTip(id, downOrUp, masterKey));
 
       const selector = `.jq-counter-tip-${id}`;
       const score = parseInt($(selector).text());
