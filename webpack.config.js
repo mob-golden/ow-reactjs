@@ -1,28 +1,36 @@
 var path = require('path');
-var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+var contentBase = process.env.NODE_ENV=='development' ?  __dirname+'/app' : __dirname + '/dist';
+console.log(contentBase);
 
 module.exports = {
 
   context: __dirname + '/app',
 
   entry: {
-    app: './index.js'
+    app: './index.js',
   },
 
   output: {
-    path: 'dist',
+    filename: 'app.js',
     publicPath : '/',
-    filename: '[name].[chunkhash].js'
+    path: __dirname + '/app'
+  },
+
+  devtool: '#sourcemap',
+
+  // For enabling page refreshes in development
+  devServer: {
+    contentBase : contentBase
   },
 
   module: {
     loaders: [{
       test: /\.js?$/,
       exclude: /node_modules/,
-      loaders: ['babel'],
+      loaders: ['react-hot-loader/webpack', 'babel'],
       include: path.join(__dirname, './app')
     },{
       test: /\.s?css$/,
@@ -34,29 +42,14 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        dead_code: true,
-        drop_console: true,
-        join_vars: true,
-        unused: true,
-        warnings: false
-      }
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      filename: '[name].[chunkhash].js',
-      minChunks: Infinity
-    }),
-    new ExtractTextPlugin('style.[contenthash].css', { allChunks: true }),
+    new ExtractTextPlugin('style.css', { allChunks: true }),
     new CopyWebpackPlugin([
       { from: __dirname + '/app/google.js', to: 'app/' }
     ]),
-    new HtmlWebpackPlugin({
-      title: 'overwatch-select',
-      filename: 'index.html',
-      template: 'index.prod.html'
-    })
-  ]
+  ],
+  resolve: {
+    alias: { 'react/lib/ReactMount': 'react-dom/lib/ReactMount'
+  }
+}
 
-};
+}
